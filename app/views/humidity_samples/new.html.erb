@@ -1,0 +1,36 @@
+<h1>New Humidity Sample</h1>
+
+<%= render 'form', humidity_sample: @humidity_sample %>
+
+<%= link_to 'Back', humidity_samples_path %>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Element</th>
+      <th>Responsable</th>
+      <th>Humidity</th>
+      <th>State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @humidity_samples.each do |humidity_sample| %>
+      <tr>
+        <td><%= humidity_sample.element.tag %></td>
+        <td><%= humidity_sample.responsable %></td>
+        <td><%= humidity_sample.humidity %></td>
+        <td><%= humidity_sample.state %></td>
+        <td><%= humidity_sample.created_at %></td>
+
+        <td><%= link_to 'Show', humidity_sample %></td>
+        <td><%= link_to 'Edit', edit_humidity_sample_path(humidity_sample) %></td>
+        <td><%= link_to 'Destroy', humidity_sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

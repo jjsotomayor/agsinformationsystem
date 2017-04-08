@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Element:</strong>
+  <%= @humidity_sample.element %>
+</p>
+
+<p>
+  <strong>Responsable:</strong>
+  <%= @humidity_sample.responsable %>
+</p>
+
+<p>
+  <strong>Humidity:</strong>
+  <%= @humidity_sample.humidity %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @humidity_sample.state %>
+</p>
+
+<%= link_to 'Edit', edit_humidity_sample_path(@humidity_sample) %> |
+<%= link_to 'Back', humidity_samples_path %>

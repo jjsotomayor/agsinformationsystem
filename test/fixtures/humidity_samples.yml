@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  element: one
+  responsable: MyString
+  humidity: 
+  state: MyString
+
+two:
+  element: two
+  responsable: MyString
+  humidity: 
+  state: MyString

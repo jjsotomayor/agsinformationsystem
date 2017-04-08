@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @element.tag %>
+</p>
+
+<p>
+  <strong>Process order:</strong>
+  <%= @element.process_order %>
+</p>
+
+<p>
+  <strong>Product type:</strong>
+  <%= @element.product_type.name %>
+</p>
+
+<p>
+  <strong>Drying method:</strong>
+    <%= @element.drying_method %>
+</p>
+
+<p>
+  <strong>Previous usda:</strong>
+  <%= @element.previous_usda %>
+</p>
+
+<p>
+  <strong>Ex tag:</strong>
+  <%= @element.ex_tag %>
+</p>
+
+<%= link_to 'Edit', edit_element_path(@element) %> |
+<%= link_to 'Back', elements_path %>
