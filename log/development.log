@@ -5920,3 +5920,1685 @@ Processing by UsersController#index as HTML
 Completed 200 OK in 34ms (Views: 32.1ms | ActiveRecord: 0.3ms)
 
 
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-04-08 01:46:39 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.9ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (27.8ms)
+Completed 200 OK in 292ms (Views: 259.6ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-04-08 03:08:31 -0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 73ms (Views: 71.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-04-08 03:08:37 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (0.8ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 37ms (Views: 35.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-04-08 03:08:40 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 58ms (Views: 55.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-04-08 03:09:01 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.8ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 66ms (Views: 63.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-04-08 03:11:11 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.1ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 51ms (Views: 50.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-04-08 03:11:42 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.1ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 50ms (Views: 49.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 14:56:04 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (25.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (67.1ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (97.2ms)
+Completed 500 Internal Server Error in 307ms (ActiveRecord: 74.7ms)
+
+
+  
+ActionView::Template::Error (File to import not found or unreadable: bootstrap-sass/assets/stylesheets/bootstrap-sprockets.
+Load paths:
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/config
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/images
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/javascripts
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets
+  /home/jjsotomayor/Git repositories/agsinformationsystem/vendor/assets/javascripts
+  /home/jjsotomayor/Git repositories/agsinformationsystem/vendor/assets/stylesheets
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/jquery-rails-4.3.1/vendor/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actioncable-5.0.2/lib/assets/compiled
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/stylesheets
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/fonts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/images
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/stylesheets):
+    4:     <title>Agsinformationsystem</title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:   </head>
+   10: 
+  
+app/assets/stylesheets/application.scss:19
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb__4051690501888876085_47408700993140'
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (6.8ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (26.8ms)
+Started GET "/" for 127.0.0.1 at 2017-04-08 19:48:55 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.4ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (18.3ms)
+Completed 500 Internal Server Error in 219ms (ActiveRecord: 1.5ms)
+
+
+  
+ActionView::Template::Error (File to import not found or unreadable: bootstrap-sass/assets/stylesheets/bootstrap-sprockets.
+Load paths:
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/config
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/images
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/javascripts
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets
+  /home/jjsotomayor/Git repositories/agsinformationsystem/vendor/assets/javascripts
+  /home/jjsotomayor/Git repositories/agsinformationsystem/vendor/assets/stylesheets
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/jquery-rails-4.3.1/vendor/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actioncable-5.0.2/lib/assets/compiled
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/stylesheets
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/fonts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/images
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/stylesheets):
+    4:     <title>Agsinformationsystem</title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:   </head>
+   10: 
+  
+app/assets/stylesheets/application.scss:19
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb__3601295852863879626_47022167400640'
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.5ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (26.6ms)
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:02:03 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.4ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (6.8ms)
+Completed 500 Internal Server Error in 2229ms (ActiveRecord: 1.4ms)
+
+
+  
+ActionView::Template::Error (File to import not found or unreadable: bootstrap-sass/assets/stylesheets/bootstrap-sprockets.
+Load paths:
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/config
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/images
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/javascripts
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets
+  /home/jjsotomayor/Git repositories/agsinformationsystem/vendor/assets/javascripts
+  /home/jjsotomayor/Git repositories/agsinformationsystem/vendor/assets/stylesheets
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/jquery-rails-4.3.1/vendor/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actioncable-5.0.2/lib/assets/compiled
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/stylesheets
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/fonts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/images
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/stylesheets):
+    4:     <title>Agsinformationsystem</title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:   </head>
+   10: 
+  
+app/assets/stylesheets/application.scss:22
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb__2130453201278806270_47065693623620'
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.2ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (21.6ms)
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:05:20 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.4ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (6.5ms)
+Completed 500 Internal Server Error in 122ms (ActiveRecord: 1.4ms)
+
+
+  
+ActionView::Template::Error (Invalid CSS after " @import ": expected file to import (string or url()), was "require_tree"):
+    4:     <title>Agsinformationsystem</title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:   </head>
+   10: 
+  
+app/assets/stylesheets/application.scss:16
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___2891156835799805235_47162305059780'
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (11.5ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (31.5ms)
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:06:13 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.9ms)
+Completed 500 Internal Server Error in 427ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (File to import not found or unreadable: bootstrap-sass/assets/stylesheets/bootstrap-sprockets.
+Load paths:
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/config
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/images
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/javascripts
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets
+  /home/jjsotomayor/Git repositories/agsinformationsystem/vendor/assets/javascripts
+  /home/jjsotomayor/Git repositories/agsinformationsystem/vendor/assets/stylesheets
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/jquery-rails-4.3.1/vendor/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actioncable-5.0.2/lib/assets/compiled
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/stylesheets
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/fonts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/images
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/stylesheets):
+    4:     <title>Agsinformationsystem</title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:   </head>
+   10: 
+  
+app/assets/stylesheets/application.scss:20
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___2891156835799805235_70204101827240'
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.9ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.5ms)
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (20.2ms)
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:07:12 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.8ms)
+Completed 500 Internal Server Error in 431ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (File to import not found or unreadable: bootstrap-sass/assets/stylesheets/bootstrap-sprockets.
+Load paths:
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/config
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/images
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/javascripts
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets
+  /home/jjsotomayor/Git repositories/agsinformationsystem/vendor/assets/javascripts
+  /home/jjsotomayor/Git repositories/agsinformationsystem/vendor/assets/stylesheets
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/jquery-rails-4.3.1/vendor/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actioncable-5.0.2/lib/assets/compiled
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/stylesheets
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/fonts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/images
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/stylesheets):
+    4:     <title>Agsinformationsystem</title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:   </head>
+   10: 
+  
+app/assets/stylesheets/application.scss:20
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___2891156835799805235_70204059105020'
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.5ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.5ms)
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (20.7ms)
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:07:47 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.4ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (6.9ms)
+Completed 500 Internal Server Error in 574ms (ActiveRecord: 1.6ms)
+
+
+  
+ActionView::Template::Error (File to import not found or unreadable: bootstrap-sass/assets/stylesheets/bootstrap-sprockets.
+Load paths:
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/config
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/images
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/javascripts
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets
+  /home/jjsotomayor/Git repositories/agsinformationsystem/vendor/assets/javascripts
+  /home/jjsotomayor/Git repositories/agsinformationsystem/vendor/assets/stylesheets
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/jquery-rails-4.3.1/vendor/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actioncable-5.0.2/lib/assets/compiled
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/stylesheets
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/fonts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/images
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/stylesheets):
+    4:     <title>Agsinformationsystem</title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:   </head>
+   10: 
+  
+app/assets/stylesheets/application.scss:20
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb__528018627020743204_47093174744920'
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.0ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (20.9ms)
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:08:17 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.8ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (2.2ms)
+Completed 500 Internal Server Error in 3185ms (ActiveRecord: 0.8ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'bootstrap-sass/assets/javascripts/bootstrap-sprockets' with type 'application/javascript'
+Checked in these paths: 
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/config
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/images
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/javascripts
+  /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets
+  /home/jjsotomayor/Git repositories/agsinformationsystem/vendor/assets/javascripts
+  /home/jjsotomayor/Git repositories/agsinformationsystem/vendor/assets/stylesheets
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/jquery-rails-4.3.1/vendor/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actioncable-5.0.2/lib/assets/compiled
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/stylesheets
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/javascripts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/fonts
+  /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/images):
+    4:     <title>Agsinformationsystem</title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:   </head>
+   10: 
+  
+app/assets/javascripts/application.js:21
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb__528018627020743204_69990082480100'
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.7ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.5ms)
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (20.3ms)
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:08:43 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+Completed 500 Internal Server Error in 492ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (Missing partial elements/_navbar, application/_navbar with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/home/jjsotomayor/Git repositories/agsinformationsystem/app/views"
+  * "/home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/devise-4.2.1/app/views"
+):
+    11:   <body>
+    12:     <p class="notice"><%= notice %></p>
+    13:     <p class="alert"><%= alert %></p>
+    14:     <%= render 'navbar' %>
+    15:     <%= yield %>
+    16:   </body>
+    17: </html>
+  
+app/views/layouts/application.html.erb:14:in `_app_views_layouts_application_html_erb__528018627020743204_69990211418140'
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.3ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (19.6ms)
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:09:17 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.7ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 43ms (Views: 41.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:10:12 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.5ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (2.2ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 56ms (Views: 54.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:11:02 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.7ms)
+  Rendered shared/_navbar.html.erb (0.2ms)
+Completed 200 OK in 50ms (Views: 48.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/elements/new" for 127.0.0.1 at 2017-04-08 20:11:12 -0300
+Processing by ElementsController#new as HTML
+  Rendering elements/new.html.erb within layouts/application
+  Rendered elements/_form.html.erb (130.4ms)
+  Rendered elements/new.html.erb within layouts/application (131.4ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 499ms (Views: 177.9ms | ActiveRecord: 306.0ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-04-08 20:11:24 -0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (39.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (44.7ms)
+  Rendered shared/_navbar.html.erb (0.2ms)
+Completed 200 OK in 93ms (Views: 49.2ms | ActiveRecord: 41.6ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-04-08 20:11:26 -0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (2.9ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 44ms (Views: 42.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-04-08 20:11:29 -0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (1.9ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 38ms (Views: 36.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-04-08 20:11:30 -0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (1.7ms)
+  Rendered shared/_navbar.html.erb (0.4ms)
+Completed 200 OK in 44ms (Views: 42.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-04-08 20:11:31 -0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (2.0ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 43ms (Views: 41.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-04-08 20:11:31 -0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (2.3ms)
+  Rendered shared/_navbar.html.erb (0.2ms)
+Completed 200 OK in 45ms (Views: 43.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2017-04-08 20:11:36 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/users/new"):
+  
+actionpack (5.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.5.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.2) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered collection of /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb [50 times] (58.1ms)
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (26.1ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (131.8ms)
+Started GET "/elements" for 127.0.0.1 at 2017-04-08 20:11:40 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (2.1ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 43ms (Views: 41.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/elements/new" for 127.0.0.1 at 2017-04-08 20:11:42 -0300
+Processing by ElementsController#new as HTML
+  Rendering elements/new.html.erb within layouts/application
+  Rendered elements/_form.html.erb (4.0ms)
+  Rendered elements/new.html.erb within layouts/application (5.3ms)
+  Rendered shared/_navbar.html.erb (0.2ms)
+Completed 200 OK in 50ms (Views: 48.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/elements" for 127.0.0.1 at 2017-04-08 20:11:57 -0300
+Processing by ElementsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"cHrJQYZl7l5rQ7Z44jUAOi32Yk4FQTMQ7YrjJko5QvtWKcNlfyj/rswsrtqiFIfvF4Ndw0exT8lmMlKcX8hmQg==", "element"=>{"tag"=>"2341", "process_order"=>"231", "product_type_id"=>"1", "drying_method_id"=>"1", "previous_usda"=>"1", "ex_tag"=>"1"}, "commit"=>"Create Element"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (16.9ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "2341"], ["LIMIT", 1]]
+  [1m[35mSQL (43.5ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "process_order", "product_type_id", "drying_method_id", "previous_usda", "ex_tag", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "2341"], ["process_order", "231"], ["product_type_id", 1], ["drying_method_id", 1], ["previous_usda", "1"], ["ex_tag", "1"], ["created_at", 2017-04-08 23:11:57 UTC], ["updated_at", 2017-04-08 23:11:57 UTC]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 213ms (ActiveRecord: 60.7ms)
+
+
+  
+ActiveRecord::InvalidForeignKey (PG::ForeignKeyViolation: ERROR:  insert or update on table "elements" violates foreign key constraint "fk_rails_50294d51f0"
+DETAIL:  Key (product_type_id)=(1) is not present in table "product_types".
+: INSERT INTO "elements" ("tag", "process_order", "product_type_id", "drying_method_id", "previous_usda", "ex_tag", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"):
+  
+app/controllers/elements_controller.rb:30:in `block in create'
+app/controllers/elements_controller.rb:29:in `create'
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.3ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendering /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/jjsotomayor/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (19.9ms)
+Started GET "/elements/new" for 127.0.0.1 at 2017-04-08 20:18:07 -0300
+Processing by ElementsController#new as HTML
+  Rendering elements/new.html.erb within layouts/application
+  Rendered elements/_form.html.erb (3.0ms)
+  Rendered elements/new.html.erb within layouts/application (4.2ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 45ms (Views: 43.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:18:11 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.6ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.9ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 42ms (Views: 40.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:18:21 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.5ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 40ms (Views: 38.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:18:58 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 39ms (Views: 37.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:19:13 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+  Rendered shared/_navbar.html.erb (0.2ms)
+Completed 200 OK in 41ms (Views: 39.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:19:21 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.4ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.7ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 39ms (Views: 37.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:20:23 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 38ms (Views: 36.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:20:43 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.5ms)
+  Rendered shared/_navbar.html.erb (0.2ms)
+Completed 200 OK in 40ms (Views: 39.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:21:00 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.3ms)
+  Rendered shared/_navbar.html.erb (0.2ms)
+Completed 200 OK in 41ms (Views: 39.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:21:53 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.4ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.5ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 39ms (Views: 38.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:26:53 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.4ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.5ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 39ms (Views: 37.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:28:28 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.9ms)
+  Rendered shared/_navbar.html.erb (0.2ms)
+Completed 200 OK in 41ms (Views: 39.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:17 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (2.0ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 43ms (Views: 41.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:18 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.7ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 43ms (Views: 41.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:19 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.6ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (3.6ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 46ms (Views: 42.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:19 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.3ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 57ms (Views: 55.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:38 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+  Rendered shared/_navbar.html.erb (0.4ms)
+Completed 200 OK in 45ms (Views: 44.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:38 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.5ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 43ms (Views: 41.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:38 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.5ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 48ms (Views: 47.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:42 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 51ms (Views: 49.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:43 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.4ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.8ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 45ms (Views: 43.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:43 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.2ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.2ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 42ms (Views: 41.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:44 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.7ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 42ms (Views: 40.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:44 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.4ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.7ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 42ms (Views: 41.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:45 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (2.3ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 56ms (Views: 55.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:45 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.4ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (2.9ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 48ms (Views: 46.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:46 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 41ms (Views: 39.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:46 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 42ms (Views: 40.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:29:46 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 47ms (Views: 45.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:30:44 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.6ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (3.3ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 61ms (Views: 59.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:11 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.9ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 42ms (Views: 40.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:13 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.9ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 46ms (Views: 44.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:13 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.5ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 39ms (Views: 37.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:14 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.8ms)
+  Rendered shared/_navbar.html.erb (0.4ms)
+Completed 200 OK in 46ms (Views: 44.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:29 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.4ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (2.7ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 42ms (Views: 41.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:30 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.9ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 54ms (Views: 52.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:31 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 38ms (Views: 37.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:31 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.4ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.5ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 50ms (Views: 48.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:32 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.8ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 44ms (Views: 42.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:32 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.5ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 52ms (Views: 51.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:32 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.3ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 43ms (Views: 41.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:33 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.5ms)
+  Rendered shared/_navbar.html.erb (0.6ms)
+Completed 200 OK in 46ms (Views: 44.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:33 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 42ms (Views: 41.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:33 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.8ms)
+  Rendered shared/_navbar.html.erb (0.4ms)
+Completed 200 OK in 56ms (Views: 54.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:34 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 41ms (Views: 39.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:38 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.4ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (2.0ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 58ms (Views: 56.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:40 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 42ms (Views: 40.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:41 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 44ms (Views: 43.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:42 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.4ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.8ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 44ms (Views: 42.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:43 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 45ms (Views: 43.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:44 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.4ms)
+  Rendered shared/_navbar.html.erb (0.4ms)
+Completed 200 OK in 48ms (Views: 46.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:31:45 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.4ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (2.4ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 44ms (Views: 42.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:32:37 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.5ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 46ms (Views: 44.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:32:39 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.5ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 42ms (Views: 39.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:32:40 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.7ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 44ms (Views: 41.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:32:41 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.5ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (2.0ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 46ms (Views: 43.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:33:12 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.6ms)
+  Rendered shared/_navbar.html.erb (0.6ms)
+Completed 200 OK in 42ms (Views: 40.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:33:16 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.8ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 48ms (Views: 46.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:33:17 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.5ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 38ms (Views: 36.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:33:23 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.7ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (2.6ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 44ms (Views: 41.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:33:45 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (1.5ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 48ms (Views: 46.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:33:57 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (1.2ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (3.4ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 45ms (Views: 42.5ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-08 20:34:05 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.6ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  Rendered elements/index.html.erb within layouts/application (2.7ms)
+  Rendered shared/_navbar.html.erb (0.3ms)
+Completed 200 OK in 41ms (Views: 38.9ms | ActiveRecord: 0.6ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mRole Load (1.0ms)[0m  [1m[34mSELECT "roles".* FROM "roles"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (11.9ms)[0m  [1m[32mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "admin"], ["created_at", 2017-04-08 23:39:04 UTC], ["updated_at", 2017-04-08 23:39:04 UTC]]
+  [1m[35m (17.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "gerente"], ["created_at", 2017-04-08 23:39:04 UTC], ["updated_at", 2017-04-08 23:39:04 UTC]]
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "jefe_planta"], ["created_at", 2017-04-08 23:39:04 UTC], ["updated_at", 2017-04-08 23:39:04 UTC]]
+  [1m[35m (9.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "jefe_control_calidad"], ["created_at", 2017-04-08 23:39:04 UTC], ["updated_at", 2017-04-08 23:39:04 UTC]]
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "jefe_bodega"], ["created_at", 2017-04-08 23:39:04 UTC], ["updated_at", 2017-04-08 23:39:04 UTC]]
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jjsotomayor@uc.cl"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "jjsotomayor@uc.cl"], ["encrypted_password", "$2a$11$d65pvneVfjoEWbaAZTwSyeGMnV5PgK2Li5kJ66S6C2ZM9VGwIsRWm"], ["name", "Joaquin"], ["last_name", "Soto"], ["created_at", 2017-04-08 23:39:04 UTC], ["updated_at", 2017-04-08 23:39:04 UTC]]
+  [1m[35m (13.6ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/users" for 127.0.0.1 at 2017-04-08 20:39:23 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (21.1ms)
+  Rendered shared/_navbar.html.erb (0.4ms)
+Completed 200 OK in 216ms (Views: 203.9ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-04-08 20:39:42 -0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (2.9ms)
+  Rendered shared/_navbar.html.erb (0.6ms)
+Completed 200 OK in 72ms (Views: 70.3ms | ActiveRecord: 0.4ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (13.5ms)[0m  [1m[32mINSERT INTO "product_types" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "fresco"], ["created_at", 2017-04-08 23:49:57 UTC], ["updated_at", 2017-04-08 23:49:57 UTC]]
+  [1m[35m (16.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "product_types" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "seco"], ["created_at", 2017-04-08 23:49:57 UTC], ["updated_at", 2017-04-08 23:49:57 UTC]]
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "product_types" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "calibrado"], ["created_at", 2017-04-08 23:49:57 UTC], ["updated_at", 2017-04-08 23:49:57 UTC]]
+  [1m[35m (9.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "product_types" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "TCC"], ["created_at", 2017-04-08 23:49:57 UTC], ["updated_at", 2017-04-08 23:49:57 UTC]]
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "product_types" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "TSC"], ["created_at", 2017-04-08 23:49:58 UTC], ["updated_at", 2017-04-08 23:49:58 UTC]]
+  [1m[35m (9.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (12.4ms)[0m  [1m[32mINSERT INTO "drying_methods" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "horno"], ["created_at", 2017-04-08 23:49:58 UTC], ["updated_at", 2017-04-08 23:49:58 UTC]]
+  [1m[35m (24.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "drying_methods" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "sol"], ["created_at", 2017-04-08 23:49:58 UTC], ["updated_at", 2017-04-08 23:49:58 UTC]]
+  [1m[35m (9.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "drying_methods" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "mixto"], ["created_at", 2017-04-08 23:49:58 UTC], ["updated_at", 2017-04-08 23:49:58 UTC]]
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "product_types" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "fresco"], ["created_at", 2017-04-08 23:50:14 UTC], ["updated_at", 2017-04-08 23:50:14 UTC]]
+  [1m[35m (9.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "product_types" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "seco"], ["created_at", 2017-04-08 23:50:14 UTC], ["updated_at", 2017-04-08 23:50:14 UTC]]
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "product_types" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "calibrado"], ["created_at", 2017-04-08 23:50:14 UTC], ["updated_at", 2017-04-08 23:50:14 UTC]]
+  [1m[35m (9.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "product_types" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "TCC"], ["created_at", 2017-04-08 23:50:14 UTC], ["updated_at", 2017-04-08 23:50:14 UTC]]
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "product_types" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "TSC"], ["created_at", 2017-04-08 23:50:14 UTC], ["updated_at", 2017-04-08 23:50:14 UTC]]
+  [1m[35m (9.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "drying_methods" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "horno"], ["created_at", 2017-04-08 23:50:14 UTC], ["updated_at", 2017-04-08 23:50:14 UTC]]
+  [1m[35m (3.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "drying_methods" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "sol"], ["created_at", 2017-04-08 23:50:14 UTC], ["updated_at", 2017-04-08 23:50:14 UTC]]
+  [1m[35m (9.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "drying_methods" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "mixto"], ["created_at", 2017-04-08 23:50:14 UTC], ["updated_at", 2017-04-08 23:50:14 UTC]]
+  [1m[35m (9.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "57779"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "57779"], ["lot", "5022"], ["process_order", "45"], ["product_type_id", 1], ["drying_method_id", 1], ["previous_usda", "C"], ["created_at", 2017-04-08 23:50:14 UTC], ["updated_at", 2017-04-08 23:50:14 UTC]]
+  [1m[35m (5.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "5791"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["tag", "5791"], ["lot", "3695"], ["process_order", "21"], ["product_type_id", 1], ["drying_method_id", 4], ["created_at", 2017-04-08 23:50:14 UTC], ["updated_at", 2017-04-08 23:50:14 UTC]]
+  [1m[35m (8.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "38336"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "38336"], ["lot", "3912"], ["process_order", "23"], ["product_type_id", 2], ["drying_method_id", 3], ["previous_usda", "no califica"], ["created_at", 2017-04-08 23:50:14 UTC], ["updated_at", 2017-04-08 23:50:14 UTC]]
+  [1m[35m (8.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "36334"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "36334"], ["lot", "3320"], ["process_order", "84"], ["product_type_id", 2], ["drying_method_id", 1], ["previous_usda", "no califica"], ["created_at", 2017-04-08 23:50:14 UTC], ["updated_at", 2017-04-08 23:50:14 UTC]]
+  [1m[35m (8.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "86072"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "86072"], ["lot", "3926"], ["process_order", "67"], ["product_type_id", 2], ["drying_method_id", 2], ["previous_usda", "B"], ["created_at", 2017-04-08 23:50:14 UTC], ["updated_at", 2017-04-08 23:50:14 UTC]]
+  [1m[35m (8.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "5931"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "5931"], ["lot", "4781"], ["process_order", "42"], ["product_type_id", 1], ["drying_method_id", 4], ["previous_usda", "no califica"], ["created_at", 2017-04-08 23:50:14 UTC], ["updated_at", 2017-04-08 23:50:14 UTC]]
+  [1m[35m (8.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "50591"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "50591"], ["lot", "1460"], ["process_order", "27"], ["product_type_id", 1], ["drying_method_id", 4], ["previous_usda", "no califica"], ["created_at", 2017-04-08 23:50:14 UTC], ["updated_at", 2017-04-08 23:50:14 UTC]]
+  [1m[35m (8.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "31103"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "31103"], ["lot", "2655"], ["process_order", "49"], ["product_type_id", 2], ["drying_method_id", 3], ["previous_usda", "SSTD"], ["created_at", 2017-04-08 23:50:15 UTC], ["updated_at", 2017-04-08 23:50:15 UTC]]
+  [1m[35m (8.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "29026"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "29026"], ["lot", "7517"], ["process_order", "25"], ["product_type_id", 1], ["drying_method_id", 3], ["previous_usda", "SSTD"], ["created_at", 2017-04-08 23:50:15 UTC], ["updated_at", 2017-04-08 23:50:15 UTC]]
+  [1m[35m (8.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "38871"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["tag", "38871"], ["lot", "4715"], ["process_order", "38"], ["product_type_id", 1], ["drying_method_id", 4], ["created_at", 2017-04-08 23:50:15 UTC], ["updated_at", 2017-04-08 23:50:15 UTC]]
+  [1m[35m (8.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "1827"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["tag", "1827"], ["lot", "4244"], ["process_order", "49"], ["product_type_id", 1], ["drying_method_id", 2], ["created_at", 2017-04-08 23:50:15 UTC], ["updated_at", 2017-04-08 23:50:15 UTC]]
+  [1m[35m (8.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "12783"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["tag", "12783"], ["lot", "6727"], ["process_order", "20"], ["product_type_id", 2], ["drying_method_id", 2], ["created_at", 2017-04-08 23:50:15 UTC], ["updated_at", 2017-04-08 23:50:15 UTC]]
+  [1m[35m (8.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "81490"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "81490"], ["lot", "14"], ["process_order", "50"], ["product_type_id", 2], ["drying_method_id", 3], ["previous_usda", "C"], ["created_at", 2017-04-08 23:50:15 UTC], ["updated_at", 2017-04-08 23:50:15 UTC]]
+  [1m[35m (8.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "20448"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "20448"], ["lot", "9542"], ["process_order", "69"], ["product_type_id", 2], ["drying_method_id", 4], ["previous_usda", "no califica"], ["created_at", 2017-04-08 23:50:15 UTC], ["updated_at", 2017-04-08 23:50:15 UTC]]
+  [1m[35m (7.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "75820"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "75820"], ["lot", "5808"], ["process_order", "2"], ["product_type_id", 2], ["drying_method_id", 4], ["previous_usda", "SSTD"], ["created_at", 2017-04-08 23:50:15 UTC], ["updated_at", 2017-04-08 23:50:15 UTC]]
+  [1m[35m (8.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "92103"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "92103"], ["lot", "7973"], ["process_order", "71"], ["product_type_id", 1], ["drying_method_id", 2], ["previous_usda", "B"], ["created_at", 2017-04-08 23:50:15 UTC], ["updated_at", 2017-04-08 23:50:15 UTC]]
+  [1m[35m (8.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "34829"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "34829"], ["lot", "3718"], ["process_order", "19"], ["product_type_id", 1], ["drying_method_id", 2], ["previous_usda", "no califica"], ["created_at", 2017-04-08 23:50:15 UTC], ["updated_at", 2017-04-08 23:50:15 UTC]]
+  [1m[35m (8.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "74122"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["tag", "74122"], ["lot", "4851"], ["process_order", "14"], ["product_type_id", 2], ["drying_method_id", 4], ["created_at", 2017-04-08 23:50:15 UTC], ["updated_at", 2017-04-08 23:50:15 UTC]]
+  [1m[35m (8.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "61727"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "61727"], ["lot", "8945"], ["process_order", "85"], ["product_type_id", 1], ["drying_method_id", 4], ["previous_usda", "B"], ["created_at", 2017-04-08 23:50:15 UTC], ["updated_at", 2017-04-08 23:50:15 UTC]]
+  [1m[35m (8.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "15986"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "15986"], ["lot", "7201"], ["process_order", "5"], ["product_type_id", 1], ["drying_method_id", 1], ["previous_usda", "SSTD"], ["created_at", 2017-04-08 23:50:15 UTC], ["updated_at", 2017-04-08 23:50:15 UTC]]
+  [1m[35m (8.5ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/elements" for 127.0.0.1 at 2017-04-08 20:50:33 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.5ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  [1m[36mProductType Load (0.3ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDryingMethod Load (0.3ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDryingMethod Load (0.3ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mProductType Load (0.2ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mDryingMethod Load (0.2ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mDryingMethod Load (0.3ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered elements/index.html.erb within layouts/application (109.1ms)
+  Rendered shared/_navbar.html.erb (0.4ms)
+Completed 200 OK in 327ms (Views: 307.6ms | ActiveRecord: 10.2ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (50.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[35m (250.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "agsinformationsystem_development"[0m
+  [1m[35m (214.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "agsinformationsystem_test"[0m
+  [1m[35m (118.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (86.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5211425364534757200);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateProductTypes (20170402043902)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (77.0ms)[0m  [1m[35mCREATE TABLE "product_types" ("id" serial primary key, "name" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170402043902"]]
+  [1m[35m (12.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateDryingMethods (20170402043915)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (73.7ms)[0m  [1m[35mCREATE TABLE "drying_methods" ("id" serial primary key, "name" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170402043915"]]
+  [1m[35m (13.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateElements (20170402043916)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (102.2ms)[0m  [1m[35mCREATE TABLE "elements" ("id" serial primary key, "tag" character varying NOT NULL, "lot" character varying, "process_order" character varying, "product_type_id" integer, "drying_method_id" integer, "previous_usda" character varying, "ex_tag" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_50294d51f0"
+FOREIGN KEY ("product_type_id")
+  REFERENCES "product_types" ("id")
+, CONSTRAINT "fk_rails_8e5d88c4d8"
+FOREIGN KEY ("drying_method_id")
+  REFERENCES "drying_methods" ("id")
+)[0m
+  [1m[35m (46.1ms)[0m  [1m[35mCREATE  INDEX  "index_elements_on_product_type_id" ON "elements"  ("product_type_id")[0m
+  [1m[35m (43.4ms)[0m  [1m[35mCREATE  INDEX  "index_elements_on_drying_method_id" ON "elements"  ("drying_method_id")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170402043916"]]
+  [1m[35m (22.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateHumiditySamples (20170402043917)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (67.3ms)[0m  [1m[35mCREATE TABLE "humidity_samples" ("id" serial primary key, "element_id" integer, "responsable" character varying NOT NULL, "humidity" decimal NOT NULL, "state" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_4b345b1328"
+FOREIGN KEY ("element_id")
+  REFERENCES "elements" ("id")
+)[0m
+  [1m[35m (31.7ms)[0m  [1m[35mCREATE  INDEX  "index_humidity_samples_on_element_id" ON "humidity_samples"  ("element_id")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170402043917"]]
+  [1m[35m (8.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to DeviseCreateUsers (20170408023916)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (71.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "name" character varying NOT NULL, "last_name" character varying NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "unconfirmed_email" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (43.3ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (32.2ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170408023916"]]
+  [1m[35m (17.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to RolifyCreateRoles (20170408024208)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+DEPRECATION WARNING: Directly inheriting from ActiveRecord::Migration is deprecated. Please specify the Rails release the migration was written for:
+
+  class RolifyCreateRoles < ActiveRecord::Migration[4.2] (called from require at /home/jjsotomayor/Git repositories/agsinformationsystem/bin/rails:9)
+  [1m[35m (73.4ms)[0m  [1m[35mCREATE TABLE "roles" ("id" serial primary key, "name" character varying, "resource_type" character varying, "resource_id" integer, "created_at" timestamp, "updated_at" timestamp)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users_roles" ("user_id" integer, "role_id" integer)[0m
+  [1m[35m (43.5ms)[0m  [1m[35mCREATE  INDEX  "index_roles_on_name" ON "roles"  ("name")[0m
+  [1m[35m (75.9ms)[0m  [1m[35mCREATE  INDEX  "index_roles_on_name_and_resource_type_and_resource_id" ON "roles"  ("name", "resource_type", "resource_id")[0m
+  [1m[35m (53.9ms)[0m  [1m[35mCREATE  INDEX  "index_users_roles_on_user_id_and_role_id" ON "users_roles"  ("user_id", "role_id")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170408024208"]]
+  [1m[35m (37.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-04-08 23:54:17 UTC], ["updated_at", 2017-04-08 23:54:17 UTC]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5211425364534757200)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "product_types" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "fresco"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (19.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "product_types" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "seco"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "product_types" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "calibrado"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "product_types" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "TCC"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "product_types" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "TSC"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "drying_methods" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "horno"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "drying_methods" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "sol"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "drying_methods" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "mixto"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "22080"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "22080"], ["lot", "643"], ["process_order", "31"], ["product_type_id", 5], ["drying_method_id", 2], ["previous_usda", "SSTD"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (4.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "28452"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "28452"], ["lot", "334"], ["process_order", "56"], ["product_type_id", 1], ["drying_method_id", 2], ["previous_usda", "no califica"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (8.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "48990"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "48990"], ["lot", "170"], ["process_order", "89"], ["product_type_id", 4], ["drying_method_id", 2], ["previous_usda", "SSTD"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (8.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "95821"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["tag", "95821"], ["lot", "166"], ["process_order", "93"], ["product_type_id", 2], ["drying_method_id", 3], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (8.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "97439"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "97439"], ["lot", "652"], ["process_order", "2"], ["product_type_id", 5], ["drying_method_id", 1], ["previous_usda", "SSTD"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (8.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "83373"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "83373"], ["lot", "921"], ["process_order", "89"], ["product_type_id", 3], ["drying_method_id", 3], ["previous_usda", "SSTD"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (8.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "82528"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["tag", "82528"], ["lot", "65"], ["process_order", "13"], ["product_type_id", 5], ["drying_method_id", 2], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (8.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "43008"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["tag", "43008"], ["lot", "781"], ["process_order", "84"], ["product_type_id", 3], ["drying_method_id", 3], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (8.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "27645"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["tag", "27645"], ["lot", "434"], ["process_order", "25"], ["product_type_id", 1], ["drying_method_id", 1], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (8.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "18494"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "18494"], ["lot", "618"], ["process_order", "20"], ["product_type_id", 4], ["drying_method_id", 3], ["previous_usda", "B"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (8.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "1531"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "1531"], ["lot", "595"], ["process_order", "83"], ["product_type_id", 5], ["drying_method_id", 1], ["previous_usda", "no califica"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (8.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "92936"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["tag", "92936"], ["lot", "745"], ["process_order", "40"], ["product_type_id", 1], ["drying_method_id", 3], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (8.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "7160"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "7160"], ["lot", "510"], ["process_order", "82"], ["product_type_id", 4], ["drying_method_id", 3], ["previous_usda", "B"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (7.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "22430"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "22430"], ["lot", "418"], ["process_order", "92"], ["product_type_id", 1], ["drying_method_id", 3], ["previous_usda", "C"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (8.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "56054"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "56054"], ["lot", "376"], ["process_order", "78"], ["product_type_id", 4], ["drying_method_id", 1], ["previous_usda", "no califica"], ["created_at", 2017-04-08 23:54:22 UTC], ["updated_at", 2017-04-08 23:54:22 UTC]]
+  [1m[35m (8.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "80158"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "80158"], ["lot", "866"], ["process_order", "77"], ["product_type_id", 3], ["drying_method_id", 1], ["previous_usda", "SSTD"], ["created_at", 2017-04-08 23:54:23 UTC], ["updated_at", 2017-04-08 23:54:23 UTC]]
+  [1m[35m (8.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "20218"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["tag", "20218"], ["lot", "973"], ["process_order", "80"], ["product_type_id", 3], ["drying_method_id", 1], ["created_at", 2017-04-08 23:54:23 UTC], ["updated_at", 2017-04-08 23:54:23 UTC]]
+  [1m[35m (8.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "15633"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "15633"], ["lot", "996"], ["process_order", "45"], ["product_type_id", 1], ["drying_method_id", 1], ["previous_usda", "SSTD"], ["created_at", 2017-04-08 23:54:23 UTC], ["updated_at", 2017-04-08 23:54:23 UTC]]
+  [1m[35m (8.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "33142"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "previous_usda", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["tag", "33142"], ["lot", "88"], ["process_order", "9"], ["product_type_id", 5], ["drying_method_id", 3], ["previous_usda", "B"], ["created_at", 2017-04-08 23:54:23 UTC], ["updated_at", 2017-04-08 23:54:23 UTC]]
+  [1m[35m (8.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mElement Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "elements" WHERE "elements"."tag" = $1 LIMIT $2[0m  [["tag", "1967"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "elements" ("tag", "lot", "process_order", "product_type_id", "drying_method_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["tag", "1967"], ["lot", "342"], ["process_order", "14"], ["product_type_id", 4], ["drying_method_id", 1], ["created_at", 2017-04-08 23:54:23 UTC], ["updated_at", 2017-04-08 23:54:23 UTC]]
+  [1m[35m (8.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/elements" for 127.0.0.1 at 2017-04-08 20:54:31 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.6ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  [1m[36mProductType Load (0.3ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mDryingMethod Load (0.3ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProductType Load (0.3ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProductType Load (0.3ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProductType Load (0.2ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mDryingMethod Load (0.2ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mDryingMethod Load (0.2ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProductType Load (0.2ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered elements/index.html.erb within layouts/application (72.3ms)
+  Rendered shared/_navbar.html.erb (0.4ms)
+Completed 200 OK in 271ms (Views: 250.5ms | ActiveRecord: 10.9ms)
+
+
+Started GET "/elements/8" for 127.0.0.1 at 2017-04-08 20:55:36 -0300
+Processing by ElementsController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mElement Load (0.2ms)[0m  [1m[34mSELECT  "elements".* FROM "elements" WHERE "elements"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering elements/show.html.erb within layouts/application
+  [1m[36mProductType Load (0.3ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mDryingMethod Load (0.3ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered elements/show.html.erb within layouts/application (4.1ms)
+  Rendered shared/_navbar.html.erb (0.6ms)
+Completed 200 OK in 86ms (Views: 68.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/elements" for 127.0.0.1 at 2017-04-08 20:55:45 -0300
+Processing by ElementsController#index as HTML
+  Rendering elements/index.html.erb within layouts/application
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT "elements".* FROM "elements"[0m
+  [1m[36mProductType Load (0.2ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mDryingMethod Load (0.3ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProductType Load (0.6ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProductType Load (0.2ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProductType Load (0.2ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mDryingMethod Load (0.2ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mDryingMethod Load (0.2ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProductType Load (0.2ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered elements/index.html.erb within layouts/application (67.6ms)
+  Rendered shared/_navbar.html.erb (0.5ms)
+Completed 200 OK in 119ms (Views: 114.1ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/elements/13" for 127.0.0.1 at 2017-04-08 20:55:47 -0300
+Processing by ElementsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mElement Load (0.3ms)[0m  [1m[34mSELECT  "elements".* FROM "elements" WHERE "elements"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  Rendering elements/show.html.erb within layouts/application
+  [1m[36mProductType Load (0.4ms)[0m  [1m[34mSELECT  "product_types".* FROM "product_types" WHERE "product_types"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDryingMethod Load (0.3ms)[0m  [1m[34mSELECT  "drying_methods".* FROM "drying_methods" WHERE "drying_methods"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered elements/show.html.erb within layouts/application (6.1ms)
+  Rendered shared/_navbar.html.erb (0.5ms)
+Completed 200 OK in 64ms (Views: 61.6ms | ActiveRecord: 0.9ms)
+
+
