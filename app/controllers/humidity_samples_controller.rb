@@ -27,6 +27,8 @@ class HumiditySamplesController < ApplicationController
   # POST /humidity_samples.json
   def create
     @humidity_sample = HumiditySample.new(humidity_sample_params)
+
+
     #calculate_state()
     #@humidity_sample.state = "aprobed"
 

@@ -1,0 +1,38 @@
+<%= form_for(humidity_sample) do |f| %>
+  <% if humidity_sample.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(humidity_sample.errors.count, "error") %> prohibited this humidity_sample from being saved:</h2>
+
+      <ul>
+      <% humidity_sample.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :element_id %><br>
+    <%= f.text_field :element_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tag %><br>
+    <%= f.text_field :tag %>
+  </div>
+
+  <div class="field">
+    <%= f.label :responsable %><br>
+    <%= f.text_field :responsable %>
+  </div>
+
+  <div class="field">
+    <%= f.label :humidity %><br>
+    <%= f.text_field :humidity %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

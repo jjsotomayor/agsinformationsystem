@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Elements</h1>
 
-<table>
+  <div class="container">
+    <h1>Elements</h1>
+  <table class = "table table-striped">
   <thead>
     <tr>
       <th>Tag</th>
@@ -27,12 +28,15 @@
         <td><%= element.previous_usda %></td>
         <td><%= element.ex_tag %></td>
         <td><%= link_to 'Show', element %></td>
-        <td><%= link_to 'Edit', edit_element_path(element) %></td>
-        <td><%= link_to 'Destroy', element, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><span class="glyphicon glyphicon-pencil"></span><%= link_to ' Editar', edit_element_path(element), 'data-toggle': 'tooltip',  title: 'Editar el producto' %></td>
+        <td><span class="glyphicon glyphicon-trash"><%= link_to 'Eliminar', element, method: :delete, data: { confirm: 'Estas seguro? Esto podria ser irreversible' } %></td>
+
+
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 

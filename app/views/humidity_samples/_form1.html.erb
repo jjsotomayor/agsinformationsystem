@@ -1,0 +1,38 @@
+
+<% url = "/humidity_samples"%>
+<% method = 'post' %>
+
+<%= form_tag humidity_samples_path, method: 'post', :multipart => true do |f| %>
+  <% if @humidity_sample.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(humidity_sample.errors.count, "error") %> prohibited this humidity_sample from being saved:</h2>
+
+      <ul>
+      <% humidity_sample.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= :Responsable %><br>
+    <%= text_field_tag :responsable %>
+  </div>
+
+  <div class="field">
+    <%= :Tag %><br>
+    <%= text_field_tag :tag %>
+  </div>
+
+
+  <div class="field">
+    <%= :Humidity %><br>
+    <%= number_field_tag :humidity, min: 0, step: :any %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag 'Almacenar'  %>
+  </div>
+
+<%end%>
