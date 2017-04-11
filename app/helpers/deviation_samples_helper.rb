@@ -1,0 +1,2 @@
+module DeviationSamplesHelper
+end

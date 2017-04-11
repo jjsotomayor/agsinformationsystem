@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Deviation Samples</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Caliber sample</th>
+      <th>Big fruits in sample</th>
+      <th>Small fruits in sample</th>
+      <th>Sample weight</th>
+      <th>Big fruits per pound</th>
+      <th>Small fruits per pound</th>
+      <th>Deviation</th>
+      <th>State</th>
+      <th>State revised</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @deviation_samples.each do |deviation_sample| %>
+      <tr>
+        <td><%= deviation_sample.caliber_sample %></td>
+        <td><%= deviation_sample.big_fruits_in_sample %></td>
+        <td><%= deviation_sample.small_fruits_in_sample %></td>
+        <td><%= deviation_sample.sample_weight %></td>
+        <td><%= deviation_sample.big_fruits_per_pound %></td>
+        <td><%= deviation_sample.small_fruits_per_pound %></td>
+        <td><%= deviation_sample.deviation %></td>
+        <td><%= deviation_sample.state %></td>
+        <td><%= deviation_sample.state_revised %></td>
+        <td><%= link_to 'Show', deviation_sample %></td>
+        <td><%= link_to 'Edit', edit_deviation_sample_path(deviation_sample) %></td>
+        <td><%= link_to 'Destroy', deviation_sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Deviation Sample', new_deviation_sample_path %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :deviation_samples
+  resources :caliber_samples
   get 'pages/home'
 
   get 'pages/home_quality_controls'

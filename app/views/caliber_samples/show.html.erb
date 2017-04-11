@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Responsable:</strong>
+  <%= @caliber_sample.responsable %>
+</p>
+
+<p>
+  <strong>Element:</strong>
+  <%= @caliber_sample.element %>
+</p>
+
+<p>
+  <strong>Fruits per pound:</strong>
+  <%= @caliber_sample.fruits_per_pound %>
+</p>
+
+<p>
+  <strong>Caliber:</strong>
+  <%= @caliber_sample.caliber %>
+</p>
+
+<p>
+  <strong>Fruits in sample:</strong>
+  <%= @caliber_sample.fruits_in_sample %>
+</p>
+
+<p>
+  <strong>Sample weight:</strong>
+  <%= @caliber_sample.sample_weight %>
+</p>
+
+<%= link_to 'Edit', edit_caliber_sample_path(@caliber_sample) %> |
+<%= link_to 'Back', caliber_samples_path %>

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Caliber sample:</strong>
+  <%= @deviation_sample.caliber_sample %>
+</p>
+
+<p>
+  <strong>Big fruits in sample:</strong>
+  <%= @deviation_sample.big_fruits_in_sample %>
+</p>
+
+<p>
+  <strong>Small fruits in sample:</strong>
+  <%= @deviation_sample.small_fruits_in_sample %>
+</p>
+
+<p>
+  <strong>Sample weight:</strong>
+  <%= @deviation_sample.sample_weight %>
+</p>
+
+<p>
+  <strong>Big fruits per pound:</strong>
+  <%= @deviation_sample.big_fruits_per_pound %>
+</p>
+
+<p>
+  <strong>Small fruits per pound:</strong>
+  <%= @deviation_sample.small_fruits_per_pound %>
+</p>
+
+<p>
+  <strong>Deviation:</strong>
+  <%= @deviation_sample.deviation %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @deviation_sample.state %>
+</p>
+
+<p>
+  <strong>State revised:</strong>
+  <%= @deviation_sample.state_revised %>
+</p>
+
+<%= link_to 'Edit', edit_deviation_sample_path(@deviation_sample) %> |
+<%= link_to 'Back', deviation_samples_path %>

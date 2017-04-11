@@ -10,10 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170408024208) do
+ActiveRecord::Schema.define(version: 20170411213628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "caliber_samples", force: :cascade do |t|
+    t.string   "responsable"
+    t.integer  "element_id"
+    t.integer  "fruits_per_pound"
+    t.integer  "caliber_id"
+    t.integer  "fruits_in_sample"
+    t.integer  "sample_weight"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["caliber_id"], name: "index_caliber_samples_on_caliber_id", using: :btree
+    t.index ["element_id"], name: "index_caliber_samples_on_element_id", using: :btree
+  end
+
+  create_table "calibers", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "minimum",    null: false
+    t.integer  "maximum",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_calibers_on_name", unique: true, using: :btree
+  end
+
+  create_table "deviation_samples", force: :cascade do |t|
+    t.integer  "caliber_sample_id"
+    t.integer  "big_fruits_in_sample"
+    t.integer  "small_fruits_in_sample"
+    t.integer  "sample_weight"
+    t.decimal  "big_fruits_per_pound"
+    t.decimal  "small_fruits_per_pound"
+    t.decimal  "deviation"
+    t.boolean  "state"
+    t.boolean  "state_revised"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["caliber_sample_id"], name: "index_deviation_samples_on_caliber_sample_id", using: :btree
+  end
 
   create_table "drying_methods", force: :cascade do |t|
     t.string   "name",       null: false
@@ -90,6 +127,9 @@ ActiveRecord::Schema.define(version: 20170408024208) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
+  add_foreign_key "caliber_samples", "calibers"
+  add_foreign_key "caliber_samples", "elements"
+  add_foreign_key "deviation_samples", "caliber_samples"
   add_foreign_key "elements", "drying_methods"
   add_foreign_key "elements", "product_types"
   add_foreign_key "humidity_samples", "elements"

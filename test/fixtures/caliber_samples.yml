@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  responsable: MyString
+  element: one
+  fruits_per_pound: 1
+  caliber: one
+  fruits_in_sample: 1
+  sample_weight: 1
+
+two:
+  responsable: MyString
+  element: two
+  fruits_per_pound: 1
+  caliber: two
+  fruits_in_sample: 1
+  sample_weight: 1
