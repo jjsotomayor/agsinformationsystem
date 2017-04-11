@@ -23,8 +23,8 @@
         <td><%= element.tag %></td>
         <td><%= element.lot %></td>
         <td><%= element.process_order %></td>
-        <td><%= element.product_type.name %></td>
-        <td><%= element.drying_method.name %></td>
+        <td><%= element.product_type.name unless element.product_type.nil? %></td>
+        <td><%= element.drying_method.name unless element.drying_method.nil? %></td>
         <td><%= element.previous_usda %></td>
         <td><%= element.ex_tag %></td>
         <td><%= link_to 'Show', element %></td>

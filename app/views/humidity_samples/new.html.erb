@@ -1,19 +1,19 @@
 <div class="wrapper-new-forms">
-  <h1>Ingrese muestra de humedad</h1>
-<%= render 'form1', humidity_sample: @humidity_sample %>
+  <h1>Muestra de humedad</h1>
+<%= render 'form10', humidity_sample: @humidity_sample %>
 <%= link_to 'Back', humidity_samples_path %>
 </div>
 
 
 <div class="container-500px">
-  <h1>Elements</h1>
+  <h1>Ultimos muestras de humedad</h1>
 <table class = "table table-striped">
   <thead>
     <tr>
-      <th>Element</th>
+      <th>Tarja</th>
       <th>Responsable</th>
-      <th>Humidity</th>
-      <th>State</th>
+      <th>Humedad</th>
+      <th>Estado</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -25,7 +25,9 @@
         <td><%= humidity_sample.responsable %></td>
         <td><%= humidity_sample.humidity %></td>
         <td><%= humidity_sample.state %></td>
-        <td><%= humidity_sample.created_at %></td>
+
+        <td><%=humidity_sample.created_at.strftime("%H:%M:%S")%></td>
+        <!--(Time.now - humidity_sample.created_at).to_s + " secs ago"  -- time_ago_in_words(humidity_sample.created_at)-->
 
         <td><%= link_to 'Show', humidity_sample %></td>
         <td><%= link_to 'Edit', edit_humidity_sample_path(humidity_sample) %></td>
