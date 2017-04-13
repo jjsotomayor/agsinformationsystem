@@ -25,6 +25,7 @@ class CaliberSamplesController < ApplicationController
   # POST /caliber_samples.json
   def create
     @caliber_sample = CaliberSample.new(caliber_sample_creation_params)
+    
 
     #@element = Element.find_by(tag: params[:tag])
 

@@ -45,10 +45,10 @@ ActiveRecord::Schema.define(version: 20170411213628) do
     t.decimal  "big_fruits_per_pound"
     t.decimal  "small_fruits_per_pound"
     t.decimal  "deviation"
-    t.boolean  "state"
-    t.boolean  "state_revised"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "state",                  default: 0,     null: false
+    t.boolean  "state_modified",         default: false, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.index ["caliber_sample_id"], name: "index_deviation_samples_on_caliber_sample_id", using: :btree
   end
 
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20170411213628) do
     t.string   "process_order"
     t.integer  "product_type_id"
     t.integer  "drying_method_id"
-    t.string   "previous_usda"
+    t.integer  "previous_usda"
     t.string   "ex_tag"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
@@ -74,11 +74,12 @@ ActiveRecord::Schema.define(version: 20170411213628) do
 
   create_table "humidity_samples", force: :cascade do |t|
     t.integer  "element_id"
-    t.string   "responsable", null: false
-    t.decimal  "humidity",    null: false
-    t.string   "state",       null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "responsable",                    null: false
+    t.decimal  "humidity",                       null: false
+    t.integer  "state",          default: 0,     null: false
+    t.boolean  "state_modified", default: false, null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.index ["element_id"], name: "index_humidity_samples_on_element_id", using: :btree
   end
 

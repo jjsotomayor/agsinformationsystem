@@ -4,7 +4,9 @@ class CreateHumiditySamples < ActiveRecord::Migration[5.0]
       t.references :element, foreign_key: true
       t.string :responsable, null: false
       t.decimal :humidity, null: false
-      t.string :state, null: false
+
+      t.integer :state, null: false, default:0
+      t.boolean :state_modified, null: false, default:false
 
       t.timestamps
     end

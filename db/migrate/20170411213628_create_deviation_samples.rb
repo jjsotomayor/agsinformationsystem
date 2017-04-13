@@ -8,8 +8,9 @@ class CreateDeviationSamples < ActiveRecord::Migration[5.0]
       t.decimal :big_fruits_per_pound
       t.decimal :small_fruits_per_pound
       t.decimal :deviation
-      t.boolean :state
-      t.boolean :state_revised
+
+      t.integer :state, null: false, default:0
+      t.boolean :state_modified, null: false, default:false
 
       t.timestamps
     end

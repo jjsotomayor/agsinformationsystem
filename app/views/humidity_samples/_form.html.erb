@@ -11,6 +11,12 @@
     </div>
   <% end %>
 
+
+    <% @element.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <%@element.errors%>
+
   <div class="field">
     <%= f.label :element_id %>
     <%= f.text_field :element_id %>

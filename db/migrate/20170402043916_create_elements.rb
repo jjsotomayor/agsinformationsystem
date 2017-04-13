@@ -6,7 +6,7 @@ class CreateElements < ActiveRecord::Migration[5.0]
       t.string :process_order
       t.references :product_type, foreign_key: true
       t.references :drying_method, foreign_key: true
-      t.string :previous_usda
+      t.integer :previous_usda
       t.string :ex_tag
 
       t.timestamps

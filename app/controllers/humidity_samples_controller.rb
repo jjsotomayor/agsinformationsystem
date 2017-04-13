@@ -15,7 +15,7 @@ class HumiditySamplesController < ApplicationController
 
   # GET /humidity_samples/new
   def new
-    @humidity_samples = HumiditySample.last(3).reverse
+    @humidity_samples = last_humidity_samples()
     @humidity_sample = HumiditySample.new
   end
 
@@ -25,46 +25,25 @@ class HumiditySamplesController < ApplicationController
 
   # POST /humidity_samples
   # POST /humidity_samples.json
-  def create
-    #errors = false
-    @humidity_sample = HumiditySample.new#(humidity_sample_params)
-    @humidity_sample.responsable = params[:responsable]
-    @humidity_sample.humidity = params[:humidity]
+  def create #TESTEAR
+    @humidity_sample = HumiditySample.new(humidity_sample_create_params)
+    response = @humidity_sample.create_humidity_and_element(element_params, humidity_sample_create_params)
 
-    @element = Element.find_by(tag: params[:tag])
-    # Elemento no existia en la db
-    if !@element
-      puts "ENTRO Y CREA EL NUEVBO ELEMENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-      @element = Element.new
-      @element.tag =  params[:tag]
-      @element.lot = params[:lot]
-      @element.process_order = params[:process_order]
+    @humidity_sample = response[:humidity_sample]
+    @element = response[:element]
 
-      #@element.save! # HAy que meterle un IF si hay errores!
-        # Elemento no se guarda satisfactoriamente
-      if !@element.save
-        #errors = true
-        puts "ENTRE AQUI ME DEBE HABER REDIRIGIDO A NEW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        @humidity_samples = HumiditySample.last(3)
-        redirect_to new_humidity_sample_path,  notice: 'NO SE PUDO GUARDAR LA MUESTRA POR FALTA DE INFORMACION DEL ELEMENT'
-        return
-      end
-    end
-    @humidity_sample.element = @element# unless errors
+    redirect_to new_humidity_sample_path, notice: response[:notice]
 
-    #calculate_state()
-    #@humidity_sample.state = "aprobed"
-
-    respond_to do |format|
-      if @humidity_sample.save
-        format.html { redirect_to new_humidity_sample_path, notice: 'Humidity sample was successfully created.' }
-        format.json { render :show, status: :created, location: @humidity_sample }
-      else
-        @humidity_samples = HumiditySample.last(3)
-        format.html { render :new }#:new
-        format.json { render json: @humidity_sample.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @humidity_sample.save
+    #     format.html { redirect_to new_humidity_sample_path, notice: 'Humidity sample was successfully created.' }
+    #     format.json { render :show, status: :created, location: @humidity_sample }
+    #   else
+    #     @humidity_samples = last_humidity_samples#HumiditySample.last(3)
+    #     format.html { render :new }#:new
+    #     format.json { render json: @humidity_sample.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /humidity_samples/1
@@ -100,5 +79,15 @@ class HumiditySamplesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def humidity_sample_params
       params.require(:humidity_sample).permit(:element_id, :responsable, :humidity, :state)
+    end
+    def humidity_sample_create_params
+      params.require(:humidity_sample).permit(:responsable, :humidity)
+    end
+    def element_params
+      params.permit(:tag)
+    end
+
+    def last_humidity_samples
+      HumiditySample.last(3).reverse
     end
 end

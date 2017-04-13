@@ -2,7 +2,7 @@
 <% url = "/humidity_samples"%>
 <% method = 'post' %>
 
-<%= form_tag humidity_samples_path, class: 'boxed-form', method: 'post', :multipart => true do |f| %>
+<%= form_tag humidity_samples_path(@humidity_sample), class: 'boxed-form', method: 'post', :multipart => true do |f| %>
   <% if @humidity_sample.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(humidity_sample.errors.count, "error") %> prohibited this humidity_sample from being saved:</h2>
