@@ -31,7 +31,7 @@ class HumiditySample < ApplicationRecord
                if !@element
                  @element = Element.create!(element_params)
                end
-               self.element = 1120#@element
+               self.element = @element
                self.save!
                notice = "Almacenamiento exitoso!"
                error = false

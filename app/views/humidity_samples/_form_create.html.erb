@@ -1,8 +1,8 @@
-<%= form_for(humidity_sample) do |f| %>
+<%= form_for(humidity_sample, html: {class: 'boxed-form'})  do |f| %>
   <% if humidity_sample.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(humidity_sample.errors.count, "error") %> prohibited this humidity_sample from being saved:</h2>
-
+X
       <ul>
       <% humidity_sample.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -12,17 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :responsable %>
+    <%= f.label :responsable %><br>
     <%= f.text_field :responsable %>
   </div>
 
   <div class="field">
-    <%= f.label :Tag %>
+    <%= f.label :Tag %><br>
     <%= text_field_tag :tag %>
   </div>
 
   <div class="field">
-    <%= f.label :humidity %>
+    <%= f.label :humidity %><br>
     <%= f.text_field :humidity %>
   </div>
 
