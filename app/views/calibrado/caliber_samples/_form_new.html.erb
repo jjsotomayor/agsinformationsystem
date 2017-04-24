@@ -1,0 +1,37 @@
+<%= form_for(caliber_sample, html: {class: 'boxed-form-green', autocomplete: :off}) do |f| %>
+  <% if caliber_sample.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(caliber_sample.errors.count, "error") %> prohibited this caliber_sample from being saved:</h2>
+
+      <ul>
+      <% caliber_sample.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :responsable %>
+    <%= f.text_field :responsable %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Tag %>
+    <%= text_field_tag :tag %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fruits_in_sample %>
+    <%= f.number_field :fruits_in_sample %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sample_weight %>
+    <%= f.number_field :sample_weight %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Guardar", class: "btn btn-primary btn-lg btn-block" %>
+  </div>
+<% end %>

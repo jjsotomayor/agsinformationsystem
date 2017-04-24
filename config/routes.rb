@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :deviation_samples
-  resources :caliber_samples
   get 'pages/home'
 
   get 'pages/home_quality_controls'
@@ -12,8 +11,21 @@ Rails.application.routes.draw do
   resources :drying_methods
   resources :product_types
   resources :humidity_samples
+
   resources :elements
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #get '/' => "elements#index"
   get '/' => "pages#home_quality_controls"
+
+  resources :caliber_samples
+  
+  namespace :calibrado do
+    resources :caliber_samples
+  end
+
+  namespace :secado do
+    resources :caliber_samples
+  end
+
+
 end
