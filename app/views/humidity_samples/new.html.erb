@@ -1,7 +1,6 @@
 <div class="wrapper-new-forms">
-  <h1>Muestra de humedad</h1>
-<%= render 'form_create', humidity_sample: @humidity_sample %>
-<%= link_to 'Back', humidity_samples_path %>
+  <h1><span class= "glyphicon glyphicon-list-alt"></span> Muestra de humedad</h1>
+<%= render 'form_new', humidity_sample: @humidity_sample %>
 </div>
 
 
@@ -37,4 +36,5 @@
   </tbody>
 </table>
 </div>
-<br>
+
+<%= link_to 'Todas las muestras de humedad', humidity_samples_path %>
