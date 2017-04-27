@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sorbate Samples</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Element</th>
+      <th>Responsable</th>
+      <th>Sorbate</th>
+      <th>State</th>
+      <th>State revised</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sorbate_samples.each do |sorbate_sample| %>
+      <tr>
+        <td><%= sorbate_sample.element %></td>
+        <td><%= sorbate_sample.responsable %></td>
+        <td><%= sorbate_sample.sorbate %></td>
+        <td><%= sorbate_sample.state %></td>
+        <td><%= sorbate_sample.state_revised %></td>
+        <td><%= link_to 'Show', sorbate_sample %></td>
+        <td><%= link_to 'Edit', edit_sorbate_sample_path(sorbate_sample) %></td>
+        <td><%= link_to 'Destroy', sorbate_sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sorbate Sample', new_sorbate_sample_path %>

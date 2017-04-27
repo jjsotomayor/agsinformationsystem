@@ -5,7 +5,6 @@ class CaliberSamplesController < ApplicationController
   # GET /caliber_samples.json
   def index
     @caliber_samples = CaliberSample.all
-    render json: "Hello world"
   end
 
   # GET /caliber_samples/1

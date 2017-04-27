@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  element: one
+  responsable: MyString
+  sorbate: 9.99
+  state: 1
+  state_revised: false
+
+two:
+  element: two
+  responsable: MyString
+  sorbate: 9.99
+  state: 1
+  state_revised: false

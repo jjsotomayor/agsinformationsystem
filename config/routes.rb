@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :sorbate_samples
   resources :deviation_samples
   get 'pages/home'
 

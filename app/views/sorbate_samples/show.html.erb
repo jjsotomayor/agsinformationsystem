@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Element:</strong>
+  <%= @sorbate_sample.element %>
+</p>
+
+<p>
+  <strong>Responsable:</strong>
+  <%= @sorbate_sample.responsable %>
+</p>
+
+<p>
+  <strong>Sorbate:</strong>
+  <%= @sorbate_sample.sorbate %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @sorbate_sample.state %>
+</p>
+
+<p>
+  <strong>State revised:</strong>
+  <%= @sorbate_sample.state_revised %>
+</p>
+
+<%= link_to 'Edit', edit_sorbate_sample_path(@sorbate_sample) %> |
+<%= link_to 'Back', sorbate_samples_path %>
