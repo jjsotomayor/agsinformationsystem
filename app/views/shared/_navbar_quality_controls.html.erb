@@ -98,10 +98,9 @@
 
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/users/sign_out"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 
         <%if user_signed_in? %>
-          <li><%= link_to  destroy_user_session_path, :class => "button small-button green-button" do %>
+          <li><%= link_to   destroy_user_session_path, method: :delete, :class => "button small-button green-button" do %>
                 Cerrar Sesion
             <span class="glyphicon glyphicon-log-out"></span>
           <% end %></li>

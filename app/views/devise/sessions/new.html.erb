@@ -1,5 +1,6 @@
-<div class="wrapper">
-<form class="form-signin">
+<!--<div class="wrapper">
+<form class="form-signin">-->
+<%= devise_error_messages! %>
   <h2 class="form-signin-heading">Ingresa</h2>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">

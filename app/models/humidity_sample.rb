@@ -24,7 +24,7 @@ class HumiditySample < ApplicationRecord
    ## EN LA PAGINA A LA QUE VOY#####
    #Al hacerlo asi, pierdo los errores de pq no se grabo ya que no los puedo capturar
    def create_humidity_and_element (element_params, humidity_sample_params)
-     puts "Hello world motherfuckers!"
+     puts "Hello world !"
        begin
              HumiditySample.transaction do
                @element = Element.find_by(element_params)
@@ -38,12 +38,16 @@ class HumiditySample < ApplicationRecord
              end
              rescue #ActiveRecord::RecordInvalid => exception
              error = true
-             notice = "No se ha podido almacenar la muestra, por favor revise sus datos e intente nuevamente"
+             alert = "No se ha podido almacenar la muestra, por favor revise sus datos e intente nuevamente"
              #notice = exception.message
              #ActiveRecord::RecordInvalid => exception
            ensure
            #puts "222Se cayo la cosa!!!!!!!!!!qweñojkdsflj1!!"
-           return {humidity_sample: self, element: @element, notice: notice}
+           response = {humidity_sample: self, element: @element}
+
+           response[:notice] = notice unless not defined?(notice)
+           response[:alert] = alert unless not defined?(alert)
+           return response
            end
        end
 
