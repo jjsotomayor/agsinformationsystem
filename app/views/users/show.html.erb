@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Last_name:</strong>
+  <%= @user.last_name %>
+</p>
+
+
+<p>
+  <strong>Correo:</strong>
+    <%= @user.email %>
+</p>
+
+  <strong>ip actual:</strong>
+  <%= %>
+</p>
+
+<p>
+
+<%= link_to 'Editar', edit_user_registration_path(@user) %>

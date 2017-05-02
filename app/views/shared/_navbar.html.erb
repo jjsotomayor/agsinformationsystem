@@ -53,8 +53,24 @@
 
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi perfil</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <%if user_signed_in? %>
+
+        <li><%= link_to   user_path(current_user), :class => "button small-button green-button" do %>
+          <span class="glyphicon glyphicon-user"></span>
+              <%=current_user.name%>
+        <% end %></li>
+
+          <li><%= link_to   destroy_user_session_path, method: :delete, :class => "button small-button green-button" do %>
+            <span class="glyphicon glyphicon-log-out"></span>
+                Cerrar Sesion
+          <% end %></li>
+        <% else %>
+        <li><%= link_to  new_user_session_path, :class => "button small-button green-button" do %>
+          <span class="glyphicon glyphicon-log-in"></span>
+              Iniciar Sesion
+        <% end %></li>
+        <% end %>
+
       </ul>
     </div>
   </div>
