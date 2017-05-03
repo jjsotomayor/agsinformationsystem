@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'reports/index'
+
   resources :sorbate_samples
   resources :deviation_samples
   get 'pages/home'
@@ -8,7 +10,7 @@ Rails.application.routes.draw do
   get 'users/index'
 
   devise_for :users
-  resources :users, only: [:index]
+  resources :users, only: [:show, :index]
   resources :drying_methods
   resources :product_types
   resources :humidity_samples
