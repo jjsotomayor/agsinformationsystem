@@ -32,7 +32,7 @@ class HumiditySamplesController < ApplicationController
     @humidity_sample = response[:humidity_sample]
     @element = response[:element]
 
-    redirect_to new_humidity_sample_path, notice: response[:notice]
+    redirect_to new_humidity_sample_path, notice: response[:notice], alert: response[:alert]
 
     # respond_to do |format|
     #   if @humidity_sample.save
