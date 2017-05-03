@@ -62,8 +62,8 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   # config.action_mailer.default_url_options = { host: ENV['MAIL_HOST'] }
   config.action_mailer.smtp_settings = {
-    user_name:      'joaquinsotomayorc@gmail.com',#ENV['SENDMAIL_USERNAME'],
-    password:       'j123546789',#ENV['SENDMAIL_PASSWORD'],
+    user_name:      'sistema.agrosol@gmail.com',#ENV['SENDMAIL_USERNAME'],
+    password:       'sistemaagrosolgoodpassword',#ENV['SENDMAIL_PASSWORD'],
     domain:         'localhost:3000',#ENV['MAIL_HOST'],
     address:       'smtp.gmail.com',
     port:          '587',
