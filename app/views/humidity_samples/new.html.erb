@@ -1,5 +1,11 @@
 
-<script>swal("Muy bien!", "La muestra se almaceno correctamente!", "success");</script>
+
+
+<%if @created_sample%>
+  <script>swal("Muestra almacenada correctamente!", "Estado: <%=@sample_state%>", "success");</script>
+<%elsif @edited_sample%>
+  <script>swal("Muestra editada correctamente!", "Estado: <%=@sample_state%>", "success");</script>
+<%end%>
 
 <%= render 'form_new', humidity_sample: @humidity_sample %>
 
