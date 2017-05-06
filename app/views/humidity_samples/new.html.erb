@@ -1,12 +1,8 @@
 
-<div class= "container">
-<div class= "pestaña">Laboratorio</div>
-<div class="outside-new-form green-outside-new-form">
-  <h1><span class= "glyphicon glyphicon-list-alt"></span> Humedad</h1>
+<script>swal("Muy bien!", "La muestra se almaceno correctamente!", "success");</script>
+
 <%= render 'form_new', humidity_sample: @humidity_sample %>
-</div>
-</div>
-</div>
+
 
 
 <div class="container-500px">
@@ -33,9 +29,8 @@
         <td><%=humidity_sample.created_at.strftime("%H:%M:%S")%></td>
         <!--(Time.now - humidity_sample.created_at).to_s + " secs ago"  -- time_ago_in_words(humidity_sample.created_at)-->
 
-        <td><%= link_to 'Show', humidity_sample %></td>
-        <td><%= link_to 'Edit', edit_humidity_sample_path(humidity_sample) %></td>
-        <td><%= link_to 'Destroy', humidity_sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Editar', edit_humidity_sample_path(humidity_sample) %></td>
+        <td><%= link_to 'Borrar', humidity_sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

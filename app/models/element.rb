@@ -7,8 +7,6 @@ class Element < ApplicationRecord
 
   validates :tag,  uniqueness: true, presence: true
 
-
-
   def self.to_csv
     attributes = %w{Tarja N OrdenProceso Producto Secado UsdaAnterior TarjaAnterior}
 
@@ -36,10 +34,19 @@ class Element < ApplicationRecord
         row << element.ex_tag
 
         csv << row#[element.tag, element.id, element.process_order, element.product_type]
+        end
       end
     end
+
+  end
+
+
+  def self.create_element_if_doesnt_exist(element_params)
+    @element = Element.find_by(element_params)
+    if !@element
+      @element = Element.create!(element_params)
+    end
+    return @element
   end
 
 end
-
-#def create_element
