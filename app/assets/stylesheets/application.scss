@@ -151,3 +151,12 @@ input {
 input[type=text]:focus {
     border: 2px solid rgb(255,187,150);
 }
+
+.btn-edit, .btn-back {
+  display: inline-block;
+  margin-top: 15px;
+}
+.btn-back {
+   margin-left: 140px;
+   margin-right:20px;
+}

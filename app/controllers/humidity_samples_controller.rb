@@ -15,8 +15,9 @@ class HumiditySamplesController < ApplicationController
 
   # GET /humidity_samples/new
   def new
-    @humidity_samples = last_humidity_samples()
+    @humidity_samples = HumiditySample.last_humidity_samples(3)
     @humidity_sample = HumiditySample.new
+    puts("HELLO WORLD ESTOY RECORRIENDO EL CONTROLADOR DE HUMIDITY SAMPLES ->NEW!!!!!!!!!")
   end
 
   # GET /humidity_samples/1/edit
@@ -26,13 +27,18 @@ class HumiditySamplesController < ApplicationController
   # POST /humidity_samples
   # POST /humidity_samples.json
   def create #TESTEAR
+
+    @element = Element.create_element_if_doesnt_exist(element_params)
     @humidity_sample = HumiditySample.new(humidity_sample_create_params)
-    response = @humidity_sample.create_humidity_and_element(element_params, humidity_sample_create_params)
+    #@humidity_sample.element = @element
 
-    @humidity_sample = response[:humidity_sample]
-    @element = response[:element]
-
-    redirect_to new_humidity_sample_path, notice: response[:notice]
+    if @humidity_sample.save
+      redirect_to new_humidity_sample_path, notice: "Muestra almacenada correctamente"
+    else
+      #Si hago redirect, termino el proces, en cambio con render mantengo la info de los errores
+      @humidity_samples = HumiditySample.last_humidity_samples(3)
+      render :new
+    end
 
     # respond_to do |format|
     #   if @humidity_sample.save
@@ -87,7 +93,4 @@ class HumiditySamplesController < ApplicationController
       params.permit(:tag)
     end
 
-    def last_humidity_samples
-      HumiditySample.last(3).reverse
-    end
 end

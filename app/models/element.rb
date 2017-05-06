@@ -6,6 +6,14 @@ class Element < ApplicationRecord
   belongs_to :drying_method
 
   validates :tag,  uniqueness: true, presence: true
-end
 
-#def create_element
+
+  def self.create_element_if_doesnt_exist(element_params)
+    @element = Element.find_by(element_params)
+    if !@element
+      @element = Element.create!(element_params)
+    end
+    return @element
+  end
+
+end

@@ -1,14 +1,22 @@
+<% if humidity_sample.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(humidity_sample.errors.count, "error") %> prohibited this humidity_sample from being saved:</h2>
+  <ul>
+    <% humidity_sample.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+
+<div class= "container">
+  <div class= "pestaña">Laboratorio</div>
+    <div class="outside-new-form green-outside-new-form">
+      <h1><span class= "glyphicon glyphicon-list-alt"></span> Humedad</h1>
+
+
 <%= form_for(humidity_sample, html: {class: 'inside-new-form green-inside-new-form', autocomplete: :off})  do |f| %>
-  <% if humidity_sample.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(humidity_sample.errors.count, "error") %> prohibited this humidity_sample from being saved:</h2>
-      <ul>
-      <% humidity_sample.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= f.label :responsable %>
@@ -29,3 +37,8 @@
     <%= f.submit "Guardar", class: "btn btn-primary btn-lg btn-block" %>
   </div>
 <% end %>
+
+
+    </div>
+  </div>
+</div>
