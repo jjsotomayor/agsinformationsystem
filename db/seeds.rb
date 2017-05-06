@@ -39,6 +39,7 @@
    DryingMethod.create!(name: dm)
  end
 
+ User.all.destroy_all
  User.create!(name:"Joaquin", last_name:"Soto", password:"123456789", email: "jjsotomayor@uc.cl")
 
 #usda = ['A', 'B', 'C', 'SSTD', 'no califica']
