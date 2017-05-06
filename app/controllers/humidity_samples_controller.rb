@@ -30,12 +30,12 @@ class HumiditySamplesController < ApplicationController
 
     @element = Element.create_element_if_doesnt_exist(element_params)
     @humidity_sample = HumiditySample.new(humidity_sample_create_params)
-    #@humidity_sample.element = @element
+    @humidity_sample.element = @element
 
     if @humidity_sample.save
-      redirect_to new_humidity_sample_path, notice: "Muestra almacenada correctamente"
+      redirect_to new_humidity_sample_path, notice: "Muestra almacenada correctamente."
     else
-      #Si hago redirect, termino el proces, en cambio con render mantengo la info de los errores
+      #Si hago redirect, termino el proces, en cambio con render mantengo la info de los errores,y es buena practica pq lo hace scaffold
       @humidity_samples = HumiditySample.last_humidity_samples(3)
       render :new
     end
@@ -55,14 +55,12 @@ class HumiditySamplesController < ApplicationController
   # PATCH/PUT /humidity_samples/1
   # PATCH/PUT /humidity_samples/1.json
   def update
-    respond_to do |format|
-      if @humidity_sample.update(humidity_sample_params)
-        format.html { redirect_to @humidity_sample, notice: 'Humidity sample was successfully updated.' }
-        format.json { render :show, status: :ok, location: @humidity_sample }
-      else
-        format.html { render :edit }
-        format.json { render json: @humidity_sample.errors, status: :unprocessable_entity }
-      end
+
+    if @humidity_sample.update(humidity_sample_params)
+      redirect_to new_humidity_sample_path , notice: 'Muestra editada correctamente.'
+    else
+      render :edit
+      #Esta vista se rompe completa al ingresar.
     end
   end
 

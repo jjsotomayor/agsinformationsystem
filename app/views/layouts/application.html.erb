@@ -11,8 +11,17 @@
   <body>
 
     <%= render 'shared/navbar_quality_controls' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+    <p id="notice"><%= notice %></p>
+    <p id="alert"><%= alert %></p>
+    
+    <%if not notice.nil?%>
+      <p class="notice alert alert-success" role="alert"><%= notice %></p>
+     <%end%>
+     <%if not alert.nil?%>
+       <p class="alert alert alert-danger" role="alert"><%= alert %></p>
+     <%end%>
+
     <%= yield %>
   </body>
 </html>

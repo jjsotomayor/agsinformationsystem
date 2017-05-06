@@ -14,7 +14,6 @@ class HumiditySample < ApplicationRecord
    def calculate_state
      #TESTEAR
      self.state = "aprobado"
-     #puts "LEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEM1!!!!"
      if self.humidity > 20
        self.state = "rechazado"
      end
