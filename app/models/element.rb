@@ -34,11 +34,10 @@ class Element < ApplicationRecord
         row << element.ex_tag
 
         csv << row#[element.tag, element.id, element.process_order, element.product_type]
-        end
       end
     end
-
   end
+
 
 
   def self.create_element_if_doesnt_exist(element_params)

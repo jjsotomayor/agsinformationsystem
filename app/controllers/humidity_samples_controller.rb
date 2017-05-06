@@ -40,16 +40,6 @@ class HumiditySamplesController < ApplicationController
       render :new
     end
 
-    # respond_to do |format|
-    #   if @humidity_sample.save
-    #     format.html { redirect_to new_humidity_sample_path, notice: 'Humidity sample was successfully created.' }
-    #     format.json { render :show, status: :created, location: @humidity_sample }
-    #   else
-    #     @humidity_samples = last_humidity_samples#HumiditySample.last(3)
-    #     format.html { render :new }#:new
-    #     format.json { render json: @humidity_sample.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # PATCH/PUT /humidity_samples/1
