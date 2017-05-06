@@ -24,4 +24,5 @@ class HumiditySample < ApplicationRecord
   end
 
 
+
  end

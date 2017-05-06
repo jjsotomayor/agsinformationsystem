@@ -27,7 +27,7 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
 
@@ -54,5 +54,22 @@ Rails.application.configure do
 
   #RECOMENDADO POR https://github.com/plataformatec/devise
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025}
+
+  #Tuto mail con devise -> http://www.bogotobogo.com/RubyOnRails/RubyOnRails_Devise_Authentication_Sending_Confirmation_Email.php
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.default_url_options = { host: ENV['MAIL_HOST'] }
+  config.action_mailer.smtp_settings = {
+    user_name:      'sistema.agrosol@gmail.com',#ENV['SENDMAIL_USERNAME'],
+    password:       'sistemaagrosolgoodpassword',#ENV['SENDMAIL_PASSWORD'],
+    domain:         'localhost:3000',#ENV['MAIL_HOST'],
+    address:       'smtp.gmail.com',
+    port:          '587',
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
 
 end

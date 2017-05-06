@@ -16,6 +16,8 @@
 
 //Agregado para que funcione bootstrap
 //= require bootstrap-sprockets
+//Agregado para que funcione css Vendor files
+// = require sweetalert.min.js
 
 ///
 

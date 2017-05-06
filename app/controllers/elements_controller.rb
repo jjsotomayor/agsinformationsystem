@@ -5,6 +5,10 @@ class ElementsController < ApplicationController
   # GET /elements.json
   def index
     @elements = Element.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @elements.to_csv, filename: "#{Date.today} - Elementos.csv" }
+    end
   end
 
   # GET /elements/1

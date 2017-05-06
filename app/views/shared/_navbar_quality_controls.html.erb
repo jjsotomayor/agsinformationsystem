@@ -10,6 +10,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
 
+
 <!-- MENU ANTIGUO, CON CC - LAB
       <ul class="nav navbar-nav">
         <li class="dropdown">
@@ -95,10 +96,24 @@
 
 
 
-
       <ul class="nav navbar-nav navbar-right">
 
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        <%if user_signed_in? %>
+          <li><%= link_to   destroy_user_session_path, method: :delete, :class => "button small-button green-button" do %>
+            <span class="glyphicon glyphicon-log-out"></span>
+                Cerrar Sesion
+          <% end %></li>
+        <% else %>
+        <li><%= link_to  new_user_session_path, :class => "button small-button green-button" do %>
+          <span class="glyphicon glyphicon-log-in"></span>
+              Iniciar Sesion
+        <% end %></li>
+        <% end %>
+
+
+
+
+
       </ul>
     </div>
   </div>
