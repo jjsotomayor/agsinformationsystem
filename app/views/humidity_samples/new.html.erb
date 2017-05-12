@@ -1,15 +1,5 @@
-
-
-
-<%if @created_sample%>
-  <script>swal("Muestra almacenada correctamente!", "Estado: <%=@sample_state%>", "success");</script>
-<%elsif @edited_sample%>
-  <script>swal("Muestra editada correctamente!", "Estado: <%=@sample_state%>", "success");</script>
-<%end%>
-
+<%= render 'shared/message_success_js', humidity_sample: @humidity_sample %>
 <%= render 'form_new', humidity_sample: @humidity_sample %>
-
-
 
 <div class="container-500px">
   <h1>Ultimos muestras de humedad</h1>

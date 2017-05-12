@@ -45,7 +45,8 @@ class HumiditySamplesController < ApplicationController
 
     if @humidity_sample.save
       puts "entre aqui!!!!!!: param_1: 'value_1', param_2: 'value_2'"
-      redirect_to new_humidity_sample_path created_sample: 'true', state: @humidity_sample.state# notice: "Muestra almacenada correctamente."
+      session[:display_created_alert] = true
+      redirect_to new_humidity_sample_path state: @humidity_sample.state# notice: "Muestra almacenada correctamente."
     else
       #Si hago redirect, termino el proces, en cambio con render mantengo la info de los errores,y es buena practica pq lo hace scaffold
       @humidity_samples = HumiditySample.last_humidity_samples(3)
@@ -59,7 +60,8 @@ class HumiditySamplesController < ApplicationController
   def update
 
     if @humidity_sample.update(humidity_sample_params)
-      redirect_to new_humidity_sample_path edited_sample: 'true', state: @humidity_sample.state#, notice: 'Muestra editada correctamente.'
+      session[:display_edited_alert] = true
+      redirect_to new_humidity_sample_path state: @humidity_sample.state#, notice: 'Muestra editada correctamente.'
     else
       render :edit
       #Esta vista se rompe completa al ingresar.

@@ -22,3 +22,55 @@
 ///
 
 //= require_tree .
+
+
+
+$(document).on('turbolinks:load', function(){
+  // $("#responsable").on("change" , alertIfEmpty); OLD ONE
+  $("#responsable").on("input propertychange paste" , alertIfEmpty);
+  $("#tag").on("input propertychange paste" , alertIfEmpty);
+  $("#number-field").on("input propertychange paste" , alertIfEmpty);
+});
+
+function changeTotalPriceBudgetaryItem(){
+  console.log('entré al método');
+  var tmp = chooseCurrencyValue();
+  console.log(tmp+'temporal en la wea de metodo');
+  console.log(typeof(tmp));
+  var quantity = $("#quantity").val();
+  var price = $("#unit_price").val();
+  $("#total_price").val(Math.round(quantity*price*tmp));
+}
+//Math.round(quantity*price*tmp)
+
+function chooseCurrencyValue(){
+  var currency=0;
+  if(dailyIndicators != null){
+    var combocurrency = $('#currency').val();
+    if(combocurrency ==='CLP'){
+      currency =1;
+    }else if (combocurrency=== 'UF') {
+      currency = dailyIndicators.uf.valor;
+    }else if (combocurrency=== 'USD') {
+      currency = dailyIndicators.dolar.valor;
+    }else if (combocurrency=== 'UTM') {
+      currency= dailyIndicators.utm.valor;
+    }else if (combocurrency === 'EUR') {
+      currency = dailyIndicators.euro.valor;
+    }else {
+      currency = 1;
+    }
+  }
+  return currency;
+}
+
+function alertIfEmpty(){
+  var text = $(this).val()
+  if (!text.trim().length){
+    $(this).css("background-color", "#FCB3BC");
+    // $(this).css("border", "red");
+  } else{
+    $(this).css("background-color", "#FFFFFF");
+    // $(this).css("border", "red");
+  }
+}
