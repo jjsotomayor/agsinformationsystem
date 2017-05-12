@@ -101,12 +101,12 @@ ActiveRecord::Schema.define(version: 20170426055011) do
 
   create_table "sorbate_samples", force: :cascade do |t|
     t.integer  "element_id"
-    t.string   "responsable",                   null: false
-    t.decimal  "sorbate",                       null: false
-    t.integer  "state",         default: 0,     null: false
-    t.boolean  "state_revised", default: false, null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "responsable",                    null: false
+    t.decimal  "sorbate",                        null: false
+    t.integer  "state",          default: 0,     null: false
+    t.boolean  "state_modified", default: false, null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.index ["element_id"], name: "index_sorbate_samples_on_element_id", using: :btree
   end
 

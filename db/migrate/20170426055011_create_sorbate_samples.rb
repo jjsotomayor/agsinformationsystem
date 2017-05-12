@@ -5,7 +5,7 @@ class CreateSorbateSamples < ActiveRecord::Migration[5.0]
       t.string :responsable, null: false
       t.decimal :sorbate, null: false
       t.integer :state, null: false, default:0
-      t.boolean :state_revised, null: false, default:false
+      t.boolean :state_modified, null: false, default:false
 
       t.timestamps
     end
