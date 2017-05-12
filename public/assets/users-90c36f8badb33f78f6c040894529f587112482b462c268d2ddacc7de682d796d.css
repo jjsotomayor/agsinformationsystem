@@ -1,0 +1,51 @@
+/* line 8, /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets/users.scss */
+body {
+  background: #eee !important;
+}
+
+/* line 12, /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets/users.scss */
+.wrapper {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+/* line 17, /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets/users.scss */
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* line 24, /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets/users.scss */
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 30px;
+}
+/* line 29, /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets/users.scss */
+.form-signin .checkbox {
+  font-weight: normal;
+}
+/* line 33, /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets/users.scss */
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+}
+/* line 40, /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets/users.scss */
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+/* line 45, /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets/users.scss */
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+/* line 51, /home/jjsotomayor/Git repositories/agsinformationsystem/app/assets/stylesheets/users.scss */
+.form-signin input[type="password"] {
+  margin-bottom: 20px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
