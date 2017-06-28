@@ -46,7 +46,8 @@ class HumiditySamplesController < ApplicationController
     if @humidity_sample.save
       puts "entre aqui!!!!!!: param_1: 'value_1', param_2: 'value_2'"
       session[:display_created_alert] = true
-      redirect_to new_humidity_sample_path, state: @humidity_sample.state# notice: "Muestra almacenada correctamente."
+      redirect_to new_humidity_sample_path state: @humidity_sample.state# notice: "Muestra almacenada correctamente."
+      #Unico PROBLEMA en heroku es que no esta mandando los parametros ?state:
     else
       #Si hago redirect, termino el proces, en cambio con render mantengo la info de los errores,y es buena practica pq lo hace scaffold
       @humidity_samples = HumiditySample.last_humidity_samples(3)
