@@ -6,6 +6,10 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!-- Premite el no cacheo de las vistas. Se actualizaran c/vez q se apriete back -->
+    <!--FIXME Ver manera de solo habilitar para ciertas paginas-->
+    <meta name="turbolinks-cache-control" content="no-cache">
   </head>
 
   <body class="<%= controller_name %> <%= action_name %>">
