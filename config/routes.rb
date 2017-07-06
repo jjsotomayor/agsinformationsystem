@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_controls
   get 'reports/index'
 
   resources :sorbate_samples

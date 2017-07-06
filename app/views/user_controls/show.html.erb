@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user_control.name %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @user_control.password %>
+</p>
+
+<p>
+  <strong>Sign in count:</strong>
+  <%= @user_control.sign_in_count %>
+</p>
+
+<%= link_to 'Edit', edit_user_control_path(@user_control) %> |
+<%= link_to 'Back', user_controls_path %>

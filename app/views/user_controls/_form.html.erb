@@ -1,0 +1,32 @@
+<%= form_for(user_control) do |f| %>
+  <% if user_control.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_control.errors.count, "error") %> prohibited this user_control from being saved:</h2>
+
+      <ul>
+      <% user_control.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.text_field :password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sign_in_count %>
+    <%= f.number_field :sign_in_count %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

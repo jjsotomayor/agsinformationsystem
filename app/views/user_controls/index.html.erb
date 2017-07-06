@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>User Controls</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Password</th>
+      <th>Sign in count</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_controls.each do |user_control| %>
+      <tr>
+        <td><%= user_control.name %></td>
+        <td><%= user_control.password %></td>
+        <td><%= user_control.sign_in_count %></td>
+        <td><%= link_to 'Show', user_control %></td>
+        <td><%= link_to 'Edit', edit_user_control_path(user_control) %></td>
+        <td><%= link_to 'Destroy', user_control, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User Control', new_user_control_path %>
