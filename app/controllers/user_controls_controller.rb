@@ -25,29 +25,20 @@ class UserControlsController < ApplicationController
   # POST /user_controls.json
   def create
     @user_control = UserControl.new(user_control_params)
-
-    respond_to do |format|
-      if @user_control.save
-        format.html { redirect_to @user_control, notice: 'User control was successfully created.' }
-        format.json { render :show, status: :created, location: @user_control }
-      else
-        format.html { render :new }
-        format.json { render json: @user_control.errors, status: :unprocessable_entity }
-      end
+    if @user_control.save
+      redirect_to @user_control, notice: 'User control was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /user_controls/1
   # PATCH/PUT /user_controls/1.json
   def update
-    respond_to do |format|
-      if @user_control.update(user_control_params)
-        format.html { redirect_to @user_control, notice: 'User control was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user_control }
-      else
-        format.html { render :edit }
-        format.json { render json: @user_control.errors, status: :unprocessable_entity }
-      end
+    if @user_control.update(user_control_params)
+      redirect_to @user_control, notice: 'User control was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -55,10 +46,43 @@ class UserControlsController < ApplicationController
   # DELETE /user_controls/1.json
   def destroy
     @user_control.destroy
-    respond_to do |format|
-      format.html { redirect_to user_controls_url, notice: 'User control was successfully destroyed.' }
-      format.json { head :no_content }
+    redirect_to user_controls_url, notice: 'User control was successfully destroyed.'
+  end
+
+
+# FIXME: Copiado de devise website
+  # GET /resource/sign_in
+  def new_session
+    # self.resource = resource_class.new(sign_in_params)
+    # clean_up_passwords(resource)
+    # yield resource if block_given?
+    # respond_with(resource, serialize_options(resource))
+  end
+
+  # POST /resource/sign_in
+  def create_session
+    user = UserControl.find_by(name: params[:name])
+    if user.password == params[:password]
+      session[:current_user] = user
+      session[:current_user_id] = user.id
+      puts "logueado"
+    else
+      puts "CLAVE INCORRECTA"
     end
+
+    # self.resource = warden.authenticate!(auth_options)
+    # set_flash_message!(:notice, :signed_in)
+    # sign_in(resource_name, resource)
+    # yield resource if block_given?
+    # respond_with resource, location: after_sign_in_path_for(resource)
+  end
+
+  # DELETE /resource/sign_out
+  def destroy_session
+    # signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+    # set_flash_message! :notice, :signed_out if signed_out
+    # yield if block_given?
+    # respond_to_on_destroy
   end
 
   private

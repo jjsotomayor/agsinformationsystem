@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/user_controls/new_session'
+  post '/user_controls/create_session'
   resources :user_controls
   get 'reports/index'
 
@@ -8,7 +10,7 @@ Rails.application.routes.draw do
 
   get 'pages/home_quality_controls'
 
-  get 'users/index'
+  #get 'users/index'
 
   devise_for :users
   resources :users, only: [:show, :index]

@@ -25,6 +25,10 @@
        <p class="alert alert alert-danger" role="alert"><%= alert %></p>
      <%end%>
 
+     <%if current_user %>
+     HAY UN USUARIO CON SESION INICIADA
+     <%end%>
+
     <%= yield %>
   </body>
 </html>
