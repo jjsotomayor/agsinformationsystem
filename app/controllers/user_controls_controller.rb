@@ -61,13 +61,13 @@ class UserControlsController < ApplicationController
 
   # POST /resource/sign_in
   def create_session
-    user = UserControl.find_by(name: params[:name])
-    if user.password == params[:password]
-      session[:current_user] = user
-      session[:current_user_id] = user.id
+    resp = UserControl.create_session(params[:name], params[:password])
+    if resp[:status] == "ok"
+      session[:user] = resp[:user]
       puts "logueado"
+      redirect_to root_path, notice: 'Sesion iniciada correctamente.'
     else
-      puts "CLAVE INCORRECTA"
+      redirect_to user_controls_new_session root, notice: resp[:msg]
     end
 
     # self.resource = warden.authenticate!(auth_options)
@@ -93,6 +93,12 @@ class UserControlsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_control_params
-      params.require(:user_control).permit(:name, :password, :sign_in_count)
+      params.require(:user_control).permit(:name, :password)
     end
+
+    def login_params
+      #TODO USe it in session creation
+      params.require(:user_control).permit(:name, :password)
+    end
+
 end
