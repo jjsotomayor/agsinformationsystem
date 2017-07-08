@@ -26,7 +26,6 @@ Rails.application.routes.draw do
   resources :elements
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #get '/' => "elements#index"
-  root "pages#home_quality_controls"
   #get '/' => "pages#home_quality_controls"
 
   resources :caliber_samples
@@ -39,5 +38,6 @@ Rails.application.routes.draw do
     resources :caliber_samples
   end
 
+  root "pages#home"
 
 end

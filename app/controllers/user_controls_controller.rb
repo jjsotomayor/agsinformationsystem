@@ -59,6 +59,7 @@ class UserControlsController < ApplicationController
       #TODO Redirect al ultimo sitio visitado, (almacenar dato en last_site)
       redirect_to root_path, notice: 'Sesión iniciada correctamente.'
     else
+      puts resp[:msg]
       redirect_to user_controls_sign_in_path, alert: resp[:msg]
     end
   end

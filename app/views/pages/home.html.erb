@@ -1,9 +1,24 @@
 
 <div class="container">
 <div class="jumbotron">
-  <h1>Bienvenido <%="nombre"%> a Agsystem!</h1>
-  <p>Por ahora la funcionalidad es limitada</p>
+  <h1>Bienvenido!</h1>
+  <p>Abajo puedes iniciar sesión</p>
   <p>Recuerda cerrar tu sesion cada vez que dejes el computador</p>
-  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+
+  <p>
+    <%= link_to  user_controls_sign_in_path, class: "btn btn-primary btn-lg"  do %>
+      <span class="glyphicon glyphicon-log-in"></span>
+          Soy control de calidad
+    <% end %>
+  </p>
+  <p>
+    <%= link_to  new_user_session_path, class: "btn btn-primary btn-lg"  do %>
+      <span class="glyphicon glyphicon-log-in"></span>
+          Soy administrativo
+    <% end %>
+  </p>
+
+  <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Soy control de calidad</a></p> -->
+  <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Soy administrativo</a></p> -->
 </div>
 </div>

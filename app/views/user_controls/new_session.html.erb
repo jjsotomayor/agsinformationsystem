@@ -1,20 +1,25 @@
-<h1>Nueva sesion de usuario</h1>
+<!-- <div class="wrapper"> -->
+<!-- <form class="form-signin"> -->
+  <h2 class="form-signin-heading">Ingreso control de calidad</h2>
 
   <%= form_tag("/user_controls/create_session") do |f| %>
     <div class="field">
-      <%= :name %>
-      <%= text_field_tag :name %>
+      <%= :Nombre %>
+      <%= text_field_tag :name, '', autofocus: true, class:"form-control" %>
     </div>
 
     <div class="field">
-      <%= :password %>
-      <%= text_field_tag :password%>
+      <%= :Contraseña %>
+      <%= password_field :password, '',autocomplete: "off", class:"form-control", placeholder:"rut"%>
     </div>
 
     <div class="actions">
-      <%= submit_tag :submit %>
+      <%= submit_tag :Ingresar, class: 'btn btn-lg btn-primary btn-block' %>
         <!-- <input type="submit" value="Submit">%> -->
     </div>
+    <%= link_to 'Atras', root_path %>
   <% end %>
 
-<%= link_to 'Back', user_controls_path %>
+
+<!-- </form> -->
+<!-- </div> -->
