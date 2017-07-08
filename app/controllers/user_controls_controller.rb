@@ -21,7 +21,7 @@ class UserControlsController < ApplicationController
   def create
     @user_control = UserControl.new(user_control_params)
     if @user_control.save
-      redirect_to @user_control, notice: 'Usuario control creado exitosamente.'
+      redirect_to user_controls_path, notice: 'Usuario control creado exitosamente.'
     else
       render :new
     end
@@ -30,7 +30,7 @@ class UserControlsController < ApplicationController
   # PATCH/PUT /user_controls/1
   def update
     if @user_control.update(user_control_params)
-      redirect_to @user_control, notice: 'Usuario control editado exitosamente.'
+      redirect_to user_controls_path, notice: 'Usuario control editado exitosamente.'
     else
       render :edit
     end
@@ -51,15 +51,15 @@ class UserControlsController < ApplicationController
   def create_session
     puts "Printing parametros"
     puts login_params
-    # TODO validar que no haya sesion iniciada
     #TODO validar ip aprobada.
-    resp = UserControl.is_valid_login(params[:name], params[:password])
+    ip = request.remote_ip
+    resp = UserControl.is_valid_login(params[:name], params[:password], ip)
     if resp[:status] == "ok"
       create_session_user_control(resp[:user])
       #TODO Redirect al ultimo sitio visitado, (almacenar dato en last_site)
       redirect_to root_path, notice: 'Sesión iniciada correctamente.'
     else
-      redirect_to user_controls_new_session_path, alert: resp[:msg]
+      redirect_to user_controls_sign_in_path, alert: resp[:msg]
     end
   end
 

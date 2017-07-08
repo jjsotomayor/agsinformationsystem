@@ -1,7 +1,14 @@
 class UserControl < ApplicationRecord
 
-  def self.is_valid_login(name, password)
+  def self.is_valid_login(name, password, ip)
     response = {msg: ""}
+    puts ip
+    if !IpAddress.find_by(ip: ip)
+      response[:status] = "error"
+      response[:msg] = "Error. Punto de acceso no autorizado, solicite acceso al administrador"
+      return response
+    end
+
     user = UserControl.find_by(name: name)
     if !user
       response[:status] = "error"

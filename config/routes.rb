@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ip_addresses
   # User Control routes
   get '/user_controls/sign_in', to: 'user_controls#new_session'
   post '/user_controls/create_session'
