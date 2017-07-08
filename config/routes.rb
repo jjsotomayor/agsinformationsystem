@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  get '/user_controls/new_session'
+  # User Control routes
+  get '/user_controls/sign_in', to: 'user_controls#new_session'
   post '/user_controls/create_session'
-  resources :user_controls
+  delete '/user_controls/sign_out', to: 'user_controls#destroy_session'
+  resources :user_controls, except: [:show]
+  #
   get 'reports/index'
 
   resources :sorbate_samples
@@ -12,7 +15,8 @@ Rails.application.routes.draw do
 
   #get 'users/index'
 
-  devise_for :users
+  # devise_for :users
+  devise_for :users, :controllers => { :sessions => "users/sessions" }
   resources :users, only: [:show, :index]
   resources :drying_methods
   resources :product_types

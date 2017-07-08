@@ -1,6 +1,6 @@
 class UserControl < ApplicationRecord
 
-  def self.create_session(name, password)
+  def self.is_valid_login(name, password)
     response = {msg: ""}
     user = UserControl.find_by(name: name)
     if !user
@@ -8,19 +8,13 @@ class UserControl < ApplicationRecord
       response[:msg] = "Nombre de usuario incorrecto"
     elsif user.password != password
       response[:status] = "error"
-      response[:msg] = "Clave incorrecta"
+      response[:msg] = "Contraseña incorrecta"
       puts "CLAVE INCORRECTA"
     else
-      # user.initiate_session(user)
       response[:status] = "ok"
-      response[:user] = user 
+      response[:user] = user
     end
     response
   end
-
-  # def initiate_session
-  #   session[:user] = user
-  #   session[:user_id] = user.id
-  # end
 
 end

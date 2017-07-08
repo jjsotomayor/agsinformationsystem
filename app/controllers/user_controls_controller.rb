@@ -1,15 +1,11 @@
 class UserControlsController < ApplicationController
-  before_action :set_user_control, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_control, only: [:edit, :update, :destroy]
+  before_action :verify_no_user_logged_in, only: [:new_session, :create_session]
 
   # GET /user_controls
   # GET /user_controls.json
   def index
     @user_controls = UserControl.all
-  end
-
-  # GET /user_controls/1
-  # GET /user_controls/1.json
-  def show
   end
 
   # GET /user_controls/new
@@ -22,67 +18,56 @@ class UserControlsController < ApplicationController
   end
 
   # POST /user_controls
-  # POST /user_controls.json
   def create
     @user_control = UserControl.new(user_control_params)
     if @user_control.save
-      redirect_to @user_control, notice: 'User control was successfully created.'
+      redirect_to @user_control, notice: 'Usuario control creado exitosamente.'
     else
       render :new
     end
   end
 
   # PATCH/PUT /user_controls/1
-  # PATCH/PUT /user_controls/1.json
   def update
     if @user_control.update(user_control_params)
-      redirect_to @user_control, notice: 'User control was successfully updated.'
+      redirect_to @user_control, notice: 'Usuario control editado exitosamente.'
     else
       render :edit
     end
   end
 
   # DELETE /user_controls/1
-  # DELETE /user_controls/1.json
   def destroy
     @user_control.destroy
-    redirect_to user_controls_url, notice: 'User control was successfully destroyed.'
+    redirect_to user_controls_url, notice: 'Usuario control eliminado.'
   end
 
 
-# FIXME: Copiado de devise website
-  # GET /resource/sign_in
+  # GET /user_controls/sign_in
   def new_session
-    # self.resource = resource_class.new(sign_in_params)
-    # clean_up_passwords(resource)
-    # yield resource if block_given?
-    # respond_with(resource, serialize_options(resource))
   end
 
-  # POST /resource/sign_in
+  # POST /user_controls/sign_in
   def create_session
-    resp = UserControl.create_session(params[:name], params[:password])
+    puts "Printing parametros"
+    puts login_params
+    # TODO validar que no haya sesion iniciada
+    #TODO validar ip aprobada.
+    resp = UserControl.is_valid_login(params[:name], params[:password])
     if resp[:status] == "ok"
-      session[:user] = resp[:user]
-      puts "logueado"
-      redirect_to root_path, notice: 'Sesion iniciada correctamente.'
+      create_session_user_control(resp[:user])
+      #TODO Redirect al ultimo sitio visitado, (almacenar dato en last_site)
+      redirect_to root_path, notice: 'Sesión iniciada correctamente.'
     else
-      redirect_to user_controls_new_session root, notice: resp[:msg]
+      redirect_to user_controls_new_session_path, alert: resp[:msg]
     end
-
-    # self.resource = warden.authenticate!(auth_options)
-    # set_flash_message!(:notice, :signed_in)
-    # sign_in(resource_name, resource)
-    # yield resource if block_given?
-    # respond_with resource, location: after_sign_in_path_for(resource)
   end
 
-  # DELETE /resource/sign_out
+  # DELETE /user_controls/sign_out
   def destroy_session
-    # signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
-    # set_flash_message! :notice, :signed_out if signed_out
-    # yield if block_given?
-    # respond_to_on_destroy
+    reset_session
+    redirect_to root_path, notice: 'Sesion cerrada correctamente.'
+    #TODO: Call it automatically every 60 minutes
   end
 
   private
@@ -98,7 +83,15 @@ class UserControlsController < ApplicationController
 
     def login_params
       #TODO USe it in session creation
-      params.require(:user_control).permit(:name, :password)
+      # params.require(:user_control).permit(:name, :password)
+      params.permit(:name, :password)
+    end
+
+    def verify_no_user_logged_in
+      puts "Verifying if user is logged"
+      if logged_user
+        redirect_to root_path, notice: 'Ya hay una sesion iniciada.'
+      end
     end
 
 end

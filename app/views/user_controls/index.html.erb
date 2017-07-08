@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>User Controls</h1>
 
 <table>
@@ -18,7 +16,6 @@
         <td><%= user_control.name %></td>
         <td><%= user_control.password %></td>
         <td><%= user_control.sign_in_count %></td>
-        <td><%= link_to 'Show', user_control %></td>
         <td><%= link_to 'Edit', edit_user_control_path(user_control) %></td>
         <td><%= link_to 'Destroy', user_control, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

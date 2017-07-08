@@ -1,7 +1,7 @@
 class CreateUserControls < ActiveRecord::Migration[5.0]
   def change
     create_table :user_controls do |t|
-      t.string :name
+      t.string :name, null: false
       t.string :password
 
       ## Trackable
@@ -13,5 +13,7 @@ class CreateUserControls < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+
+    add_index :user_controls, :name, unique: true
   end
 end
