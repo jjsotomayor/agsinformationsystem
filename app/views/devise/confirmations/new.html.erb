@@ -1,9 +1,10 @@
-<h2>Reenviar correo de confirmacion</h2>
+<br><br><br>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'form-signin' }) do |f| %>
+<h2>Reenviar correo de confirmacion</h2>
   <%= devise_error_messages! %>
 
-  <div class="field">
+  <div class="field-sign-in">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
   </div>
@@ -11,6 +12,6 @@
   <div class="actions">
     <%= f.submit "Reenviar correo de confirmacion" %>
   </div>
+  <br>
+  <%= render "devise/shared/links" %>
 <% end %>
-
-<%= render "devise/shared/links" %>

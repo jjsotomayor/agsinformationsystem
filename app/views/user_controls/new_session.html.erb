@@ -1,14 +1,14 @@
 <!-- <div class="wrapper"> -->
 <!-- <form class="form-signin"> -->
-  <h2 class="form-signin-heading">Ingreso control de calidad</h2>
-
-  <%= form_tag("/user_controls/create_session") do |f| %>
-    <div class="field">
+<br><br><br>
+  <%= form_tag("/user_controls/create_session", class: 'form-signin') do |f| %>
+  <h2 class="form-signin-heading">Control de calidad</h2>
+    <div class="field-sign-in">
       <%= :Nombre %>
       <%= text_field_tag :name, '', autofocus: true, class:"form-control" %>
     </div>
 
-    <div class="field">
+    <div class="field-sign-in">
       <%= :Contraseña %>
       <%= password_field :password, '',autocomplete: "off", class:"form-control", placeholder:"rut"%>
     </div>
