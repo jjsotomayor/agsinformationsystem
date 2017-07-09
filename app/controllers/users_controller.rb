@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user_control, only: [:show, :edit, :update]
+  before_action :set_user_control, only: [:show, :edit, :update, :destroy]
   def show
   end
 
@@ -18,6 +18,11 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to users_path, notice: 'Usuario eliminado permanentemente.'
   end
 
 private

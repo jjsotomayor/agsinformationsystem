@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   # devise_for :users
   devise_for :users, :controllers => { :sessions => "users/sessions" }
-  resources :users, only: [:show, :index, :edit, :update]
+  resources :users, only: [:show, :index, :edit, :update, :destroy]
   resources :drying_methods
   resources :product_types
   resources :humidity_samples

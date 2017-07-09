@@ -21,7 +21,7 @@
       <%else%>
       <tr class= "danger">
         <%end%>
-        
+
         <td><%= humidity_sample.element.tag %></td>
         <td><%= humidity_sample.responsable %></td>
         <td><%= humidity_sample.humidity %></td>
@@ -35,5 +35,5 @@
 </table>
 
 <br>
-
+</div>
 <%= link_to 'Ingresar muestra de humedad', new_humidity_sample_path %>
