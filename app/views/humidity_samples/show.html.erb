@@ -2,7 +2,7 @@
 
 <p>
   <strong>Element:</strong>
-  <%= @humidity_sample.element %>
+  <%= @humidity_sample.element.tag %>
 </p>
 
 <p>
@@ -11,14 +11,26 @@
 </p>
 
 <p>
-  <strong>Humidity:</strong>
+  <strong>Humedad:</strong>
   <%= @humidity_sample.humidity %>
 </p>
 
 <p>
-  <strong>State:</strong>
-  <%= @humidity_sample.state %>
+  <strong>Status:</strong>
+  <%= @humidity_sample.status %>
 </p>
 
-<%= link_to 'Edit', edit_humidity_sample_path(@humidity_sample) %> |
-<%= link_to 'Back', humidity_samples_path %>
+<p>
+  <strong>Creada:</strong>
+  <%= date_time(@humidity_sample.created_at) %>
+</p>
+
+<p>
+  <strong>Ultima modificacion:</strong>
+  <%= date_time(@humidity_sample.updated_at) %>
+</p>
+
+
+
+<%= link_to 'Editar', edit_humidity_sample_path(@humidity_sample) %> |
+<%= link_to 'Atrás', humidity_samples_path %>

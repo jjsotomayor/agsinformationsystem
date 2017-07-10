@@ -5,8 +5,8 @@ class CreateHumiditySamples < ActiveRecord::Migration[5.0]
       t.string :responsable, null: false
       t.decimal :humidity, null: false
 
-      t.integer :state, null: false, default:0
-      t.boolean :state_modified, null: false, default:false
+      t.integer :status, null: false, default:0
+      t.boolean :status_modified, null: false, default:false
 
       t.timestamps
     end

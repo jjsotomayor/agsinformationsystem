@@ -16,5 +16,9 @@ module Agsinformationsystem
     # Configurando lenguaje español
     config.i18n.default_locale = :es
 
+    # Configuracion de limites
+    config.humidity_limit = 32
+
+
   end
 end

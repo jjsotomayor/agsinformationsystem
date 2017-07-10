@@ -1,28 +1,27 @@
 class HumiditySample < ApplicationRecord
-  enum state: [:rechazado, :aprobado]
+  enum status: [:rechazado, :aprobado]
 
   belongs_to :element
 
-  before_create :calculate_state
-  before_save :calculate_state
+  before_save :calculate_status
 
-  validates :element, :responsable, :humidity, presence: true
+  validates :element, :responsable, :humidity, :status, presence: true
   validates :humidity, numericality: true
-  #validates :state, inclusion: { in: %w(aprobado rechazado)}
+  validates :status, inclusion: { in: %w(aprobado rechazado)}
 
 
-   def calculate_state
-     #TESTEAR
-     self.state = "aprobado"
-     if self.humidity > 20
-       self.state = "rechazado"
+   def calculate_status
+    #  Rails.configuration.firebase_url
+     limit = Rails.configuration.humidity_limit
+     self.status = "rechazado"
+     if self.humidity < limit
+       self.status = "aprobado"
      end
    end
 
   def self.last_humidity_samples(number)
     HumiditySample.last(number).reverse
   end
-
 
 
  end

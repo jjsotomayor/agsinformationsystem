@@ -1,8 +1,8 @@
 
-<%if session[:display_created_alert] and params[:state] %>
-  <script>swal("Muestra almacenada!", "Estado: <%=params[:state]%>", "success");</script>
+<%if session[:display_created_alert] and params[:status] %>
+  <script>swal("Muestra almacenada!", "Estado: <%=params[:status]%>", "success");</script>
   <%session[:display_created_alert] = false%>
-<%elsif session[:display_edited_alert] and params[:state]%>
-  <script>swal("Muestra editada!", "Estado: <%=params[:state]%>", "success");</script>
+<%elsif session[:display_edited_alert] and params[:status]%>
+  <script>swal("Muestra editada!", "Estado: <%=params[:status]%>", "success");</script>
   <%session[:display_edited_alert] = false%>
 <%end%>

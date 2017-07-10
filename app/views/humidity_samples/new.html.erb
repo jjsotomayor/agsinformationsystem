@@ -20,13 +20,13 @@
         <td><%= humidity_sample.element.tag %></td>
         <td><%= humidity_sample.responsable %></td>
         <td><%= humidity_sample.humidity %></td>
-        <td><%= humidity_sample.state %></td>
+        <td><%= humidity_sample.status %></td>
 
         <td><%=humidity_sample.created_at.strftime("%H:%M:%S")%></td>
         <!--(Time.now - humidity_sample.created_at).to_s + " secs ago"  -- time_ago_in_words(humidity_sample.created_at)-->
 
         <td><%= link_to 'Editar', edit_humidity_sample_path(humidity_sample) %></td>
-        <td><%= link_to 'Borrar', humidity_sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Borrar', humidity_sample, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>

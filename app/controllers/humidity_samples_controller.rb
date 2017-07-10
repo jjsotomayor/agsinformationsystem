@@ -2,33 +2,20 @@ class HumiditySamplesController < ApplicationController
   before_action :set_humidity_sample, only: [:show, :edit, :update, :destroy]
 
   # GET /humidity_samples
-  # GET /humidity_samples.json
   def index
-    @humidity_samples = HumiditySample.all
-    @humidity_sample = HumiditySample.new
+    @humidity_samples = HumiditySample.order('created_at DESC')
+    # @humidity_sample = HumiditySample.new
   end
 
   # GET /humidity_samples/1
-  # GET /humidity_samples/1.json
   def show
   end
 
   # GET /humidity_samples/new
   def new
+    set_success_message_variables
     @humidity_samples = HumiditySample.last_humidity_samples(3)
     @humidity_sample = HumiditySample.new
-
-    @edited_sample = false
-    @created_sample = false
-    if @created_sample = params[:created_sample]
-      @created_sample = params[:created_sample]
-      @sample_state = params[:state]
-    elsif @edited_sample = params[:edited_sample]
-      @edited_sample = true
-      @sample_state = params[:state]
-    end
-
-    # puts("HELLO WORLD ESTOY RECORRIENDO EL CONTROLADOR DE HUMIDITY SAMPLES ->NEW!!!!!!!!!")
   end
 
   # GET /humidity_samples/1/edit
@@ -36,7 +23,6 @@ class HumiditySamplesController < ApplicationController
   end
 
   # POST /humidity_samples
-  # POST /humidity_samples.json
   def create #TESTEAR
 
     @element = Element.create_element_if_doesnt_exist(element_params)
@@ -44,9 +30,8 @@ class HumiditySamplesController < ApplicationController
     @humidity_sample.element = @element
 
     if @humidity_sample.save
-      puts "entre aqui!!!!!!: param_1: 'value_1', param_2: 'value_2'"
       session[:display_created_alert] = true
-      redirect_to new_humidity_sample_path state: @humidity_sample.state# notice: "Muestra almacenada correctamente."
+      redirect_to new_humidity_sample_path status: @humidity_sample.status# notice: "Muestra almacenada correctamente."
     else
       #Si hago redirect, termino el proces, en cambio con render mantengo la info de los errores,y es buena practica pq lo hace scaffold
       @humidity_samples = HumiditySample.last_humidity_samples(3)
@@ -56,12 +41,11 @@ class HumiditySamplesController < ApplicationController
   end
 
   # PATCH/PUT /humidity_samples/1
-  # PATCH/PUT /humidity_samples/1.json
   def update
 
     if @humidity_sample.update(humidity_sample_params)
       session[:display_edited_alert] = true
-      redirect_to new_humidity_sample_path state: @humidity_sample.state#, notice: 'Muestra editada correctamente.'
+      redirect_to new_humidity_sample_path status: @humidity_sample.status#, notice: 'Muestra editada correctamente.'
     else
       render :edit
       #Esta vista se rompe completa al ingresar.
@@ -69,13 +53,9 @@ class HumiditySamplesController < ApplicationController
   end
 
   # DELETE /humidity_samples/1
-  # DELETE /humidity_samples/1.json
   def destroy
     @humidity_sample.destroy
-    respond_to do |format|
-      format.html { redirect_to humidity_samples_url, notice: 'Humidity sample was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to humidity_samples_url, notice: 'Muestra de humedad eliminada.'
   end
 
   private
@@ -93,6 +73,18 @@ class HumiditySamplesController < ApplicationController
     end
     def element_params
       params.permit(:tag)
+    end
+
+    def set_success_message_variables
+      @edited_sample = false
+      @created_sample = false
+      if @created_sample = params[:created_sample]
+        @created_sample = params[:created_sample]
+        @sample_state = params[:state]
+      elsif @edited_sample = params[:edited_sample]
+        @edited_sample = true
+        @sample_state = params[:state]
+      end
     end
 
 end

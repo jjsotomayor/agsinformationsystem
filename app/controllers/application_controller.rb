@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   # helper da acceso a los metodos en las vistas e include en los controladores.
+  helper TimeHelper
   helper SessionsHelper
   include SessionsHelper
   include IconsHelper
