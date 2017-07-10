@@ -23,5 +23,17 @@ class HumiditySample < ApplicationRecord
     HumiditySample.last(number).reverse
   end
 
+  def soft_delete
+    # TODO: Pasarlo a un modulo
+    self.deleted_at = Time.zone.now
+    self.active = false
+    self.save!
+  end
+
+  def self.active
+    # TODO: Pasarlo a un modulo
+    # TODO: HAcer que siempre por defecto se llamen las active
+    where(active: true)
+  end
 
  end

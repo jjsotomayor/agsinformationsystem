@@ -3,7 +3,7 @@ class HumiditySamplesController < ApplicationController
 
   # GET /humidity_samples
   def index
-    @humidity_samples = HumiditySample.order('created_at DESC')
+    @humidity_samples = HumiditySample.active.order('created_at DESC')
     # @humidity_sample = HumiditySample.new
   end
 
@@ -14,7 +14,7 @@ class HumiditySamplesController < ApplicationController
   # GET /humidity_samples/new
   def new
     set_success_message_variables
-    @humidity_samples = HumiditySample.last_humidity_samples(3)
+    @humidity_samples = HumiditySample.active.last(3)
     @humidity_sample = HumiditySample.new
   end
 
@@ -54,7 +54,7 @@ class HumiditySamplesController < ApplicationController
 
   # DELETE /humidity_samples/1
   def destroy
-    @humidity_sample.destroy
+    @humidity_sample.soft_delete
     redirect_to humidity_samples_url, notice: 'Muestra de humedad eliminada.'
   end
 
