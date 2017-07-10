@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :sorbate_samples
   resources :deviation_samples
   get 'pages/home'
-
   get 'pages/home_quality_controls'
 
   # devise_for :users
