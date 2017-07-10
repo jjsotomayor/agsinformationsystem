@@ -8,8 +8,8 @@
         <th>Apellido</th>
         <th>Correo</th>
         <th>Rol</th>
-        <th>Creado</th>
         <th>Autorizado</th>
+        <th>Creado</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -20,16 +20,27 @@
           <td><%= user.name %></td>
           <td><%= user.last_name %></td>
           <td><%= user.email %></td>
-          <td><%= "fix"%></td>
-          <td><%= user.created_at.strftime("%d/%b/%y")%></td>
+          <td><%= user.role.name if user.role%></td>
           <td><%= icon_true_false(user.authorized) %></td>
+          <td><%= user.created_at.strftime("%d/%b/%y")%></td>
+
+
+          <td>
+          <%= form_tag(change_role_user_path(user), {:method => :post}) do %>
+            <%= select_tag "role",  options_for_select(@roles.all.map{|role| [role.name,role.id]}), include_blank: true %>
+            <div class="actions">
+              <%= submit_tag 'Cambiar rol'  %>
+            </div>
+          <% end %>
+          </td>
 
           <% if user.authorized %>
-          <td><%= link_to 'Desautorizar', authorize_user_path(user, authorize: false), method: :post, data: { confirm: '¿Estas seguro?' } %></td>
+            <td><%= link_to 'Desautorizar', authorize_user_path(user, authorize: false), method: :post, data: { confirm: '¿Estas seguro?' } %></td>
           <% else %>
-          <td><%= link_to 'Autorizar', authorize_user_path(user, authorize: true), method: :post, data: { confirm: '¿Estas seguro?' } %></td>
+            <td><%= link_to 'Autorizar', authorize_user_path(user, authorize: true), method: :post, data: { confirm: '¿Estas seguro?' } %></td>
           <% end %>
-          <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: '¿Estas seguro? Será irreversible' } %></td>
+
+          <td><span class="glyphicon glyphicon-trash"><%= link_to 'Eliminar', user, method: :delete, data: { confirm: 'Estas seguro? Será irreversible' } %></td>
 
         </tr>
       <% end %>

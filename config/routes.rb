@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :index, :edit, :update, :destroy] do
     member do
       post :authorize# => , as: :authorize_user
+      post :change_role
     end
   end
   # post '/users/authorize' => 'general#accept_invoice', as: :authorize

@@ -43,12 +43,17 @@
 
 .container{
    margin: 0 auto;
-   width: 500px;
+  //  width: 1000px; //TODO: Revisar que tablas se vean bien
   // background-color: rgb(169,224,180);
   // background-color: rgb(255,217,102);
   // background-color: rgb(201,201,201);
   // background-color: rgb(224,176,132);
 }
+.container-small{
+   margin: 0 auto;
+   width: 500px;
+}
+
 .pestaña{
   // margin-right: 20px;
   width: 160px;

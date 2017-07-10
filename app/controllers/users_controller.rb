@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_user_control, only: [:show, :edit, :update, :destroy, :authorize]
+  before_action :set_user_control, only: [:show, :edit, :update, :destroy, :authorize, :change_role]
   def show
   end
 
   def index
     @users = User.all
+    @roles = Role.all
   end
 
   # GET /users/1/edit
@@ -33,6 +34,14 @@ class UsersController < ApplicationController
     @user.authorized = params[:authorize] == "true"
     @user.save!
     redirect_to users_path, notice: 'Cambiada autorización de usuario'
+  end
+
+  def change_role
+    # TODO TEST from the view
+    #TODO validar que el usuario sea admin
+    @user.role_id = params[:role]
+    @user.save!
+    redirect_to users_path, notice: 'Rol actualizado'
   end
 
 private
