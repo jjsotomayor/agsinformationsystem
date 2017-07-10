@@ -51,7 +51,6 @@ class UserControlsController < ApplicationController
   def create_session
     puts "Printing parametros"
     puts login_params
-    #TODO validar ip aprobada.
     ip = request.remote_ip
     resp = UserControl.is_valid_login(params[:name], params[:password], ip)
     if resp[:status] == "ok"
@@ -86,6 +85,7 @@ class UserControlsController < ApplicationController
       #TODO USe it in session creation
       # params.require(:user_control).permit(:name, :password)
       params.permit(:name, :password)
+      # params.require(:name, :password)
     end
 
     def verify_no_user_logged_in

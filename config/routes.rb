@@ -14,8 +14,6 @@ Rails.application.routes.draw do
 
   get 'pages/home_quality_controls'
 
-  #get 'users/index'
-
   # devise_for :users
   devise_for :users, :controllers => { :sessions => "users/sessions" }
   resources :users, only: [:show, :index, :edit, :update, :destroy]

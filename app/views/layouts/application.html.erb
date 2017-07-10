@@ -26,15 +26,19 @@
      <%if not alert.nil?%>
        <p class="alert alert alert-danger" role="alert"><%= alert %></p>
      <%end%>
+     <%if alert.nil? and notice.nil?%>
+       <br><br>
+     <%end%>
 
-     <!--FIXME: Borrar esto al final, es solo de ayuda  -->
-     <%if current_user %>
-      USUARIO regular CON SESION INICIADA <br>
-     <%end%>
-     <%if session[:user_id] %>
-      USER CONTROL session inicada<br>
-     <%end%>
 
     <%= yield %>
+
+    <!--FIXME: Borrar esto al final, es solo de ayuda  -->
+    <%if current_user %>
+    USUARIO regular CON SESION INICIADA <br>
+    <%end%>
+    <%if session[:user_id] %>
+    USER CONTROL session inicada<br>
+    <%end%>
   </body>
 </html>

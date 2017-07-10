@@ -10,7 +10,9 @@
 
     <div class="field-sign-in">
       <%= :Contraseña %>
-      <%= password_field :password, '',autocomplete: "off", class:"form-control", placeholder:"rut"%>
+      <%= text_field_tag :password, '',autocomplete: "off", class:"form-control", placeholder:"rut"%>
+      <!-- TODO: Revisar que esto deba ser un password_field (pass oculta)  -->
+
     </div>
 
     <div class="actions">
