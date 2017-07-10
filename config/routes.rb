@@ -15,7 +15,13 @@ Rails.application.routes.draw do
 
   # devise_for :users
   devise_for :users, :controllers => { :sessions => "users/sessions" }
-  resources :users, only: [:show, :index, :edit, :update, :destroy]
+  resources :users, only: [:show, :index, :edit, :update, :destroy] do
+    member do
+      post :authorize# => , as: :authorize_user
+    end
+  end
+  # post '/users/authorize' => 'general#accept_invoice', as: :authorize
+
   resources :drying_methods
   resources :product_types
   resources :humidity_samples

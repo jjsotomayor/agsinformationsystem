@@ -22,9 +22,15 @@
           <td><%= user.email %></td>
           <td><%= "fix"%></td>
           <td><%= user.created_at.strftime("%d/%b/%y")%></td>
-          <td><%= "fix"%></td>
+          <td><%= icon_true_false(user.authorized) %></td>
 
-          <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: '¿Estas seguro? Es irreversible' } %></td>
+          <% if user.authorized %>
+          <td><%= link_to 'Desautorizar', authorize_user_path(user, authorize: false), method: :post, data: { confirm: '¿Estas seguro?' } %></td>
+          <% else %>
+          <td><%= link_to 'Autorizar', authorize_user_path(user, authorize: true), method: :post, data: { confirm: '¿Estas seguro?' } %></td>
+          <% end %>
+          <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: '¿Estas seguro? Será irreversible' } %></td>
+
         </tr>
       <% end %>
     </tbody>

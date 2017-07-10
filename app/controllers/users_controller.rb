@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user_control, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_control, only: [:show, :edit, :update, :destroy, :authorize]
   def show
   end
 
@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /user_controls/1
   def update
+    # TODO Validar que el usuario sea el mismo
     if @user.update(user_params)
       redirect_to user_path(@user), notice: 'Usuario editado exitosamente.'
     else
@@ -23,6 +24,15 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to users_path, notice: 'Usuario eliminado permanentemente.'
+  end
+
+  def authorize
+    # TODO TEST from the view
+    #TODO validar que el usuario sea admin
+    puts "Entre, usuario auth: #{@user.authorized}"
+    @user.authorized = params[:authorize] == "true"
+    @user.save!
+    redirect_to users_path, notice: 'Cambiada autorización de usuario'
   end
 
 private

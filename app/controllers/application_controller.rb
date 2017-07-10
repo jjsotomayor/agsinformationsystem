@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   # helper da acceso a los metodos en las vistas e include en los controladores.
   helper SessionsHelper
   include SessionsHelper
+  include IconsHelper
 
   protected
 
