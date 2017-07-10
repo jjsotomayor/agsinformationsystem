@@ -1,5 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  prepend_before_action :verify_user_authorized, only: [:create]
   prepend_before_action :verify_no_user_logged_in, only: [:new, :create]
 
   # GET /resource/sign_in
@@ -25,10 +26,18 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   def verify_no_user_logged_in
-    puts "Verifying if user is logged"
+    puts "Checking if user is logged"
     if logged_user
       return redirect_to root_path, notice: 'Ya hay una sesion iniciada.'
     end
   end
 
+  def verify_user_authorized
+    puts "Checking if user has been authorized"
+    u = User.find_by(email: params[:user][:email])
+    if u and !u.authorized
+      redirect_to root_path, alert: 'Solo falta que el administrador te de acceso. Solicitacelo ' and return
+    end
+  end
+  
 end
