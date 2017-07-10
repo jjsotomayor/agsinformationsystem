@@ -8,7 +8,7 @@
 
 
  Role.all.destroy_all
- ['admin', 'gerente', 'jefe_planta', 'jefe_control_calidad', 'jefe_bodega'].each do |role_name|
+ ['admin', 'jefe_planta', 'jefe_control_calidad', 'jefe_bodega'].each do |role_name|
    Role.create!(name: role_name)
  end
 
