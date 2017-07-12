@@ -42,9 +42,7 @@ class Element < ApplicationRecord
 
   def self.create_element_if_doesnt_exist(element_params)
     @element = Element.find_by(element_params)
-    if !@element
-      @element = Element.create!(element_params)
-    end
+    @element = Element.create!(element_params) if !@element
     return @element
   end
 

@@ -34,7 +34,7 @@ class HumiditySamplesController < ApplicationController
       redirect_to new_humidity_sample_path status: @humidity_sample.status# notice: "Muestra almacenada correctamente."
     else
       #Si hago redirect, termino el proces, en cambio con render mantengo la info de los errores,y es buena practica pq lo hace scaffold
-      @humidity_samples = HumiditySample.last_humidity_samples(3)
+      @humidity_samples = HumiditySample.active.last(3)
       render :new
     end
 

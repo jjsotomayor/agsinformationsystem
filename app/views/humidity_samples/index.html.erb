@@ -15,11 +15,13 @@
 
   <tbody>
     <% @humidity_samples.each do |humidity_sample| %>
-      <%if humidity_sample.status == "aprobado" %>
+      <%if humidity_sample.aprobado? %>
       <tr class="success">
-      <%else%>
+      <%elsif humidity_sample.rechazado?%>
       <tr class= "danger">
-        <%end%>
+      <%else%>
+      <tr class= "warning">
+      <%end%>
 
         <td><%= humidity_sample.element.tag %></td>
         <td><%= humidity_sample.responsable %></td>

@@ -3,7 +3,7 @@
 module TimeHelper
   #TODO: Fix that the month is being displayed in English
   def date_time(timestamp)
-    timestamp.strftime("%d/%b/%y - %H:%M:%S")
+    timestamp.strftime("%d/%b/%y - %H:%M")
   end
 
   def date(timestamp)
@@ -11,7 +11,8 @@ module TimeHelper
   end
 
   def time(timestamp)
-    timestamp.strftime("%H:%M:%S")
+    timestamp.strftime("%H:%M")
+    # timestamp.strftime("%H:%M:%S")
   end
 
 end

@@ -93,9 +93,12 @@ ActiveRecord::Schema.define(version: 20170710145811) do
   end
 
   create_table "product_types", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",         null: false
+    t.integer  "humidity_min"
+    t.integer  "humidity_max"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["name"], name: "index_product_types_on_name", unique: true, using: :btree
   end
 
   create_table "roles", force: :cascade do |t|

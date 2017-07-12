@@ -16,21 +16,21 @@
       <h1><span class= "glyphicon glyphicon-list-alt"></span> Humedad</h1>
 
 
-<%= form_for(humidity_sample, html: {class: 'inside-new-form green-inside-new-form', autocomplete: :off})  do |f| %>
+<%= form_for(humidity_sample, html: {class: 'inside-new-form green-inside-new-form'})  do |f| %>
 
   <div class="field">
     <%= f.label :responsable %>
     <%= f.text_field :responsable, id: "responsable" %>
   </div>
-
+<!-- , autocomplete: :off -->
   <div class="field">
     <%= f.label :Tarja %>
-    <%= text_field_tag :tag%>
+    <%= text_field_tag :tag, '', autocomplete: 'off'%>
   </div>
 
   <div class="field">
     <%= f.label :humedad %>
-    <%= f.text_field :humidity, id: "number-field" %>
+    <%= f.text_field :humidity, id: "number-field", autocomplete: :off %>
   </div>
 
   <div class="actions">

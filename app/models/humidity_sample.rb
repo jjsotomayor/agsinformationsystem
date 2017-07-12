@@ -1,5 +1,5 @@
 class HumiditySample < ApplicationRecord
-  enum status: [:rechazado, :aprobado]
+  enum status: [:rechazado, :aprobado, :pendiente]
 
   belongs_to :element
 
@@ -10,18 +10,24 @@ class HumiditySample < ApplicationRecord
   validates :status, inclusion: { in: %w(aprobado rechazado)}
 
 
+    # Considera el proceso actual del element
    def calculate_status
-    #  Rails.configuration.firebase_url
-     limit = Rails.configuration.humidity_limit
-     self.status = "rechazado"
-     if self.humidity < limit
-       self.status = "aprobado"
+     # TODO: Hacer tests que chequeen todos los limites.
+     self.status = "pendiente" and return if !self.element.product_type
+     min = self.element.product_type.humidity_min
+     max = self.element.product_type.humidity_max
+     puts "Min: #{min}, MAx: #{max}"
+     self.status = "aprobado"
+     if min and self.humidity < min
+       self.status = "rechazado"
+     elsif max and self.humidity > max
+       self.status = "rechazado"
      end
    end
 
-  def self.last_humidity_samples(number)
-    HumiditySample.last(number).reverse
-  end
+  # def self.last_humidity_samples(number)
+  #   HumiditySample.last(number).reverse
+  # end
 
   def soft_delete
     # TODO: Pasarlo a un modulo

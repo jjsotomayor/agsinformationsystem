@@ -1,18 +1,15 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-
- Role.all.destroy_all
+# HumiditySample.all.destroy_all
+# Element.all.destroy_all
+#  ProductType.all.destroy_all
+#  Role.all.destroy_all
  ['admin', 'jefe_planta', 'jefe_control_calidad', 'jefe_bodega'].each do |role_name|
    Role.create!(name: role_name)
  end
 
- Caliber.all.destroy_all
+ # Caliber.all.destroy_all
  Caliber.create([
   {name:"20-30", minimum:20, maximum:30},
   {name:"30-40", minimum:30, maximum:39},
@@ -29,11 +26,18 @@
   {name:"145+", minimum:145, maximum:1000}
   ])
 
+  # Fresco se podria añadir eventualmente
+product_types =
+  [
+    { name: "seco", humidity_min: 15, humidity_max:19} ,
+    { name: "calibrado", humidity_min: nil, humidity_max:20} ,
+    { name: "TSC", humidity_min: 29, humidity_max:32} ,
+    { name: "TCC", humidity_min: 31, humidity_max:35} ,
+    { name: "E. Condicion natural", humidity_min: nil, humidity_max: 20} ,
+    { name: "E. americano", humidity_min: nil, humidity_max:22} ,
+  ]
 
-
- ['fresco', 'seco', 'calibrado', 'TCC', 'TSC'].each do |pt|
-   ProductType.create!(name: pt)
- end
+  ProductType.create!(product_types)
 
  ['horno', 'sol', 'mixto'].each do |dm|
    DryingMethod.create!(name: dm)
@@ -43,8 +47,6 @@
  User.create!(name:"Joaquin", last_name:"Soto", password:"123456789", email: "jjsotomayor@uc.cl")
 
 #usda = ['A', 'B', 'C', 'SSTD', 'no califica']
-HumiditySample.all.destroy_all
-Element.all.destroy_all
 100.times do
   rand(1)
   Element.create!(tag: rand(100000), lot: rand(1000), process_order: rand(100), product_type_id: rand(5)+1, drying_method_id: rand(3)+1, previous_usda: rand(0..4))
