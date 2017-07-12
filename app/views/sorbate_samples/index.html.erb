@@ -1,35 +1,33 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<h1>Sorbate Samples</h1>
-
-<table>
+<h1>Muestras de Sorbato</h1>
+<table class = "table table-striped">
   <thead>
     <tr>
-      <th>Element</th>
+      <th>Elemento</th>
       <th>Responsable</th>
-      <th>Sorbate</th>
-      <th>State</th>
-      <th>State revised</th>
+      <th>Sorbato</th>
+      <th>Estado</th>
+      <th>Creacion</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @sorbate_samples.each do |sorbate_sample| %>
-      <tr>
-        <td><%= sorbate_sample.element %></td>
+      <tr class= "<%= colored_rows(sorbate_sample)%>" >
+        <td><%= sorbate_sample.element.tag %></td>
         <td><%= sorbate_sample.responsable %></td>
         <td><%= sorbate_sample.sorbate %></td>
-        <td><%= sorbate_sample.state %></td>
-        <td><%= sorbate_sample.state_revised %></td>
-        <td><%= link_to 'Show', sorbate_sample %></td>
-        <td><%= link_to 'Edit', edit_sorbate_sample_path(sorbate_sample) %></td>
-        <td><%= link_to 'Destroy', sorbate_sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= sorbate_sample.status %></td>
+        <td><%= date_time(sorbate_sample.created_at) %></td>
+        <td><%= link_to 'Ver', sorbate_sample %></td>
+        <td><%= link_to 'Editar', edit_sorbate_sample_path(sorbate_sample) %></td>
+        <td><%= link_to 'Eliminar', sorbate_sample, method: :delete, data: {confirm: 'Estas seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Sorbate Sample', new_sorbate_sample_path %>
+<%= link_to 'Ingresar muestra de sorbato', new_sorbate_sample_path %>
+</div>

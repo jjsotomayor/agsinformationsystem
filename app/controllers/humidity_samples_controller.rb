@@ -14,7 +14,7 @@ class HumiditySamplesController < ApplicationController
   # GET /humidity_samples/new
   def new
     set_success_message_variables
-    @humidity_samples = HumiditySample.active.last(3)
+    @humidity_samples = HumiditySample.active.order('created_at DESC').first(3)
     @humidity_sample = HumiditySample.new
   end
 
@@ -66,7 +66,7 @@ class HumiditySamplesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def humidity_sample_params
-      params.require(:humidity_sample).permit(:element_id, :responsable, :humidity, :state)
+      params.require(:humidity_sample).permit(:element_id, :responsable, :humidity, :status)
     end
     def humidity_sample_create_params
       params.require(:humidity_sample).permit(:responsable, :humidity)
@@ -76,6 +76,7 @@ class HumiditySamplesController < ApplicationController
     end
 
     def set_success_message_variables
+      # TODO: Move to module
       @edited_sample = false
       @created_sample = false
       if @created_sample = params[:created_sample]

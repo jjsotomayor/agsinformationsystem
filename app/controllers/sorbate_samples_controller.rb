@@ -4,7 +4,7 @@ class SorbateSamplesController < ApplicationController
   # GET /sorbate_samples
   # GET /sorbate_samples.json
   def index
-    @sorbate_samples = SorbateSample.all
+    @sorbate_samples = SorbateSample.active.order('created_at DESC')
   end
 
   # GET /sorbate_samples/1
@@ -14,6 +14,9 @@ class SorbateSamplesController < ApplicationController
 
   # GET /sorbate_samples/new
   def new
+    set_success_message_variables
+    # @sorbate_samples = SorbateSample.active.last(3)
+    @sorbate_samples = SorbateSample.active.order('created_at DESC').first(3)
     @sorbate_sample = SorbateSample.new
   end
 
@@ -24,41 +27,40 @@ class SorbateSamplesController < ApplicationController
   # POST /sorbate_samples
   # POST /sorbate_samples.json
   def create
+    @element = Element.create_element_if_doesnt_exist(element_params)
     @sorbate_sample = SorbateSample.new(sorbate_sample_params)
-
-    respond_to do |format|
-      if @sorbate_sample.save
-        format.html { redirect_to @sorbate_sample, notice: 'Sorbate sample was successfully created.' }
-        format.json { render :show, status: :created, location: @sorbate_sample }
-      else
-        format.html { render :new }
-        format.json { render json: @sorbate_sample.errors, status: :unprocessable_entity }
-      end
+    @sorbate_sample.element = @element
+    pp @sorbate_sample
+    if @sorbate_sample.save
+      session[:display_created_alert] = true
+      redirect_to new_sorbate_sample_path status: @sorbate_sample.status# notice: "Muestra almacenada correctamente."
+    else
+      pp @sorbate_sample.errors
+      # redirect_to new_sorbate_sample_path
+      @sorbate_samples = SorbateSample.active.last(3)
+      render :new
     end
+
+
   end
 
   # PATCH/PUT /sorbate_samples/1
   # PATCH/PUT /sorbate_samples/1.json
   def update
-    respond_to do |format|
-      if @sorbate_sample.update(sorbate_sample_params)
-        format.html { redirect_to @sorbate_sample, notice: 'Sorbate sample was successfully updated.' }
-        format.json { render :show, status: :ok, location: @sorbate_sample }
-      else
-        format.html { render :edit }
-        format.json { render json: @sorbate_sample.errors, status: :unprocessable_entity }
-      end
+    if @sorbate_sample.update(sorbate_sample_params)
+      session[:display_edited_alert] = true
+      redirect_to new_sorbate_sample_path status: @sorbate_sample.status# notice: "Muestra almacenada correctamente."
+    else
+      render :edit
     end
+
   end
 
   # DELETE /sorbate_samples/1
   # DELETE /sorbate_samples/1.json
   def destroy
-    @sorbate_sample.destroy
-    respond_to do |format|
-      format.html { redirect_to sorbate_samples_url, notice: 'Sorbate sample was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @sorbate_sample.soft_delete
+    redirect_to sorbate_samples_url, notice: 'Muestra de humedad eliminada.'
   end
 
   private
@@ -71,4 +73,24 @@ class SorbateSamplesController < ApplicationController
     def sorbate_sample_params
       params.require(:sorbate_sample).permit(:element_id, :responsable, :sorbate, :state, :state_revised)
     end
+    def sorbate_sample_create_params
+      params.require(:sorbate_sample).permit(:responsable, :sorbate)
+    end
+    def element_params
+      params.permit(:tag)
+    end
+
+    def set_success_message_variables
+      # TODO: Move to module
+      @edited_sample = false
+      @created_sample = false
+      if @created_sample = params[:created_sample]
+        @created_sample = params[:created_sample]
+        @sample_state = params[:state]
+      elsif @edited_sample = params[:edited_sample]
+        @edited_sample = true
+        @sample_state = params[:state]
+      end
+    end
+
 end
