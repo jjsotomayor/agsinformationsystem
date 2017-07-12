@@ -8,6 +8,7 @@ class HumiditySample < ApplicationRecord
   validates :element, :responsable, :humidity, :status, presence: true
   validates :humidity, numericality: true
 
+  scope :active, -> { where(active: true) }
 
    # Considera el proceso actual del element
    def calculate_status
@@ -33,12 +34,6 @@ class HumiditySample < ApplicationRecord
     self.deleted_at = Time.zone.now
     self.active = false
     self.save!
-  end
-
-  def self.active
-    # TODO: Pasarlo a un modulo
-    # TODO: HAcer que siempre por defecto se llamen las active
-    where(active: true)
   end
 
  end
