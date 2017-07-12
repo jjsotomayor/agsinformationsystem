@@ -1,4 +1,3 @@
-<%= form_for(caliber_sample, html: {class: 'inside-new-form blue-inside-new-form', autocomplete: :off}) do |f| %>
   <% if caliber_sample.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(caliber_sample.errors.count, "error") %> prohibited this caliber_sample from being saved:</h2>
@@ -11,27 +10,39 @@
     </div>
   <% end %>
 
+  <div class= "container-samples">
+    <div class= "pestaña">##PROCESO</div>
+      <div class="outside-new-form green-outside-new-form">
+        <h1><span class= "glyphicon glyphicon-list-alt"></span> Calibrado</h1>
+
+  <%= form_for(caliber_sample, html: {class: 'inside-new-form blue-inside-new-form', autocomplete: :off}) do |f| %>
+
   <div class="field">
     <%= f.label :responsable %>
     <%= f.text_field :responsable %>
   </div>
 
   <div class="field">
-    <%= f.label :Tag %>
+    <%= f.label :Tarja %>
     <%= text_field_tag :tag %>
   </div>
 
   <div class="field">
-    <%= f.label :fruits_in_sample %>
+    <%= f.label :frutas_en_muestra %>
     <%= f.number_field :fruits_in_sample %>
   </div>
 
   <div class="field">
-    <%= f.label :sample_weight %>
-    <%= f.number_field :sample_weight %>
+    <%= f.label :peso_muestra %>
+    <%= f.number_field :sample_weight, placeholder: "gramos" %>
   </div>
 
   <div class="actions">
     <%= f.submit "Guardar", class: "btn btn-primary btn-lg btn-block" %>
   </div>
 <% end %>
+
+
+    </div>
+  </div>
+</div>

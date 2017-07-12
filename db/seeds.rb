@@ -49,5 +49,10 @@ product_types =
 #usda = ['A', 'B', 'C', 'SSTD', 'no califica']
 100.times do
   rand(1)
-  Element.create!(tag: rand(100000), lot: rand(1000), process_order: rand(100), product_type_id: rand(5)+1, drying_method_id: rand(3)+1, previous_usda: rand(0..4))
+  elem = Element.new(tag: rand(100000), lot: rand(1000), process_order: rand(100), product_type_id: rand(5)+1, drying_method_id: rand(3)+1, previous_usda: rand(0..4))
+  if !elem.save
+    pp elem.errors
+  end
 end
+IpAddress.create(ip: "127.0.0.1")
+UserControl.create(name: "Juaco", password:123)

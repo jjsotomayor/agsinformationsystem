@@ -43,7 +43,7 @@ class HumiditySamplesController < ApplicationController
   # PATCH/PUT /humidity_samples/1
   def update
 
-    if @humidity_sample.update(humidity_sample_params)
+    if @humidity_sample.update(humidity_sample_create_params)
       session[:display_edited_alert] = true
       redirect_to new_humidity_sample_path status: @humidity_sample.status#, notice: 'Muestra editada correctamente.'
     else
@@ -72,6 +72,7 @@ class HumiditySamplesController < ApplicationController
       params.require(:humidity_sample).permit(:responsable, :humidity)
     end
     def element_params
+      # TODO: Move to module
       params.permit(:tag)
     end
 

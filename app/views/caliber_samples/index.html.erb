@@ -1,17 +1,17 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Caliber Samples</h1>
-<script>swal("Here's a message!");</script>
-<script>swal("Muy bien!", "La muestra se almaceno correctamente!", "success");</script>
-<table>
+<div class="container">
+<h1>Muestras de Calibre</h1>
+<table class = "table table-striped">
   <thead>
     <tr>
+      <!-- TODO: Considerar omitir frutos en muestra y peso muestra  -->
       <th>Responsable</th>
-      <th>Element</th>
-      <th>Fruits per pound</th>
-      <th>Caliber</th>
-      <th>Fruits in sample</th>
-      <th>Sample weight</th>
+      <th>Tarja</th>
+      <th>Frutas x libra</th>
+      <th>Calibre</th>
+      <th>Fruitos en muestra</th>
+      <th>Peso muestra</th>
+      <th>Creacion</th>
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,14 +20,16 @@
     <% @caliber_samples.each do |caliber_sample| %>
       <tr>
         <td><%= caliber_sample.responsable %></td>
-        <td><%= caliber_sample.element %></td>
+        <td><%= caliber_sample.element.tag %></td>
         <td><%= caliber_sample.fruits_per_pound %></td>
-        <td><%= caliber_sample.caliber %></td>
+        <td><%= caliber_sample.caliber.name %></td>
         <td><%= caliber_sample.fruits_in_sample %></td>
         <td><%= caliber_sample.sample_weight %></td>
-        <td><%= link_to 'Show', caliber_sample %></td>
-        <td><%= link_to 'Edit', edit_caliber_sample_path(caliber_sample) %></td>
-        <td><%= link_to 'Destroy', caliber_sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= date_time(caliber_sample.created_at) %></td>
+
+        <td><%= link_to 'Ver', caliber_sample %></td>
+        <td><%= link_to 'Editar', edit_caliber_sample_path(caliber_sample) %></td>
+        <td><%= link_to 'Eliminar', caliber_sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -35,4 +37,4 @@
 
 <br>
 
-<%= link_to 'New Caliber Sample', new_caliber_sample_path %>
+<%= link_to 'Nueva muestra de calibre', new_caliber_sample_path %>

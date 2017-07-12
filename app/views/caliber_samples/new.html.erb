@@ -1,9 +1,38 @@
-
-<div class= "container">
-<div class= "pestaña">CALIBRADO</div>
-<div class="outside-new-form blue-outside-new-form">
-  <h1><span class= "glyphicon glyphicon-list-alt"></span> Muestra de calibre </h1><!--<span class= 'bold'>SECADO</span>-->
+<%= render 'shared/message_success_js', caliber_sample: @caliber_sample %>
 <%= render 'form_new', caliber_sample: @caliber_sample %>
 
-</div>
+<div class="container-500px">
+  <h1>Ultimos muestras de calibre</h1>
+<table class = "table table-striped">
+  <thead>
+    <tr>
+      <th>Responsable</th>
+      <th>Tarja</th>
+      <th>Frutas x libra</th>
+      <th>Calibre</th>
+      <th>Fruits en muestra</th>
+      <th>Peso muestra</th>
+      <th>Creacion</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @caliber_samples.each do |caliber_sample| %>
+      <tr>
+        <td><%= caliber_sample.responsable %></td>
+        <td><%= caliber_sample.element.tag %></td>
+        <td><%= caliber_sample.fruits_per_pound %></td>
+        <td><%= caliber_sample.caliber.name %></td>
+        <td><%= caliber_sample.fruits_in_sample %></td>
+        <td><%= caliber_sample.sample_weight %></td>
+        <td><%= time(caliber_sample.created_at) %></td>
+
+        <td><%= link_to 'Ver', caliber_sample %></td>
+        <td><%= link_to 'Editar', edit_caliber_sample_path(caliber_sample) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Todas las muestras de calibre', caliber_samples_path %>
 </div>

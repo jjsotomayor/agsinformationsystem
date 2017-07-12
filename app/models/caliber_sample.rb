@@ -1,13 +1,30 @@
 class CaliberSample < ApplicationRecord
-  before_save :calculate_caliber
-  
+  include SoftDeletable
+
+
   belongs_to :element
   belongs_to :caliber
-end
 
-def calculate_caliber
-  #TESTEAR
-  self.fruits_per_pound = (self.fruits_in_sample /  self.sample_weight) * 453.592
-  self.fruits_per_pound= 50
-  self.caliber = Caliber.first
+  # before_save :calculate_caliber
+  before_validation :calculate_caliber
+
+  validates :element, :responsable, :fruits_per_pound, :fruits_in_sample, :sample_weight, :caliber, presence: true
+  # validates :element, :responsable, :fruits_per_pound, :fruits_in_sample, :sample_weight, presence: true
+  validates :fruits_per_pound, :fruits_in_sample, :sample_weight, numericality: true
+
+
+  def calculate_caliber
+    # TODO TEST
+    # NOTE Division de enteros es por defecto aproximada en cada calculo
+    # TODO Move grams por libra a Configuracion
+    grams_per_lb = 453.592
+    self.fruits_per_pound = (self.fruits_in_sample.to_f /  self.sample_weight) * grams_per_lb
+    self.caliber = Caliber.first
+    Caliber.all.each do |cal|
+      if self.fruits_per_pound > cal.minimum && self.fruits_per_pound < cal.maximum
+         self.caliber = cal and break
+      end
+    end
+  end
+
 end

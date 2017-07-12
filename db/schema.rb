@@ -16,14 +16,16 @@ ActiveRecord::Schema.define(version: 20170710145811) do
   enable_extension "plpgsql"
 
   create_table "caliber_samples", force: :cascade do |t|
-    t.string   "responsable"
+    t.string   "responsable",                     null: false
     t.integer  "element_id"
-    t.integer  "fruits_per_pound"
+    t.integer  "fruits_per_pound",                null: false
     t.integer  "caliber_id"
-    t.integer  "fruits_in_sample"
-    t.integer  "sample_weight"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "fruits_in_sample",                null: false
+    t.integer  "sample_weight",                   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "active",           default: true, null: false
+    t.datetime "deleted_at"
     t.index ["caliber_id"], name: "index_caliber_samples_on_caliber_id", using: :btree
     t.index ["element_id"], name: "index_caliber_samples_on_element_id", using: :btree
   end

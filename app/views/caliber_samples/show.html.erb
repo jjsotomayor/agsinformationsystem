@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Responsable:</strong>
   <%= @caliber_sample.responsable %>
@@ -7,7 +5,7 @@
 
 <p>
   <strong>Element:</strong>
-  <%= @caliber_sample.element %>
+  <%= @caliber_sample.element.tag %>
 </p>
 
 <p>
@@ -17,7 +15,7 @@
 
 <p>
   <strong>Caliber:</strong>
-  <%= @caliber_sample.caliber %>
+  <%= @caliber_sample.caliber.name %>
 </p>
 
 <p>

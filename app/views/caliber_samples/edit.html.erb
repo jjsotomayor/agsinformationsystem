@@ -1,6 +1,46 @@
-<h1>Editing Caliber Sample</h1>
+<% if @caliber_sample.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@caliber_sample.errors.count, "error") %> prohibited this caliber_sample from being saved:</h2>
+  <ul>
+    <% @caliber_sample.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-<%= render 'form', caliber_sample: @caliber_sample %>
 
-<%= link_to 'Show', @caliber_sample %> |
-<%= link_to 'Back', caliber_samples_path %>
+<div class= "container-samples">
+  <div class= "pestaña">##</div>
+    <div class="outside-new-form green-outside-new-form">
+      <h1><span class= "glyphicon glyphicon-list-alt"></span> Editar Calibre</h1>
+
+
+<%= form_for(@caliber_sample, html: {class: 'inside-new-form green-inside-new-form', autocomplete: :off})  do |f| %>
+
+  <div class="field">
+    <%= f.label :responsable %>
+    <%= f.text_field :responsable %>
+  </div>
+
+  <div class="field">
+    <%= f.label :frutas_en_muestra %>
+    <%= f.number_field :fruits_in_sample %>
+  </div>
+
+  <div class="field">
+    <%= f.label :peso_muestra %>
+    <%= f.number_field :sample_weight, placeholder: "gramos" %>
+  </div>
+
+  <div class="buttons-together-edit">
+    <%= link_to 'Regresar', new_caliber_sample_path, class: "btn-back btn btn-primary btn-lg "%>
+    <%= f.submit "Editar", class: "btn-edit btn btn-warning btn-lg" %>
+  </div>
+
+<% end %>
+
+
+    </div>
+  </div>
+</div>

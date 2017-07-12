@@ -1,19 +1,22 @@
 class CaliberSamplesController < ApplicationController
   before_action :set_caliber_sample, only: [:show, :edit, :update, :destroy]
+  # before_action :include_deviation, only: [:new]
 
   # GET /caliber_samples
-  # GET /caliber_samples.json
   def index
-    @caliber_samples = CaliberSample.all
+    @caliber_samples = CaliberSample.active.order('created_at DESC')
   end
 
   # GET /caliber_samples/1
-  # GET /caliber_samples/1.json
   def show
   end
 
   # GET /caliber_samples/new
   def new
+    # TODO: Solo deberia mostrar las creadas en esta sesion, (caliber samples se podria tomar desde varios pcs)
+      # Ayudaria mostrarles el proceso de las tarjas ya ingresadas , para que sepan cuales son suyas
+    set_success_message_variables
+    @caliber_samples = CaliberSample.active.order('created_at DESC').first(3)
     @caliber_sample = CaliberSample.new
   end
 
@@ -22,47 +25,38 @@ class CaliberSamplesController < ApplicationController
   end
 
   # POST /caliber_samples
-  # POST /caliber_samples.json
   def create
-    @caliber_sample = CaliberSample.new(caliber_sample_creation_params)
+    @element = Element.create_element_if_doesnt_exist(element_params)
+    @caliber_sample = CaliberSample.new(caliber_sample_create_params)
+    @caliber_sample.element = @element
+    # p "Before guardar"
+    # pp @caliber_sample
 
-
-    #@element = Element.find_by(tag: params[:tag])
-
-
-    respond_to do |format|
       if @caliber_sample.save
-        format.html { redirect_to @caliber_sample, notice: 'Caliber sample was successfully created.' }
-        format.json { render :show, status: :created, location: @caliber_sample }
+        session[:display_created_alert] = true
+        redirect_to new_caliber_sample_path, notice: 'Caliber sample was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @caliber_sample.errors, status: :unprocessable_entity }
+        p "Not able to save"
+        pp @caliber_sample
+        # TODO: por que no hay necesidad de los demas metodos de new???
+        @caliber_samples = CaliberSample.active.last(3)
+        render :new
       end
-    end
   end
 
   # PATCH/PUT /caliber_samples/1
-  # PATCH/PUT /caliber_samples/1.json
   def update
-    respond_to do |format|
-      if @caliber_sample.update(caliber_sample_params)
-        format.html { redirect_to @caliber_sample, notice: 'Caliber sample was successfully updated.' }
-        format.json { render :show, status: :ok, location: @caliber_sample }
+      if @caliber_sample.update(caliber_sample_create_params)
+        redirect_to @caliber_sample, notice: 'Caliber sample was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @caliber_sample.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
   end
 
   # DELETE /caliber_samples/1
-  # DELETE /caliber_samples/1.json
   def destroy
-    @caliber_sample.destroy
-    respond_to do |format|
-      format.html { redirect_to caliber_samples_url, notice: 'Caliber sample was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @caliber_sample.soft_delete
+    redirect_to caliber_samples_url, notice: 'Caliber sample was successfully destroyed.'
   end
 
   private
@@ -71,11 +65,27 @@ class CaliberSamplesController < ApplicationController
       @caliber_sample = CaliberSample.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def caliber_sample_params
-      params.require(:caliber_sample).permit(:responsable, :element_id, :fruits_per_pound, :caliber_id, :fruits_in_sample, :sample_weight)
-    end
-    def caliber_sample_creation_params
+    # def caliber_sample_params
+    #   params.require(:caliber_sample).permit(:responsable, :element_id, :fruits_per_pound, :caliber_id, :fruits_in_sample, :sample_weight)
+    # end
+    def caliber_sample_create_params
       params.require(:caliber_sample).permit(:responsable, :fruits_in_sample, :sample_weight)
     end
+    def element_params
+      params.permit(:tag)
+    end
+
+    def set_success_message_variables
+      # TODO: Move to module
+      @edited_sample = false
+      @created_sample = false
+      if @created_sample = params[:created_sample]
+        @created_sample = params[:created_sample]
+        @sample_state = params[:state]
+      elsif @edited_sample = params[:edited_sample]
+        @edited_sample = true
+        @sample_state = params[:state]
+      end
+    end
+
 end
