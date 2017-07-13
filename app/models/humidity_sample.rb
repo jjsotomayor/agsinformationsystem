@@ -1,4 +1,6 @@
 class HumiditySample < ApplicationRecord
+  include SoftDeletable
+
   enum status: [:rechazado, :aprobado, :pendiente]
 
   belongs_to :element
@@ -7,8 +9,6 @@ class HumiditySample < ApplicationRecord
 
   validates :element, :responsable, :humidity, :status, presence: true
   validates :humidity, numericality: true
-
-  scope :active, -> { where(active: true) }
 
    # Considera el proceso actual del element
    def calculate_status
@@ -25,16 +25,5 @@ class HumiditySample < ApplicationRecord
        self.status = "rechazado"
      end
    end
-
-  # def self.last_humidity_samples(number)
-  #   HumiditySample.last(number).reverse
-  # end
-
-  def soft_delete
-    # TODO: Pasarlo a un modulo
-    self.deleted_at = Time.zone.now
-    self.active = false
-    self.save!
-  end
 
  end
