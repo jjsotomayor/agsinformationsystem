@@ -71,9 +71,9 @@ class SorbateSamplesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def sorbate_sample_params
-      params.require(:sorbate_sample).permit(:element_id, :responsable, :sorbate, :state, :state_revised)
-    end
+    # def sorbate_sample_params
+    #   params.require(:sorbate_sample).permit(:element_id, :responsable, :sorbate, :status, :status_revised)
+    # end
     def sorbate_sample_create_params
       params.require(:sorbate_sample).permit(:responsable, :sorbate)
     end

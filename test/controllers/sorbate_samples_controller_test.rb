@@ -17,7 +17,7 @@ class SorbateSamplesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create sorbate_sample" do
     assert_difference('SorbateSample.count') do
-      post sorbate_samples_url, params: { sorbate_sample: { element_id: @sorbate_sample.element_id, responsable: @sorbate_sample.responsable, sorbate: @sorbate_sample.sorbate, state: @sorbate_sample.state, state_revised: @sorbate_sample.state_revised } }
+      post sorbate_samples_url, params: { sorbate_sample: { element_id: @sorbate_sample.element_id, responsable: @sorbate_sample.responsable, sorbate: @sorbate_sample.sorbate, status: @sorbate_sample.status, status_revised: @sorbate_sample.status_revised } }
     end
 
     assert_redirected_to sorbate_sample_url(SorbateSample.last)
@@ -34,7 +34,7 @@ class SorbateSamplesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update sorbate_sample" do
-    patch sorbate_sample_url(@sorbate_sample), params: { sorbate_sample: { element_id: @sorbate_sample.element_id, responsable: @sorbate_sample.responsable, sorbate: @sorbate_sample.sorbate, state: @sorbate_sample.state, state_revised: @sorbate_sample.state_revised } }
+    patch sorbate_sample_url(@sorbate_sample), params: { sorbate_sample: { element_id: @sorbate_sample.element_id, responsable: @sorbate_sample.responsable, sorbate: @sorbate_sample.sorbate, status: @sorbate_sample.status, status_revised: @sorbate_sample.status_revised } }
     assert_redirected_to sorbate_sample_url(@sorbate_sample)
   end
 

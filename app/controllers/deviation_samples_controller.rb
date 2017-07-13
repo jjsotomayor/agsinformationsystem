@@ -69,6 +69,6 @@ class DeviationSamplesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def deviation_sample_params
-      params.require(:deviation_sample).permit(:caliber_sample_id, :big_fruits_in_sample, :small_fruits_in_sample, :sample_weight, :big_fruits_per_pound, :small_fruits_per_pound, :deviation, :state, :state_revised)
+      params.require(:deviation_sample).permit(:caliber_sample_id, :big_fruits_in_sample, :small_fruits_in_sample, :sample_weight, :big_fruits_per_pound, :small_fruits_per_pound, :deviation, :status, :status_revised)
     end
 end

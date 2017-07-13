@@ -8,8 +8,8 @@ one:
   big_fruits_per_pound: 9.99
   small_fruits_per_pound: 9.99
   deviation: 9.99
-  state: false
-  state_revised: false
+  status: false
+  status_revised: false
 
 two:
   caliber_sample: two
@@ -19,5 +19,5 @@ two:
   big_fruits_per_pound: 9.99
   small_fruits_per_pound: 9.99
   deviation: 9.99
-  state: false
-  state_revised: false
+  status: false
+  status_revised: false

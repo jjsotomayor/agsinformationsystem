@@ -3,11 +3,11 @@
 one:
   element: one
   responsable: MyString
-  humidity: 
-  state: MyString
+  humidity:
+  status: MyString
 
 two:
   element: two
   responsable: MyString
-  humidity: 
-  state: MyString
+  humidity:
+  status: MyString

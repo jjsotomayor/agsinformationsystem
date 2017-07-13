@@ -5,10 +5,10 @@ module SamplesMethods
     @created_sample = false
     if @created_sample = params[:created_sample]
       @created_sample = params[:created_sample]
-      @sample_state = params[:state]
+      @sample_state = params[:status]
     elsif @edited_sample = params[:edited_sample]
       @edited_sample = true
-      @sample_state = params[:state]
+      @sample_state = params[:status]
     end
   end
 

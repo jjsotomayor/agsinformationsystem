@@ -4,12 +4,12 @@ one:
   element: one
   responsable: MyString
   sorbate: 9.99
-  state: 1
-  state_revised: false
+  status: 1
+  status_revised: false
 
 two:
   element: two
   responsable: MyString
   sorbate: 9.99
-  state: 1
-  state_revised: false
+  status: 1
+  status_revised: false

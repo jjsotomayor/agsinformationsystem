@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Caliber sample:</strong>
   <%= @deviation_sample.caliber_sample %>
@@ -36,13 +34,13 @@
 </p>
 
 <p>
-  <strong>State:</strong>
-  <%= @deviation_sample.state %>
+  <strong>Status:</strong>
+  <%= @deviation_sample.status %>
 </p>
 
 <p>
-  <strong>State revised:</strong>
-  <%= @deviation_sample.state_revised %>
+  <strong>Status revised:</strong>
+  <%= @deviation_sample.status_revised %>
 </p>
 
 <%= link_to 'Edit', edit_deviation_sample_path(@deviation_sample) %> |

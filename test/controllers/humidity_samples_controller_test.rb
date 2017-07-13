@@ -17,7 +17,7 @@ class HumiditySamplesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create humidity_sample" do
     assert_difference('HumiditySample.count') do
-      post humidity_samples_url, params: { humidity_sample: { element_id: @humidity_sample.element_id, humidity: @humidity_sample.humidity, responsable: @humidity_sample.responsable, state: @humidity_sample.state } }
+      post humidity_samples_url, params: { humidity_sample: { element_id: @humidity_sample.element_id, humidity: @humidity_sample.humidity, responsable: @humidity_sample.responsable, status: @humidity_sample.status } }
     end
 
     assert_redirected_to humidity_sample_url(HumiditySample.last)
@@ -34,7 +34,7 @@ class HumiditySamplesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update humidity_sample" do
-    patch humidity_sample_url(@humidity_sample), params: { humidity_sample: { element_id: @humidity_sample.element_id, humidity: @humidity_sample.humidity, responsable: @humidity_sample.responsable, state: @humidity_sample.state } }
+    patch humidity_sample_url(@humidity_sample), params: { humidity_sample: { element_id: @humidity_sample.element_id, humidity: @humidity_sample.humidity, responsable: @humidity_sample.responsable, status: @humidity_sample.status } }
     assert_redirected_to humidity_sample_url(@humidity_sample)
   end
 
