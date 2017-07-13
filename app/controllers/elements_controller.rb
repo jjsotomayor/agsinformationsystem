@@ -2,7 +2,6 @@ class ElementsController < ApplicationController
   before_action :set_element, only: [:show, :edit, :update, :destroy]
 
   # GET /elements
-  # GET /elements.json
   def index
     @elements = Element.all
     respond_to do |format|
@@ -12,7 +11,6 @@ class ElementsController < ApplicationController
   end
 
   # GET /elements/1
-  # GET /elements/1.json
   def show
   end
 
@@ -26,7 +24,6 @@ class ElementsController < ApplicationController
   end
 
   # POST /elements
-  # POST /elements.json
   def create
     @element = Element.new(element_params)
 
@@ -42,7 +39,6 @@ class ElementsController < ApplicationController
   end
 
   # PATCH/PUT /elements/1
-  # PATCH/PUT /elements/1.json
   def update
     respond_to do |format|
       if @element.update(element_params)
@@ -56,7 +52,6 @@ class ElementsController < ApplicationController
   end
 
   # DELETE /elements/1
-  # DELETE /elements/1.json
   def destroy
     @element.destroy
     respond_to do |format|

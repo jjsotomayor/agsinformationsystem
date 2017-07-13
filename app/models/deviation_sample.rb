@@ -23,7 +23,7 @@ class DeviationSample < ApplicationRecord
     self.deviation = self.big_fruits_per_pound - self.small_fruits_per_pound
 
     self.status = "rechazado"
-    self.status = "aprobado" if self.deviation < 40
+    self.status = "aprobado" if self.deviation < Rails.configuration.max_deviation
   end
 
 end

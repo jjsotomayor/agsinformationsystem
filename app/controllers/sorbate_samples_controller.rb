@@ -75,7 +75,4 @@ class SorbateSamplesController < ApplicationController
     def sorbate_sample_params
       params.require(:sorbate_sample).permit(:responsable, :sorbate)
     end
-    def element_params
-      params.permit(:tag)
-    end
 end
