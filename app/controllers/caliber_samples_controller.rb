@@ -91,9 +91,9 @@ class CaliberSamplesController < ApplicationController
     def caliber_sample_create_params
       params.require(:caliber_sample).permit(:responsable, :fruits_in_sample, :sample_weight)
     end
-    def element_params
-      params.permit(:tag)
-    end
+    # def element_params
+    #   params.permit(:tag)
+    # end
 
     def include_deviation
       @include_deviation = params[:deviation] == "true" # y si no esta es false

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  responsable: MyString
+  element: one
+  carozo_weight: 1
+  sample_weight: 1
+  carozo_percentage: 1
+
+two:
+  responsable: MyString
+  element: two
+  carozo_weight: 1
+  sample_weight: 1
+  carozo_percentage: 1

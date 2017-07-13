@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710145811) do
+ActiveRecord::Schema.define(version: 20170713120252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,21 @@ ActiveRecord::Schema.define(version: 20170710145811) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_calibers_on_name", unique: true, using: :btree
+  end
+
+  create_table "carozo_samples", force: :cascade do |t|
+    t.string   "responsable"
+    t.integer  "element_id"
+    t.decimal  "carozo_weight"
+    t.decimal  "sample_weight"
+    t.decimal  "carozo_percentage"
+    t.integer  "status",            default: 0,     null: false
+    t.boolean  "status_modified",   default: false, null: false
+    t.boolean  "active",            default: true,  null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.index ["element_id"], name: "index_carozo_samples_on_element_id", using: :btree
   end
 
   create_table "deviation_samples", force: :cascade do |t|
@@ -163,6 +178,7 @@ ActiveRecord::Schema.define(version: 20170710145811) do
 
   add_foreign_key "caliber_samples", "calibers"
   add_foreign_key "caliber_samples", "elements"
+  add_foreign_key "carozo_samples", "elements"
   add_foreign_key "deviation_samples", "caliber_samples"
   add_foreign_key "elements", "drying_methods"
   add_foreign_key "elements", "product_types"

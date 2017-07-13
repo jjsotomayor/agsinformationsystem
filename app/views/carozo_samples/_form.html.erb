@@ -1,0 +1,49 @@
+<% if carozo_sample.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(carozo_sample.errors.count, "error") %> prohibited this carozo_sample from being saved:</h2>
+
+    <ul>
+    <% carozo_sample.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<div class= "container-samples">
+  <div class= "pestaña">Laboratorio</div>
+    <div class="outside-new-form green-outside-new-form">
+      <h1><span class= "glyphicon glyphicon-list-alt"></span> Carozo</h1>
+
+<%= form_for(carozo_sample, html: {class: 'inside-new-form green-inside-new-form'}) do |f| %>
+
+  <div class="field">
+    <%= f.label :responsable %>
+    <%= f.text_field :responsable, id: "responsable" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Tarja %>
+    <%= text_field_tag :tag, '', autocomplete: 'off'%>
+  </div>
+
+  <div class="field">
+    <%= f.label :con_carozo %>
+    <%= f.number_field :carozo_weight, id: "number-field", autocomplete: :off, placeholder: ' gramos', step: 0.01 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :peso_muestra %>
+    <%= f.number_field :sample_weight, id: "number-field", autocomplete: :off, placeholder: ' gramos', step: 0.01 %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "Guardar",  class: "btn btn-primary btn-lg btn-block" %>
+  </div>
+<% end %>
+
+    </div>
+  </div>
+</div>
