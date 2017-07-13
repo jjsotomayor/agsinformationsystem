@@ -16,8 +16,7 @@ class CaliberSample < ApplicationRecord
   def calculate_caliber
     # TODO TEST
     # NOTE Division de enteros es por defecto aproximada en cada calculo
-    # TODO Move grams por libra a Configuracion
-    grams_per_lb = 453.592
+    grams_per_lb = Rails.configuration.grams_per_lb
     self.fruits_per_pound = (self.fruits_in_sample.to_f /  self.sample_weight) * grams_per_lb
     self.caliber = Caliber.first
     Caliber.all.each do |cal|

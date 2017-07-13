@@ -16,8 +16,11 @@ module Agsinformationsystem
     # Configurando lenguaje español
     config.i18n.default_locale = :es
 
-    # Configuracion de limites
-    config.humidity_limit = 32
+    # Limites inferior y superior de Sorbato
+    config.min_sorbate = 1000
+    config.max_sorbate = 1200
+    # Gramos que hay en una libra
+    config.grams_per_lb = 453.592
 
 
   end

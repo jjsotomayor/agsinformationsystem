@@ -72,7 +72,7 @@ class SorbateSamplesController < ApplicationController
     # def sorbate_sample_params
     #   params.require(:sorbate_sample).permit(:element_id, :responsable, :sorbate, :status, :status_revised)
     # end
-    def sorbate_sample_create_params
+    def sorbate_sample_params
       params.require(:sorbate_sample).permit(:responsable, :sorbate)
     end
     def element_params
