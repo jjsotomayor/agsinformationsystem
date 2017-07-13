@@ -1,4 +1,5 @@
 class SorbateSamplesController < ApplicationController
+  include SamplesMethods
   before_action :set_sorbate_sample, only: [:show, :edit, :update, :destroy]
 
   # GET /sorbate_samples
@@ -79,18 +80,4 @@ class SorbateSamplesController < ApplicationController
     def element_params
       params.permit(:tag)
     end
-
-    def set_success_message_variables
-      # TODO: Move to module
-      @edited_sample = false
-      @created_sample = false
-      if @created_sample = params[:created_sample]
-        @created_sample = params[:created_sample]
-        @sample_state = params[:state]
-      elsif @edited_sample = params[:edited_sample]
-        @edited_sample = true
-        @sample_state = params[:state]
-      end
-    end
-
 end

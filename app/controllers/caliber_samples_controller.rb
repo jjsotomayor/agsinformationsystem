@@ -1,4 +1,5 @@
 class CaliberSamplesController < ApplicationController
+  include SamplesMethods
   before_action :set_caliber_sample, only: [:show, :edit, :update, :destroy]
   before_action :include_deviation, only: [:new, :create]
 
@@ -101,18 +102,4 @@ class CaliberSamplesController < ApplicationController
     def deviation_sample_params
       params.permit(:big_fruits_in_sample, :small_fruits_in_sample)
     end
-
-    def set_success_message_variables
-      # TODO: Move to module
-      @edited_sample = false
-      @created_sample = false
-      if @created_sample = params[:created_sample]
-        @created_sample = params[:created_sample]
-        @sample_state = params[:state]
-      elsif @edited_sample = params[:edited_sample]
-        @edited_sample = true
-        @sample_state = params[:state]
-      end
-    end
-
 end
