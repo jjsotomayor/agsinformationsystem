@@ -16,7 +16,6 @@ class CaliberSamplesController < ApplicationController
   def new
     # TODO: Solo deberia mostrar las creadas en esta sesion, (caliber samples se podria tomar desde varios pcs)
       # Ayudaria mostrarles el proceso de las tarjas ya ingresadas , para que sepan cuales son suyas
-    set_success_message_variables
     @caliber_samples = CaliberSample.active.order('created_at DESC').first(3)
     @caliber_sample = CaliberSample.new
     @d_sample =  DeviationSample.new # Unicamente para que no se caiga al tratar de leer errores

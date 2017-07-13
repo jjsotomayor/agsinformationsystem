@@ -2,6 +2,7 @@ module SamplesMethods
 
   private
   def set_success_message_variables
+    #Not calling it from anywhere. No es necesario
     @edited_sample = false
     @created_sample = false
     if @created_sample = params[:created_sample]

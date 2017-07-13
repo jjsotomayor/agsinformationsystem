@@ -15,8 +15,6 @@ class SorbateSamplesController < ApplicationController
 
   # GET /sorbate_samples/new
   def new
-    set_success_message_variables
-    # @sorbate_samples = SorbateSample.active.last(3)
     @sorbate_samples = SorbateSample.active.order('created_at DESC').first(3)
     @sorbate_sample = SorbateSample.new
   end

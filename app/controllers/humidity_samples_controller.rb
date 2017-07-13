@@ -14,7 +14,6 @@ class HumiditySamplesController < ApplicationController
 
   # GET /humidity_samples/new
   def new
-    set_success_message_variables
     @humidity_samples = HumiditySample.active.order('created_at DESC').first(3)
     @humidity_sample = HumiditySample.new
   end
