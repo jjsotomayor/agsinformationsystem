@@ -4,12 +4,12 @@ class CaliberSample < ApplicationRecord
 
   belongs_to :element
   belongs_to :caliber
+  has_one :deviation_sample
 
   # before_save :calculate_caliber
   before_validation :calculate_caliber
 
   validates :element, :responsable, :fruits_per_pound, :fruits_in_sample, :sample_weight, :caliber, presence: true
-  # validates :element, :responsable, :fruits_per_pound, :fruits_in_sample, :sample_weight, presence: true
   validates :fruits_per_pound, :fruits_in_sample, :sample_weight, numericality: true
 
 

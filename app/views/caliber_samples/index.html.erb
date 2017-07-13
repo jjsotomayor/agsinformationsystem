@@ -8,9 +8,11 @@
       <th>Tarja</th>
       <th>Frutas x libra</th>
       <th>Calibre</th>
-      <th>Fruitos en muestra</th>
+      <th>Frutos en muestra</th>
       <th>Peso muestra</th>
       <th>Creacion</th>
+      <th>Desviación</th>
+      <th>Estado</th>
 
       <th colspan="3"></th>
     </tr>
@@ -26,6 +28,15 @@
         <td><%= caliber_sample.fruits_in_sample %></td>
         <td><%= caliber_sample.sample_weight %></td>
         <td><%= date_time(caliber_sample.created_at) %></td>
+
+        <td><%= caliber_sample.deviation_sample.deviation.round(0) if caliber_sample.deviation_sample  %></td>
+
+        <%if caliber_sample.deviation_sample%>
+          <td><%= caliber_sample.deviation_sample.status%></td>
+        <%else%>
+          <td>no aplica</td>
+        <%end%>
+
 
         <td><%= link_to 'Ver', caliber_sample %></td>
         <td><%= link_to 'Editar', edit_caliber_sample_path(caliber_sample) %></td>

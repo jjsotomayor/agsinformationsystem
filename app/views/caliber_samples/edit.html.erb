@@ -11,7 +11,7 @@
 
 
 <div class= "container-samples">
-  <div class= "pestaña">##</div>
+  <div class= "pestaña">##proceso</div>
     <div class="outside-new-form green-outside-new-form">
       <h1><span class= "glyphicon glyphicon-list-alt"></span> Editar Calibre</h1>
 
@@ -32,6 +32,20 @@
     <%= f.label :peso_muestra %>
     <%= f.number_field :sample_weight, placeholder: "gramos" %>
   </div>
+
+  <% if @caliber_sample.deviation_sample%>
+  <p>------------------------------ Desviación -----------------------------</p>
+      <div class="field">
+        <%= f.label :frutos_grandes %>
+        <%= number_field_tag :big_fruits_in_sample, @caliber_sample.deviation_sample.big_fruits_in_sample%> <!--, min: 1, max: 1000  -->
+      </div>
+
+      <div class="field">
+        <%= f.label :frutos_pequeños %>
+        <%= number_field_tag :small_fruits_in_sample, @caliber_sample.deviation_sample.small_fruits_in_sample%>
+      </div>
+
+  <% end %>
 
   <div class="buttons-together-edit">
     <%= link_to 'Regresar', new_caliber_sample_path, class: "btn-back btn btn-primary btn-lg "%>

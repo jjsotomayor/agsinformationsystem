@@ -8,6 +8,18 @@
       <% end %>
       </ul>
     </div>
+
+  <!-- Errores que poseen las deviation samples, si es que hay -->
+  <% elsif @include_deviation and @d_sample.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@d_sample.errors.count, "error") %> prohibited this deviation_sample from being saved:</h2>
+
+      <ul>
+      <% @d_sample.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
 
   <div class= "container-samples">
@@ -28,14 +40,30 @@
   </div>
 
   <div class="field">
+    <%= f.label :peso_muestra %>
+    <%= f.number_field :sample_weight, placeholder: " gramos" %>
+  </div>
+  <div class="field">
     <%= f.label :frutas_en_muestra %>
     <%= f.number_field :fruits_in_sample %>
   </div>
 
-  <div class="field">
-    <%= f.label :peso_muestra %>
-    <%= f.number_field :sample_weight, placeholder: "gramos" %>
-  </div>
+  <%=hidden_field_tag 'deviation', @include_deviation%>
+
+  <% if @include_deviation%>
+  <p>------------------------------ Desviación -----------------------------</p>
+      <div class="field">
+        <%= f.label :frutos_grandes %>
+        <%= number_field_tag :big_fruits_in_sample, '', placeholder: ' cantidad' %> <!--, min: 1, max: 1000  -->
+      </div>
+
+      <div class="field">
+        <%= f.label :frutos_pequeños %>
+        <%= number_field_tag :small_fruits_in_sample, '', placeholder: ' cantidad'%>
+      </div>
+
+  <% end %>
+
 
   <div class="actions">
     <%= f.submit "Guardar", class: "btn btn-primary btn-lg btn-block" %>

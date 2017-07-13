@@ -13,5 +13,16 @@ module ViewsHelper
     end
   end
 
+  def short_status(sample)
+    if sample.aprobado?
+      "Aprob."
+    elsif sample.rechazado?
+      "Rech."
+    elsif sample.pendiente?
+      "Pend."
+    else
+      "-"
+    end
+  end
 
 end

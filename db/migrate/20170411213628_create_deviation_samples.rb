@@ -7,10 +7,10 @@ class CreateDeviationSamples < ActiveRecord::Migration[5.0]
       t.integer :sample_weight
       t.decimal :big_fruits_per_pound
       t.decimal :small_fruits_per_pound
-      t.decimal :deviation
+      t.decimal :deviation, null: false
 
-      t.integer :state, null: false, default:0
-      t.boolean :state_modified, null: false, default:false
+      t.integer :status, null: false, default:0
+      t.boolean :status_modified, null: false, default:false
 
       t.timestamps
     end

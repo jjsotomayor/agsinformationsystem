@@ -6,13 +6,16 @@
 <table class = "table table-striped">
   <thead>
     <tr>
+      <th> </th>
       <th>Responsable</th>
       <th>Tarja</th>
-      <th>Frutas x libra</th>
-      <th>Calibre</th>
-      <th>Fruits en muestra</th>
+      <th>Frutos en muestra</th>
       <th>Peso muestra</th>
-      <th>Creacion</th>
+      <th>Calib.</th>
+      <th>FG</th>
+      <th>FP</th>
+      <th>Desv</th>
+      <th>Estado</th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -20,13 +23,23 @@
   <tbody>
     <% @caliber_samples.each do |caliber_sample| %>
       <tr>
-        <td><%= caliber_sample.responsable %></td>
+        <td><%= time(caliber_sample.created_at) %></td>
+        <td><%= caliber_sample.responsable.truncate(12) %></td>
         <td><%= caliber_sample.element.tag %></td>
-        <td><%= caliber_sample.fruits_per_pound %></td>
-        <td><%= caliber_sample.caliber.name %></td>
         <td><%= caliber_sample.fruits_in_sample %></td>
         <td><%= caliber_sample.sample_weight %></td>
-        <td><%= time(caliber_sample.created_at) %></td>
+        <td><%= caliber_sample.caliber.name %></td>
+
+
+        <td><%= caliber_sample.deviation_sample.big_fruits_in_sample if caliber_sample.deviation_sample %></td>
+        <td><%= caliber_sample.deviation_sample.small_fruits_in_sample if caliber_sample.deviation_sample %></td>
+        <td><%= caliber_sample.deviation_sample.deviation.round(0) if caliber_sample.deviation_sample  %></td>
+
+        <%if caliber_sample.deviation_sample%>
+          <td><%= short_status(caliber_sample.deviation_sample)%></td>
+        <%else%>
+          <td>-</td>
+        <%end%>
 
         <td><%= link_to 'Ver', caliber_sample %></td>
         <td><%= link_to 'Editar', edit_caliber_sample_path(caliber_sample) %></td>
