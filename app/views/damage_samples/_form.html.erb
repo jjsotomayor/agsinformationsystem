@@ -1,0 +1,25 @@
+<% if damage_sample.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(damage_sample.errors.count, "error") %> prohibited this damage_sample from being saved:</h2>
+
+    <ul>
+    <% damage_sample.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class= "container-samples" id ="dam">
+  <div class= "pestaña"><%=get_process().capitalize%></div>
+    <div class="outside-new-form green-outside-new-form " id = "dam">
+      <h1><span class= "glyphicon glyphicon-list-alt"></span> Daños</h1>
+        <!--FIXME deshardcodear, cambiar por get_process  -->
+        <% proceso = "fresco"%>
+        <%= render "form_"+proceso, damage_sample: damage_sample %>
+        <!-- form_calibrado -->
+        <!-- form_fresco -->
+        <!-- form_seco -->
+        <!-- form_tiernizado -->
+    </div>
+</div>

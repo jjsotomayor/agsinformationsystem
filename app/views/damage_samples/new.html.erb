@@ -1,0 +1,9 @@
+<%= stylesheet_link_tag    'damage_samples', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<%= render 'shared/message_success_js', humidity_sample: @humidity_sample %>
+<%= render 'form', damage_sample: @damage_sample %>
+
+<div class="container-500px">
+  <h1>Ultimos muestras de daños</h1>
+<%= link_to 'Todas las muestras de humedad', damage_samples_path %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713120252) do
+ActiveRecord::Schema.define(version: 20170713212422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,55 @@ ActiveRecord::Schema.define(version: 20170713120252) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.index ["element_id"], name: "index_carozo_samples_on_element_id", using: :btree
+  end
+
+  create_table "damage_samples", force: :cascade do |t|
+    t.string   "responsable"
+    t.integer  "element_id"
+    t.decimal  "sample_weight"
+    t.float    "off_color"
+    t.float    "off_color_perc"
+    t.float    "poor_texture"
+    t.float    "poor_texture_perc"
+    t.float    "scars"
+    t.float    "scars_perc"
+    t.float    "end_cracks"
+    t.float    "end_cracks_perc"
+    t.float    "skin_or_flesh_damage"
+    t.float    "skin_or_flesh_damage_perc"
+    t.float    "fermentation"
+    t.float    "fermentation_perc"
+    t.float    "heat_damage"
+    t.float    "heat_damage_perc"
+    t.float    "insect_injury"
+    t.float    "insect_injury_perc"
+    t.float    "mold"
+    t.float    "mold_perc"
+    t.float    "dirt"
+    t.float    "dirt_perc"
+    t.float    "foreign_material"
+    t.float    "foreign_material_perc"
+    t.float    "vegetal_foreign_material"
+    t.float    "vegetal_foreign_material_perc"
+    t.float    "insect_infestation"
+    t.float    "insect_infestation_perc"
+    t.float    "decay"
+    t.float    "decay_perc"
+    t.float    "deshidratado"
+    t.float    "deshidratado_perc"
+    t.float    "bolsa_de_agua"
+    t.float    "bolsa_de_agua_perc"
+    t.float    "ruset"
+    t.float    "ruset_perc"
+    t.float    "reventados"
+    t.float    "reventados_perc"
+    t.integer  "usda",                                          null: false
+    t.boolean  "df07",                          default: false, null: false
+    t.boolean  "active",                        default: true,  null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.index ["element_id"], name: "index_damage_samples_on_element_id", using: :btree
   end
 
   create_table "deviation_samples", force: :cascade do |t|
@@ -179,6 +228,7 @@ ActiveRecord::Schema.define(version: 20170713120252) do
   add_foreign_key "caliber_samples", "calibers"
   add_foreign_key "caliber_samples", "elements"
   add_foreign_key "carozo_samples", "elements"
+  add_foreign_key "damage_samples", "elements"
   add_foreign_key "deviation_samples", "caliber_samples"
   add_foreign_key "elements", "drying_methods"
   add_foreign_key "elements", "product_types"

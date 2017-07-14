@@ -34,4 +34,16 @@ module SessionsHelper
     end
   end
 
+  #Metodos asociados a la sesion del computador / proceso
+
+  def get_process
+    # FIXME
+    # Puede retornar
+    # calibrado
+    # tiernizado
+    # fresco
+    # seco
+    return "fresco"
+  end
+
 end

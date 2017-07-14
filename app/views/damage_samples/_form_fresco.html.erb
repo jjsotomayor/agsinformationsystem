@@ -1,0 +1,77 @@
+<%= form_for(damage_sample, html: {class: 'inside-new-form green-inside-new-form'}) do |f| %>
+
+
+
+<div style="width: 100%;">
+ <div style="float:left; width: 45%">
+<!--Items at the left  -->
+<div class="field">
+  <!-- class: "little"  -->
+  <%= f.label :responsable, class: "vertical" %>
+  <%= f.text_field :responsable, class: "vertical" %>
+</div>
+
+<div class="field">
+  <%= f.label :element_id, class: "vertical"  %>
+  <%= f.text_field :element_id, class: "vertical" %>
+</div>
+
+<div class="field">
+  <%= f.label :peso_muestra, class: "vertical"  %>
+  <%= f.text_field :sample_weight, class: "vertical" %>
+</div>
+</div>
+
+
+
+<div style="float:right;">
+  <!--Items at right  -->
+
+    <div class="field">
+      <%= f.label :scars %>
+      <%= f.number_field :scars %>
+    </div>
+
+    <div class="field">
+      <%= f.label :mold %>
+      <%= f.number_field :mold %>
+    </div>
+
+    <div class="field">
+      <%= f.label :decay %>
+      <%= f.number_field :decay %>
+    </div>
+
+    <div class="field">
+      <%= f.label :deshidratado %>
+      <%= f.number_field :deshidratado %>
+    </div>
+
+    <div class="field">
+      <%= f.label :bolsa_de_agua %>
+      <%= f.number_field :bolsa_de_agua %>
+    </div>
+
+    <div class="field">
+      <%= f.label :ruset %>
+      <%= f.number_field :ruset %>
+    </div>
+
+    <div class="field">
+      <%= f.label :reventados %>
+      <%= f.number_field :reventados %>
+    </div>
+
+
+
+
+</div>
+</div>
+<div style="clear:both"></div>
+
+<div class="actions">
+ <%= f.submit "Guardar",  class: "btn btn-primary btn-lg btn-block" %>
+</div>
+
+
+<% end %>

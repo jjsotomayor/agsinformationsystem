@@ -142,7 +142,6 @@
 input[type=submit]{
   margin-top: 15px;
   //margin-right: 10px;
-
   //width: 75%;
   //height: 50px;
   //margin-left: 10%;
@@ -153,11 +152,21 @@ input[type=submit]{
 
 .field label{
   display: inline-block;
-  min-width: 120px;
+  min-width: 130px;
   text-align: right;
+  margin-bottom: 0px;
 }
-input {
+
+.field label[class=vertical] {
+  display: block;
+  text-align: left;
 }
+.field input[class=vertical]{
+  display: block;
+  margin-bottom: 10px;
+  width: 140px;
+}
+
 input[type=text]:focus {
     border: 2px solid rgb(255,187,150);
 }

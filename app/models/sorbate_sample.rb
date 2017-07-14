@@ -16,7 +16,7 @@ class SorbateSample < ApplicationRecord
     # TODO: Hacer tests que chequeen todos los limites.
     min = Rails.configuration.min_sorbate
     max = Rails.configuration.max_sorbate
-    self.status = between(self.sorbate, min, max) ? "aprobado" : "rechazado"
+    self.status = between?(self.sorbate, min, max) ? "aprobado" : "rechazado"
   end
 
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :damage_samples
   resources :carozo_samples
   resources :ip_addresses
   # User Control routes

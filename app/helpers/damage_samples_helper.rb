@@ -1,0 +1,2 @@
+module DamageSamplesHelper
+end
