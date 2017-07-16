@@ -24,6 +24,8 @@
       <th>Bolsa de agua perc</th>
       <th>Ruset perc</th>
       <th>Reventados perc</th>
+      <th>USDA</th>
+      <th>DF07</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -52,6 +54,8 @@
         <td><%= round_or_nil(damage_sample.bolsa_de_agua_perc) %></td>
         <td><%= round_or_nil(damage_sample.ruset_perc) %></td>
         <td><%= round_or_nil(damage_sample.reventados_perc) %></td>
+        <td><%= damage_sample.usda %></td>
+        <td><%= damage_sample.df07 %></td>
         <td><%= link_to 'Ver', damage_sample %></td>
         <td><%= link_to 'Editar', edit_damage_sample_path(damage_sample) %></td>
         <td><%= link_to 'Eliminar', damage_sample, method: :delete, data: { confirm: 'Estas seguro?' } %></td>

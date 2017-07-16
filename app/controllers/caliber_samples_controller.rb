@@ -20,6 +20,8 @@ class CaliberSamplesController < ApplicationController
     @caliber_samples = CaliberSample.active.order('created_at DESC').first(3)
     @caliber_sample = CaliberSample.new
     @d_sample =  DeviationSample.new # Unicamente para que no se caiga al tratar de leer errores
+    # Permite mostrar mensaje de exito en creacion/edicion muestra anterior
+    @success_sample = CaliberSample.find(params[:success_id]) if params[:success_id]
   end
 
   # GET /caliber_samples/1/edit
@@ -41,11 +43,7 @@ class CaliberSamplesController < ApplicationController
 
       if success_saving
         session[:display_created_alert] = true
-        if @include_deviation
-          redirect_to new_caliber_sample_path process: @process, status: @d_sample.status
-        else
-          redirect_to new_caliber_sample_path process: @process, status: "No aplica"
-        end
+        redirect_to new_caliber_sample_path process: @process, success_id: @caliber_sample.id
       else
         # TODO: por que no hay necesidad de los demas metodos de new???
         @caliber_samples = CaliberSample.active.last(3)
@@ -61,12 +59,8 @@ class CaliberSamplesController < ApplicationController
     end
 
       if success
-        session[:display_edited_alert] = true
-        if @caliber_sample.deviation_sample
-          redirect_to new_caliber_sample_path process: @process, status: @caliber_sample.deviation_sample.status
-        else
-          redirect_to new_caliber_sample_path process: @process, status: "No aplica"
-        end
+        session[:display_updated_alert] = true
+        redirect_to new_caliber_sample_path process: @process, success_id: @caliber_sample.id
       else
         #Esta vista se rompe completa al ingresar.
         render :edit

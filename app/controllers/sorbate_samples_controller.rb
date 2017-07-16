@@ -17,6 +17,8 @@ class SorbateSamplesController < ApplicationController
   def new
     @sorbate_samples = SorbateSample.active.order('created_at DESC').first(3)
     @sorbate_sample = SorbateSample.new
+    # Permite mostrar mensaje de exito en creacion/edicion muestra anterior
+    @success_sample = SorbateSample.find(params[:success_id]) if params[:success_id]
   end
 
   # GET /sorbate_samples/1/edit
@@ -29,10 +31,10 @@ class SorbateSamplesController < ApplicationController
     @element = Element.create_element_if_doesnt_exist(element_params)
     @sorbate_sample = SorbateSample.new(sorbate_sample_params)
     @sorbate_sample.element = @element
-    pp @sorbate_sample
+
     if @sorbate_sample.save
       session[:display_created_alert] = true
-      redirect_to new_sorbate_sample_path status: @sorbate_sample.status# notice: "Muestra almacenada correctamente."
+      redirect_to new_sorbate_sample_path success_id: @sorbate_sample.id
     else
       pp @sorbate_sample.errors
       # redirect_to new_sorbate_sample_path
@@ -47,8 +49,8 @@ class SorbateSamplesController < ApplicationController
   # PATCH/PUT /sorbate_samples/1.json
   def update
     if @sorbate_sample.update(sorbate_sample_params)
-      session[:display_edited_alert] = true
-      redirect_to new_sorbate_sample_path status: @sorbate_sample.status# notice: "Muestra almacenada correctamente."
+      session[:display_updated_alert] = true
+      redirect_to new_sorbate_sample_path success_id: @sorbate_sample.id
     else
       render :edit
     end
@@ -56,7 +58,6 @@ class SorbateSamplesController < ApplicationController
   end
 
   # DELETE /sorbate_samples/1
-  # DELETE /sorbate_samples/1.json
   def destroy
     @sorbate_sample.soft_delete
     redirect_to sorbate_samples_url, notice: 'Muestra de humedad eliminada.'

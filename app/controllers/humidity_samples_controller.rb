@@ -16,6 +16,8 @@ class HumiditySamplesController < ApplicationController
   def new
     @humidity_samples = HumiditySample.active.order('created_at DESC').first(3)
     @humidity_sample = HumiditySample.new
+    # Permite mostrar mensaje de exito en creacion/edicion muestra anterior
+    @success_sample = HumiditySample.find(params[:success_id]) if params[:success_id]
   end
 
   # GET /humidity_samples/1/edit
@@ -31,7 +33,7 @@ class HumiditySamplesController < ApplicationController
 
     if @humidity_sample.save
       session[:display_created_alert] = true
-      redirect_to new_humidity_sample_path status: @humidity_sample.status# notice: "Muestra almacenada correctamente."
+      redirect_to new_humidity_sample_path success_id: @humidity_sample.id
     else
       #Si hago redirect, termino el proces, en cambio con render mantengo la info de los errores,y es buena practica pq lo hace scaffold
       @humidity_samples = HumiditySample.active.last(3)
@@ -44,8 +46,8 @@ class HumiditySamplesController < ApplicationController
   def update
 
     if @humidity_sample.update(humidity_sample_create_params)
-      session[:display_edited_alert] = true
-      redirect_to new_humidity_sample_path status: @humidity_sample.status#, notice: 'Muestra editada correctamente.'
+      session[:display_updated_alert] = true
+      redirect_to new_humidity_sample_path success_id: @humidity_sample.id
     else
       render :edit
       #Esta vista se rompe completa al ingresar.

@@ -15,6 +15,8 @@ class CarozoSamplesController < ApplicationController
   def new
     @carozo_samples = CarozoSample.active.order('created_at DESC').first(3)
     @carozo_sample = CarozoSample.new
+    # Permite mostrar mensaje de exito en creacion/edicion muestra anterior
+    @success_sample = CarozoSample.find(params[:success_id]) if params[:success_id]
   end
 
   # GET /carozo_samples/1/edit
@@ -30,7 +32,7 @@ class CarozoSamplesController < ApplicationController
 
     if @carozo_sample.save
       session[:display_created_alert] = true
-      redirect_to new_carozo_sample_path status: @carozo_sample.status
+      redirect_to new_carozo_sample_path success_id: @carozo_sample.id
     else
       @carozo_samples = HumiditySample.active.last(3)
       render :new
@@ -40,8 +42,8 @@ class CarozoSamplesController < ApplicationController
   # PATCH/PUT /carozo_samples/1
   def update
     if @carozo_sample.update(carozo_sample_params)
-      session[:display_edited_alert] = true
-      redirect_to new_carozo_sample_path status: @carozo_sample.status
+      session[:display_updated_alert] = true
+      redirect_to new_carozo_sample_path success_id: @carozo_sample.id
     else
       render :edit
       #Esta vista se rompe completa al ingresar.

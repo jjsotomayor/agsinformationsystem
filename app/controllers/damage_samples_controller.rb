@@ -17,6 +17,8 @@ class DamageSamplesController < ApplicationController
   def new
     @damage_samples = DamageSample.active.order('created_at DESC').first(3)
     @damage_sample = DamageSample.new
+    # Permite mostrar mensaje de exito en creacion/edicion muestra anterior
+    @success_sample = DamageSample.find(params[:success_id]) if params[:success_id]
   end
 
   # GET /damage_samples/1/edit
@@ -31,7 +33,7 @@ class DamageSamplesController < ApplicationController
 
     if @damage_sample.save
       session[:display_created_alert] = true
-      redirect_to new_damage_sample_path process: @process, status: @damage_sample.df07, usda: @damage_sample.usda
+      redirect_to new_damage_sample_path process: @process, success_id: @damage_sample.id
     else
       @damage_samples = DamageSample.active.last(3)
       render :new
@@ -41,8 +43,8 @@ class DamageSamplesController < ApplicationController
   # PATCH/PUT /damage_samples/1
   def update
     if @damage_sample.update(damage_sample_params)
-      session[:display_edited_alert] = true
-      redirect_to new_damage_sample_path process: @process, status: @damage_sample.df07, usda: @damage_sample.usda
+      session[:display_updated_alert] = true
+      redirect_to new_damage_sample_path process: @process, success_id: @damage_sample.id
     else
       #Esta vista se rompe completa al ingresar.
       render :edit

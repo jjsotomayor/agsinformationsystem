@@ -1,4 +1,4 @@
-<%= render 'shared/message_success_js', humidity_sample: @humidity_sample %>
+<%= render 'shared/message_success_js', sample: @success_sample if  @success_sample%>
 <%= render 'form_new', humidity_sample: @humidity_sample %>
 
 <div class="container-500px">

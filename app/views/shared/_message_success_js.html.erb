@@ -1,25 +1,29 @@
-<%if session[:display_created_alert] and params[:status] %>
+<%if session[:display_created_alert]%>
   <%title = "Muestra almacenada!"%>
   <%session[:display_created_alert] = false%>
-<%elsif session[:display_edited_alert] and params[:status]%>
+<%elsif session[:display_updated_alert]%>
   <%title = "Muestra editada!"%>
-  <%session[:display_edited_alert] = false%>
+  <%session[:display_updated_alert] = false%>
 <%end%>
 
-
-<%if params[:status] %>
-<!--TODO parametros se deberian pasar como variables de vistas(@) y no como get_param -->
-<!-- TODO para damage samples, esto deberia ser  df07:  -->
-  <%msg = "Estado: #{params[:status]}"%>
-<%end%>
-
-<%if params[:usda] %>
-  <%msg << " Usda: #{params[:usda]}"%>
-<%end%>
-
+<!-- Si existe un title quiere decir que hay algo para renderear  -->
 <%if title%>
+
+  <%if sample.class.name == "DamageSample"%>
+  <!--TODO Asume que todas las muestras de daños tienen usda, preguntar  -->
+  <%@success_sample.usda %>
+  <%@success_sample.df07 %>
+  <%msg = "Usda: #{sample.usda}"%>
+  <%msg << ", Df07: #{sample.df07}" if sample.df07%>
+
+  <%elsif sample.class.name == "CaliberSample"%>
+  <%if sample.deviation_sample %>
+  <%msg = "Estado: #{sample.deviation_sample.status}"%>
+  <%end%>
+
+  <%elsif sample.has_attribute?(:status) %>
+  <%msg = "Estado: #{sample.status}"%>
+  <%end%>
+
   <script>swal("<%=title%>", "<%=msg%>", "success");</script>
 <%end%>
-
-<!-- <script>swal("Muestra editada!", "Estado: <%=params[:status]%>", "success");</script> -->
-<!-- <script>swal("Muestra almacenada!", "Estado: <%=params[:status]%>", "success");</script> -->
