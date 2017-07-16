@@ -1,25 +1,42 @@
-<% if damage_sample.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(damage_sample.errors.count, "error") %> prohibited this damage_sample from being saved:</h2>
+<%= form_for(damage_sample, html: {class: 'inside-new-form green-inside-new-form'}) do |f| %>
 
-    <ul>
-    <% damage_sample.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
+<%= hidden_field_tag :process, @process%>
+
+<div style="width: 100%;">
+ <div style="float:left; width: 45%">
+<!--Items at the left  -->
+
+  <div class="field">
+    <%= f.label :responsable, class: "vertical" %>
+    <%= f.text_field :responsable, class: "vertical" %>
   </div>
-<% end %>
 
-<div class= "container-samples" id ="dam">
-  <div class= "pestaña"><%=get_process().capitalize%></div>
-    <div class="outside-new-form green-outside-new-form " id = "dam">
-      <h1><span class= "glyphicon glyphicon-list-alt"></span> Daños</h1>
-        <!--FIXME deshardcodear, cambiar por get_process  -->
-        <% proceso = "fresco"%>
-        <%= render "form_"+proceso, damage_sample: damage_sample %>
-        <!-- form_calibrado -->
-        <!-- form_fresco -->
-        <!-- form_seco -->
-        <!-- form_tiernizado -->
+  <% if form == "new"  %>
+    <div class="field">
+      <%= f.label :tarja, class: "vertical"  %>
+      <%= text_field_tag :tag, '', class: "vertical", autocomplete: 'off'%>
     </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :peso_muestra, class: "vertical"  %>
+    <%= f.text_field :sample_weight, class: "vertical", autocomplete: :off, placeholder: ' gramos' %>
+  </div>
+
 </div>
+
+
+ <div style="float:right;">
+   <!--Items at right  -->
+
+   <%= render get_form(@process), f: f %>
+
+
+
+ </div>
+</div>
+<div style="clear:both"></div>
+
+<%= render 'shared/buttons', f: f, form_type: form%>
+
+<% end %>

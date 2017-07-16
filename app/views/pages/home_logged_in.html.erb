@@ -1,12 +1,10 @@
-
 <div class="container-small">
 <div class="jumbotron">
-  <h1>Hola <%=logged_user.name%>!</h1>
-  <br>
-  <p>Arriba puedes acceder a las funcionalidades.</p>
-  <p>Recuerda cerrar tu sesion cuando dejes el computador.</p>
 
-  <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Soy control de calidad</a></p> -->
-  <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Soy administrativo</a></p> -->
+  <%if user_type == "User"%>
+    <%= render 'welcome_user' %>
+  <%elsif user_type == "UserControl"%>
+    <%= render 'welcome_user_control' %>
+  <%end%>
 </div>
 </div>

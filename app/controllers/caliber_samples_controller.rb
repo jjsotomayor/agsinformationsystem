@@ -1,6 +1,7 @@
 class CaliberSamplesController < ApplicationController
   include SamplesMethods
   before_action :set_caliber_sample, only: [:show, :edit, :update, :destroy]
+  before_action :set_process
   before_action :include_deviation, only: [:new, :create]
 
   # GET /caliber_samples
@@ -41,9 +42,9 @@ class CaliberSamplesController < ApplicationController
       if success_saving
         session[:display_created_alert] = true
         if @include_deviation
-          redirect_to new_caliber_sample_path status: @d_sample.status, deviation: @include_deviation
+          redirect_to new_caliber_sample_path process: @process, status: @d_sample.status
         else
-          redirect_to new_caliber_sample_path status: "No aplica"
+          redirect_to new_caliber_sample_path process: @process, status: "No aplica"
         end
       else
         # TODO: por que no hay necesidad de los demas metodos de new???
@@ -62,9 +63,9 @@ class CaliberSamplesController < ApplicationController
       if success
         session[:display_edited_alert] = true
         if @caliber_sample.deviation_sample
-          redirect_to new_caliber_sample_path status: @caliber_sample.deviation_sample.status, deviation: true
+          redirect_to new_caliber_sample_path process: @process, status: @caliber_sample.deviation_sample.status
         else
-          redirect_to new_caliber_sample_path status: "No aplica"
+          redirect_to new_caliber_sample_path process: @process, status: "No aplica"
         end
       else
         #Esta vista se rompe completa al ingresar.
@@ -92,10 +93,14 @@ class CaliberSamplesController < ApplicationController
     end
 
     def include_deviation
-      @include_deviation = params[:deviation] == "true" # y si no esta es false
+      @include_deviation = true if @process == "calibrado"
     end
 
     def deviation_sample_params
       params.permit(:big_fruits_in_sample, :small_fruits_in_sample)
+    end
+
+    def set_process
+      @process = params[:process]
     end
 end

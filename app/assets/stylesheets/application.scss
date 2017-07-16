@@ -10,9 +10,11 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *= require_tree
  *= require_self
  */
+ //TODO-- *= require_tree . -- comentado para poder usar page specific css
+
  //Agregado para que funcione bootstrap##
  @import "bootstrap-sprockets";
  @import "bootstrap";
@@ -179,3 +181,39 @@ input[type=text]:focus {
    margin-left: 140px;
    margin-right:20px;
 }
+
+
+// Bigger alerts! to overwrite sweetalerts css
+.big-alert {
+  // width:500px;
+  // margin: 0 auto;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+
+// Specific css for damage_samples controller
+#damage_samples{
+  .container-samples{
+     width: 450px;
+   }
+
+  .outside-new-form{
+     width:450px;
+    }
+
+    //FORMS CSS
+    .field {
+      padding-bottom: 2px;
+    }
+    .field label{
+      min-width: 130px;
+    }
+
+  .field input[type=number] {
+      width: 80px;
+      margin-right: 5px; // Hace que no este centrado!
+    }
+  }

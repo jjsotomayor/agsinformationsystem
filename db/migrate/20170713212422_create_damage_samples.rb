@@ -42,7 +42,7 @@ class CreateDamageSamples < ActiveRecord::Migration[5.0]
       t.float :reventados_perc
 
       t.integer :usda, null: false
-      t.boolean :df07, null: false, default:false
+      t.integer :df07, null: false, default:0
 
       t.boolean :active, null: false, default:true
       t.datetime :deleted_at

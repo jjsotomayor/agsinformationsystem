@@ -1,46 +1,28 @@
 <h1>Damage Samples</h1>
 
-<table>
+<table class = "table table-striped">
   <thead>
     <tr>
       <th>Responsable</th>
-      <th>Element</th>
-      <th>Sample weight</th>
-      <th>Off color</th>
+      <th>Tarja</th>
+      <th>Peso muestra</th>
       <th>Off color perc</th>
-      <th>Poor texture</th>
       <th>Poor texture perc</th>
-      <th>Scars</th>
       <th>Scars perc</th>
-      <th>End cracks</th>
       <th>End cracks perc</th>
-      <th>Skin or flesh damage</th>
       <th>Skin or flesh damage perc</th>
-      <th>Fermentation</th>
       <th>Fermentation perc</th>
-      <th>Heat damage</th>
       <th>Heat damage perc</th>
-      <th>Insect injury</th>
       <th>Insect injury perc</th>
-      <th>Mold</th>
       <th>Mold perc</th>
-      <th>Dirt</th>
       <th>Dirt perc</th>
-      <th>Foreign material</th>
       <th>Foreign material perc</th>
-      <th>Vegetal foreign material</th>
       <th>Vegetal foreign material perc</th>
-      <th>Insect infestation</th>
       <th>Insect infestation perc</th>
-      <th>Decay</th>
       <th>Decay perc</th>
-      <th>Deshidratado</th>
       <th>Deshidratado perc</th>
-      <th>Bolsa de agua</th>
       <th>Bolsa de agua perc</th>
-      <th>Ruset</th>
       <th>Ruset perc</th>
-      <th>Reventados</th>
       <th>Reventados perc</th>
       <th colspan="3"></th>
     </tr>
@@ -50,47 +32,29 @@
     <% @damage_samples.each do |damage_sample| %>
       <tr>
         <td><%= damage_sample.responsable %></td>
-        <td><%= damage_sample.element %></td>
+        <td><%= damage_sample.element.tag %></td>
         <td><%= damage_sample.sample_weight %></td>
-        <td><%= damage_sample.off_color %></td>
-        <td><%= damage_sample.off_color_perc %></td>
-        <td><%= damage_sample.poor_texture %></td>
-        <td><%= damage_sample.poor_texture_perc %></td>
-        <td><%= damage_sample.scars %></td>
-        <td><%= damage_sample.scars_perc %></td>
-        <td><%= damage_sample.end_cracks %></td>
-        <td><%= damage_sample.end_cracks_perc %></td>
-        <td><%= damage_sample.skin_or_flesh_damage %></td>
-        <td><%= damage_sample.skin_or_flesh_damage_perc %></td>
-        <td><%= damage_sample.fermentation %></td>
-        <td><%= damage_sample.fermentation_perc %></td>
-        <td><%= damage_sample.heat_damage %></td>
-        <td><%= damage_sample.heat_damage_perc %></td>
-        <td><%= damage_sample.insect_injury %></td>
-        <td><%= damage_sample.insect_injury_perc %></td>
-        <td><%= damage_sample.mold %></td>
-        <td><%= damage_sample.mold_perc %></td>
-        <td><%= damage_sample.dirt %></td>
-        <td><%= damage_sample.dirt_perc %></td>
-        <td><%= damage_sample.foreign_material %></td>
-        <td><%= damage_sample.foreign_material_perc %></td>
-        <td><%= damage_sample.vegetal_foreign_material %></td>
-        <td><%= damage_sample.vegetal_foreign_material_perc %></td>
-        <td><%= damage_sample.insect_infestation %></td>
-        <td><%= damage_sample.insect_infestation_perc %></td>
-        <td><%= damage_sample.decay %></td>
-        <td><%= damage_sample.decay_perc %></td>
-        <td><%= damage_sample.deshidratado %></td>
-        <td><%= damage_sample.deshidratado_perc %></td>
-        <td><%= damage_sample.bolsa_de_agua %></td>
-        <td><%= damage_sample.bolsa_de_agua_perc %></td>
-        <td><%= damage_sample.ruset %></td>
-        <td><%= damage_sample.ruset_perc %></td>
-        <td><%= damage_sample.reventados %></td>
-        <td><%= damage_sample.reventados_perc %></td>
-        <td><%= link_to 'Show', damage_sample %></td>
-        <td><%= link_to 'Edit', edit_damage_sample_path(damage_sample) %></td>
-        <td><%= link_to 'Destroy', damage_sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= round_or_nil(damage_sample.off_color_perc) %></td>
+        <td><%= round_or_nil(damage_sample.poor_texture_perc) %></td>
+        <td><%= round_or_nil(damage_sample.scars_perc) %></td>
+        <td><%= round_or_nil(damage_sample.end_cracks_perc) %></td>
+        <td><%= round_or_nil(damage_sample.skin_or_flesh_damage_perc) %></td>
+        <td><%= round_or_nil(damage_sample.fermentation_perc) %></td>
+        <td><%= round_or_nil(damage_sample.heat_damage_perc) %></td>
+        <td><%= round_or_nil(damage_sample.insect_injury_perc) %></td>
+        <td><%= round_or_nil(damage_sample.mold_perc) %></td>
+        <td><%= round_or_nil(damage_sample.dirt_perc) %></td>
+        <td><%= round_or_nil(damage_sample.foreign_material_perc) %></td>
+        <td><%= round_or_nil(damage_sample.vegetal_foreign_material_perc) %></td>
+        <td><%= round_or_nil(damage_sample.insect_infestation_perc) %></td>
+        <td><%= round_or_nil(damage_sample.decay_perc) %></td>
+        <td><%= round_or_nil(damage_sample.deshidratado_perc) %></td>
+        <td><%= round_or_nil(damage_sample.bolsa_de_agua_perc) %></td>
+        <td><%= round_or_nil(damage_sample.ruset_perc) %></td>
+        <td><%= round_or_nil(damage_sample.reventados_perc) %></td>
+        <td><%= link_to 'Ver', damage_sample %></td>
+        <td><%= link_to 'Editar', edit_damage_sample_path(damage_sample) %></td>
+        <td><%= link_to 'Eliminar', damage_sample, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>

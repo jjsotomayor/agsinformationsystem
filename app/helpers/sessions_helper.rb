@@ -28,9 +28,9 @@ module SessionsHelper
   #Destroy session, returns true if successfull, msg if not
   def get_destroy_session_path
     if current_user
-      return "users/sign_out"
+      return "/users/sign_out"
     elsif session[:user_id] and session[:user_type] == "UserControl"
-      return "user_controls/sign_out"
+      return "/user_controls/sign_out"
     end
   end
 

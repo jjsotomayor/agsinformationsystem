@@ -1,6 +1,8 @@
 class DamageSamplesController < ApplicationController
   include SamplesMethods
   before_action :set_damage_sample, only: [:show, :edit, :update, :destroy]
+  before_action :set_process
+  before_action :set_sample_name, only: [:new, :edit]
 
   # GET /damage_samples
   def index
@@ -23,11 +25,15 @@ class DamageSamplesController < ApplicationController
 
   # POST /damage_samples
   def create
+    @element = Element.create_element_if_doesnt_exist(element_params)
     @damage_sample = DamageSample.new(damage_sample_params)
+    @damage_sample.element = @element
+
     if @damage_sample.save
       session[:display_created_alert] = true
-      redirect_to @damage_sample, notice: 'Damage sample was successfully created.'
+      redirect_to new_damage_sample_path process: @process, status: @damage_sample.df07, usda: @damage_sample.usda
     else
+      @damage_samples = DamageSample.active.last(3)
       render :new
     end
   end
@@ -36,15 +42,16 @@ class DamageSamplesController < ApplicationController
   def update
     if @damage_sample.update(damage_sample_params)
       session[:display_edited_alert] = true
-      redirect_to @damage_sample, notice: 'Damage sample was successfully updated.'
+      redirect_to new_damage_sample_path process: @process, status: @damage_sample.df07, usda: @damage_sample.usda
     else
+      #Esta vista se rompe completa al ingresar.
       render :edit
     end
   end
 
   # DELETE /damage_samples/1
   def destroy
-    @damage_sample.destroy
+    @damage_sample.soft_delete
     redirect_to damage_samples_url, notice: 'Muestra de daños eliminada.'
   end
 
@@ -58,4 +65,12 @@ class DamageSamplesController < ApplicationController
     def damage_sample_params
       params.require(:damage_sample).permit(:responsable, :sample_weight, :off_color, :poor_texture, :scars, :end_cracks, :skin_or_flesh_damage, :fermentation, :heat_damage, :insect_injury, :mold, :dirt, :foreign_material, :vegetal_foreign_material, :insect_infestation, :decay, :deshidratado, :bolsa_de_agua, :ruset, :reventados,)
     end
+
+    def set_process
+      @process = params[:process]
+    end
+    def set_sample_name
+      @sample_name = "damage"
+    end
+
 end

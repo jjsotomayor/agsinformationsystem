@@ -1,8 +1,25 @@
-
 <%if session[:display_created_alert] and params[:status] %>
-  <script>swal("Muestra almacenada!", "Estado: <%=params[:status]%>", "success");</script>
+  <%title = "Muestra almacenada!"%>
   <%session[:display_created_alert] = false%>
 <%elsif session[:display_edited_alert] and params[:status]%>
-  <script>swal("Muestra editada!", "Estado: <%=params[:status]%>", "success");</script>
+  <%title = "Muestra editada!"%>
   <%session[:display_edited_alert] = false%>
 <%end%>
+
+
+<%if params[:status] %>
+<!--TODO parametros se deberian pasar como variables de vistas(@) y no como get_param -->
+<!-- TODO para damage samples, esto deberia ser  df07:  -->
+  <%msg = "Estado: #{params[:status]}"%>
+<%end%>
+
+<%if params[:usda] %>
+  <%msg << " Usda: #{params[:usda]}"%>
+<%end%>
+
+<%if title%>
+  <script>swal("<%=title%>", "<%=msg%>", "success");</script>
+<%end%>
+
+<!-- <script>swal("Muestra editada!", "Estado: <%=params[:status]%>", "success");</script> -->
+<!-- <script>swal("Muestra almacenada!", "Estado: <%=params[:status]%>", "success");</script> -->

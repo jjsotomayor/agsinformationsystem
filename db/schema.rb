@@ -94,12 +94,12 @@ ActiveRecord::Schema.define(version: 20170713212422) do
     t.float    "ruset_perc"
     t.float    "reventados"
     t.float    "reventados_perc"
-    t.integer  "usda",                                          null: false
-    t.boolean  "df07",                          default: false, null: false
-    t.boolean  "active",                        default: true,  null: false
+    t.integer  "usda",                                         null: false
+    t.integer  "df07",                          default: 0,    null: false
+    t.boolean  "active",                        default: true, null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.index ["element_id"], name: "index_damage_samples_on_element_id", using: :btree
   end
 

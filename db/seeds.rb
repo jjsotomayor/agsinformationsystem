@@ -44,7 +44,12 @@ product_types =
  end
 
  User.all.destroy_all
- User.create!(name:"Joaquin", last_name:"Soto", password:"123456789", email: "jjsotomayor@uc.cl")
+ UserControl.destroy_all
+
+ User.create!(name:"Joaquin", last_name:"Soto", password:"123123", email: "jjsotomayor@uc.cl")
+ UserControl.create!(name:"juacontrol", password:"123123")
+ IpAddress.create(ip: "127.0.0.1")
+
 
 #usda = ['A', 'B', 'C', 'SSTD', 'no califica']
 100.times do
@@ -54,5 +59,3 @@ product_types =
     pp elem.errors
   end
 end
-IpAddress.create(ip: "127.0.0.1")
-UserControl.create(name: "Juaco", password:123)

@@ -42,7 +42,7 @@
         <%end%>
 
         <td><%= link_to 'Ver', caliber_sample %></td>
-        <td><%= link_to 'Editar', edit_caliber_sample_path(caliber_sample) %></td>
+        <td><%= link_to 'Editar', edit_caliber_sample_path(caliber_sample, process: @process) %></td>
       </tr>
     <% end %>
   </tbody>
