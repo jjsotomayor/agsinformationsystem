@@ -29,7 +29,8 @@
   # Fresco se podria añadir eventualmente
 product_types =
   [
-    { name: "seco", humidity_min: 15, humidity_max:19} ,
+    { name: "fresco", humidity_min: nil, humidity_max: nil} ,
+    { name: "seco", humidity_min: 16, humidity_max:19} ,
     { name: "calibrado", humidity_min: nil, humidity_max:20} ,
     { name: "TSC", humidity_min: 29, humidity_max:32} ,
     { name: "TCC", humidity_min: 31, humidity_max:35} ,

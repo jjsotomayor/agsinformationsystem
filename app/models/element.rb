@@ -39,9 +39,10 @@ class Element < ApplicationRecord
   end
 
 
-
+  # TODO, si implemento el ajax fill del form, aqui podria implementar el update tag (mejor q no en verdad)
   def self.create_element_if_doesnt_exist(element_params)
-    @element = Element.find_by(element_params)
+    @element = Element.find_by(tag: element_params[:tag])
+    pp element_params
     @element = Element.create!(element_params) if !@element
     return @element
   end

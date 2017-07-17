@@ -1,5 +1,5 @@
 class DamageSamplesController < ApplicationController
-  include SamplesMethods
+  # include SamplesMethods
   before_action :set_damage_sample, only: [:show, :edit, :update, :destroy]
   before_action :set_process
   before_action :set_sample_name, only: [:new, :edit]
@@ -73,6 +73,10 @@ class DamageSamplesController < ApplicationController
     end
     def set_sample_name
       @sample_name = "damage"
+    end
+
+    def element_params
+      params.permit(:tag, :process_order, :product_type_id, :drying_method_id, :previous_usda, :ex_tag)
     end
 
 end

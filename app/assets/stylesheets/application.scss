@@ -122,15 +122,14 @@
 
 
 //PARECE QUE YA NADA LO OCUPA!!
-.container-500px {
-  padding-top: 5%;
+.container-last-samples {
+  padding-top: 30px;
   width:500px;
   margin: 0 auto;
-  /*margin-top: 10px;
-  margin-bottom: 40px;
-  margin-left: 40px;
-*/
 }
+
+
+
 
 
 //FORMS CSS
@@ -149,7 +148,6 @@ input[type=submit]{
   //margin-left: 10%;
     //align-self: center;
     //align-content: center;
-
 }
 
 .field label{
@@ -163,9 +161,9 @@ input[type=submit]{
   display: block;
   text-align: left;
 }
-.field input[class=vertical]{
+.field input[class=vertical] , .field select[class=vertical] {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 3px;
   width: 140px;
 }
 
@@ -196,6 +194,14 @@ input[type=text]:focus {
 
 // Specific css for damage_samples controller
 #damage_samples{
+  // FIXME creo que estos css van a agarrar cosas extra (por el . junto)
+  .container-last-samples.tiernizado{ width: 1400px; }
+  .container-last-samples.calibrado{ width: 1400px; }
+  .container-last-samples.ensacado{ width: 1400px; }
+  .container-last-samples.seco{ width: 1400px; }
+  .container-last-samples.fresco{ width: 1000px; }
+
+
   .container-samples{
      width: 450px;
    }

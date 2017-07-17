@@ -3,6 +3,7 @@
 <table class = "table table-striped">
   <thead>
     <tr>
+      <th></th>
       <th>Responsable</th>
       <th>Tarja</th>
       <th>Peso muestra</th>
@@ -33,6 +34,7 @@
   <tbody>
     <% @damage_samples.each do |damage_sample| %>
       <tr>
+        <td><%= date_time(damage_sample.created_at)%></td>
         <td><%= damage_sample.responsable %></td>
         <td><%= damage_sample.element.tag %></td>
         <td><%= damage_sample.sample_weight %></td>

@@ -15,7 +15,7 @@
 <% end %>
 
 <div class= "container-samples" id ="dam">
-  <div class= "pestaña"><%=params[:process].capitalize if params[:process]%></div>
+  <div class= "pestaña"><%=@process.capitalize%></div>
     <div class="outside-new-form green-outside-new-form " id = "dam">
       <h1><span class= "glyphicon glyphicon-list-alt"></span> Daños</h1>
         <%= render "form", damage_sample: @damage_sample, form: "new" %>
@@ -28,34 +28,19 @@
 
 
 
-<div class="container-500px">
-  <h1>Ultimos muestras de daños</h1>
-<!--TODO Solo deberia mostrar los asociados al process actual  -->
+<div class="container-last-samples <%=@process%>">
+  <h3>Tus ultimos muestras de daños</h3>
 
   <table class = "table table-striped">
     <thead>
       <tr>
+        <th></th>
         <th>Responsable</th>
         <th>Tarja</th>
         <th>Peso muestra</th>
-        <th>Off color perc</th>
-        <th>Poor texture perc</th>
-        <th>Scars perc</th>
-        <th>End cracks perc</th>
-        <th>Skin or flesh damage perc</th>
-        <th>Fermentation perc</th>
-        <th>Heat damage perc</th>
-        <th>Insect injury perc</th>
-        <th>Mold perc</th>
-        <th>Dirt perc</th>
-        <th>Foreign material perc</th>
-        <th>Vegetal foreign material perc</th>
-        <th>Insect infestation perc</th>
-        <th>Decay perc</th>
-        <th>Deshidratado perc</th>
-        <th>Bolsa de agua perc</th>
-        <th>Ruset perc</th>
-        <th>Reventados perc</th>
+        <%= render "damage_samples/index/headers_"+ get_damage_category(@process) %>
+        <th>USDA</th>
+        <th>DF07</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -63,27 +48,13 @@
     <tbody>
       <% @damage_samples.each do |damage_sample| %>
         <tr>
+          <td><%= time(damage_sample.created_at) %></td>
           <td><%= damage_sample.responsable %></td>
           <td><%= damage_sample.element.tag %></td>
           <td><%= damage_sample.sample_weight %></td>
-          <td><%= round_or_nil(damage_sample.off_color_perc) %></td>
-          <td><%= round_or_nil(damage_sample.poor_texture_perc) %></td>
-          <td><%= round_or_nil(damage_sample.scars_perc) %></td>
-          <td><%= round_or_nil(damage_sample.end_cracks_perc) %></td>
-          <td><%= round_or_nil(damage_sample.skin_or_flesh_damage_perc) %></td>
-          <td><%= round_or_nil(damage_sample.fermentation_perc) %></td>
-          <td><%= round_or_nil(damage_sample.heat_damage_perc) %></td>
-          <td><%= round_or_nil(damage_sample.insect_injury_perc) %></td>
-          <td><%= round_or_nil(damage_sample.mold_perc) %></td>
-          <td><%= round_or_nil(damage_sample.dirt_perc) %></td>
-          <td><%= round_or_nil(damage_sample.foreign_material_perc) %></td>
-          <td><%= round_or_nil(damage_sample.vegetal_foreign_material_perc) %></td>
-          <td><%= round_or_nil(damage_sample.insect_infestation_perc) %></td>
-          <td><%= round_or_nil(damage_sample.decay_perc) %></td>
-          <td><%= round_or_nil(damage_sample.deshidratado_perc) %></td>
-          <td><%= round_or_nil(damage_sample.bolsa_de_agua_perc) %></td>
-          <td><%= round_or_nil(damage_sample.ruset_perc) %></td>
-          <td><%= round_or_nil(damage_sample.reventados_perc) %></td>
+          <%= render "damage_samples/index/body_"+ get_damage_category(@process), damage_sample: damage_sample %>
+          <td><%= damage_sample.usda %></td>
+          <td><%= damage_sample.df07 %></td>
           <td><%= link_to 'Ver', damage_sample %></td>
           <td><%= link_to 'Editar', edit_damage_sample_path(damage_sample, process: @process) %></td>
         </tr>

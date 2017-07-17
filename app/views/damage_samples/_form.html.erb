@@ -6,17 +6,73 @@
  <div style="float:left; width: 45%">
 <!--Items at the left  -->
 
+
+
   <div class="field">
     <%= f.label :responsable, class: "vertical" %>
     <%= f.text_field :responsable, class: "vertical" %>
   </div>
+
 
   <% if form == "new"  %>
     <div class="field">
       <%= f.label :tarja, class: "vertical"  %>
       <%= text_field_tag :tag, '', class: "vertical", autocomplete: 'off'%>
     </div>
+
+
+
+    <%if @process != 'fresco'  %>
+      <div class="field">
+        <%= f.label :orden_de_proceso, class: "vertical" %>
+        <%= text_field_tag :process_order, '', class: "vertical" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :tipo_de_secado, class: "vertical" %>
+        <% text_field_tag :drying_method_id, '', class: "vertical" %>
+        <%= select_tag "drying_method_id",  options_for_select(DryingMethod.all.map{|dm| [dm.name,dm.id]}), include_blank: true, class: "vertical" %>
+      </div>
+    <%end%>
+
+
+    <%if @process == 'tiernizado' %>
+    <div class="field">
+      <%= f.label :tipo_de_producto, class: "vertical" %>
+      <% text_field_tag :product_type_id, '', class: "vertical" %>
+      <%= select_tag "product_type_id",  options_for_select(ProductType.where(name: ["TSC","TCC"]).map{|pt| [pt.name,pt.id]}), include_blank: true, class: "vertical" %>
+    </div>
+    <%elsif @process == 'ensacado' %>
+      <div class="field">
+        <%= f.label :tipo_de_producto, class: "vertical" %>
+        <%= select_tag "product_type_id",  options_for_select(ProductType.where(name: ["E. Condicion natural","E. americano"]).map{|pt| [pt.name,pt.id]}), include_blank: true, class: "vertical" %>
+      </div>
+    <%else%>
+    <%= hidden_field_tag :product_type_id, ProductType.find_by(name: @process).id%>
+    <%end%>
+
+
+
+
+    <%if @process == 'tiernizado' %>
+      <div class="field">
+        <%= f.label :usda_anterior, class: "vertical" %>
+        <%= text_field_tag :previous_usda, '', class: "vertical" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :tarja_anterior, class: "vertical" %>
+        <%= text_field_tag :ex_tag, '', class: "vertical" %>
+      </div>
+    <%end%>
+
+
   <% end %>
+
+
+
+
+
 
   <div class="field">
     <%= f.label :peso_muestra, class: "vertical"  %>
