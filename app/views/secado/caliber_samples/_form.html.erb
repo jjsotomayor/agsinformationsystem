@@ -1,0 +1,17 @@
+<%= form_for(secado_caliber_sample) do |f| %>
+  <% if secado_caliber_sample.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(secado_caliber_sample.errors.count, "error") %> prohibited this secado_caliber_sample from being saved:</h2>
+
+      <ul>
+      <% secado_caliber_sample.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

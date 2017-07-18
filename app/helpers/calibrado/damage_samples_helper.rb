@@ -1,0 +1,2 @@
+module Calibrado::DamageSamplesHelper
+end

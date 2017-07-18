@@ -1,0 +1,2 @@
+module Secado::CaliberSamplesHelper
+end

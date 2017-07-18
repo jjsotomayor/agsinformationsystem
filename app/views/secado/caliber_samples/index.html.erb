@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Secado Caliber Samples</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @secado_caliber_samples.each do |secado_caliber_sample| %>
+      <tr>
+        <td><%= link_to 'Show', secado_caliber_sample %></td>
+        <td><%= link_to 'Edit', edit_secado_caliber_sample_path(secado_caliber_sample) %></td>
+        <td><%= link_to 'Destroy', secado_caliber_sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Secado Caliber Sample', new_secado_caliber_sample_path %>

@@ -1,0 +1,17 @@
+<%= form_for(calibrado_damage_sample) do |f| %>
+  <% if calibrado_damage_sample.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(calibrado_damage_sample.errors.count, "error") %> prohibited this calibrado_damage_sample from being saved:</h2>
+
+      <ul>
+      <% calibrado_damage_sample.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

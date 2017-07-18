@@ -1,0 +1,2 @@
+module Calibrado::CaliberSamplesHelper
+end
