@@ -40,6 +40,12 @@ class CreateDamageSamples < ActiveRecord::Migration[5.0]
       t.float :ruset_perc
       t.float :reventados
       t.float :reventados_perc
+      t.float :carozo
+      t.float :carozo_perc
+      t.float :total_damages
+      t.float :total_damages_perc
+
+      # t.integer :counter, null:false
 
       t.integer :usda, null: false
       t.integer :df07, null: false, default:0

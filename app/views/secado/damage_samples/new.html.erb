@@ -25,7 +25,8 @@
           <td><%= damage_sample.element.drying_method.name %></td>
           <td><%= damage_sample.usda %></td>
           <td><%= short_status(@damage_sample) %></td>
-          <td><%= link_to 'Ver', secado_damage_sample_path(damage_sample) %></td>
+          <td><%= link_to 'Ver', secado_damage_sample_path(damage_sample)%></td>
+          <!-- link_to 'Ver', new_secado_damage_sample_path(id_show: damage_sample.id), class: "see-sample", id_show: damage_sample.id -->
           <td><%= link_to 'Editar', edit_secado_damage_sample_path(damage_sample, process: @process) %></td>
         </tr>
       <% end %>

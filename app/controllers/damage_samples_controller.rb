@@ -1,12 +1,14 @@
 class DamageSamplesController < ApplicationController
-  # include SamplesMethods
+  include SamplesMethods
   before_action :set_damage_sample, only: [:show, :edit, :update, :destroy]
-  before_action :set_process
+  before_action :set_process#, only: [:show, :edit, :update, :destroy]
   before_action :set_sample_name, only: [:new, :edit]
+  before_action :set_damages_list, only: [:show, :index]
+
 
   # GET /damage_samples
   def index
-    @damage_samples = DamageSample.active.order('created_at DESC')
+    @damage_samples = DamageSample.get_samples(@process)
   end
 
   # GET /damage_samples/1
@@ -15,10 +17,11 @@ class DamageSamplesController < ApplicationController
 
   # GET /damage_samples/new
   def new
-    @damage_samples = DamageSample.active.order('created_at DESC').first(3)
+    @damage_samples = DamageSample.get_samples(@process, logged_user.name).first(3)
     @damage_sample = DamageSample.new
     # Permite mostrar mensaje de exito en creacion/edicion muestra anterior
     @success_sample = DamageSample.find(params[:success_id]) if params[:success_id]
+    # @show_sample = DamageSample.find(params[:id_show]) if params[:id_show]
   end
 
   # GET /damage_samples/1/edit
@@ -27,15 +30,15 @@ class DamageSamplesController < ApplicationController
 
   # POST /damage_samples
   def create
-    @element = Element.create_element_if_doesnt_exist(element_params)
+    @element = Element.create_element_if_doesnt_exist(element_params, @process)
     @damage_sample = DamageSample.new(damage_sample_params)
     @damage_sample.element = @element
 
     if @damage_sample.save
       session[:display_created_alert] = true
-      redirect_to new_damage_sample_path process: @process, success_id: @damage_sample.id
+      redirect_to send("new_"+@process+"_damage_sample_path", success_id: @damage_sample.id) # (url, parametros)
     else
-      @damage_samples = DamageSample.active.last(3)
+      @damage_samples = DamageSample.get_samples(@process, logged_user.name)
       render :new
     end
   end
@@ -44,17 +47,17 @@ class DamageSamplesController < ApplicationController
   def update
     if @damage_sample.update(damage_sample_params)
       session[:display_updated_alert] = true
-      redirect_to new_damage_sample_path process: @process, success_id: @damage_sample.id
+      redirect_to send("new_"+@process+"_damage_sample_path", success_id: @damage_sample.id) # (url, parametros)
     else
       #Esta vista se rompe completa al ingresar.
-      render :edit
+      # render :edit
     end
   end
 
   # DELETE /damage_samples/1
   def destroy
     @damage_sample.soft_delete
-    redirect_to damage_samples_url, notice: 'Muestra de daños eliminada.'
+    redirect_to send(@process+"_damage_samples_url"), notice: 'Muestra de daños eliminada'
   end
 
   private
@@ -69,10 +72,14 @@ class DamageSamplesController < ApplicationController
     end
 
     def set_process
-      @process = params[:process]
+      @process = process_name # "secado"
     end
     def set_sample_name
       @sample_name = "damage"
+    end
+
+    def set_damages_list
+      @damages_list = Util.damages_of_product_type(@process)
     end
 
     def element_params

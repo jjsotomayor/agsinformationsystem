@@ -1,0 +1,32 @@
+<!--NOTE Actualmente no se esta usando  -->
+
+<%
+html = %q(
+<div class= "title-show">
+  <h2 class= "centered separated">Muestra daños</h2>
+</div>
+)
+html = '<p>Hola! </p>'
+pp html
+%>
+
+<script>
+swal({
+  title: '<i>HTML</i> <u>example</u>',
+  type: 'info',
+  text:
+  "<div class= \"title-show \"> <h3>Muestra daños # " +"<%=sample.id%>"+
+  "</h3></div>"
+  + "<table class = \"table table-striped table-tight\">"+
+  "<thead><tr><th>Creacion</th><th>Responsable</th><th>Tarja</th><th>Tipo</th><th>USDA</th><th>DF07</th></tr></thead>"
+  ,
+  // text: " <p>Hola! </p> ",
+  html: "<p>Hola po com</p>",
+  showCloseButton: true,
+  showCancelButton: true,
+  confirmButtonText:
+    '<i class="fa fa-thumbs-up"></i> Great!',
+  cancelButtonText:
+    '<i class="fa fa-thumbs-down"></i>'
+});
+</script>

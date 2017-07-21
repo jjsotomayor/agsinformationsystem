@@ -266,8 +266,9 @@ input[type=text]:focus {
     margin-bottom: 10px ;
     // background-color: rgb(204,235,197);
     // background-color: rgb(133,196,120);
-    background-color: rgb(53,98,68);
-    background-color: #005105; // V. oscuro logo
+    // background-color: rgb(53,98,68);
+    // background-color: #005105; // V. oscuro logo
+    background-color: #093145; // Azul
     color: white;
  }
 
@@ -278,4 +279,27 @@ input[type=text]:focus {
  .display-damages{
    width: 400px;
    margin: 0 auto;
+  //  font-size: 13px;
+   td {
+     padding: 3px !important;
+   }
  }
+
+
+// .show_damage_sample{
+//     background-color: white;
+//     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+//     width: 478px;
+//     padding: 17px;
+//     border-radius: 5px;
+//     text-align: center;
+//     position: fixed;
+//     left: 50%;
+//     top: 50%;
+//     margin-left: -256px;
+//     margin-top: -200px;
+//     overflow: hidden;
+//     // display: none;
+//     display: block;
+//     z-index: 99999;
+// }

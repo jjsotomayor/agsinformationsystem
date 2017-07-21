@@ -16,19 +16,22 @@ class DamageSample < ApplicationRecord
 
 
   def calculate_percentages
-    # NOTE Metodo se caera si se crea atributo que termina en _perc para otra cosa
-    self.attributes.each do |attr_name, attr_value|
-      calculate_one_percentage (attr_name) if attr_name.to_s.end_with? "perc"
+    total = 0
+    Util.damages_of_product_type("all").each do |damage_name|
+      total += calculate_one_percentage (damage_name)
     end
+    self.total_damages = total
+    self.total_damages_perc = (total.to_f * 100)/ self.sample_weight
   end
 
   # Para cada atributo _porc calcula su porcentaje o lo deja en nil
-  def calculate_one_percentage (attr_percentage_name)
-    grams = self.send(attr_percentage_name[0...-5])
+  def calculate_one_percentage (damage_name)
+    grams = self.send(damage_name)
     if grams
       percentage = (grams * 100)/ self.sample_weight
-      self.send("#{attr_percentage_name}=", percentage)
+      self.send("#{damage_name}_perc=", percentage)
     end
+    grams || 0
   end
 
   def calculate_usda
@@ -43,7 +46,6 @@ class DamageSample < ApplicationRecord
 
   # Obtiene ultimas quantity muestras de daños del process
   def self.get_samples(process, responsable = nil)
-    # FIXME implementar y sacar columna redundante de damage_samples
     product_type = ProductType.find_by(name: process)
     damage_samples =  product_type.damage_samples.active.order('created_at DESC')
     return damage_samples if ! responsable
