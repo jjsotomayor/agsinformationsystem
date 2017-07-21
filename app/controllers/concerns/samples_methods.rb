@@ -1,21 +1,29 @@
 module SamplesMethods
 
   private
-  def set_success_message_variables
-    #Not calling it from anywhere. No es necesario
-    @edited_sample = false
-    @created_sample = false
-    if @created_sample = params[:created_sample]
-      @created_sample = params[:created_sample]
-      @sample_state = params[:status]
-    elsif @edited_sample = params[:edited_sample]
-      @edited_sample = true
-      @sample_state = params[:status]
-    end
-  end
+  # def set_success_message_variables
+  #   #Not calling it from anywhere. No es necesario
+  #   @edited_sample = false
+  #   @created_sample = false
+  #   if @created_sample = params[:created_sample]
+  #     @created_sample = params[:created_sample]
+  #     @sample_state = params[:status]
+  #   elsif @edited_sample = params[:edited_sample]
+  #     @edited_sample = true
+  #     @sample_state = params[:status]
+  #   end
+  # end
 
-  def element_params
-    params.permit(:tag)
+  # def element_params
+  #   params.permit(:tag)
+  # end
+
+  def process_name
+    #  NOTE MEthod also in helper
+    controller = Rails.application.routes.recognize_path(request.path)[:controller]
+    # process = controller.spit(/#|Apt/).first
+    process = controller.split("/").first
+    pp process
   end
 
 end

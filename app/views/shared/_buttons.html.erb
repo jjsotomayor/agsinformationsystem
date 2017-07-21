@@ -6,7 +6,7 @@
 <% else%>
   <div class="buttons-together-edit">
     <%= @test_variable%>
-    <%= link_to 'Regresar', send("new_"+@sample_name+"_sample_path", process:@process), class: "btn-back btn btn-primary btn-lg "%>
+    <%= link_to 'Regresar', send("new_"+@process+"_"+@sample_name+"_sample_path", process:@process), class: "btn-back btn btn-primary btn-lg "%>
     <%= f.submit "Editar", class: "btn-edit btn btn-warning btn-lg" %>
   </div>
 <% end %>

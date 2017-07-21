@@ -10,7 +10,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
 
-
+      <!-- FIXME Agregar colores a botones cuando se cliquean -->
 <ul class="nav navbar-nav">
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Laboratorio<span class="caret"></span></a>
@@ -40,11 +40,11 @@
         </li>
 
           <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Secado<span class="caret"></span></a>
+            <a class="dropdown-toggle selected" data-toggle="dropdown" href="#">Secado<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <!-- FIXME Agregar que tipo de daño y calibre es -->
-              <li><%=link_to 'Daños', new_damage_sample_path(process: "seco")%></li>
-              <li><%=link_to 'Calibre', new_caliber_sample_path(process: "seco")%></li>
+              <li><%=link_to 'Daños', new_secado_damage_sample_path%></li>
+              <li><%=link_to 'Calibre', new_secado_caliber_sample_path%></li>
             </ul>
           </li>
 

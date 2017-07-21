@@ -33,13 +33,5 @@
 
     <%= yield %>
 
-    <!--FIXME: Borrar esto al final, es solo de ayuda  -->
-    <br><br>
-    <%if current_user %>
-    USUARIO regular CON SESION INICIADA <br>
-    <%end%>
-    <%if session[:user_id] %>
-    USER CONTROL session inicada<br>
-    <%end%>
   </body>
 </html>

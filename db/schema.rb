@@ -98,9 +98,11 @@ ActiveRecord::Schema.define(version: 20170713212422) do
     t.integer  "df07",                          default: 0,    null: false
     t.boolean  "active",                        default: true, null: false
     t.datetime "deleted_at"
+    t.integer  "product_type_id"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
     t.index ["element_id"], name: "index_damage_samples_on_element_id", using: :btree
+    t.index ["product_type_id"], name: "index_damage_samples_on_product_type_id", using: :btree
   end
 
   create_table "deviation_samples", force: :cascade do |t|
@@ -229,6 +231,7 @@ ActiveRecord::Schema.define(version: 20170713212422) do
   add_foreign_key "caliber_samples", "elements"
   add_foreign_key "carozo_samples", "elements"
   add_foreign_key "damage_samples", "elements"
+  add_foreign_key "damage_samples", "product_types"
   add_foreign_key "deviation_samples", "caliber_samples"
   add_foreign_key "elements", "drying_methods"
   add_foreign_key "elements", "product_types"

@@ -1,5 +1,37 @@
-<h1>New Secado Damage Sample</h1>
+<%= render 'shared/message_success_js', sample: @success_sample if  @success_sample%>
+<%= render 'shared/errors', sample: @damage_sample%>
+<%= render 'shared_damage_samples/form_calling', damage_sample: @damage_sample, type: "new"%>
 
-<%= render 'form', secado_damage_sample: @secado_damage_sample %>
+<div class="container-last-samples <%=@process%>">
+  <h3>Tus ultimas muestras de daños en <%=process_name%></h3>
 
-<%= link_to 'Back', secado_damage_samples_path %>
+  <table class = "table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <%=common_table_headers%>
+        <th>Tipo</th>
+        <th>USDA</th>
+        <th>DF07</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @damage_samples.each do |damage_sample| %>
+        <tr>
+          <td><%= time(damage_sample.created_at) %></td>
+          <%=common_table_body(damage_sample)%>
+          <td><%= damage_sample.element.drying_method.name %></td>
+          <td><%= damage_sample.usda %></td>
+          <td><%= short_status(@damage_sample) %></td>
+          <td><%= link_to 'Ver', secado_damage_sample_path(damage_sample) %></td>
+          <td><%= link_to 'Editar', edit_secado_damage_sample_path(damage_sample, process: @process) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+<%= link_to 'Todas las muestras de daños en '+ process_name, secado_damage_samples_path %>
+</div>

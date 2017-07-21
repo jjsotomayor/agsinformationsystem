@@ -1,4 +1,5 @@
 class ProductType < ApplicationRecord
-  #has_many :element
-  belongs_to :element
+
+  has_many :elements
+  has_many :damage_samples, :through => :elements
 end

@@ -24,9 +24,21 @@
 
  $icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
 
+//  COLORES:
+//  V.Oscuro: #005105
+//  V. claro,(dentro O): #93c200
+//  Naranjo: Desde (#ffbf12,(255,191,18,1)), hasta (#f16600, (241,102,0,1))
+
+
 .navbar-nav {
-  //font-weight: bold;
-  font-size: 18px;
+  // font-weight: bold;
+  font-size: 16px; //Anted estaba en 18
+}
+
+.selected{ // TODO When we are in a namespace the button will be painted
+  font-weight: bold;
+  background-color: rgb(53,98,68);
+  background-color: #005105; // V. oscuro logo
 }
 
  body {
@@ -41,6 +53,32 @@
 //    font-size: 26px;
 //    background-color: rgb(180,216,231);
 //  }
+
+.table-tight{
+  width: 0; //Permite que tabla ocupe solo espacion encesario
+  margin: 0 auto;
+  max-width: 90%
+}
+
+.container-table{
+  text-align:center;
+  // margin: 0 auto;
+  // display: inline-block;
+  // overflow: hidden;
+}
+
+
+.centered{ // Centrar Encabezado
+  margin: 0 auto;
+  text-align: center;
+  span{
+    color: green;
+    font-weight: bold;
+  }
+}
+.separated{  //Separar encabezado
+  margin-bottom: 20px;
+}
 
 
 .container{
@@ -102,22 +140,6 @@
    padding-bottom:20px;
    background-color: rgb(180,216,231);
  }
-
- // .blue-outside-new-form{
- //   background-color: #093145;
- //   color: rgb(180,216,231);
- //   //color: white;
- // }
- // .blue-inside-new-form{
- //   background-color: rgb(180,216,231);
-  // }
-  // .green-outside-new-form{
-  //    background-color: rgb(55,86,35);
-  //    color: rgb(198,224,180);
-  // }
-  // .green-inside-new-form{
-  //     background-color: rgb(198,224,180);
-  //  }
 
 
 
@@ -223,3 +245,37 @@ input[type=text]:focus {
       margin-right: 5px; // Hace que no este centrado!
     }
   }
+
+
+
+
+
+  // Show of elements
+  .container-for-sample{
+    max-width: 450px;
+    margin: 0 auto;
+    border:1px solid black;
+    .links-below-show{
+      border-top:1px solid black;
+      text-align: center;
+    }
+  }
+  .title-show{
+    padding-top: 13px !important;
+    padding-bottom: 1px !important;
+    margin-bottom: 10px ;
+    // background-color: rgb(204,235,197);
+    // background-color: rgb(133,196,120);
+    background-color: rgb(53,98,68);
+    background-color: #005105; // V. oscuro logo
+    color: white;
+ }
+
+ .display-weight{
+   width: 230px;
+   margin: 0 auto;
+ }
+ .display-damages{
+   width: 400px;
+   margin: 0 auto;
+ }

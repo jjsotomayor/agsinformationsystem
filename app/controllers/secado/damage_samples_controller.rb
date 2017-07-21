@@ -1,74 +1,88 @@
 class Secado::DamageSamplesController < ApplicationController
-  before_action :set_secado_damage_sample, only: [:show, :edit, :update, :destroy]
+  include SamplesMethods
+  before_action :set_damage_sample, only: [:show, :edit, :update, :destroy]
+  before_action :set_process#, only: [:show, :edit, :update, :destroy]
+  before_action :set_sample_name, only: [:new, :edit]
+  before_action :set_damages_list, only: [:show, :index]
 
-  # GET /secado/damage_samples
-  # GET /secado/damage_samples.json
+
+  # GET /damage_samples
   def index
-    @secado_damage_samples = Secado::DamageSample.all
+    @damage_samples = DamageSample.get_samples(@process)
   end
 
-  # GET /secado/damage_samples/1
-  # GET /secado/damage_samples/1.json
+  # GET /damage_samples/1
   def show
   end
 
-  # GET /secado/damage_samples/new
+  # GET /damage_samples/new
   def new
-    @secado_damage_sample = Secado::DamageSample.new
+    @damage_samples = DamageSample.get_samples(@process, logged_user.name).first(3)
+    @damage_sample = DamageSample.new
+    # Permite mostrar mensaje de exito en creacion/edicion muestra anterior
+    @success_sample = DamageSample.find(params[:success_id]) if params[:success_id]
   end
 
-  # GET /secado/damage_samples/1/edit
+  # GET /damage_samples/1/edit
   def edit
   end
 
-  # POST /secado/damage_samples
-  # POST /secado/damage_samples.json
+  # POST /damage_samples
   def create
-    @secado_damage_sample = Secado::DamageSample.new(secado_damage_sample_params)
+    @element = Element.create_element_if_doesnt_exist(element_params, @process)
+    @damage_sample = DamageSample.new(damage_sample_params)
+    @damage_sample.element = @element
 
-    respond_to do |format|
-      if @secado_damage_sample.save
-        format.html { redirect_to @secado_damage_sample, notice: 'Damage sample was successfully created.' }
-        format.json { render :show, status: :created, location: @secado_damage_sample }
-      else
-        format.html { render :new }
-        format.json { render json: @secado_damage_sample.errors, status: :unprocessable_entity }
-      end
+    if @damage_sample.save
+      session[:display_created_alert] = true
+      redirect_to send("new_"+@process+"_damage_sample_path", success_id: @damage_sample.id) # (url, parametros)
+    else
+      @damage_samples = DamageSample.get_samples(@process, logged_user.name)
+      render :new
     end
   end
 
-  # PATCH/PUT /secado/damage_samples/1
-  # PATCH/PUT /secado/damage_samples/1.json
+  # PATCH/PUT /damage_samples/1
   def update
-    respond_to do |format|
-      if @secado_damage_sample.update(secado_damage_sample_params)
-        format.html { redirect_to @secado_damage_sample, notice: 'Damage sample was successfully updated.' }
-        format.json { render :show, status: :ok, location: @secado_damage_sample }
-      else
-        format.html { render :edit }
-        format.json { render json: @secado_damage_sample.errors, status: :unprocessable_entity }
-      end
+    if @damage_sample.update(damage_sample_params)
+      session[:display_updated_alert] = true
+      redirect_to send("new_"+@process+"_damage_sample_path", success_id: @damage_sample.id) # (url, parametros)
+    else
+      #Esta vista se rompe completa al ingresar.
+      # render :edit
     end
   end
 
-  # DELETE /secado/damage_samples/1
-  # DELETE /secado/damage_samples/1.json
+  # DELETE /damage_samples/1
   def destroy
-    @secado_damage_sample.destroy
-    respond_to do |format|
-      format.html { redirect_to secado_damage_samples_url, notice: 'Damage sample was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @damage_sample.soft_delete
+    redirect_to send(@process+"_damage_samples_url"), notice: 'Muestra de daños eliminada'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_secado_damage_sample
-      @secado_damage_sample = Secado::DamageSample.find(params[:id])
+    def set_damage_sample
+      @damage_sample = DamageSample.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def secado_damage_sample_params
-      params.fetch(:secado_damage_sample, {})
+    def damage_sample_params
+      params.require(:damage_sample).permit(:responsable, :sample_weight, :off_color, :poor_texture, :scars, :end_cracks, :skin_or_flesh_damage, :fermentation, :heat_damage, :insect_injury, :mold, :dirt, :foreign_material, :vegetal_foreign_material, :insect_infestation, :decay, :deshidratado, :bolsa_de_agua, :ruset, :reventados,)
     end
+
+    def set_process
+      @process = process_name # "secado"
+    end
+    def set_sample_name
+      @sample_name = "damage"
+    end
+
+    def set_damages_list
+      @damages_list = Util.damages_of_product_type(@process)
+    end
+
+    def element_params
+      params.permit(:tag, :process_order, :product_type_id, :drying_method_id, :previous_usda, :ex_tag)
+    end
+
 end

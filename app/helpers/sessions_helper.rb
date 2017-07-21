@@ -22,7 +22,8 @@ module SessionsHelper
 
   # Returns the class of the current user
   def user_type
-    return logged_user.class.name if logged_user
+    return session[:user_type] if session[:user_type]
+    # return logged_user.class.name if logged_user
   end
 
   #Destroy session, returns true if successfull, msg if not

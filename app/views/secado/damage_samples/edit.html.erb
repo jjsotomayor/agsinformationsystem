@@ -1,6 +1,1 @@
-<h1>Editing Secado Damage Sample</h1>
-
-<%= render 'form', secado_damage_sample: @secado_damage_sample %>
-
-<%= link_to 'Show', @secado_damage_sample %> |
-<%= link_to 'Back', secado_damage_samples_path %>
+<%= render 'shared_damage_samples/form_calling', damage_sample: @damage_sample, type: "edit"%>

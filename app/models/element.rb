@@ -4,6 +4,7 @@ class Element < ApplicationRecord
 
   belongs_to :product_type
   belongs_to :drying_method
+  has_many :damage_samples
 
   validates :tag,  uniqueness: true, presence: true
 
@@ -40,10 +41,14 @@ class Element < ApplicationRecord
 
 
   # TODO, si implemento el ajax fill del form, aqui podria implementar el update tag (mejor q no en verdad)
-  def self.create_element_if_doesnt_exist(element_params)
+  def self.create_element_if_doesnt_exist(element_params, process_name)
     @element = Element.find_by(tag: element_params[:tag])
-    pp element_params
-    @element = Element.create!(element_params) if !@element
+    if !@element
+      product_type = ProductType.find_by(name: process_name)
+      @element = Element.new(element_params)
+      @element.product_type = product_type
+      @element.save!
+    end
     return @element
   end
 

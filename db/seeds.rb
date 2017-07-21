@@ -30,13 +30,23 @@
 product_types =
   [
     { name: "fresco", humidity_min: nil, humidity_max: nil} ,
-    { name: "seco", humidity_min: 16, humidity_max:19} ,
+    { name: "secado", humidity_min: 16, humidity_max:19} , # Es el unico que se puede almacenar desde 2 interfaces.
     { name: "calibrado", humidity_min: nil, humidity_max:20} ,
     { name: "TSC", humidity_min: 29, humidity_max:32} ,
     { name: "TCC", humidity_min: 31, humidity_max:35} ,
-    { name: "E. Condicion natural", humidity_min: nil, humidity_max: 20} ,
-    { name: "E. americano", humidity_min: nil, humidity_max:22} ,
+    { name: "CN", humidity_min: nil, humidity_max: 20} ,
+    { name: "SEAM", humidity_min: nil, humidity_max:22} ,
   ]
+  # NOTE: Como sera el comportamiento para las muestras de rec. de cancha relacionado con las de secado.
+  # Procesos si se hacen juntos
+  # Opciones:
+  # Juntas: Las 2 como PT seco (namespace diferente). Se almacenan juntas y se veran las 2 en la misma interfaz.
+  # Juntas: Las 2 como PT distinto (namespace diferente). Se almacenan juntas y se veran las 2 en la misma interfaz.
+
+  # Probablemente ellos la tienen que ver separado, pero jefes juntos(simplemente podrian filtrar por tipo de secado para separarlas)
+  # Numeracion ira para SECO INDEPENDIENTE SEA RECEPCION O SECADO
+  # TODO: En SECADO LES MUESTRO LAS QUE SON PT mixto o horno!
+
 
   ProductType.create!(product_types)
 
