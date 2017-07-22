@@ -1,0 +1,2 @@
+module Tsc::DamageSamplesHelper
+end

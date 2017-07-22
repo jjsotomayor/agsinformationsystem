@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   #get '/' => "elements#index"
   #get '/' => "pages#home_quality_controls"
 
-  resources :damage_samples
+  # resources :damage_samples
   resources :carozo_samples
   resources :sorbate_samples
   resources :humidity_samples
@@ -43,6 +43,26 @@ Rails.application.routes.draw do
   end
 
   namespace :secado do
+    resources :caliber_samples
+    resources :damage_samples
+  end
+
+  namespace :seam do
+    resources :caliber_samples
+    resources :damage_samples
+  end
+
+  namespace :cn do
+    resources :caliber_samples
+    resources :damage_samples
+  end
+
+  namespace :tsc do
+    resources :caliber_samples
+    resources :damage_samples
+  end
+
+  namespace :tcc do
     resources :caliber_samples
     resources :damage_samples
   end

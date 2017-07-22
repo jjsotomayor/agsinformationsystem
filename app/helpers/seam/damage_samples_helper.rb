@@ -1,0 +1,2 @@
+module Seam::DamageSamplesHelper
+end

@@ -83,6 +83,7 @@ class DamageSamplesController < ApplicationController
     end
 
     def element_params
+      # params.permit(:tag, :process_order, :product_type_id, :drying_method_id, :previous_usda, :ex_tag)
       params.permit(:tag, :process_order, :product_type_id, :drying_method_id, :previous_usda, :ex_tag)
     end
 

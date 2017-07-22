@@ -22,15 +22,16 @@
           <td><%= time(damage_sample.created_at) %></td>
           <%=common_table_body(damage_sample)%>
           <td><%= damage_sample.element.drying_method.name %></td>
-          <td><%= damage_sample.usda.truncate(7) %></td>
-          <td><%= link_to 'Ver', calibrado_damage_sample_path(damage_sample)%></td>
+          <td><%= damage_sample.usda.truncate(10) %></td>
+          <td><%= link_to 'Ver', seam_damage_sample_path(damage_sample)%></td>
           <!-- link_to 'Ver', new_secado_damage_sample_path(id_show: damage_sample.id), class: "see-sample", id_show: damage_sample.id -->
-          <td><%= link_to 'Editar', edit_calibrado_damage_sample_path(damage_sample, process: @process) %></td>
+          <td><%= link_to 'Editar', edit_seam_damage_sample_path(damage_sample, process: @process) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
 
-<%= link_to 'Todas las muestras de daños en '+ process_name, calibrado_damage_samples_path %>
+<%= link_to 'Todas las muestras de daños en '+ process_name, seam_damage_samples_path %>
 </div>
+<br>

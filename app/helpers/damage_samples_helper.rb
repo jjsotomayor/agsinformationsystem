@@ -28,13 +28,14 @@ module DamageSamplesHelper
       "mold":	"Hongo",
       "dirt":	"Suciedad adherida",
       "foreign_material":	"Materias extrañas",
-      "vegetal_foreign_material":	"Materia extraña vegetal",
+      "vegetal_foreign_material":	"Materia ext vegetal",
       "insect_infestation":	"Infestac insectos",
       "decay":	"Pudricion",
       "deshidratado": "Deshidratado",
       "bolsa_de_agua": "Bolsa de agua",
       "ruset": "Ruset",
-      "reventados": "Reventados"
+      "reventados": "Reventados",
+      "carozo": "Carozo"
     }
     translation[damage.to_sym]
   end
@@ -75,8 +76,9 @@ module DamageSamplesHelper
   end
 
   # Retorn los daños como porcentaje o gramos, ademas permite incluir (% o g) si type = "%" o "g"
-  def table_body_damages(damage_sample, type = "", include_sign)
+  def table_body_damages(damage_sample, type = "", include_sign = false)
     attr_end = type.include?("%") ? "_perc" : ""
+    pp "agregar: #{attr_end}"
     type = "" unless include_sign
     html = ""
     @damages_list.each do |dam|
@@ -88,13 +90,14 @@ module DamageSamplesHelper
   ##########################################
   ############## Links helpers ############
   ##########################################
-  
+
   # Si no se es ninguno de los usuarios, no habra link
   def link_back_from_show(user_type)
+    process_name
     if user_type == "User"
-      link_to 'Atrás', secado_damage_samples_path
+      link_to 'Atrás', send(process_name + "_damage_samples_path")#secado_damage_samples_path
     elsif user_type == "UserControl"
-      link_to 'Atrás', new_secado_damage_sample_path
+      link_to 'Atrás', send("new_" + process_name + "_damage_sample_path")#new_secado_damage_sample_path
     end
   end
 

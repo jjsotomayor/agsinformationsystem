@@ -16,6 +16,12 @@ module ApplicationHelper
     ret
   end
 
+  # Retorna "selected" si se esta en el proceso, sino "". Para usar en css class
+  def selected(process)
+    return "selected" if process_name == process
+    return ""
+  end
+
 
   ##########################################
   ############## HELPING TO RENDER #########
@@ -24,13 +30,13 @@ module ApplicationHelper
     html = #{}"<th>#</th>
             "<th>Resp.</th>
             <th>Tarja</th>
-            <th>Peso muestra (gr)</th>"
+            <th>Peso muest. (gr)</th>"
     html.html_safe
   end
 
   def common_table_body(sample)
     #html =  {}"<td>" + sample.id.to_s + "</td>"
-    html = "<td>" + sample.responsable + "</td>"
+    html = "<td>" + sample.responsable.truncate(7) + "</td>"
     html << "<td>" + sample.element.tag.to_s + "</td>"
     html << "<td>" + round_or_nil(sample.sample_weight).to_s + "</td>"
     html.html_safe
@@ -45,5 +51,33 @@ module ApplicationHelper
   def process_name
     controller.class.parent.to_s.downcase
   end
+
+
+  def short_status(sample)
+    if sample.aprobado?
+      "Aprob."
+    elsif sample.rechazado?
+      "Rech."
+    elsif sample.pendiente?
+      "Pend."
+    else
+      "-"
+    end
+  end
+  
+  ##########################################
+  ################ Diseño #################
+  ##########################################
+  # Recibe objeto muestra y retorna class de la fila en la tabla
+  def colored_rows(sample)
+    if sample.aprobado?
+      "success"
+    elsif sample.rechazado?
+      "danger"
+    elsif sample.pendiente?
+      "warning"
+    end
+  end
+
 
 end

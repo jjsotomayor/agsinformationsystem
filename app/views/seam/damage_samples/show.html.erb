@@ -8,26 +8,30 @@
     <thead>
       <tr>
         <th>Creacion</th>
-        <th>Responsable</th>
+        <th>Resp</th>
         <th>Tarja</th>
         <th>Tipo</th>
+        <th>Orden</th>
         <th>USDA</th>
-        <th>DF07</th>
+
       </tr>
     </thead>
 
     <tbody>
         <tr>
           <td><%=date_time(@damage_sample.created_at)%></td>
-          <td><%= @damage_sample.responsable %></td>
+          <td><%= @damage_sample.responsable.truncate(12) %></td>
           <td><%= @damage_sample.element.tag%></td>
           <td><%= @damage_sample.element.drying_method.name%></td>
+          <td><%= @damage_sample.element.process_order %></td>
           <td><%= @damage_sample.usda %></td>
-          <td><%= short_status(@damage_sample) %></td> <!--TODO check if it works everywhere-->
+
         </tr>
     </tbody>
   </table>
   <br>
+
+
 
   <table class = "table table-striped display-weight">
     <thead>
@@ -39,7 +43,6 @@
   </table>
 
 
-  <br>
   <table class = "table table-striped display-damages">
     <thead>
       <tr>

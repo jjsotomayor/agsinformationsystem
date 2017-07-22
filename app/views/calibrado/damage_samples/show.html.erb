@@ -12,7 +12,6 @@
         <th>Tarja</th>
         <th>Tipo</th>
         <th>USDA</th>
-        <th>DF07</th>
       </tr>
     </thead>
 
@@ -23,7 +22,6 @@
           <td><%= @damage_sample.element.tag%></td>
           <td><%= @damage_sample.element.drying_method.name%></td>
           <td><%= @damage_sample.usda %></td>
-          <td><%= short_status(@damage_sample) %></td> <!--TODO check if it works everywhere-->
         </tr>
     </tbody>
   </table>
@@ -58,10 +56,10 @@
           <td><%=round_or_nil(@damage_sample.send(dam+ "_perc"), 1)%></td>
         </tr>
       <%end%>
-      <tr class = "success">
+      <tr class = "total success">
         <td>Total</td>
         <td><%=@damage_sample.total_damages%></td>
-        <td><%=@damage_sample.total_damages_perc%></td>
+        <td><%=@damage_sample.total_damages_perc.round(1)%></td>
       </tr>
     </tbody>
   </table>

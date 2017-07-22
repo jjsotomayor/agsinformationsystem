@@ -53,7 +53,7 @@
           <td><%= damage_sample.element.tag %></td>
           <td><%= damage_sample.sample_weight %></td>
           <%= render "damage_samples/index/body_"+ get_damage_category(@process), damage_sample: damage_sample %>
-          <td><%= damage_sample.usda %></td>
+          <td><%= damage_sample.usda.truncate(7) %></td>
           <td><%= damage_sample.df07 %></td>
           <td><%= link_to 'Ver', damage_sample %></td>
           <td><%= link_to 'Editar', edit_damage_sample_path(damage_sample, process: @process) %></td>

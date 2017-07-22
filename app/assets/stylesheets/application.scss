@@ -217,11 +217,11 @@ input[type=text]:focus {
 // Specific css for damage_samples controller
 #damage_samples{
   // FIXME creo que estos css van a agarrar cosas extra (por el . junto)
-  .container-last-samples.tiernizado{ width: 1400px; }
-  .container-last-samples.calibrado{ width: 1400px; }
-  .container-last-samples.ensacado{ width: 1400px; }
-  .container-last-samples.seco{ width: 1400px; }
-  .container-last-samples.fresco{ width: 1000px; }
+  // .container-last-samples.tiernizado{ width: 1400px; }
+  // .container-last-samples.calibrado{ width: 1400px; }
+  // .container-last-samples.ensacado{ width: 1400px; }
+  // .container-last-samples.secado{ width: 1400px; }
+  // .container-last-samples.fresco{ width: 1000px; }
 
 
   .container-samples{
@@ -261,9 +261,15 @@ input[type=text]:focus {
     }
   }
   .title-show{
-    padding-top: 13px !important;
-    padding-bottom: 1px !important;
-    margin-bottom: 10px ;
+    // padding-top: 13px !important;
+    // padding-bottom: 1px !important;
+
+    padding-top: 3px !important;
+    padding-bottom: 2px !important;
+    max-height: 34px;
+    // margin-bottom: 10px ;
+
+
     // background-color: rgb(204,235,197);
     // background-color: rgb(133,196,120);
     // background-color: rgb(53,98,68);
@@ -279,10 +285,14 @@ input[type=text]:focus {
  .display-damages{
    width: 400px;
    margin: 0 auto;
-  //  font-size: 13px;
+   font-size: 13px;
    td {
-     padding: 3px !important;
+     padding: 1px !important;
    }
+ }
+
+ .total{
+   border-top: 2px solid #888;
  }
 
 

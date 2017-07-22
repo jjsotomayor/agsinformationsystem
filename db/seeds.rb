@@ -32,10 +32,10 @@ product_types =
     { name: "fresco", humidity_min: nil, humidity_max: nil} ,
     { name: "secado", humidity_min: 16, humidity_max:19} , # Es el unico que se puede almacenar desde 2 interfaces.
     { name: "calibrado", humidity_min: nil, humidity_max:20} ,
-    { name: "TSC", humidity_min: 29, humidity_max:32} ,
-    { name: "TCC", humidity_min: 31, humidity_max:35} ,
-    { name: "CN", humidity_min: nil, humidity_max: 20} ,
-    { name: "SEAM", humidity_min: nil, humidity_max:22} ,
+    { name: "tsc", humidity_min: 29, humidity_max:32} ,
+    { name: "tcc", humidity_min: 31, humidity_max:35} ,
+    { name: "cn", humidity_min: nil, humidity_max: 20} ,
+    { name: "seam", humidity_min: nil, humidity_max:22} ,
   ]
   # NOTE: Como sera el comportamiento para las muestras de rec. de cancha relacionado con las de secado.
   # Procesos si se hacen juntos
@@ -58,7 +58,7 @@ product_types =
  UserControl.destroy_all
 
  User.create!(name:"Joaquin", last_name:"Soto", password:"123123", email: "jjsotomayor@uc.cl")
- UserControl.create!(name:"juacontrol", password:"123123")
+ UserControl.create!(name:"joaquin", password:"123123")
  IpAddress.create(ip: "127.0.0.1")
 
 
