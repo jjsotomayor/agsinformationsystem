@@ -18,7 +18,7 @@ class HumiditySample < ApplicationRecord
      min = self.element.product_type.humidity_min
      max = self.element.product_type.humidity_max
      puts "Min: #{min}, Max: #{max}"
-     self.status = between?(self.sorbate, min, max) ? "aprobado" : "rechazado"
+     self.status = between?(self.humidity, min, max) ? "aprobado" : "rechazado"
    end
 
  end

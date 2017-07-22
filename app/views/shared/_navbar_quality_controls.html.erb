@@ -13,7 +13,7 @@
       <!-- FIXME Agregar colores a botones cuando se cliquean -->
 <ul class="nav navbar-nav">
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Laboratorio<span class="caret"></span></a>
+        <a class="<%="dropdown-toggle " + is_laboratorio()%>" data-toggle="dropdown" href="#">Laboratorio<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><%=link_to 'Humedad', new_humidity_sample_path%></li>
           <li><%=link_to 'Sorbato', new_sorbate_sample_path%></li>
@@ -25,7 +25,7 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">#Recepción fresco#<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <!-- FIXME Agregar que tipo de daño y calibre es -->
-            <li><%=link_to 'Daños', new_damage_sample_path(process: "fresco") %></li>
+            <li><%=link_to 'Daños'  %></li>
             <li><%=link_to 'Calibre', new_caliber_sample_path(process: "fresco")%></li>
           </ul>
         </li>
@@ -34,7 +34,7 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">#Recepción Sol#<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <!-- FIXME Agregar que tipo de daño y calibre es -->
-            <li><%=link_to 'Daños', new_damage_sample_path(process: "seco") %></li>
+            <li><%=link_to 'Daños' %></li>
             <li><%=link_to 'Calibre', new_caliber_sample_path(process: "seco")%></li>
           </ul>
         </li>

@@ -22,6 +22,13 @@ module ApplicationHelper
     return ""
   end
 
+  def is_laboratorio
+    name = controller.class.name
+    pp name
+    return "selected" if  name == "HumiditySamplesController" or name == "SorbateSamplesController"
+    ""
+  end
+
 
   ##########################################
   ############## HELPING TO RENDER #########
@@ -64,7 +71,7 @@ module ApplicationHelper
       "-"
     end
   end
-  
+
   ##########################################
   ################ Diseño #################
   ##########################################

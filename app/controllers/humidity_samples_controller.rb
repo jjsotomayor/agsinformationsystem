@@ -73,4 +73,9 @@ class HumiditySamplesController < ApplicationController
     def humidity_sample_create_params
       params.require(:humidity_sample).permit(:responsable, :humidity)
     end
+
+    def element_params
+      params.permit(:tag)
+    end
+
 end
