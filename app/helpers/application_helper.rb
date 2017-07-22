@@ -87,4 +87,21 @@ module ApplicationHelper
   end
 
 
+  ##########################################
+  ######### METHODS USED IN THE FORM #######
+  ##########################################
+  def set_url_for_form(type, sample)
+    # Obtiene process actual de la url!
+    process = controller.class.parent.to_s.downcase
+    if type == "new"
+      # Arma el string y con send llama al path/url helper autogenerado para las rutas de la app
+      url = send(process + "_" + controller_name + "_path")
+    elsif type == "edit"
+      puts "ID: #{sample.id.to_s}"
+      url = "/"+process + "/" + controller_name + "/"+ sample.id.to_s
+      puts url
+      url
+    end
+  end
+
 end

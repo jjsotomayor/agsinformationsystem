@@ -1,4 +1,59 @@
-<p id="notice"><%= notice %></p>
+<p>
+  <strong>Creacion:</strong>
+  <%= date_time(@caliber_sample.created_at) %>
+</p>
 
-<%= link_to 'Edit', edit_calibrado_caliber_sample_path(@calibrado_caliber_sample) %> |
-<%= link_to 'Back', calibrado_caliber_samples_path %>
+<p>
+  <strong>Responsable:</strong>
+  <%= @caliber_sample.responsable %>
+</p>
+
+<p>
+  <strong>Tarja:</strong>
+  <%= @caliber_sample.element.tag %>
+</p>
+
+<p>
+  <strong>Peso muestra:</strong>
+  <%= @caliber_sample.sample_weight %>
+</p>
+<p>
+  <strong>Frutos en muestra:</strong>
+  <%= @caliber_sample.fruits_in_sample %>
+</p>
+
+<p>
+  <strong>Frutos por libra:</strong>
+  <%= @caliber_sample.fruits_per_pound %>
+</p>
+
+<p>
+  <strong>Calibre:</strong>
+  <%= @caliber_sample.caliber.name %>
+</p>
+
+
+<% if @include_deviation%>
+  -------------- Desviacion --------------- <br>
+  <p>
+    <strong>Frutos grandes en muestra:</strong>
+    <%= @caliber_sample.deviation_sample.big_fruits_in_sample %>
+  </p>
+  <p>
+      <strong>Frutos pequeños en muestra:</strong>
+    <%= @caliber_sample.deviation_sample.small_fruits_in_sample %>
+  </p>
+  <p>
+    <strong>Desviacion:</strong>
+    <%= @caliber_sample.deviation_sample.deviation %>
+  </p>
+  <p>
+    <strong>Estado:</strong>
+    <%= @caliber_sample.deviation_sample.status %>
+  </p>
+  ------------------------------------------ <br>
+
+<% end%>
+
+
+<%= link_back_from_show_caliber(user_type)%>

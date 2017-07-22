@@ -5,8 +5,8 @@ class CaliberSample < ApplicationRecord
   belongs_to :element
   belongs_to :caliber
   has_one :deviation_sample
+  delegate :product_type, :to => :element, :allow_nil => true
 
-  # before_save :calculate_caliber
   before_validation :calculate_caliber
 
   validates :element, :responsable, :fruits_per_pound, :fruits_in_sample, :sample_weight, :caliber, presence: true
@@ -20,10 +20,19 @@ class CaliberSample < ApplicationRecord
     self.fruits_per_pound = (self.fruits_in_sample.to_f /  self.sample_weight) * grams_per_lb
     self.caliber = Caliber.first
     Caliber.all.each do |cal|
-      if self.fruits_per_pound > cal.minimum && self.fruits_per_pound < cal.maximum
+      if self.fruits_per_pound > cal.minimum && self.fruits_per_pound <= cal.maximum
          self.caliber = cal and break
       end
     end
+  end
+
+  # Obtiene ultimas quantity muestras de daños del process
+  def self.get_samples(process, responsable = nil)
+    puts "PRoceso : #{process}"
+    product_type = ProductType.find_by(name: process)
+    caliber_samples =  product_type.caliber_samples.active.order('created_at DESC')
+    return caliber_samples if ! responsable
+    caliber_samples.where(responsable: responsable)
   end
 
 end

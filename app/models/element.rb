@@ -5,6 +5,7 @@ class Element < ApplicationRecord
   belongs_to :product_type
   belongs_to :drying_method
   has_many :damage_samples
+  has_many :caliber_samples
 
   validates :tag,  uniqueness: true, presence: true
 

@@ -1,5 +1,66 @@
-<h1>New Calibrado Caliber Sample</h1>
+<%= render 'shared/message_success_js', sample: @success_sample if  @success_sample%>
+<%= render 'shared/errors', sample: @caliber_sample%>
+<!-- Errores que poseen las deviation samples, si es que hay -->
+<% if @include_deviation and @d_sample.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@d_sample.errors.count, "error") %> prohibited this deviation_sample from being saved:</h2>
 
-<%= render 'form', calibrado_caliber_sample: @calibrado_caliber_sample %>
+  <ul>
+    <% @d_sample.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-<%= link_to 'Back', calibrado_caliber_samples_path %>
+<%= render 'shared_caliber_samples/form_calling', caliber_sample: @caliber_sample, type: "new"%>
+
+
+<div class="container-last-samples caliber">
+  <h3>Tus ultimas muestras de calibre</h3>
+<table class = "table table-striped">
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Resp.</th>
+      <th>Tarja</th>
+      <th>Frutos en muest.</th>
+      <th>Peso muest. (gr)</th>
+      <th>Calib.</th>
+      <th>FG</th>
+      <th>FP</th>
+      <th>Desv</th>
+      <th>Estado</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @caliber_samples.each do |caliber_sample| %>
+      <tr>
+        <td><%= time(caliber_sample.created_at) %></td>
+        <td><%= caliber_sample.responsable.truncate(6) %></td>
+        <td><%= caliber_sample.element.tag %></td>
+        <td><%= caliber_sample.fruits_in_sample %></td>
+        <td><%= caliber_sample.sample_weight %></td>
+        <td><%= caliber_sample.caliber.name %></td>
+
+
+        <td><%= caliber_sample.deviation_sample.big_fruits_in_sample if caliber_sample.deviation_sample %></td>
+        <td><%= caliber_sample.deviation_sample.small_fruits_in_sample if caliber_sample.deviation_sample %></td>
+        <td><%= caliber_sample.deviation_sample.deviation.round(0) if caliber_sample.deviation_sample  %></td>
+
+        <%if caliber_sample.deviation_sample%>
+          <td><%= short_status(caliber_sample.deviation_sample)%></td>
+        <%else%>
+          <td>-</td>
+        <%end%>
+
+        <td><%= link_to 'Ver', calibrado_caliber_sample_path(caliber_sample) %></td>
+        <td><%= link_to 'Editar', edit_calibrado_caliber_sample_path(caliber_sample) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Todas las muestras de calibre', calibrado_caliber_samples_path %>
+</div>

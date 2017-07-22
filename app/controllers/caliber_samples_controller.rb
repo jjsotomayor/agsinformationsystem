@@ -2,11 +2,12 @@ class CaliberSamplesController < ApplicationController
   include SamplesMethods
   before_action :set_caliber_sample, only: [:show, :edit, :update, :destroy]
   before_action :set_process
-  before_action :include_deviation, only: [:new, :create]
+  before_action :set_sample_name, only: [:new, :edit]
+  before_action :include_deviation, only: [:show, :new, :create, :edit]
 
   # GET /caliber_samples
   def index
-    @caliber_samples = CaliberSample.active.order('created_at DESC')
+    @caliber_samples = CaliberSample.get_samples(@process)
   end
 
   # GET /caliber_samples/1
@@ -15,9 +16,7 @@ class CaliberSamplesController < ApplicationController
 
   # GET /caliber_samples/new
   def new
-    # TODO: Solo deberia mostrar las creadas en esta sesion, (caliber samples se podria tomar desde varios pcs)
-      # Ayudaria mostrarles el proceso de las tarjas ya ingresadas , para que sepan cuales son suyas
-    @caliber_samples = CaliberSample.active.order('created_at DESC').first(3)
+    @caliber_samples = CaliberSample.get_samples(@process, logged_user.name).first(3)
     @caliber_sample = CaliberSample.new
     @d_sample =  DeviationSample.new # Unicamente para que no se caiga al tratar de leer errores
     # Permite mostrar mensaje de exito en creacion/edicion muestra anterior
@@ -30,8 +29,8 @@ class CaliberSamplesController < ApplicationController
 
   # POST /caliber_samples
   def create
-    @element = Element.create_element_if_doesnt_exist(element_params)
-    @caliber_sample = CaliberSample.new(caliber_sample_create_params)
+    @element = Element.create_element_if_doesnt_exist(element_params, @process)
+    @caliber_sample = CaliberSample.new(caliber_sample_params)
     @caliber_sample.element = @element
 
     success_saving = @caliber_sample.save
@@ -43,34 +42,33 @@ class CaliberSamplesController < ApplicationController
 
       if success_saving
         session[:display_created_alert] = true
-        redirect_to new_caliber_sample_path process: @process, success_id: @caliber_sample.id
+        redirect_to send("new_"+@process+"_caliber_sample_path", success_id: @caliber_sample.id)
       else
-        # TODO: por que no hay necesidad de los demas metodos de new???
-        @caliber_samples = CaliberSample.active.last(3)
+        @caliber_samples = CaliberSample.get_samples(@process, logged_user.name).first(3)
         render :new
       end
   end
 
   # PATCH/PUT /caliber_samples/1
   def update
-    success = @caliber_sample.update(caliber_sample_create_params)
+    success = @caliber_sample.update(caliber_sample_params)
     if success and @caliber_sample.deviation_sample
       success = @caliber_sample.deviation_sample.update(deviation_sample_params)
     end
 
       if success
         session[:display_updated_alert] = true
-        redirect_to new_caliber_sample_path process: @process, success_id: @caliber_sample.id
+        redirect_to send("new_"+@process+"_caliber_sample_path", success_id: @caliber_sample.id)
       else
         #Esta vista se rompe completa al ingresar.
-        render :edit
+        # render :edit
       end
   end
 
   # DELETE /caliber_samples/1
   def destroy
     @caliber_sample.soft_delete
-    redirect_to caliber_samples_url, notice: 'Caliber sample was successfully destroyed.'
+    redirect_to send(@process+"_caliber_samples_url"), notice: 'Muestra de calibre eliminada'
   end
 
   private
@@ -79,10 +77,7 @@ class CaliberSamplesController < ApplicationController
       @caliber_sample = CaliberSample.find(params[:id])
     end
 
-    # def caliber_sample_params
-    #   params.require(:caliber_sample).permit(:responsable, :element_id, :fruits_per_pound, :caliber_id, :fruits_in_sample, :sample_weight)
-    # end
-    def caliber_sample_create_params
+    def caliber_sample_params
       params.require(:caliber_sample).permit(:responsable, :fruits_in_sample, :sample_weight)
     end
 
@@ -95,6 +90,13 @@ class CaliberSamplesController < ApplicationController
     end
 
     def set_process
-      @process = params[:process]
+      @process = process_name
+    end
+    def set_sample_name
+      @sample_name = "caliber"
+    end
+
+    def element_params
+      params.permit(:tag)
     end
 end

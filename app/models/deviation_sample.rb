@@ -20,7 +20,7 @@ class DeviationSample < ApplicationRecord
     grams_per_lb = Rails.configuration.grams_per_lb
     self.big_fruits_per_pound = (self.big_fruits_in_sample.to_f/self.sample_weight) * grams_per_lb
     self.small_fruits_per_pound = (self.small_fruits_in_sample.to_f/self.sample_weight) * grams_per_lb
-    self.deviation = self.big_fruits_per_pound - self.small_fruits_per_pound
+    self.deviation = (self.big_fruits_per_pound - self.small_fruits_per_pound).abs
 
     self.status = "rechazado"
     self.status = "aprobado" if self.deviation < Rails.configuration.max_deviation
