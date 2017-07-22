@@ -86,6 +86,10 @@ module ApplicationHelper
     end
   end
 
+  def color_row_yellow(boolean)
+    boolean ? "warning" : ""
+  end
+
 
   ##########################################
   ######### METHODS USED IN THE FORM #######

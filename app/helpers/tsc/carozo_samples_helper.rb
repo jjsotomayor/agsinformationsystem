@@ -1,0 +1,2 @@
+module Tsc::CarozoSamplesHelper
+end

@@ -1,0 +1,2 @@
+module Cn::CaliberSamplesHelper
+end

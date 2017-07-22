@@ -21,19 +21,26 @@
 <table class = "table table-striped">
   <thead>
     <tr>
+      <th></th>
       <th> </th>
       <th>Resp.</th>
       <th>Tarja</th>
       <th>Frutos en muest.</th>
       <th>Peso muest. (gr)</th>
       <th>Calib.</th>
+      <th>FG</th>
+      <th>FP</th>
+      <th>Desv</th>
+      <th>Estado</th>
       <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @caliber_samples.each do |caliber_sample| %>
-      <tr>
+      <tr class = "<%=color_row_yellow(caliber_sample.is_ex_caliber)%>" >
+
+        <td><%= caliber_sample.is_ex_caliber ? "Ex calibre:" : "" %></td>
         <td><%= time(caliber_sample.created_at) %></td>
         <td><%= caliber_sample.responsable.truncate(6) %></td>
         <td><%= caliber_sample.element.tag %></td>
@@ -42,12 +49,21 @@
         <td><%= caliber_sample.caliber.name %></td>
 
 
+        <td><%= caliber_sample.deviation_sample.big_fruits_in_sample if caliber_sample.deviation_sample %></td>
+        <td><%= caliber_sample.deviation_sample.small_fruits_in_sample if caliber_sample.deviation_sample %></td>
+        <td><%= caliber_sample.deviation_sample.deviation.round(0) if caliber_sample.deviation_sample  %></td>
 
-        <td><%= link_to 'Ver', secado_caliber_sample_path(caliber_sample) %></td>
-        <td><%= link_to 'Editar', edit_secado_caliber_sample_path(caliber_sample) %></td>
+        <%if caliber_sample.deviation_sample%>
+          <td><%= short_status(caliber_sample.deviation_sample)%></td>
+        <%else%>
+          <td>-</td>
+        <%end%>
+
+        <td><%= link_to 'Ver', tsc_caliber_sample_path(caliber_sample) %></td>
+        <td><%= link_to 'Editar', edit_tsc_caliber_sample_path(caliber_sample) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Todas las muestras de calibre', secado_caliber_samples_path %>
+<%= link_to 'Todas las muestras de calibre', tsc_caliber_samples_path %>
 </div>

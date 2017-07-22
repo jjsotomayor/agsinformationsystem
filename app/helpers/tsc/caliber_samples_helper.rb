@@ -1,0 +1,2 @@
+module Tsc::CaliberSamplesHelper
+end

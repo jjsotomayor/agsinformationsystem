@@ -61,7 +61,7 @@
             <a class="<%="dropdown-toggle " + selected("seam")%>" data-toggle="dropdown" href="#">SEAM<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><%=link_to 'Daños', new_seam_damage_sample_path%></li>
-              <li><%=link_to 'Calibre y desviacion', new_caliber_sample_path(process: "ensacado")%></li>
+              <li><%=link_to 'Calibre y desviacion', new_seam_caliber_sample_path(process: "ensacado")%></li>
             </ul>
           </li>
 
@@ -69,7 +69,7 @@
             <a class="<%="dropdown-toggle " + selected("cn")%>" data-toggle="dropdown" href="#">CN<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><%=link_to 'Daños', new_cn_damage_sample_path%></li>
-              <li><%=link_to 'Calibre y desviacion', new_caliber_sample_path(process: "ensacado")%></li>
+              <li><%=link_to 'Calibre y desviacion', new_cn_caliber_sample_path%></li>
             </ul>
           </li>
 
@@ -77,7 +77,7 @@
             <a class="<%="dropdown-toggle " + selected("tsc")%>" data-toggle="dropdown" href="#">TSC<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><%=link_to 'Daños', new_tsc_damage_sample_path%></li>
-              <li><%=link_to 'Calibre y desviacion', new_caliber_sample_path(process: "tiernizado")%></li>
+              <li><%=link_to 'Calibre y desviacion', new_tsc_caliber_sample_path%></li>
               <li><%=link_to 'Carozo en caja', new_carozo_sample_path%></li>
               <li><%=link_to 'Temperatura###'%></li>
             </ul>
@@ -87,7 +87,7 @@
             <a class="<%="dropdown-toggle " + selected("tcc")%>" data-toggle="dropdown" href="#">TCC<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><%=link_to 'Daños', new_tcc_damage_sample_path%></li>
-              <li><%=link_to 'Calibre y desviacion', new_caliber_sample_path(process: "tiernizado")%></li>
+              <li><%=link_to 'Calibre y desviacion', new_tcc_caliber_sample_path%></li>
               <li><%=link_to 'Carozo en caja', new_carozo_sample_path%></li>
               <li><%=link_to 'Temperatura###'%></li>
             </ul>

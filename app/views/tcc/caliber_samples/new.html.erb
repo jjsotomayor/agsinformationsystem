@@ -27,7 +27,11 @@
       <th>Frutos en muest.</th>
       <th>Peso muest. (gr)</th>
       <th>Calib.</th>
-      <th colspan="2"></th>
+      <th>FG</th>
+      <th>FP</th>
+      <th>Desv</th>
+      <th>Estado</th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
@@ -42,12 +46,21 @@
         <td><%= caliber_sample.caliber.name %></td>
 
 
+        <td><%= caliber_sample.deviation_sample.big_fruits_in_sample if caliber_sample.deviation_sample %></td>
+        <td><%= caliber_sample.deviation_sample.small_fruits_in_sample if caliber_sample.deviation_sample %></td>
+        <td><%= caliber_sample.deviation_sample.deviation.round(0) if caliber_sample.deviation_sample  %></td>
 
-        <td><%= link_to 'Ver', secado_caliber_sample_path(caliber_sample) %></td>
-        <td><%= link_to 'Editar', edit_secado_caliber_sample_path(caliber_sample) %></td>
+        <%if caliber_sample.deviation_sample%>
+          <td><%= short_status(caliber_sample.deviation_sample)%></td>
+        <%else%>
+          <td>-</td>
+        <%end%>
+
+        <td><%= link_to 'Ver', tcc_caliber_sample_path(caliber_sample) %></td>
+        <td><%= link_to 'Editar', edit_tcc_caliber_sample_path(caliber_sample) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Todas las muestras de calibre', secado_caliber_samples_path %>
+<%= link_to 'Todas las muestras de calibre', tcc_caliber_samples_path %>
 </div>

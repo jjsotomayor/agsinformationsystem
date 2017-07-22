@@ -38,7 +38,9 @@
 .selected{ // TODO When we are in a namespace the button will be painted
   font-weight: bold;
   background-color: rgb(53,98,68);
-  background-color: #005105; // V. oscuro logo
+  // background-color: #005105; // V. oscuro logo
+  background-color: #093145; // Azul
+  color: white !important;
 }
 
  body {
@@ -170,6 +172,12 @@ input[type=submit]{
   //margin-left: 10%;
     //align-self: center;
     //align-content: center;
+}
+.field select{
+  width: 174px;
+  height: 26px;
+
+
 }
 
 .field label{

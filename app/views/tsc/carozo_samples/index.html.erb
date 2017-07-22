@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tsc Carozo Samples</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tsc_carozo_samples.each do |tsc_carozo_sample| %>
+      <tr>
+        <td><%= link_to 'Show', tsc_carozo_sample %></td>
+        <td><%= link_to 'Edit', edit_tsc_carozo_sample_path(tsc_carozo_sample) %></td>
+        <td><%= link_to 'Destroy', tsc_carozo_sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tsc Carozo Sample', new_tsc_carozo_sample_path %>

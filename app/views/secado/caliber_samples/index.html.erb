@@ -1,20 +1,37 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Secado Caliber Samples</h1>
-
-<table>
+<div class="container">
+<h1>Muestras de Calibre</h1>
+<table class = "table table-striped">
   <thead>
     <tr>
+      <!-- TODO: Considerar omitir frutos en muestra y peso muestra  -->
+      <th>Creacion</th>
+      <th>Responsable</th>
+      <th>Tarja</th>
+      <th>Peso muestra (gr)</th>
+      <th>Frutos en muestra</th>
+      <th>Frutos x libra</th>
+      <th>Calibre</th>
+
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @secado_caliber_samples.each do |secado_caliber_sample| %>
+    <% @caliber_samples.each do |caliber_sample| %>
       <tr>
-        <td><%= link_to 'Show', secado_caliber_sample %></td>
-        <td><%= link_to 'Edit', edit_secado_caliber_sample_path(secado_caliber_sample) %></td>
-        <td><%= link_to 'Destroy', secado_caliber_sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= date_time(caliber_sample.created_at) %></td>
+        <td><%= caliber_sample.responsable.truncate(14) %></td>
+        <td><%= caliber_sample.element.tag %></td>
+        <td><%= caliber_sample.sample_weight %></td>
+        <td><%= caliber_sample.fruits_in_sample %></td>
+        <td><%= caliber_sample.fruits_per_pound %></td>
+        <td><%= caliber_sample.caliber.name %></td>
+
+
+
+        <td><%= link_to 'Ver', secado_caliber_sample_path(caliber_sample) %></td>
+        <td><%= link_to 'Editar', edit_secado_caliber_sample_path(caliber_sample) %></td>
+        <td><%= link_to 'Eliminar', secado_caliber_sample_path(caliber_sample), method: :delete, data: { confirm: '¿Seguro que deseas eliminar la muestra?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +39,5 @@
 
 <br>
 
-<%= link_to 'New Secado Caliber Sample', new_secado_caliber_sample_path %>
+<%= link_to 'Nueva muestra de calibre', new_secado_caliber_sample_path %>
+</div>

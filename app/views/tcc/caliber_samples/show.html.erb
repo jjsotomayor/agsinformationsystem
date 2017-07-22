@@ -33,4 +33,27 @@
 </p>
 
 
+<% if @include_deviation%>
+  -------------- Desviacion --------------- <br>
+  <p>
+    <strong>Frutos grandes en muestra:</strong>
+    <%= @caliber_sample.deviation_sample.big_fruits_in_sample %>
+  </p>
+  <p>
+      <strong>Frutos pequeños en muestra:</strong>
+    <%= @caliber_sample.deviation_sample.small_fruits_in_sample %>
+  </p>
+  <p>
+    <strong>Desviacion:</strong>
+    <%= @caliber_sample.deviation_sample.deviation %>
+  </p>
+  <p>
+    <strong>Estado:</strong>
+    <%= @caliber_sample.deviation_sample.status %>
+  </p>
+  ------------------------------------------ <br>
+
+<% end%>
+
+
 <%= link_back_from_show_caliber(user_type)%>

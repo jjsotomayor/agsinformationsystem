@@ -1,0 +1,17 @@
+<%= form_for(tsc_carozo_sample) do |f| %>
+  <% if tsc_carozo_sample.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tsc_carozo_sample.errors.count, "error") %> prohibited this tsc_carozo_sample from being saved:</h2>
+
+      <ul>
+      <% tsc_carozo_sample.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

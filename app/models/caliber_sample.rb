@@ -18,9 +18,8 @@ class CaliberSample < ApplicationRecord
     # NOTE Division de enteros es por defecto aproximada en cada calculo
     grams_per_lb = Rails.configuration.grams_per_lb
     self.fruits_per_pound = (self.fruits_in_sample.to_f /  self.sample_weight) * grams_per_lb
-    self.caliber = Caliber.first
     Caliber.all.each do |cal|
-      if self.fruits_per_pound > cal.minimum && self.fruits_per_pound <= cal.maximum
+      if self.fruits_per_pound >= cal.minimum && self.fruits_per_pound <= cal.maximum
          self.caliber = cal and break
       end
     end

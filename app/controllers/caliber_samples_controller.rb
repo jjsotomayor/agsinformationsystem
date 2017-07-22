@@ -78,11 +78,12 @@ class CaliberSamplesController < ApplicationController
     end
 
     def caliber_sample_params
-      params.require(:caliber_sample).permit(:responsable, :fruits_in_sample, :sample_weight)
+      params.require(:caliber_sample).permit(:responsable, :fruits_in_sample, :sample_weight, :is_ex_caliber) # :is_ex_caliber es solo para TSC
     end
 
     def include_deviation
-      @include_deviation = true if @process == "calibrado"
+      @include_deviation = true
+      @include_deviation = false if @process == "secado"
     end
 
     def deviation_sample_params

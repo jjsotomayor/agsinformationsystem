@@ -1,0 +1,2 @@
+module Seam::CaliberSamplesHelper
+end

@@ -10,22 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713212422) do
+ActiveRecord::Schema.define(version: 20170722174657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "caliber_samples", force: :cascade do |t|
-    t.string   "responsable",                     null: false
+    t.string   "responsable",                      null: false
     t.integer  "element_id"
-    t.integer  "fruits_in_sample",                null: false
-    t.integer  "sample_weight",                   null: false
-    t.integer  "fruits_per_pound",                null: false
+    t.integer  "fruits_in_sample",                 null: false
+    t.integer  "sample_weight",                    null: false
+    t.integer  "fruits_per_pound",                 null: false
     t.integer  "caliber_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "active",           default: true, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "active",           default: true,  null: false
     t.datetime "deleted_at"
+    t.boolean  "is_ex_caliber",    default: false, null: false
     t.index ["caliber_id"], name: "index_caliber_samples_on_caliber_id", using: :btree
     t.index ["element_id"], name: "index_caliber_samples_on_element_id", using: :btree
   end

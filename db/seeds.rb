@@ -12,17 +12,17 @@
  # Caliber.all.destroy_all
  Caliber.create([
   {name:"20-30", minimum:20, maximum:30},
-  {name:"30-40", minimum:30, maximum:39},
-  {name:"40-50", minimum:40, maximum:49},
-  {name:"50-60", minimum:50, maximum:59},
-  {name:"60-70", minimum:60, maximum:69},
-  {name:"70-80", minimum:70, maximum:79},
-  {name:"80-90", minimum:80, maximum:89},
-  {name:"90-100", minimum:90, maximum:99},
-  {name:"100-110", minimum:100, maximum:109},
-  {name:"110-120", minimum:110, maximum:119},
-  {name:"120-130", minimum:120, maximum:129},
-  {name:"130-144", minimum:130, maximum:144},
+  {name:"30-40", minimum:30, maximum:40},
+  {name:"40-50", minimum:40, maximum:50},
+  {name:"50-60", minimum:50, maximum:60},
+  {name:"60-70", minimum:60, maximum:70},
+  {name:"70-80", minimum:70, maximum:80},
+  {name:"80-90", minimum:80, maximum:90},
+  {name:"90-100", minimum:90, maximum:100},
+  {name:"100-110", minimum:100, maximum:110},
+  {name:"110-120", minimum:110, maximum:120},
+  {name:"120-130", minimum:120, maximum:130},
+  {name:"130-144", minimum:130, maximum:145},
   {name:"145+", minimum:145, maximum:1000}
   ])
 
