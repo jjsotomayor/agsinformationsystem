@@ -1,17 +1,50 @@
-<%= form_for(tsc_carozo_sample) do |f| %>
-  <% if tsc_carozo_sample.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(tsc_carozo_sample.errors.count, "error") %> prohibited this tsc_carozo_sample from being saved:</h2>
+<% if carozo_sample.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(carozo_sample.errors.count, "error") %> prohibited this carozo_sample from being saved:</h2>
 
-      <ul>
-      <% tsc_carozo_sample.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
+    <ul>
+    <% carozo_sample.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
   </div>
 <% end %>
+
+
+<div class= "container-samples">
+  <div class= "pestaña">Tiernizado</div>
+    <div class="outside-new-form green-outside-new-form">
+      <h1><span class= "glyphicon glyphicon-list-alt"></span> Carozo</h1>
+
+<% url = set_url_for_form("new", carozo_sample) %>
+<% method =  set_form_method("new")%>
+
+<%= form_for(carozo_sample, url: url, method: method, html: {class: 'inside-new-form green-inside-new-form'}) do |f| %>
+
+
+  <%= f.hidden_field :responsable, value: logged_user.name %>
+
+  <div class="field">
+    <%= f.label :Tarja %>
+    <%= text_field_tag :tag, '', autocomplete: 'off'%>
+  </div>
+
+  <div class="field">
+    <%= f.label :peso_con_carozo %>
+    <%= f.number_field :carozo_weight, id: "number-field", autocomplete: :off, placeholder: ' gramos', step: 0.1 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :peso_muestra %>
+    <%= f.number_field :sample_weight, id: "number-field", autocomplete: :off, placeholder: ' gramos', step: 0.1 %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "Guardar",  class: "btn btn-primary btn-lg btn-block" %>
+  </div>
+<% end %>
+
+    </div>
+  </div>
+</div>

@@ -1,6 +1,43 @@
-<h1>Editing Tsc Carozo Sample</h1>
+<% if @carozo_sample.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@carozo_sample.errors.count, "error") %> prohibited this carozo_sample from being saved:</h2>
+  <ul>
+    <% @carozo_sample.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-<%= render 'form', tsc_carozo_sample: @tsc_carozo_sample %>
+<div class= "container-samples">
+  <div class= "pestaña">Laboratorio</div>
+    <div class="outside-new-form green-outside-new-form">
+      <h1><span class= "glyphicon glyphicon-list-alt"></span> Editar Carozo</h1>
 
-<%= link_to 'Show', @tsc_carozo_sample %> |
-<%= link_to 'Back', tsc_carozo_samples_path %>
+
+<% url = set_url_for_form("edit", @carozo_sample) %>
+<% method =  set_form_method("edit")%>
+<%= form_for(@carozo_sample, url: url, method: method, html: {class: 'inside-new-form green-inside-new-form', autocomplete: :off})  do |f| %>
+
+<%= f.hidden_field :responsable, value: logged_user.name %>
+
+
+<div class="field">
+  <%= f.label :peso_con_carozo %>
+  <%= f.number_field :carozo_weight, id: "number-field", autocomplete: :off, placeholder: ' gramos', step: 0.01 %>
+</div>
+
+<div class="field">
+  <%= f.label :peso_muestra %>
+  <%= f.number_field :sample_weight, id: "number-field", autocomplete: :off, placeholder: ' gramos', step: 0.01 %>
+</div>
+
+  <div class="buttons-together-edit">
+    <%= link_to 'Regresar', new_tsc_carozo_sample_path, class: "btn-back btn btn-primary btn-lg "%>
+    <%= f.submit "Editar", class: "btn-edit btn btn-warning btn-lg" %>
+  </div>
+
+<% end %>
+
+    </div>
+</div>

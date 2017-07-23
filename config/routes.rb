@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   #get '/' => "pages#home_quality_controls"
 
   # resources :damage_samples
-  resources :carozo_samples
+  # resources :carozo_samples
   resources :sorbate_samples
   resources :humidity_samples
   resources :caliber_samples
@@ -60,6 +60,7 @@ Rails.application.routes.draw do
   namespace :tsc do
     resources :caliber_samples
     resources :damage_samples
+    resources :carozo_samples
   end
 
   namespace :tcc do
