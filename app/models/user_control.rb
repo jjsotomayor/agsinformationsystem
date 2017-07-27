@@ -1,5 +1,11 @@
 class UserControl < ApplicationRecord
 
+  has_many :user_control_accesses, dependent: :destroy
+  has_many :product_types, through: :user_control_accesses
+  # has_many :delivery_restrictions, { through: :category_delivery_restrictions }
+
+
+
   def self.is_valid_login(name, password, ip)
     response = {msg: ""}
     puts ip
@@ -22,6 +28,18 @@ class UserControl < ApplicationRecord
       response[:user] = user
     end
     response
+  end
+
+  # Permite agregar un acceso en el menu al usuario control
+  def add_access(product_type_id)
+    access = UserControlAccess.new(user_control: self, product_type_id: product_type_id)
+    access.save
+  end
+
+  # Permite quitarle un acceso en el menu al usuario control
+  def remove_access(product_type_id)
+    access = UserControlAccess.find_by(user_control: self, product_type_id: product_type_id)
+    access.destroy
   end
 
 end

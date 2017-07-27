@@ -1,11 +1,12 @@
 class UserControlsController < ApplicationController
-  before_action :set_user_control, only: [:edit, :update, :destroy]
+  before_action :set_user_control, only: [:edit, :update, :destroy, :add_access, :remove_access]
   before_action :verify_no_user_logged_in, only: [:new_session, :create_session]
 
   # GET /user_controls
   # GET /user_controls.json
   def index
     @user_controls = UserControl.all
+    @product_types = ProductType.all
   end
 
   # GET /user_controls/new
@@ -42,6 +43,17 @@ class UserControlsController < ApplicationController
     redirect_to user_controls_url, notice: 'Usuario control eliminado.'
   end
 
+  # Post /user_controls/1/add_access
+  def add_access
+    @user_control.add_access(params[:product_type])
+    redirect_to user_controls_path, notice: 'Acceso agregado correctamente.'
+  end
+
+  # Post /user_controls/1/remove_access
+  def remove_access
+    @user_control.remove_access(params[:product_type])
+    redirect_to user_controls_path, notice: 'Acceso eliminado correctamente'
+  end
 
   # GET /user_controls/sign_in
   def new_session

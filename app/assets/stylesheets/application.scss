@@ -276,7 +276,10 @@ input[type=text]:focus {
 
 
 
-  // Show of elements
+
+  ///////////////////////////////
+  ///// Show of samples /////
+  ///////////////////////////////
   .container-for-sample{
     max-width: 450px;
     margin: 0 auto;
@@ -320,6 +323,9 @@ input[type=text]:focus {
  .total{
    border-top: 2px solid #888;
  }
+ ///////////////////////////////
+ ///////////////////////////////
+ ///////////////////////////////
 
 
 // .show_damage_sample{
@@ -339,3 +345,40 @@ input[type=text]:focus {
 //     display: block;
 //     z-index: 99999;
 // }
+
+
+
+///////////////////////////////
+///// Forms inside tables /////
+///////////////////////////////
+.table{
+  input[type=submit] { //NOTE seria mejor reemplazarlo por class btn btn-primary btn-xs
+    margin-top: 10px;
+    height: 25px;
+    font-size: 13px;
+    padding: 0px 3px 0px 3px;
+    // padding: 0px !important;
+    border-radius: 0px;
+  }
+
+  .field-table{
+    margin-top: 10px;
+    margin-right: 8px;
+    select{
+      height: 24px;
+      min-width: 120px;
+    }
+  }
+}
+///////////////////////////////
+///////////////////////////////
+
+
+// Para usarlo en formularios basicos distintos a los de muestras
+.form-basic{
+    max-width: 380px;
+    padding: 15px 35px 15px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}

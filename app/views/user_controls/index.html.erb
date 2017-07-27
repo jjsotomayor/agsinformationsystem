@@ -6,8 +6,10 @@
     <tr>
       <th>Nombre</th>
       <th>Contraseña</th>
-      <th>#log ins</th>
-      <th>#muestras</th>
+      <th>Creación</th>
+      <th>Accesos permitidos</th>
+      <!-- <th>#log ins</th>
+      <th>#muestras</th> -->
 
       <th colspan="3"></th>
     </tr>
@@ -18,10 +20,45 @@
       <tr>
         <td><%= user_control.name %></td>
         <td><%= user_control.password %></td>
-        <td><%= user_control.sign_in_count %></td>
-        <td><%= "fix" %></td>
-        <td><%= link_to 'Editar', edit_user_control_path(user_control) %></td>
-        <td><%= link_to 'Eliminar', user_control, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= date(user_control.created_at) %></td>
+
+        <td>
+
+          <table>
+            <tbody>
+              <% user_control.product_types.each do |pt_access| %>
+                <tr>
+                  <td><%= pt_access.name.capitalize %></td>
+                  <td><%= link_to 'Quitar', remove_access_user_control_path(user_control, product_type: pt_access.id), method: :post, data: { confirm: '¿Seguro que deseas quitarle este acceso al control de calidad?' } %></td>
+                </tr>
+                <!-- , method: :delete -->
+              <% end %>
+
+              <tr class = "index_form">
+                <%= form_tag(add_access_user_control_path(user_control), method: :post) do %>
+                  <%= hidden_field_tag :user_control_id, user_control.id %>
+                  <td>
+                    <div class="field-table">
+                      <% pp user_control.product_types.to_a%>
+                      <% pp user_control.product_types.map{|pt| pt.id}%>
+                      <%= select_tag "product_type",  options_for_select(@product_types.where.not(id: user_control.product_types.to_a).map{|pt| [pt.name,pt.id]}), include_blank: true%>
+
+                    </div>
+                  </td>
+
+                  <td>
+                    <%= submit_tag "Agregar acceso",  class: "btn btn-primary btn-xs" %>
+                </td>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+
+        </td>
+
+
+        <td><%= link_to 'Editar', edit_user_control_path(user_control),  class: "btn btn-warning btn-xs" %></td>
+        <td><%= link_to 'Eliminar', user_control, method: :delete, data: { confirm: '¿Seguro que deseas eliminar el usuario?' },  class: "btn btn-danger btn-xs" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -29,5 +66,5 @@
 
 <br>
 
-<%= link_to 'Nuevo control de calidad', new_user_control_path %>
+<%= link_to 'Nuevo control de calidad', new_user_control_path,  class: "btn btn-primary btn-xs" %>
 </div>

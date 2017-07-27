@@ -24,7 +24,6 @@ module ApplicationHelper
 
   def is_laboratorio
     name = controller.class.name
-    pp name
     return "selected" if  name == "HumiditySamplesController" or name == "SorbateSamplesController"
     ""
   end
@@ -107,5 +106,11 @@ module ApplicationHelper
       url
     end
   end
+
+  def navbar_user(user)
+    role = user.role.name
+    'shared/navbar_' + role
+  end
+
 
 end

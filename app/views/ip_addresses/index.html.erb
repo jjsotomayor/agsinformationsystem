@@ -1,6 +1,9 @@
+
+<div class="container">
+
 <p>Tu ip es: <%=@my_ip%></p>
-<h1>Direcciones ip permitidas</h1>
-<table>
+<h2 class = "centered">Direcciones ip autorizadas</h2>
+<table class = "table table-striped">
   <thead>
     <tr>
       <th>Ip</th>
@@ -14,7 +17,7 @@
       <tr>
         <td><%= ip_address.ip %></td>
         <td><%= ip_address.comment %></td>
-        <td><%= link_to 'Destroy', ip_address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Eliminar', ip_address, method: :delete, data: { confirm: '¿Estas seguro?' },  class: "btn btn-danger btn-xs" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +25,5 @@
 
 <br>
 
-<%= link_to 'Agregar ip permitida', new_ip_address_path %>
+<%= link_to 'Agregar ip permitida', new_ip_address_path, class: "centered" %>
+</div>

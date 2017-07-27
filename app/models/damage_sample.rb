@@ -48,7 +48,7 @@ class DamageSample < ApplicationRecord
   def self.get_samples(process, responsable = nil)
     product_type = ProductType.find_by(name: process)
     damage_samples =  product_type.damage_samples.active.order('created_at DESC')
-    return damage_samples if ! responsable
+    return damage_samples if !responsable
     damage_samples.where(responsable: responsable)
   end
 

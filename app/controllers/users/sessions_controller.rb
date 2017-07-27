@@ -11,12 +11,14 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
    def create
      super
+     session[:user_type] = "User"
    end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    super
+    session[:user_type] = ""
+  end
 
   protected
 
@@ -39,5 +41,5 @@ class Users::SessionsController < Devise::SessionsController
       redirect_to root_path, alert: 'Solo falta que el administrador te de acceso. Solicitacelo ' and return
     end
   end
-  
+
 end

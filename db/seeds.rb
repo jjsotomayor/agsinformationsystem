@@ -5,6 +5,7 @@
 # Element.all.destroy_all
 #  ProductType.all.destroy_all
 #  Role.all.destroy_all
+
  ['admin', 'jefe_planta', 'jefe_control_calidad', 'jefe_bodega'].each do |role_name|
    Role.create!(name: role_name)
  end
@@ -26,16 +27,17 @@
   {name:"145+", minimum:145, maximum:1000}
   ])
 
-  # Fresco se podria añadir eventualmente
-product_types =
+# NOTE Si dejo secado y recepcion sol como prduct distintps puedo personalizar condiciones de rechazo aceptacion.
+product_types = # products type / proceso
   [
     { name: "fresco", humidity_min: nil, humidity_max: nil} ,
-    { name: "secado", humidity_min: 16, humidity_max:19} , # Es el unico que se puede almacenar desde 2 interfaces.
-    { name: "calibrado", humidity_min: nil, humidity_max:20} ,
-    { name: "tsc", humidity_min: 29, humidity_max:32} ,
-    { name: "tcc", humidity_min: 31, humidity_max:35} ,
+    { name: "recepcion seco", humidity_min: nil, humidity_max: nil} ,
+    { name: "secado", humidity_min: 16, humidity_max: 19} , # Es el unico que se puede almacenar desde 2 interfaces.
+    { name: "calibrado", humidity_min: nil, humidity_max: 20} ,
+    { name: "seam", humidity_min: nil, humidity_max: 22} ,
     { name: "cn", humidity_min: nil, humidity_max: 20} ,
-    { name: "seam", humidity_min: nil, humidity_max:22} ,
+    { name: "tsc", humidity_min: 29, humidity_max: 32} ,
+    { name: "tcc", humidity_min: 31, humidity_max: 35} ,
   ]
   # NOTE: Como sera el comportamiento para las muestras de rec. de cancha relacionado con las de secado.
   # Procesos si se hacen juntos
@@ -62,11 +64,16 @@ product_types =
  IpAddress.create(ip: "127.0.0.1")
 
 
-#usda = ['A', 'B', 'C', 'SSTD', 'no califica']
-100.times do
-  rand(1)
-  elem = Element.new(tag: rand(100000), lot: rand(1000), process_order: rand(100), product_type_id: rand(5)+1, drying_method_id: rand(3)+1, previous_usda: rand(0..4))
-  if !elem.save
-    pp elem.errors
+  #usda = ['A', 'B', 'C', 'SSTD', 'no califica']
+  # 100.times do
+  #   rand(1)
+  #   elem = Element.new(tag: rand(100000), lot: rand(1000), process_order: rand(100), product_type_id: rand(5)+1, drying_method_id: rand(3)+1, previous_usda: rand(0..4))
+  #   if !elem.save
+  #     pp elem.errors
+  #   end
+  # end
+
+  UserControl.all.each do |uc|
+    pt = ProductType.order("RANDOM()").first
+    UserControlAccess.create(user_control: uc, product_type: pt)
   end
-end

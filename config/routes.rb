@@ -1,11 +1,21 @@
 Rails.application.routes.draw do
+
+  resources :user_control_accesses
   resources :ip_addresses
   # User Control routes
   get '/user_controls/sign_in', to: 'user_controls#new_session'
   post '/user_controls/create_session'
   delete '/user_controls/sign_out', to: 'user_controls#destroy_session'
-  resources :user_controls, except: [:show]
-  #
+  resources :user_controls, except: [:show] do
+    member do
+      post :add_access# => , as: :authorize_user
+      post :remove_access# => , as: :authorize_user
+    end
+  end
+
+  # post '/user_controls/:id/add_access', to: 'user_controls#add_access'
+  # post '/user_controls/:id/remove_access', to: 'user_controls#remove_access'
+
   get 'reports/index'
 
   get 'pages/home'
