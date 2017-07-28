@@ -1,7 +1,7 @@
 <div class="container">
 <h1>Controles de calidad</h1>
 
-<table class = "table table-striped">
+<table class = "table table-striped table-with-forms">
   <thead>
     <tr>
       <th>Nombre</th>
@@ -26,10 +26,10 @@
 
           <table>
             <tbody>
-              <% user_control.product_types.each do |pt_access| %>
+              <% user_control.operations.each do |op_access| %>
                 <tr>
-                  <td><%= pt_access.name.capitalize %></td>
-                  <td><%= link_to 'Quitar', remove_access_user_control_path(user_control, product_type: pt_access.id), method: :post, data: { confirm: '¿Seguro que deseas quitarle este acceso al control de calidad?' } %></td>
+                  <td><%= op_access.name.capitalize %></td>
+                  <td><%= link_to 'Quitar', remove_access_user_control_path(user_control, operation: op_access.id), method: :post, data: { confirm: '¿Seguro que deseas quitarle este acceso al control de calidad?' } %></td>
                 </tr>
                 <!-- , method: :delete -->
               <% end %>
@@ -39,9 +39,8 @@
                   <%= hidden_field_tag :user_control_id, user_control.id %>
                   <td>
                     <div class="field-table">
-                      <% pp user_control.product_types.to_a%>
-                      <% pp user_control.product_types.map{|pt| pt.id}%>
-                      <%= select_tag "product_type",  options_for_select(@product_types.where.not(id: user_control.product_types.to_a).map{|pt| [pt.name,pt.id]}), include_blank: true%>
+                      <% pp user_control.operations.to_a%>
+                      <%= select_tag "operation",  options_for_select(@operations.where.not(id: user_control.operations.to_a).map{|o| [o.name,o.id]}), include_blank: true%>
 
                     </div>
                   </td>

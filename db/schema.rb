@@ -163,6 +163,13 @@ ActiveRecord::Schema.define(version: 20170723132330) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "operations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_operations_on_name", unique: true, using: :btree
+  end
+
   create_table "product_types", force: :cascade do |t|
     t.string   "name",         null: false
     t.integer  "humidity_min"
@@ -194,11 +201,11 @@ ActiveRecord::Schema.define(version: 20170723132330) do
 
   create_table "user_control_accesses", force: :cascade do |t|
     t.integer  "user_control_id", null: false
-    t.integer  "product_type_id", null: false
+    t.integer  "operation_id",    null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.index ["product_type_id"], name: "index_user_control_accesses_on_product_type_id", using: :btree
-    t.index ["user_control_id", "product_type_id"], name: "index_user_accesses_on_user_control_id_and_product_type_id", unique: true, using: :btree
+    t.index ["operation_id"], name: "index_user_control_accesses_on_operation_id", using: :btree
+    t.index ["user_control_id", "operation_id"], name: "index_user_accesses_on_user_control_id_and_operation_id", unique: true, using: :btree
     t.index ["user_control_id"], name: "index_user_control_accesses_on_user_control_id", using: :btree
   end
 
@@ -249,6 +256,6 @@ ActiveRecord::Schema.define(version: 20170723132330) do
   add_foreign_key "elements", "product_types"
   add_foreign_key "humidity_samples", "elements"
   add_foreign_key "sorbate_samples", "elements"
-  add_foreign_key "user_control_accesses", "product_types"
+  add_foreign_key "user_control_accesses", "operations"
   add_foreign_key "user_control_accesses", "user_controls"
 end

@@ -107,9 +107,12 @@ module ApplicationHelper
     end
   end
 
+  ##########################################
+  ##########################################
   def navbar_user(user)
-    role = user.role.name
-    'shared/navbar_' + role
+    if role = user.role
+      'shared/navbar_' + role.name
+    end
   end
 
 

@@ -6,7 +6,7 @@ class UserControlsController < ApplicationController
   # GET /user_controls.json
   def index
     @user_controls = UserControl.all
-    @product_types = ProductType.all
+    @operations = Operation.all
   end
 
   # GET /user_controls/new
@@ -45,13 +45,13 @@ class UserControlsController < ApplicationController
 
   # Post /user_controls/1/add_access
   def add_access
-    @user_control.add_access(params[:product_type])
+    @user_control.add_access(params[:operation])
     redirect_to user_controls_path, notice: 'Acceso agregado correctamente.'
   end
 
   # Post /user_controls/1/remove_access
   def remove_access
-    @user_control.remove_access(params[:product_type])
+    @user_control.remove_access(params[:operation])
     redirect_to user_controls_path, notice: 'Acceso eliminado correctamente'
   end
 

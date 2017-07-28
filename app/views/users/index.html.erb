@@ -29,18 +29,18 @@
           <%= form_tag(change_role_user_path(user), {:method => :post}) do %>
             <%= select_tag "role",  options_for_select(@roles.all.map{|role| [role.name,role.id]}), include_blank: true %>
             <div class="actions">
-              <%= submit_tag 'Cambiar rol'  %>
+              <%= submit_tag 'Cambiar rol', class: "btn btn-primary btn-xs"  %>
             </div>
           <% end %>
           </td>
 
           <% if user.authorized %>
-            <td><%= link_to 'Desautorizar', authorize_user_path(user, authorize: false), method: :post, data: { confirm: '¿Estas seguro?' } %></td>
+            <td><%= link_to 'Desautorizar', authorize_user_path(user, authorize: false), method: :post, data: { confirm: '¿Estas seguro?' }, class: "btn btn-warning btn-xs" %></td>
           <% else %>
-            <td><%= link_to 'Autorizar', authorize_user_path(user, authorize: true), method: :post, data: { confirm: '¿Estas seguro?' } %></td>
+            <td><%= link_to 'Autorizar', authorize_user_path(user, authorize: true), method: :post, data: { confirm: '¿Estas seguro?' }, class: "btn btn-success btn-xs" %></td>
           <% end %>
 
-          <td><span class="glyphicon glyphicon-trash"><%= link_to 'Eliminar', user, method: :delete, data: { confirm: 'Estas seguro? Será irreversible' } %></td>
+          <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: 'Estas seguro? Será irreversible' }, class: "btn btn-danger btn-xs" %></td>
 
         </tr>
       <% end %>

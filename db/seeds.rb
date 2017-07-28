@@ -52,6 +52,20 @@ product_types = # products type / proceso
 
   ProductType.create!(product_types)
 
+  operaciones = [ # = PRocesos
+    { name: "laboratorio"} ,
+    { name: "fresco"} ,
+    { name: "recepcion seco"} ,
+    { name: "secado"} , # Es el unico que se puede almacenar desde 2 interfaces.
+    { name: "calibrado"} ,
+    { name: "seam"} ,
+    { name: "cn"} ,
+    { name: "tsc"} ,
+    { name: "tcc"}
+  ]
+
+  Operation.create!(operaciones)
+
  ['horno', 'sol', 'mixto'].each do |dm|
    DryingMethod.create!(name: dm)
  end
@@ -74,6 +88,6 @@ product_types = # products type / proceso
   # end
 
   UserControl.all.each do |uc|
-    pt = ProductType.order("RANDOM()").first
-    UserControlAccess.create(user_control: uc, product_type: pt)
+    op = Operation.order("RANDOM()").first
+    UserControlAccess.create(user_control: uc, operation: op)
   end

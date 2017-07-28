@@ -15,7 +15,7 @@
   <body id="<%= controller_name %>"> <!-- action_name -->
 
 
-    <%if user_type == "User"  %>
+    <%if user_type == "User" and logged_user.role  %>
     <%= render navbar_user(logged_user) %>
     <%elsif user_type == "UserControl" %>
     <%= render 'shared/navbar_quality_controls' %>

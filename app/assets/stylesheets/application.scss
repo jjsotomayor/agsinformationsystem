@@ -351,6 +351,11 @@ input[type=text]:focus {
 ///////////////////////////////
 ///// Forms inside tables /////
 ///////////////////////////////
+.table-with-forms{
+  td{
+    vertical-align: middle !important;
+  }
+}
 .table{
   input[type=submit] { //NOTE seria mejor reemplazarlo por class btn btn-primary btn-xs
     margin-top: 10px;

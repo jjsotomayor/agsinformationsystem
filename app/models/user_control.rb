@@ -1,7 +1,7 @@
 class UserControl < ApplicationRecord
 
   has_many :user_control_accesses, dependent: :destroy
-  has_many :product_types, through: :user_control_accesses
+  has_many :operations, through: :user_control_accesses
   # has_many :delivery_restrictions, { through: :category_delivery_restrictions }
 
 
@@ -31,15 +31,19 @@ class UserControl < ApplicationRecord
   end
 
   # Permite agregar un acceso en el menu al usuario control
-  def add_access(product_type_id)
-    access = UserControlAccess.new(user_control: self, product_type_id: product_type_id)
+  def add_access(operation_id)
+    access = UserControlAccess.new(user_control: self, operation_id: operation_id)
     access.save
   end
 
   # Permite quitarle un acceso en el menu al usuario control
-  def remove_access(product_type_id)
-    access = UserControlAccess.find_by(user_control: self, product_type_id: product_type_id)
+  def remove_access(operation_id)
+    access = UserControlAccess.find_by(user_control: self, operation_id: operation_id)
     access.destroy
+  end
+
+  def has_access_to?(operation_name)
+    self.operations.find_by(name: operation_name.downcase)
   end
 
 end

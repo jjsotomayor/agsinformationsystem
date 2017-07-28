@@ -11,88 +11,45 @@
     <div class="collapse navbar-collapse" id="myNavbar">
 
 <ul class="nav navbar-nav">
-      <li class="dropdown">
-        <a class="<%="dropdown-toggle " + is_laboratorio()%>" data-toggle="dropdown" href="#">Laboratorio<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><%=link_to 'Humedad', new_humidity_sample_path%></li>
-          <li><%=link_to 'Sorbato', new_sorbate_sample_path%></li>
-        </ul>
-      </li>
+  <!--TODO Que pasa aqui con el acceso al laboratorio, que no es un producto sino un proceso  -->
+      <% if logged_user.has_access_to?("laboratorio")%>
+        <%= render 'shared/quality_control_menu/laboratorio_li'%>
+      <% end%>
+
+      <% if logged_user.has_access_to?("recepción fresco")%>
+        <%= render 'shared/quality_control_menu/recepción_fresco_li'%>
+      <% end%>
+
+      <% if logged_user.has_access_to?("recepcion seco")%>
+        <%= render 'shared/quality_control_menu/recepción_seco_li'%>
+      <% end%>
+
+      <% if logged_user.has_access_to?("secado")%>
+        <%= render 'shared/quality_control_menu/secado_li'%>
+      <% end%>
+
+      <% if logged_user.has_access_to?("calibrado")%>
+        <%= render 'shared/quality_control_menu/calibrado_li'%>
+      <% end%>
+
+      <% if logged_user.has_access_to?("seam")%>
+        <%= render 'shared/quality_control_menu/seam_li'%>
+      <% end%>
+
+      <% if logged_user.has_access_to?("cn")%>
+        <%= render 'shared/quality_control_menu/cn_li'%>
+      <% end%>
+
+      <% if logged_user.has_access_to?("tsc")%>
+        <%= render 'shared/quality_control_menu/tsc_li'%>
+      <% end%>
+
+      <% if logged_user.has_access_to?("tcc")%>
+        <%= render 'shared/quality_control_menu/tcc_li'%>
+      <% end%>
 
 
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">#Recepción fresco#<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <!-- FIXME Agregar que tipo de daño y calibre es -->
-            <li><%=link_to 'Daños'  %></li>
-            <li><%=link_to 'Calibre', new_caliber_sample_path(process: "fresco")%></li>
-          </ul>
-        </li>
-
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">#Recepción Sol#<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <!-- FIXME Agregar que tipo de daño y calibre es -->
-            <li><%=link_to 'Daños' %></li>
-            <li><%=link_to 'Calibre', new_caliber_sample_path(process: "seco")%></li>
-          </ul>
-        </li>
-
-          <li class="dropdown">
-            <!-- <a class="dropdown-toggle selected" data-toggle="dropdown" href="#">Secado<span class="caret"></span></a> -->
-            <a class="<%="dropdown-toggle " + selected("secado")%>" data-toggle="dropdown" href="#">Secado<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%=link_to 'Daños', new_secado_damage_sample_path%></li>
-              <li><%=link_to 'Calibre', new_secado_caliber_sample_path%></li>
-            </ul>
-          </li>
-
-
-          <li class="dropdown">
-            <a class="<%="dropdown-toggle " + selected("calibrado")%>" data-toggle="dropdown" href="#">Calibrado<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%=link_to 'Daños', new_calibrado_damage_sample_path%></li>
-              <li><%=link_to 'Calibre y desviacion', new_calibrado_caliber_sample_path%></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a class="<%="dropdown-toggle " + selected("seam")%>" data-toggle="dropdown" href="#">SEAM<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%=link_to 'Daños', new_seam_damage_sample_path%></li>
-              <li><%=link_to 'Calibre y desviacion', new_seam_caliber_sample_path(process: "ensacado")%></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a class="<%="dropdown-toggle " + selected("cn")%>" data-toggle="dropdown" href="#">CN<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%=link_to 'Daños', new_cn_damage_sample_path%></li>
-              <li><%=link_to 'Calibre y desviacion', new_cn_caliber_sample_path%></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a class="<%="dropdown-toggle " + selected("tsc")%>" data-toggle="dropdown" href="#">TSC<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%=link_to 'Daños', new_tsc_damage_sample_path%></li>
-              <li><%=link_to 'Calibre y desviacion', new_tsc_caliber_sample_path%></li>
-              <li><%=link_to 'Carozo en caja', new_tsc_carozo_sample_path%></li>
-              <li><%=link_to '###T°###'%></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a class="<%="dropdown-toggle " + selected("tcc")%>" data-toggle="dropdown" href="#">TCC<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%=link_to 'Daños', new_tcc_damage_sample_path%></li>
-              <li><%=link_to 'Calibre y desviacion', new_tcc_caliber_sample_path%></li>
-              <li><%=link_to '###T°###'%></li>
-            </ul>
-          </li>
-
-
-      </ul>
+  </ul>
 
 
 
