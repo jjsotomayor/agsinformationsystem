@@ -38,9 +38,9 @@
         <%end%>
 
 
-        <td><%= link_to 'Ver', calibrado_caliber_sample_path(caliber_sample) %></td>
-        <td><%= link_to 'Editar', edit_calibrado_caliber_sample_path(caliber_sample) %></td>
-        <td><%= link_to 'Eliminar', calibrado_caliber_sample_path(caliber_sample), method: :delete, data: { confirm: '¿Seguro que deseas eliminar la muestra?' } %></td>
+        <td><%= link_to 'Ver', calibrado_caliber_sample_path(caliber_sample),  class: "btn btn-primary btn-xs" %></td>
+        <td><%= link_to 'Editar', edit_calibrado_caliber_sample_path(caliber_sample),  class: "btn btn-warning btn-xs" %></td>
+        <td><%= link_to 'Eliminar', calibrado_caliber_sample_path(caliber_sample), method: :delete, data: { confirm: '¿Seguro que deseas eliminar la muestra?' },  class: "btn btn-danger btn-xs" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -48,5 +48,5 @@
 
 <br>
 
-<%= link_to 'Nueva muestra de calibre', new_calibrado_caliber_sample_path %>
+<%= link_to 'Nueva muestra de calibre', new_calibrado_caliber_sample_path,  class: "btn btn-primary btn-xs" %>
 </div>

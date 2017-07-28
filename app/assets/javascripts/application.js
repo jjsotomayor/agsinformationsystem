@@ -27,7 +27,6 @@
 
 $(document).on('turbolinks:load', function(){
   // $("#responsable").on("change" , alertIfEmpty); OLD ONE
-  $("#responsable").on("input propertychange paste" , alertIfEmpty);
   $("#tag").on("input propertychange paste" , alertIfEmpty);
   $("#number-field").on("input propertychange paste" , alertIfEmpty);
 
@@ -71,9 +70,12 @@ function alertIfEmpty(){
   var text = $(this).val()
   if (!text.trim().length){
     $(this).css("background-color", "#FCB3BC");
+    $(this).addClass( "field-with-errors" );
     // $(this).css("border", "red");
   } else{
     $(this).css("background-color", "#FFFFFF");
+    $(this).removeClass( "field-with-errors" );
+
     // $(this).css("border", "red");
   }
 }

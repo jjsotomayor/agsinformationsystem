@@ -29,10 +29,10 @@
 
         <td><%= short_status(carozo_sample) %></td>
 
-        <td><%= link_to 'Editar', edit_tsc_carozo_sample_path(carozo_sample) %></td>
+        <td><%= link_to 'Editar', edit_tsc_carozo_sample_path(carozo_sample), class: "btn btn-warning btn-xs" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Todas las muestras de carozo', tsc_carozo_samples_path %>
+<%= link_to 'Todas las muestras de carozo', tsc_carozo_samples_path, class: "btn btn-primary btn-xs" %>
 </div>

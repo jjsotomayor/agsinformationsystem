@@ -27,15 +27,15 @@
           <td><%= damage_sample.element.ex_tag %></td>
           <td><%= damage_sample.usda.truncate(7) %></td>
           <td><%= short_status(@damage_sample) %></td>
-          <td><%= link_to 'Ver', tcc_damage_sample_path(damage_sample)%></td>
+          <td><%= link_to 'Ver', tcc_damage_sample_path(damage_sample), class: "btn btn-primary btn-xs"%></td>
           <!-- link_to 'Ver', new_secado_damage_sample_path(id_show: damage_sample.id), class: "see-sample", id_show: damage_sample.id -->
-          <td><%= link_to 'Editar', edit_tcc_damage_sample_path(damage_sample, process: @process) %></td>
+          <td><%= link_to 'Editar', edit_tcc_damage_sample_path(damage_sample, process: @process), class: "btn btn-warning btn-xs" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
 
-<%= link_to 'Todas las muestras de daños en '+ process_name, tcc_damage_samples_path %>
+<%= link_to 'Todas las muestras de daños en '+ process_name, tcc_damage_samples_path, class: "btn btn-primary btn-xs" %>
 </div>
 <br>

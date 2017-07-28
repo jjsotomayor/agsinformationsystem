@@ -24,10 +24,10 @@
         <td><%= sorbate_sample.sorbate %></td>
         <td><%= sorbate_sample.status %></td>
 
-        <td><%= link_to 'Editar', edit_sorbate_sample_path(sorbate_sample) %></td>
+        <td><%= link_to 'Editar', edit_sorbate_sample_path(sorbate_sample),  class: "btn btn-warning btn-xs" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Todas las muestras de Sorbato', sorbate_samples_path %>
+<%= link_to 'Todas las muestras de Sorbato', sorbate_samples_path,  class: "btn btn-primary btn-xs" %>
 </div>

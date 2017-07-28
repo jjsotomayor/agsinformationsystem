@@ -21,13 +21,13 @@
         <td><%= sorbate_sample.sorbate %></td>
         <td><%= sorbate_sample.status %></td>
         <td><%= date_time(sorbate_sample.created_at) %></td>
-        <td><%= link_to 'Ver', sorbate_sample %></td>
-        <td><%= link_to 'Editar', edit_sorbate_sample_path(sorbate_sample) %></td>
-        <td><%= link_to 'Eliminar', sorbate_sample, method: :delete, data: {confirm: 'Estas seguro?' } %></td>
+        <td><%= link_to 'Ver', sorbate_sample,  class: "btn btn-primary btn-xs" %></td>
+        <td><%= link_to 'Editar', edit_sorbate_sample_path(sorbate_sample),  class: "btn btn-warning btn-xs" %></td>
+        <td><%= link_to 'Eliminar', sorbate_sample, method: :delete, data: {confirm: 'Estas seguro?' },  class: "btn btn-danger btn-xs" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Ingresar muestra de sorbato', new_sorbate_sample_path %>
+<%= link_to 'Ingresar muestra de sorbato', new_sorbate_sample_path,  class: "btn btn-primary btn-xs" %>
 </div>

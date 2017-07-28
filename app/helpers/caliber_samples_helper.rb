@@ -4,9 +4,10 @@ module CaliberSamplesHelper
   def link_back_from_show_caliber(user_type)
     pp process_name
     if user_type == "User"
-      link_to 'Atrás', send(process_name + "_caliber_samples_path")
+      link_to 'Atrás', send(process_name + "_caliber_samples_path"),  class: "btn btn-primary btn-xs"
     elsif user_type == "UserControl"
-      link_to 'Atrás', send("new_" + process_name + "_caliber_sample_path")
+      link_to 'Atrás', send("new_" + process_name + "_caliber_sample_path"),  class: "btn btn-primary btn-xs"
+
     end
   end
 

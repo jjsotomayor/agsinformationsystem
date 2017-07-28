@@ -73,9 +73,9 @@ module DamageSamplesHelper
   def link_back_from_show(user_type)
     process_name
     if user_type == "User"
-      link_to 'Atrás', send(process_name + "_damage_samples_path")#secado_damage_samples_path
+      link_to 'Atrás', send(process_name + "_damage_samples_path"), class: "btn btn-primary btn-xs"#secado_damage_samples_path
     elsif user_type == "UserControl"
-      link_to 'Atrás', send("new_" + process_name + "_damage_sample_path")#new_secado_damage_sample_path
+      link_to 'Atrás', send("new_" + process_name + "_damage_sample_path"), class: "btn btn-primary btn-xs"#new_secado_damage_sample_path
     end
   end
 

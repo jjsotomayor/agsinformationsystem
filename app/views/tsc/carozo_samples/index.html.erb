@@ -24,14 +24,14 @@
         <td><%= carozo_sample.sample_weight %></td>
         <td><%= carozo_sample.carozo_percentage %></td>
 
-        <td><%= link_to 'Ver', tsc_carozo_sample_path(carozo_sample) %></td>
-        <td><%= link_to 'Editar', edit_tsc_carozo_sample_path(carozo_sample) %></td>
-        <td><%= link_to 'Eliminar', tsc_carozo_sample_path(carozo_sample), method: :delete, data: { confirm: '¿Seguro que deseas eliminar la muestra?' } %></td>
+        <td><%= link_to 'Ver', tsc_carozo_sample_path(carozo_sample), class: "btn btn-primary btn-xs" %></td>
+        <td><%= link_to 'Editar', edit_tsc_carozo_sample_path(carozo_sample), class: "btn btn-warning btn-xs" %></td>
+        <td><%= link_to 'Eliminar', tsc_carozo_sample_path(carozo_sample), method: :delete, data: { confirm: '¿Seguro que deseas eliminar la muestra?' }, class: "btn btn-danger btn-xs" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 
-<%= link_to 'Nueva muestra de carozo', new_tsc_carozo_sample_path %>
+<%= link_to 'Nueva muestra de carozo', new_tsc_carozo_sample_path, class: "btn btn-primary btn-xs" %>
 </div>

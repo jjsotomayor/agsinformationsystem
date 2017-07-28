@@ -24,10 +24,10 @@
         <td><%= humidity_sample.humidity %></td>
         <td><%= humidity_sample.status %></td>
 
-        <td><%= link_to 'Editar', edit_humidity_sample_path(humidity_sample) %></td>
+        <td><%= link_to 'Editar', edit_humidity_sample_path(humidity_sample),  class: "btn btn-warning btn-xs" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Todas las muestras de humedad', humidity_samples_path %>
+<%= link_to 'Todas las muestras de humedad', humidity_samples_path,  class: "btn btn-primary btn-xs" %>
 </div>

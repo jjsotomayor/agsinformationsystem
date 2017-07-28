@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Element:</strong>
+  <strong>Tarja:</strong>
   <%= @sorbate_sample.element %>
 </p>
 
@@ -11,19 +11,14 @@
 </p>
 
 <p>
-  <strong>Sorbate:</strong>
+  <strong>Sorbato:</strong>
   <%= @sorbate_sample.sorbate %>
 </p>
 
 <p>
-  <strong>Status:</strong>
+  <strong>Estado:</strong>
   <%= @sorbate_sample.status %>
 </p>
 
-<p>
-  <strong>Status revised:</strong>
-  <%= @sorbate_sample.state_revised %>
-</p>
-
-<%= link_to 'Edit', edit_sorbate_sample_path(@sorbate_sample) %> |
-<%= link_to 'Back', sorbate_samples_path %>
+<%= link_to 'Editar', edit_sorbate_sample_path(@sorbate_sample) %> |
+<%= link_to 'Volver', sorbate_samples_path %>

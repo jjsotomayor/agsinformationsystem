@@ -56,11 +56,11 @@
           <td>-</td>
         <%end%>
 
-        <td><%= link_to 'Ver', seam_caliber_sample_path(caliber_sample) %></td>
-        <td><%= link_to 'Editar', edit_seam_caliber_sample_path(caliber_sample) %></td>
+        <td><%= link_to 'Ver', seam_caliber_sample_path(caliber_sample),  class: "btn btn-primary btn-xs" %></td>
+        <td><%= link_to 'Editar', edit_seam_caliber_sample_path(caliber_sample),  class: "btn btn-warning btn-xs" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Todas las muestras de calibre', seam_caliber_samples_path %>
+<%= link_to 'Todas las muestras de calibre', seam_caliber_samples_path,  class: "btn btn-primary btn-xs" %>
 </div>
