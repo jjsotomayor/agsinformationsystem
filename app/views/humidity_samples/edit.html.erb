@@ -12,16 +12,11 @@
 
 <div class= "container-samples">
   <div class= "pestaña">Laboratorio</div>
-    <div class="outside-new-form green-outside-new-form">
+    <div class="outside-new-form ">
       <h1><span class= "glyphicon glyphicon-list-alt"></span> Editar Humedad</h1>
 
 
-<%= form_for(@humidity_sample, html: {class: 'inside-new-form green-inside-new-form', autocomplete: :off})  do |f| %>
-
-  <div class="field">
-    <%= f.label :Editar_Responsable %>
-    <%= f.text_field :responsable %>
-  </div>
+<%= form_for(@humidity_sample, html: {class: 'inside-new-form validatable ', autocomplete: :off})  do |f| %>
 
   <div class="field">
     <%= f.label :editar_humedad %>
@@ -29,12 +24,10 @@
   </div>
 
 
-  <!-- <div class="actions"> -->
   <div class="buttons-together-edit">
     <%= link_to 'Regresar', new_humidity_sample_path, class: "btn-back btn btn-primary btn-lg "%>
     <%= f.submit "Editar", class: "btn-edit btn btn-warning btn-lg" %>
   </div>
-<!-- </div> -->
 
 <% end %>
 

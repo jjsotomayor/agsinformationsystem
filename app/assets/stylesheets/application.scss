@@ -64,13 +64,10 @@
 
 .container-table{
   text-align:center;
-  // margin: 0 auto;
-  // display: inline-block;
-  // overflow: hidden;
 }
 
-
-.centered{ // Centrar Encabezado
+// Permite Centrar Encabezado
+.centered{
   margin: 0 auto;
   text-align: center;
   span{
@@ -78,10 +75,11 @@
     font-weight: bold;
   }
 }
-.separated{  //Separar encabezado
+
+//Separar encabezado de lo que esta abajo
+.separated{
   margin-bottom: 20px;
 }
-
 
 .container{
    margin: 0 auto;
@@ -101,7 +99,6 @@
 }
 
 .pestaña{
-  // margin-right: 20px;
   width: 160px;
   font-size: 20px;
   font-weight: bold;
@@ -129,7 +126,7 @@
    color: rgb(180,216,231);
  }
 
- .inside-new-form {
+ .inside-new-form{
    letter-spacing: 0px;
    color: black;
    //background-color: #8093BE;
@@ -187,11 +184,15 @@ input[type=submit]{
   margin-bottom: 0px;
 }
 
-.field label[class=vertical] {
+
+// .field label[class=vertical] {
+.field label.vertical {
   display: block;
   text-align: left;
 }
-.field input[class=vertical] , .field select[class=vertical] {
+
+// .field input[class=vertical] , .field select[class=vertical] {
+.field input.vertical , .field select.vertical {
   display: block;
   margin-bottom: 3px;
   width: 140px;
@@ -248,8 +249,6 @@ input[type=text]:focus {
   // .container-last-samples.ensacado{ width: 1400px; }
   // .container-last-samples.secado{ width: 1400px; }
   // .container-last-samples.fresco{ width: 1000px; }
-
-
   .container-samples{
      width: 450px;
    }
@@ -270,62 +269,52 @@ input[type=text]:focus {
       width: 80px;
       margin-right: 5px; // Hace que no este centrado!
     }
+}
+
+
+
+
+
+
+///////////////////////////////
+///// Show of samples /////
+///////////////////////////////
+.container-for-sample{
+  max-width: 450px;
+  margin: 0 auto;
+  border:1px solid black;
+  .links-below-show{
+    border-top:1px solid black;
+    text-align: center;
   }
+}
+.title-show{
+  padding-top: 3px !important;
+  padding-bottom: 2px !important;
+  max-height: 34px;
+  background-color: #093145; // Azul
+  color: white;
+}
 
-
-
-
-
-
-  ///////////////////////////////
-  ///// Show of samples /////
-  ///////////////////////////////
-  .container-for-sample{
-    max-width: 450px;
-    margin: 0 auto;
-    border:1px solid black;
-    .links-below-show{
-      border-top:1px solid black;
-      text-align: center;
-    }
-  }
-  .title-show{
-    // padding-top: 13px !important;
-    // padding-bottom: 1px !important;
-
-    padding-top: 3px !important;
-    padding-bottom: 2px !important;
-    max-height: 34px;
-    // margin-bottom: 10px ;
-
-
-    // background-color: rgb(204,235,197);
-    // background-color: rgb(133,196,120);
-    // background-color: rgb(53,98,68);
-    // background-color: #005105; // V. oscuro logo
-    background-color: #093145; // Azul
-    color: white;
+.display-weight{
+ width: 230px;
+ margin: 0 auto;
+}
+.display-damages{
+ width: 400px;
+ margin: 0 auto;
+ font-size: 13px;
+ td {
+   padding: 1px !important;
  }
+}
 
- .display-weight{
-   width: 230px;
-   margin: 0 auto;
- }
- .display-damages{
-   width: 400px;
-   margin: 0 auto;
-   font-size: 13px;
-   td {
-     padding: 1px !important;
-   }
- }
-
- .total{
-   border-top: 2px solid #888;
- }
- ///////////////////////////////
- ///////////////////////////////
- ///////////////////////////////
+.total{
+ border-top: 2px solid #888;
+}
+///////////////////////////////
+///////////////////////////////
+///////////////////////////////
 
 
 // .show_damage_sample{
@@ -362,7 +351,6 @@ input[type=text]:focus {
     height: 25px;
     font-size: 13px;
     padding: 0px 3px 0px 3px;
-    // padding: 0px !important;
     border-radius: 0px;
   }
 
@@ -396,5 +384,5 @@ input[type=text]:focus {
 
 .field-with-errors{
   background-color: #f3dadd !important; // Light red
-  border: 2px solid #ff4040 !important;// Almost red
+  border: 1px solid #ff4040 !important;// Almost red
 }

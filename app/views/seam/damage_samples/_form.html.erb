@@ -1,7 +1,7 @@
 <% url = set_url_for_form(type, damage_sample) %>
 <% method =  set_form_method(type)%>
 
-<%= form_for(damage_sample, url: url, method: method, html: {class: 'inside-new-form green-inside-new-form'}) do |f| %>
+<%= form_for(damage_sample, url: url, method: method, html: {class: 'inside-new-form validatable'}) do |f| %>
 
 <!--TODO en el futuro sacar el responsable como hidden field y asignarlo en el controller, basta que sea como nombre  -->
 <%= f.hidden_field :responsable, value: logged_user.name %>

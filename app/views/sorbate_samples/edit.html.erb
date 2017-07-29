@@ -12,16 +12,11 @@
 
 <div class= "container-samples">
   <div class= "pestaña">Laboratorio</div>
-    <div class="outside-new-form green-outside-new-form">
+    <div class="outside-new-form">
       <h1><span class= "glyphicon glyphicon-list-alt"></span> Editar Sorbato</h1>
 
 
-<%= form_for(@sorbate_sample, html: {class: 'inside-new-form green-inside-new-form', autocomplete: :off})  do |f| %>
-
-  <div class="field">
-    <%= f.label :Editar_Responsable %>
-    <%= f.text_field :responsable %>
-  </div>
+<%= form_for(@sorbate_sample, html: {class: 'inside-new-form validatable', autocomplete: :off})  do |f| %>
 
   <div class="field">
     <%= f.label :Editar_Humedad %>

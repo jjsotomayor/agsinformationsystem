@@ -45,6 +45,7 @@ class UserControlsController < ApplicationController
 
   # Post /user_controls/1/add_access
   def add_access
+    return redirect_to user_controls_path, alert: 'Acceso no agregado.' if params[:operation] == ""
     @user_control.add_access(params[:operation])
     redirect_to user_controls_path, notice: 'Acceso agregado correctamente.'
   end
