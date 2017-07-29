@@ -26,13 +26,43 @@
 
 
 $(document).on('turbolinks:load', function(){
-  // $("#responsable").on("change" , alertIfEmpty); OLD ONE
-  $("#tag").on("input propertychange paste" , alertIfEmpty);
-  $("#number-field").on("input propertychange paste" , alertIfEmpty);
 
+  // $("#tag").on("input propertychange paste" , alertIfEmpty);
+  $("#tag").on("input propertychange paste" , alertIfNotNumber);
+  // $("#caliber_sample_sample_weight").on("input propertychange paste" , alertIfEmpty);
+  $("#caliber_sample_sample_weight").on("input propertychange paste" , alertIfNotNumber);
+  $("form #tag").bind("keyup" , changeCommaToPoint);
+
+
+
+// if (isNaN(x))
+
+  // $(".not-blank").on("input propertychange paste" , alertIfEmpty);
+  // $(".number").on("input propertychange paste" , alertIfNotNumber);
+  // $(".decimal-number").on("input propertychange paste" , alertIfNotNumber);
+
+
+  // $("#number-field").on("input propertychange paste" , alertIfEmpty);
   // $(".see-sample").on("click" , showDamageSample);
 
+
+
+
 });
+
+//Cuando se tipea una comma, se reemplaza por un punto
+function changeCommaToPoint(event){
+      // console.log(event.which);
+      if (event.which == 188) { // ,(188) .(190)
+        var old = $(this).val()
+        var new_value = old.replace(/\,/g, '.');
+        $(this).val(new_value);
+      }
+}
+
+
+
+
 
 function changeTotalPriceBudgetaryItem(){
   console.log('entré al método');
@@ -69,35 +99,20 @@ function chooseCurrencyValue(){
 function alertIfEmpty(){
   var text = $(this).val()
   if (!text.trim().length){
-    $(this).css("background-color", "#FCB3BC");
-    $(this).addClass( "field-with-errors" );
-    // $(this).css("border", "red");
+    $(this).addClass( "field-with-errors");
   } else{
-    $(this).css("background-color", "#FFFFFF");
     $(this).removeClass( "field-with-errors" );
-
-    // $(this).css("border", "red");
   }
 }
 
+function alertIfNotNumber(){
+  var text = $(this).val()
+  if ( isNaN(text) ){
+    $(this).addClass( "field-with-errors");
+    // console.log('entré add');
+  } else{
+    $(this).removeClass( "field-with-errors" );
+    // console.log('entré desadd');
 
-function showDamageSample(){
-  var id = $(this).attr('id_number')
-  event.preventDefault()
-  console.log(id);
-  // Implementar ajax call
-  swal({
-  title: '<i>HTML</i> <u>example</u>',
-  type: 'info',
-  html:
-    'You can use <b>bold text</b>, ' +
-    '<a href="//github.com">links</a> ' +
-    'and other HTML tags',
-  showCloseButton: true,
-  showCancelButton: true,
-  confirmButtonText:
-    '<i class="fa fa-thumbs-up"></i> Great!',
-  cancelButtonText:
-    '<i class="fa fa-thumbs-down"></i>'
-})
+  }
 }

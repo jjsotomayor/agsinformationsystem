@@ -375,10 +375,11 @@ input[type=text]:focus {
     }
   }
 }
-///////////////////////////////
-///////////////////////////////
 
 
+
+///////////////////////////////
+///////////////////////////////
 // Para usarlo en formularios basicos distintos a los de muestras
 .form-basic{
     max-width: 380px;
@@ -386,4 +387,14 @@ input[type=text]:focus {
     margin: 0 auto;
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+//////////////////////////////////////////////////////////////
+/////////////// Estilos de error en formularios /////////////
+//////////////////////////////////////////////////////////////
+
+.field-with-errors{
+  background-color: #f3dadd !important; // Light red
+  border: 2px solid #ff4040 !important;// Almost red
 }
