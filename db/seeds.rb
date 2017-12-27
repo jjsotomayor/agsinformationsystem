@@ -74,8 +74,10 @@ product_types = # products type / proceso
  UserControl.destroy_all
 
  User.create!(name:"Joaquin", last_name:"Soto", password:"123123", email: "jjsotomayor@uc.cl")
+ User.create!(name:"admin", last_name:"Soto", password:"123123", email: "joaquinsotomayorc@gmail.com")
  UserControl.create!(name:"joaquin", password:"123123")
  IpAddress.create(ip: "127.0.0.1")
+ IpAddress.create(ip: "190.9.57.118") # IP de Agrosol
 
 
   #usda = ['A', 'B', 'C', 'SSTD', 'no califica']
