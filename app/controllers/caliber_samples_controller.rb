@@ -29,9 +29,16 @@ class CaliberSamplesController < ApplicationController
 
   # POST /caliber_samples
   def create
-    @element = Element.create_element_if_doesnt_exist(element_params, @process)
+    @element, status = Element.create_element_if_doesnt_exist(element_params, @process)
     @caliber_sample = CaliberSample.new(caliber_sample_params)
     @caliber_sample.element = @element
+
+    if !status # Verifica que elemento sea del proceso actual
+      @caliber_samples = CaliberSample.get_samples(@process, logged_user.name).first(3)
+      @d_sample =  DeviationSample.new(deviation_sample_params) if @include_deviation # Para q no se caiga, pq intenta leer errores despues
+      session[:display_wrong_process_alert] = true
+      render :new and return
+    end
 
     success_saving = @caliber_sample.save
     if success_saving and @include_deviation
@@ -40,13 +47,13 @@ class CaliberSamplesController < ApplicationController
       success_saving = @d_sample.save
     end
 
-      if success_saving
-        session[:display_created_alert] = true
-        redirect_to send("new_"+@process+"_caliber_sample_path", success_id: @caliber_sample.id)
-      else
-        @caliber_samples = CaliberSample.get_samples(@process, logged_user.name).first(3)
-        render :new
-      end
+    if success_saving
+      session[:display_created_alert] = true
+      redirect_to send("new_"+@process+"_caliber_sample_path", success_id: @caliber_sample.id)
+    else
+      @caliber_samples = CaliberSample.get_samples(@process, logged_user.name).first(3)
+      render :new
+    end
   end
 
   # PATCH/PUT /caliber_samples/1

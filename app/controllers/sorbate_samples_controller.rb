@@ -28,10 +28,11 @@ class SorbateSamplesController < ApplicationController
   # POST /sorbate_samples
   # POST /sorbate_samples.json
   def create
-    @element = Element.create_element_if_doesnt_exist(element_params)
+    @element, status = Element.create_element_if_doesnt_exist(element_params)
     @sorbate_sample = SorbateSample.new(sorbate_sample_params)
     @sorbate_sample.element = @element
 
+    #NOTE: No se necesita if !status, pq status identifica error no ocurrible aca
     if @sorbate_sample.save
       session[:display_created_alert] = true
       redirect_to new_sorbate_sample_path success_id: @sorbate_sample.id

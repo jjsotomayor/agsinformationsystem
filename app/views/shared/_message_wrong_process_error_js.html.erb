@@ -1,0 +1,6 @@
+<!-- Entra solo si debe desplegar el error.  -->
+<!-- Este error se muestra cuando en un proceso se ingresa tarja previamente almacenada en otro proceso -->
+<%session[:display_wrong_process_alert] = false%>
+<%title = "Tarja #{tag} ya ingresada en otro proceso"%>
+<%msg = "Tarja #{tag} ya fue almacenada en otro proceso. Si ingresó mal la tarja ingresela nuevamente. Si la tarja ingresada era la correcta comuniquese con su administrador."%>
+<script>swal("<%=title%>", "<%=msg%>", "error");</script>

@@ -1,5 +1,6 @@
 class Tsc::CarozoSamplesController < ApplicationController
   include SamplesMethods
+  before_action :set_process, only: [:create]
   before_action :set_carozo_sample, only: [:show, :edit, :update, :destroy]
 
   # GET /carozo_samples
@@ -25,15 +26,19 @@ class Tsc::CarozoSamplesController < ApplicationController
 
   # POST /carozo_samples
   def create
-    @element = Element.create_element_if_doesnt_exist(element_params)
+    @element, status = Element.create_element_if_doesnt_exist(element_params, @process)
     @carozo_sample = CarozoSample.new(carozo_sample_params)
     @carozo_sample.element = @element
 
-    if @carozo_sample.save
+    if !status
+      @carozo_samples = CarozoSample.active.order('created_at DESC').first(3)
+      session[:display_wrong_process_alert] = true
+      render :new
+    elsif @carozo_sample.save
       session[:display_created_alert] = true
       redirect_to new_tsc_carozo_sample_path success_id: @carozo_sample.id
     else
-      @carozo_samples = HumiditySample.active.last(3)
+      @carozo_samples = CarozoSample.active.order('created_at DESC').first(3)
       render :new
     end
   end
@@ -63,6 +68,10 @@ class Tsc::CarozoSamplesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def carozo_sample_params
       params.require(:carozo_sample).permit(:responsable, :carozo_weight, :sample_weight)
+    end
+
+    def set_process
+      @process = process_name
     end
 
     def element_params

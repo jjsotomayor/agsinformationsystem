@@ -30,11 +30,15 @@ class DamageSamplesController < ApplicationController
 
   # POST /damage_samples
   def create
-    @element = Element.create_element_if_doesnt_exist(element_params, @process)
+    @element, status = Element.create_element_if_doesnt_exist(element_params, @process)
     @damage_sample = DamageSample.new(damage_sample_params)
     @damage_sample.element = @element
 
-    if @damage_sample.save
+    if !status
+      @damage_samples = DamageSample.get_samples(@process, logged_user.name)
+      session[:display_wrong_process_alert] = true
+      render :new
+    elsif @damage_sample.save
       session[:display_created_alert] = true
       redirect_to send("new_"+@process+"_damage_sample_path", success_id: @damage_sample.id) # (url, parametros)
     else

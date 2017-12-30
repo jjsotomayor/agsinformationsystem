@@ -1,3 +1,4 @@
+# TODO: Controlador se tiene que borrar. Obsoleto
 class CarozoSamplesController < ApplicationController
   include SamplesMethods
   before_action :set_carozo_sample, only: [:show, :edit, :update, :destroy]
@@ -25,8 +26,7 @@ class CarozoSamplesController < ApplicationController
 
   # POST /carozo_samples
   def create
-
-    @element = Element.create_element_if_doesnt_exist(element_params)
+    @element, status = Element.create_element_if_doesnt_exist(element_params)
     @carozo_sample = CarozoSample.new(carozo_sample_params)
     @carozo_sample.element = @element
 

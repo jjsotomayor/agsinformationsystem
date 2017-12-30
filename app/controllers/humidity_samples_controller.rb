@@ -26,11 +26,11 @@ class HumiditySamplesController < ApplicationController
 
   # POST /humidity_samples
   def create #TESTEAR
-
-    @element = Element.create_element_if_doesnt_exist(element_params)
+    @element, status = Element.create_element_if_doesnt_exist(element_params)
     @humidity_sample = HumiditySample.new(humidity_sample_create_params)
     @humidity_sample.element = @element
 
+    #NOTE: No se necesita if !status, pq status identifica error no ocurrible aca
     if @humidity_sample.save
       session[:display_created_alert] = true
       redirect_to new_humidity_sample_path success_id: @humidity_sample.id
