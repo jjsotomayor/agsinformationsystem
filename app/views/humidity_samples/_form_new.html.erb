@@ -28,7 +28,8 @@
 
   <div class="field">
     <%= f.label :"humedad (%)" %>
-    <%= f.text_field :humidity, autocomplete: :off %>
+    <%= f.number_field :humidity, step: 0.01 %>
+
   </div>
 
   <div class="actions">

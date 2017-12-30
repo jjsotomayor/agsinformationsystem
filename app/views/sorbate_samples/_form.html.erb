@@ -27,7 +27,7 @@
 
   <div class="field">
     <%= f.label :"Sorbato (ppm)" %>
-    <%= f.text_field :sorbate, autocomplete: :off  %>
+    <%= f.number_field :sorbate, step: 0.01 %>
   </div>
 
   <div class="actions">

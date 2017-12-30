@@ -32,28 +32,28 @@ $(document).on('turbolinks:load', function(){
   //////////////////////////////
   ////HUMIDITY samples //////////
   //////////////////////////////
-  $(".validatable #humidity_sample_humidity").bind("keyup" , changeCommaToPoint);
+  // $(".validatable #humidity_sample_humidity").bind("keyup" , changeCommaToPoint);
   $(".validatable #humidity_sample_humidity").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
 
   //////////////////////////////
   ////Sorbate samples //////////
   //////////////////////////////
-  $(".validatable #sorbate_sample_sorbate").bind("keyup" , changeCommaToPoint);
+  // $(".validatable #sorbate_sample_sorbate").bind("keyup" , changeCommaToPoint);
   $(".validatable #sorbate_sample_sorbate").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
 
   //////////////////////////////
   ////Caliber samples //////////
   //////////////////////////////
-  $(".validatable #caliber_sample_sample_weight").bind("keyup" , changeCommaToPoint);
+  // $(".validatable #caliber_sample_sample_weight").bind("keyup" , changeCommaToPoint);
   $(".validatable #caliber_sample_sample_weight").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
 
-  $(".validatable #caliber_sample_fruits_in_sample").bind("keyup" , changeCommaToPoint);
+  // $(".validatable #caliber_sample_fruits_in_sample").bind("keyup" , changeCommaToPoint);
   $(".validatable #caliber_sample_fruits_in_sample").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
 
-  $(".validatable #big_fruits_in_sample").bind("keyup" , changeCommaToPoint);
+  // $(".validatable #big_fruits_in_sample").bind("keyup" , changeCommaToPoint);
   $(".validatable #big_fruits_in_sample").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
 
-  $(".validatable #small_fruits_in_sample").bind("keyup" , changeCommaToPoint);
+  // $(".validatable #small_fruits_in_sample").bind("keyup" , changeCommaToPoint);
   $(".validatable #small_fruits_in_sample").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
 
   //////////////////////////////
@@ -63,7 +63,7 @@ $(document).on('turbolinks:load', function(){
 
   $(".validatable #drying_method_id").on("input propertychange paste", {non_blank: true, number: false}, validation_event_handler);
 
-  $(".validatable #damage_sample_sample_weight").bind("keyup" , changeCommaToPoint);
+  // $(".validatable #damage_sample_sample_weight").bind("keyup" , changeCommaToPoint);
   $(".validatable #damage_sample_sample_weight").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
 
   // Damages //
@@ -214,7 +214,7 @@ function changeCommaToPoint(event){ //Cuando se tipea una comma, se reemplaza po
       // old != "" es necesario porque si field tiene numero invalido en number-fields, el .val() leerá ""
       if (event.which == 188 & old_value != "") { // ,(188) .(190)
         // console.log("Old value");
-        // console.log(old);
+        // console.log(old_value);
         var new_value = old_value.replace(/\,/g, '.');
         // console.log("new value");
         // console.log(new_value);

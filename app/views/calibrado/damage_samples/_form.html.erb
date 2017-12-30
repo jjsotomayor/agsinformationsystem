@@ -29,7 +29,7 @@
 
   <div class="field">
     <%= f.label :peso_muestra, class: "vertical"  %>
-    <%= f.text_field :sample_weight, class: "vertical", autocomplete: :off, placeholder: ' gramos' %>
+    <%= f.number_field :sample_weight, class: "vertical", placeholder: ' gramos', step: 0.01 %>
   </div>
 
 </div>

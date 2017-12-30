@@ -19,8 +19,9 @@
 <%= form_for(@sorbate_sample, html: {class: 'inside-new-form validatable', autocomplete: :off})  do |f| %>
 
   <div class="field">
-    <%= f.label :Editar_Humedad %>
-    <%= f.text_field :sorbate %>
+    <%= f.label :Editar_Sorbato %>
+    <%= f.number_field :sorbate, step: 0.01 %>
+
   </div>
 
   <div class="buttons-together-edit">
