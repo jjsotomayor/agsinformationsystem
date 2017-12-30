@@ -38,7 +38,7 @@ class Users::SessionsController < Devise::SessionsController
     puts "Checking if user has been authorized"
     u = User.find_by(email: params[:user][:email])
     if u and !u.authorized
-      redirect_to root_path, alert: 'Solo falta que el administrador te de acceso. Solicitacelo ' and return
+      redirect_to root_path, alert: 'Solo falta que el administrador te de acceso. Solicitaselo ' and return
     end
   end
 
