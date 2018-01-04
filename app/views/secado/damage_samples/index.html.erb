@@ -4,6 +4,7 @@
 <table class = "table table-striped table-tight">
   <thead>
     <tr>
+      <th>#</th>
       <th></th>
 
       <%=common_table_headers%>
@@ -20,6 +21,7 @@
   <tbody>
     <% @damage_samples.each do |damage_sample| %>
       <tr>
+        <td><%= damage_sample.counter %></td>
         <td><%= date_time(damage_sample.created_at)%></td>
 
         <%=common_table_body(damage_sample)%>

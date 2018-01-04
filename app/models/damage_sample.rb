@@ -11,6 +11,8 @@ class DamageSample < ApplicationRecord
   before_validation :calculate_usda
   before_validation :calculate_df07
 
+  before_save :increase_and_store_counter
+
   validates :element, :responsable, :sample_weight, :usda, presence: true
   validates :sample_weight, numericality: true
 
@@ -35,6 +37,10 @@ class DamageSample < ApplicationRecord
       self.send("#{damage_name}_perc=", 0)
     end
     grams || 0
+  end
+
+  def increase_and_store_counter
+    Count.increase_and_store_counter(self, "damage_sample")
   end
 
   # Calcula y almacena el estandar USDA

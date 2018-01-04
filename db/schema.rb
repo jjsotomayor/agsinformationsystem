@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723132330) do
+ActiveRecord::Schema.define(version: 20180102201937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170723132330) do
     t.boolean  "active",           default: true,  null: false
     t.datetime "deleted_at"
     t.boolean  "is_ex_caliber",    default: false, null: false
+    t.integer  "counter",                          null: false
     t.index ["caliber_id"], name: "index_caliber_samples_on_caliber_id", using: :btree
     t.index ["element_id"], name: "index_caliber_samples_on_element_id", using: :btree
   end
@@ -53,6 +54,16 @@ ActiveRecord::Schema.define(version: 20170723132330) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.index ["element_id"], name: "index_carozo_samples_on_element_id", using: :btree
+  end
+
+  create_table "counts", force: :cascade do |t|
+    t.string   "sample_type",     null: false
+    t.integer  "product_type_id", null: false
+    t.integer  "counter"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["product_type_id"], name: "index_counts_on_product_type_id", using: :btree
+    t.index ["sample_type", "product_type_id"], name: "index_counts_on_sample_type_and_product_type_id", unique: true, using: :btree
   end
 
   create_table "damage_samples", force: :cascade do |t|
@@ -105,6 +116,7 @@ ActiveRecord::Schema.define(version: 20170723132330) do
     t.datetime "deleted_at"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+    t.integer  "counter",                                      null: false
     t.index ["element_id"], name: "index_damage_samples_on_element_id", using: :btree
   end
 
@@ -250,6 +262,7 @@ ActiveRecord::Schema.define(version: 20170723132330) do
   add_foreign_key "caliber_samples", "calibers"
   add_foreign_key "caliber_samples", "elements"
   add_foreign_key "carozo_samples", "elements"
+  add_foreign_key "counts", "product_types"
   add_foreign_key "damage_samples", "elements"
   add_foreign_key "deviation_samples", "caliber_samples"
   add_foreign_key "elements", "drying_methods"

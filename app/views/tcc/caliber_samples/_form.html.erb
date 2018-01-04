@@ -15,11 +15,11 @@
 
     <div class="field">
       <%= f.label :peso_muestra %>
-      <%= f.number_field :sample_weight, placeholder: " gramos", step: 0.01 %>
+      <%= f.number_field :sample_weight, placeholder: " gramos", step: 0.01, min:1 %>
     </div>
     <div class="field">
       <%= f.label :frutos_en_muestra %>
-      <%= f.number_field :fruits_in_sample %>
+      <%= f.number_field :fruits_in_sample, min:0 %>
     </div>
 
 

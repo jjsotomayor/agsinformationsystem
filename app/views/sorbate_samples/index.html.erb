@@ -4,6 +4,7 @@
 <table class = "table table-striped">
   <thead>
     <tr>
+      <th>#</th>
       <th>Elemento</th>
       <th>Responsable</th>
       <th>Sorbato</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @sorbate_samples.each do |sorbate_sample| %>
       <tr class= "<%= colored_rows(sorbate_sample)%>" >
+        <td><%= sorbate_sample.counter %></td>
         <td><%= sorbate_sample.element.tag %></td>
         <td><%= sorbate_sample.responsable %></td>
         <td><%= sorbate_sample.sorbate %></td>

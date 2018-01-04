@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <!-- TODO: Considerar omitir frutos en muestra y peso muestra  -->
+      <th>#</th>
       <th>Tipo</th>
       <th>Creacion</th>
       <th>Responsable</th>
@@ -22,6 +23,7 @@
   <tbody>
     <% @caliber_samples.each do |caliber_sample| %>
       <tr>
+        <td><%= caliber_sample.counter %></td>
         <td><%= caliber_sample.is_ex_caliber ? "Ex calibre" : "" %></td>
         <td><%= date_time(caliber_sample.created_at) %></td>
         <td><%= caliber_sample.responsable.truncate(14) %></td>

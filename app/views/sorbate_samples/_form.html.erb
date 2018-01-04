@@ -27,7 +27,7 @@
 
   <div class="field">
     <%= f.label :"Sorbato (ppm)" %>
-    <%= f.number_field :sorbate, step: 0.01 %>
+    <%= f.number_field :sorbate, step: 0.01, min:0 %>
   </div>
 
   <div class="actions">

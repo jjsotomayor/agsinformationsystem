@@ -24,12 +24,12 @@
 
 <div class="field">
   <%= f.label :peso_con_carozo %>
-  <%= f.number_field :carozo_weight, id: "number-field", autocomplete: :off, placeholder: ' gramos', step: 0.01 %>
+  <%= f.number_field :carozo_weight, id: "number-field", autocomplete: :off, placeholder: ' gramos', step: 0.01, min:0 %>
 </div>
 
 <div class="field">
   <%= f.label :peso_muestra %>
-  <%= f.number_field :sample_weight, id: "number-field", autocomplete: :off, placeholder: ' gramos', step: 0.01 %>
+  <%= f.number_field :sample_weight, id: "number-field", autocomplete: :off, placeholder: ' gramos', step: 0.01, min:1 %>
 </div>
 
   <div class="buttons-together-edit">

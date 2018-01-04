@@ -1,5 +1,6 @@
 class CaliberSample < ApplicationRecord
   include SoftDeletable
+  # include Methods
 
 
   belongs_to :element
@@ -8,6 +9,8 @@ class CaliberSample < ApplicationRecord
   delegate :product_type, :to => :element, :allow_nil => true
 
   before_validation :calculate_caliber
+
+  before_save :increase_and_store_counter
 
   validates :element, :responsable, :fruits_per_pound, :fruits_in_sample, :sample_weight, :caliber, presence: true
   validates :fruits_per_pound, :fruits_in_sample, :sample_weight, numericality: true
@@ -23,6 +26,10 @@ class CaliberSample < ApplicationRecord
          self.caliber = cal and break
       end
     end
+  end
+
+  def increase_and_store_counter
+    Count.increase_and_store_counter(self, "caliber_sample")
   end
 
   # Obtiene ultimas quantity muestras de daños del process

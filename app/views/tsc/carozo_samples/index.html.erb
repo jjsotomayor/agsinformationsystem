@@ -4,6 +4,7 @@
 <table class = "table table-striped">
   <thead>
     <tr>
+      <th>#</th>
       <th></th>
       <th>Responsable</th>
       <th>Tarja</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @carozo_samples.each do |carozo_sample| %>
       <tr>
+        <td><%= carozo_sample.counter %></td>
         <td><%= time(carozo_sample.created_at)%></td>
         <td><%= carozo_sample.responsable %></td>
         <td><%= carozo_sample.element.tag %></td>

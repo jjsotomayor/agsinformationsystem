@@ -29,7 +29,7 @@
 
   <div class="field">
     <%= f.label :peso_muestra, class: "vertical"  %>
-    <%= f.number_field :sample_weight, class: "vertical", placeholder: ' gramos', step: 0.01 %>
+    <%= f.number_field :sample_weight, class: "vertical", placeholder: ' gramos', step: 0.01, min:1 %>
   </div>
 
 </div>
@@ -41,7 +41,7 @@
    <%for damage in Util.damages_of_product_type(@process)%>
      <div class="field">
        <%= f.label translate_damage(damage) %>
-       <%= f.number_field damage, step: 0.01 %>
+       <%= f.number_field damage, step: 0.01, min:0 %>
      </div>
    <%end%>
 

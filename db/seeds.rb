@@ -12,7 +12,7 @@
 
  # Caliber.all.destroy_all
  Caliber.create([
-  {name:"20-30", minimum:20, maximum:30},
+  {name:"20-30", minimum:0, maximum:30},
   {name:"30-40", minimum:30, maximum:40},
   {name:"40-50", minimum:40, maximum:50},
   {name:"50-60", minimum:50, maximum:60},
@@ -24,7 +24,7 @@
   {name:"110-120", minimum:110, maximum:120},
   {name:"120-130", minimum:120, maximum:130},
   {name:"130-144", minimum:130, maximum:145},
-  {name:"145+", minimum:145, maximum:1000}
+  {name:"145+", minimum:145, maximum:1000000}
   ])
 
 # NOTE Si dejo secado y recepcion sol como prduct distintps puedo personalizar condiciones de rechazo aceptacion.
@@ -68,6 +68,18 @@ product_types = # products type / proceso
 
  ['horno', 'sol', 'mixto'].each do |dm|
    DryingMethod.create!(name: dm)
+ end
+
+ if Count.count == 0
+   puts "Creando contadores:"
+   ["secado", "calibrado", "seam", "cn", "tsc", "tcc"].each do |pt_name|
+     puts "    " + pt_name
+     pt = ProductType.find_by!(name: pt_name)
+     Count.create!(product_type: pt, sample_type:"damage_sample", counter:0)
+     Count.create!(product_type: pt, sample_type:"caliber_sample", counter:0)
+   end
+   pt = ProductType.find_by!(name: "tsc")
+   Count.create!(product_type: pt, sample_type:"carozo_sample", counter:0)
  end
 
  User.all.destroy_all
