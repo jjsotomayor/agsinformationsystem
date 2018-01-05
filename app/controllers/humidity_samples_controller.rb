@@ -16,7 +16,7 @@ class HumiditySamplesController < ApplicationController
   def new
     @humidity_samples = HumiditySample.active.order('created_at DESC').first(3)
     @humidity_sample = HumiditySample.new
-    # Permite mostrar mensaje de exito en creacion/edicion muestra anterior
+    # Permite mostrar mensaje de exito en Creación/edicion muestra anterior
     @success_sample = HumiditySample.find(params[:success_id]) if params[:success_id]
   end
 

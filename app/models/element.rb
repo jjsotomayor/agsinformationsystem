@@ -6,6 +6,9 @@ class Element < ApplicationRecord
   belongs_to :drying_method
   has_many :damage_samples
   has_many :caliber_samples
+  has_many :humidity_samples
+  has_many :sorbate_samples
+  has_many :carozo_samples
 
   validates :tag,  uniqueness: true, presence: true
 

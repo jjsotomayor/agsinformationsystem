@@ -19,7 +19,7 @@ class DamageSamplesController < ApplicationController
   def new
     @damage_samples = DamageSample.get_samples(@process, logged_user.name).first(3)
     @damage_sample = DamageSample.new
-    # Permite mostrar mensaje de exito en creacion/edicion muestra anterior
+    # Permite mostrar mensaje de exito en Creación/edicion muestra anterior
     @success_sample = DamageSample.find(params[:success_id]) if params[:success_id]
     # @show_sample = DamageSample.find(params[:id_show]) if params[:id_show]
   end

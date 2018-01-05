@@ -5,11 +5,11 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>Elemento</th>
+      <th>Creación</th>
       <th>Responsable</th>
+      <th>Tarja</th>
       <th>Sorbato</th>
       <th>Estado</th>
-      <th>Creacion</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,11 +18,11 @@
     <% @sorbate_samples.each do |sorbate_sample| %>
       <tr class= "<%= colored_rows(sorbate_sample)%>" >
         <td><%= sorbate_sample.counter %></td>
-        <td><%= sorbate_sample.element.tag %></td>
+        <td><%= date_time(sorbate_sample.created_at) %></td>
         <td><%= sorbate_sample.responsable %></td>
+        <td><%= sorbate_sample.element.tag %></td>
         <td><%= sorbate_sample.sorbate %></td>
         <td><%= sorbate_sample.status %></td>
-        <td><%= date_time(sorbate_sample.created_at) %></td>
         <td><%= link_to 'Ver', sorbate_sample,  class: "btn btn-primary btn-xs" %></td>
         <td><%= link_to 'Editar', edit_sorbate_sample_path(sorbate_sample),  class: "btn btn-warning btn-xs" %></td>
         <td><%= link_to 'Eliminar', sorbate_sample, method: :delete, data: {confirm: 'Estas seguro?' },  class: "btn btn-danger btn-xs" %></td>

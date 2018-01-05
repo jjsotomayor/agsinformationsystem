@@ -16,7 +16,7 @@ class Tsc::CarozoSamplesController < ApplicationController
   def new
     @carozo_samples = CarozoSample.active.order('created_at DESC').first(3) # NOTE: Esta bien porque es la unica muestra de carozo
     @carozo_sample = CarozoSample.new
-    # Permite mostrar mensaje de exito en creacion/edicion muestra anterior
+    # Permite mostrar mensaje de exito en Creación/edicion muestra anterior
     @success_sample = CarozoSample.find(params[:success_id]) if params[:success_id]
   end
 

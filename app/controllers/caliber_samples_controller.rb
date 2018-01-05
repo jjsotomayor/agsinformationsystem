@@ -19,7 +19,7 @@ class CaliberSamplesController < ApplicationController
     @caliber_samples = CaliberSample.get_samples(@process, logged_user.name).first(3)
     @caliber_sample = CaliberSample.new
     @d_sample =  DeviationSample.new # Unicamente para que no se caiga al tratar de leer errores
-    # Permite mostrar mensaje de exito en creacion/edicion muestra anterior
+    # Permite mostrar mensaje de exito en Creación/edicion muestra anterior
     @success_sample = CaliberSample.find(params[:success_id]) if params[:success_id]
   end
 

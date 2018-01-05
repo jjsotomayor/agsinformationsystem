@@ -1,13 +1,11 @@
 <div class= "container-for-sample">
 
-  <div class= "title-show">
-    <h3 class= "centered separated">Muestra daños #<%=@damage_sample.id%></h3>
-  </div>
+  <%=render "shared/title_show", text: "Muestra daños #{process_name.capitalize} ##{@damage_sample.counter}"%>
 
   <table class = "table table-striped table-tight">
     <thead>
       <tr>
-        <th>Creacion</th>
+        <th>Creación</th>
         <th>Resp</th>
         <th>Tarja</th>
         <th>Tipo</th>

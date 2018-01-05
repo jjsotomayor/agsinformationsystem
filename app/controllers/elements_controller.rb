@@ -1,4 +1,5 @@
 class ElementsController < ApplicationController
+  include ElementsMethods
   before_action :set_element, only: [:show, :edit, :update, :destroy]
 
   # GET /elements
@@ -12,6 +13,14 @@ class ElementsController < ApplicationController
 
   # GET /elements/1
   def show
+    @product_type = @element.product_type ? @element.product_type.name : ""
+    @dam_samples = @element.damage_samples if show_samples?("damage_sample", @product_type)
+    @cal_samples = @element.caliber_samples if show_samples?("caliber_sample", @product_type)
+    @humidity_samples = @element.humidity_samples if show_samples?("humidity_sample", @product_type)
+    @sorbate_samples = @element.sorbate_samples if show_samples?("sorbate_sample", @product_type)
+    @carozo_samples = @element.carozo_samples if show_samples?("carozo_sample", @product_type)
+
+    @damages_list = Util.damages_of_product_type(@element.product_type.name) if @dam_samples
   end
 
   # GET /elements/new

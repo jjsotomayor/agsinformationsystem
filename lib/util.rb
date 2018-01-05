@@ -11,7 +11,7 @@ module Util
         "skin_or_flesh_damage", "fermentation", "heat_damage",
         "insect_injury", "mold", "dirt", "foreign_material",
         "vegetal_foreign_material", "insect_infestation", "decay",
-        "deshidratado", "bolsa_de_agua", "ruset", "reventados"
+        "deshidratado", "bolsa_de_agua", "ruset", "reventados", "carozo"
       ],
       fresco: [
         "scars", "mold", "decay", "deshidratado",

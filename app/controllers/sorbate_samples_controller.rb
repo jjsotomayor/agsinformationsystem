@@ -17,7 +17,7 @@ class SorbateSamplesController < ApplicationController
   def new
     @sorbate_samples = SorbateSample.active.order('created_at DESC').first(3)
     @sorbate_sample = SorbateSample.new
-    # Permite mostrar mensaje de exito en creacion/edicion muestra anterior
+    # Permite mostrar mensaje de exito en Creación/edicion muestra anterior
     @success_sample = SorbateSample.find(params[:success_id]) if params[:success_id]
   end
 
