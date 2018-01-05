@@ -11,7 +11,7 @@ class DamageSample < ApplicationRecord
   before_validation :calculate_usda
   before_validation :calculate_df07
 
-  before_save :increase_and_store_counter
+  before_create :increase_and_store_counter
 
   validates :element, :responsable, :sample_weight, :usda, presence: true
   validates :sample_weight, numericality: true

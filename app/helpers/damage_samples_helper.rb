@@ -79,4 +79,29 @@ module DamageSamplesHelper
     end
   end
 
+  ##################################################################
+  ### Metodos q permiten renderear creacion/edicion de datos de  ###
+  ### element en new/edit damage_samples (type = "new"/"edit")   ###
+  ##################################################################
+
+  def field_tag(type, class_type, dam_sample)
+    value = type == "new" ? '' : dam_sample.element.tag
+    text_field_tag :tag, value, class: class_type, autocomplete: 'off', disabled: (type == 'edit')
+  end
+
+  def field_process_order(type, class_type, dam_sample)
+    value = type == "new" ? '' : dam_sample.element.process_order
+    text_field_tag :process_order, value, class: class_type, autocomplete: 'off'
+  end
+
+  def field_drying_method_id(type, class_type, dam_sample)
+    value = type == "new" ? 0 : dam_sample.element.drying_method_id
+    select_tag "drying_method_id",  options_for_select(DryingMethod.all.map{|dm| [dm.name,dm.id]}, value), include_blank: true, class: class_type
+  end
+
+  def field_ex_tag(type, class_type, dam_sample)
+    value = type == "new" ? '' : dam_sample.element.ex_tag
+    text_field_tag :ex_tag, value, class: class_type
+  end
+
 end

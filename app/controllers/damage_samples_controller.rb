@@ -50,6 +50,7 @@ class DamageSamplesController < ApplicationController
   # PATCH/PUT /damage_samples/1
   def update
     if @damage_sample.update(damage_sample_params)
+      @damage_sample.element.update(edit_element_params)
       session[:display_updated_alert] = true
       redirect_to send("new_"+@process+"_damage_sample_path", success_id: @damage_sample.id) # (url, parametros)
     else
@@ -87,8 +88,11 @@ class DamageSamplesController < ApplicationController
     end
 
     def element_params
-      # params.permit(:tag, :process_order, :product_type_id, :drying_method_id, :previous_usda, :ex_tag)
       params.permit(:tag, :process_order, :product_type_id, :drying_method_id, :previous_usda, :ex_tag)
+    end
+
+    def edit_element_params
+      params.permit(:process_order, :product_type_id, :drying_method_id, :previous_usda, :ex_tag)
     end
 
 end

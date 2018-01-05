@@ -10,27 +10,20 @@
  <div style="float:left; width: 45%">
 <!--Items at the left  -->
 
+  <div class="field">
+    <%= f.label :tarja, class: "vertical"  %>
+    <%= field_tag(type, "vertical", damage_sample)%>
+  </div>
 
-  <% if type == "new"  %>
+  <div class="field">
+    <%= f.label :orden_proceso, class: "vertical"  %>
+    <%= field_process_order(type, "vertical", damage_sample)%>
+  </div>
 
-    <div class="field">
-      <%= f.label :tarja, class: "vertical"  %>
-      <%= text_field_tag :tag, '', class: "vertical", autocomplete: 'off'%>
-    </div>
-
-    <div class="field">
-      <%= f.label :orden_proceso, class: "vertical"  %>
-      <%= text_field_tag :process_order, '', class: "vertical", autocomplete: 'off'%>
-    </div>
-
-    <div class="field">
-      <%= f.label :tipo_de_secado, class: "vertical" %>
-      <% text_field_tag :drying_method_id, '', class: "vertical" %>
-      <%= select_tag "drying_method_id",  options_for_select(DryingMethod.all.map{|dm| [dm.name,dm.id]}), include_blank: true, class: "vertical" %>
-    </div>
-
-
-  <% end %>
+  <div class="field">
+    <%= f.label :tipo_de_secado, class: "vertical" %>
+    <%= field_drying_method_id(type, "vertical", damage_sample) %>
+  </div>
 
 
   <div class="field">

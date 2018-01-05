@@ -10,7 +10,7 @@ class CaliberSample < ApplicationRecord
 
   before_validation :calculate_caliber
 
-  before_save :increase_and_store_counter
+  before_create :increase_and_store_counter
 
   validates :element, :responsable, :fruits_per_pound, :fruits_in_sample, :sample_weight, :caliber, presence: true
   validates :fruits_per_pound, :fruits_in_sample, :sample_weight, numericality: true
