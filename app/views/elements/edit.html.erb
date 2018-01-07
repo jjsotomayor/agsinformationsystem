@@ -1,6 +1,14 @@
-<h1>Editing Element</h1>
+<div class= "container-samples">
+    <div class="outside-new-form">
+      <h1> Editar Producto</h1>
 
-<%= render 'form', element: @element %>
+      <div class="inside-new-form">
 
-<%= link_to 'Show', @element %> |
-<%= link_to 'Back', elements_path %>
+        <%= render 'form', element: @element %>
+        <br>
+        <%= link_to 'Ver', @element%> |
+        <%= link_to 'Atrás', elements_path %>
+      </div>
+    </div>
+</div>
+<br>

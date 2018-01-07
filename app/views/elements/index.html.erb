@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Tarja</th>
+      <th>Fecha</th>
       <th>Lote</th>
       <th>Orden</th>
       <th>Tipo producto</th>
@@ -18,9 +19,10 @@
     <% @elements.each do |element| %>
       <tr>
         <td><%= element.tag %></td>
+        <td><%= date_time(element.created_at) %></td>
         <td><%= element.lot %></td>
         <td><%= element.process_order %></td>
-        <td><%= element.product_type.name unless element.product_type.nil? %></td>
+        <td><%= element.product_type.name.upcase unless element.product_type.nil? %></td>
         <td><%= element.drying_method.name unless element.drying_method.nil? %></td>
         <td><%= element.previous_usda %></td>
         <td><%= element.ex_tag %></td>

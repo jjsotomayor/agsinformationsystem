@@ -3,9 +3,11 @@ module Util
 
   # Retorna lista de daños para un proceso /producto especifico
   def self.damages_of_product_type(process)
+    process = :none if !process
     process = "calibrado" if process == "seam" or process == "cn"
     damages =
     {
+      none: [],
       all: [
         "off_color", "poor_texture", "scars", "end_cracks",
         "skin_or_flesh_damage", "fermentation", "heat_damage",
@@ -23,7 +25,7 @@ module Util
         "insect_injury", "mold", "dirt", "foreign_material",
          "insect_infestation", "decay"
       ],
-      recepcion_seco: [
+      "recepcion seco": [
         "off_color", "poor_texture", "scars", "skin_or_flesh_damage",
         "fermentation", "heat_damage", "insect_injury", "mold", "dirt",
         "foreign_material", "insect_infestation", "decay"

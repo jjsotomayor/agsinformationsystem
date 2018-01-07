@@ -11,6 +11,7 @@ class Element < ApplicationRecord
   has_many :carozo_samples
 
   validates :tag,  uniqueness: true, presence: true
+  # validates :product_type, presence: true. No esta cuando secrea humidity sample antes q otra
 
   def self.to_csv
     attributes = %w{Tarja N OrdenProceso Producto Secado UsdaAnterior TarjaAnterior}
@@ -67,5 +68,14 @@ class Element < ApplicationRecord
     end
     return @element, true
   end
+
+  # def valid?
+  #   if Element.find_by(tag: self.tag)
+  #     return false, 'Error: Ya existe producto con esa tarja/folio!'
+  #   elsif !self.product_type
+  #     return false, 'Error: Falta ingresar el Tipo de producto'
+  #   end
+  #   true
+  # end
 
 end

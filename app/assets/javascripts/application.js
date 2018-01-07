@@ -30,6 +30,12 @@ $(document).on('turbolinks:load', function(){
   $(".validatable #tag").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
 
   //////////////////////////////
+  //Elements form validations //
+  //////////////////////////////
+  $(".validatable #element_tag").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
+  $(".validatable #element_product_type_id").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
+
+  //////////////////////////////
   ////HUMIDITY samples //////////
   //////////////////////////////
   // $(".validatable #humidity_sample_humidity").bind("keyup" , changeCommaToPoint);
@@ -139,6 +145,9 @@ function run_all_validations(e){
     // function validate($elem, non_blank, number_format){
     var error = false;
     if (!validate($(".validatable #tag"),                             true, false)){ error = true;}
+    // Elements form //
+    if (!validate($(".validatable #element_tag"),                     true, false)){ error = true;}
+    if (!validate($(".validatable #element_product_type_id"),         true, false)){ error = true;}
     //// HUumidity samples //////////
     if (!validate($(".validatable #humidity_sample_humidity"),        true, "integer")){ error = true;}
     ////Sorbate samples //////////

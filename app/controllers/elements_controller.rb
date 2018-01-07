@@ -4,7 +4,7 @@ class ElementsController < ApplicationController
 
   # GET /elements
   def index
-    @elements = Element.all
+    @elements = Element.all.order('created_at DESC')
     respond_to do |format|
       format.html
       format.csv { send_data @elements.to_csv, filename: "#{Date.today} - Elementos.csv" }
@@ -13,14 +13,14 @@ class ElementsController < ApplicationController
 
   # GET /elements/1
   def show
-    @product_type = @element.product_type ? @element.product_type.name : ""
+    @product_type = @element.product_type ? @element.product_type.name : nil
     @dam_samples = @element.damage_samples if show_samples?("damage_sample", @product_type)
     @cal_samples = @element.caliber_samples if show_samples?("caliber_sample", @product_type)
     @humidity_samples = @element.humidity_samples if show_samples?("humidity_sample", @product_type)
     @sorbate_samples = @element.sorbate_samples if show_samples?("sorbate_sample", @product_type)
     @carozo_samples = @element.carozo_samples if show_samples?("carozo_sample", @product_type)
 
-    @damages_list = Util.damages_of_product_type(@element.product_type.name) if @dam_samples
+    @damages_list = Util.damages_of_product_type(@product_type) if @dam_samples
   end
 
   # GET /elements/new
@@ -35,29 +35,23 @@ class ElementsController < ApplicationController
   # POST /elements
   def create
     @element = Element.new(element_params)
-
-    respond_to do |format|
-      if @element.save
-        format.html { redirect_to @element, notice: 'Element was successfully created.' }
-        format.json { render :show, status: :created, location: @element }
-      else
-        format.html { render :new }
-        format.json { render json: @element.errors, status: :unprocessable_entity }
-      end
+    # NOTE: Cuando permita editar tarja se deberá hacer validacion asi en update
+    if Element.find_by(tag: @element.tag)
+      redirect_to new_element_path, alert: 'Error: Ya existe producto con esa tarja/folio!'
+    elsif @element.save
+      redirect_to @element, notice: 'Producto creado exitosamente'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /elements/1
   def update
-    respond_to do |format|
       if @element.update(element_params)
-        format.html { redirect_to @element, notice: 'Element was successfully updated.' }
-        format.json { render :show, status: :ok, location: @element }
+        redirect_to @element, notice: 'Producto editado exitosamente'
       else
-        format.html { render :edit }
-        format.json { render json: @element.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
   end
 
   # DELETE /elements/1

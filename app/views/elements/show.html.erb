@@ -21,7 +21,7 @@
   <tbody>
       <tr>
         <td><%= @element.id %></td>
-        <td><%= @product_type.upcase %></td>
+        <td><%= @product_type.upcase if @product_type %></td>
         <td><%= @element.lot %></td>
         <td><%= @element.process_order %></td>
         <td><%= @element.drying_method.name if @element.drying_method%></td>

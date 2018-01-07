@@ -1,6 +1,14 @@
 
-<div class="wrapper-new-forms">
-  <h1>New Element</h1>
-<%= render 'form', element: @element %>
-<%= link_to 'Back', elements_path %>
+<div class= "container-samples">
+    <div class="outside-new-form">
+      <h1> Crear Elemento</h1>
+
+      <div class="inside-new-form">
+
+      <%= render 'form', element: @element %>
+      <br>
+      <%= link_to 'Atrás', elements_path %>
+      </div>
+    </div>
 </div>
+<br>
