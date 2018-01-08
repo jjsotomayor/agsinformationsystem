@@ -1,7 +1,7 @@
 <!-- <p id="notice"> notice </p> -->
 
 <p>
-  <strong>Element:</strong>
+  <strong>Tarja:</strong>
   <%= @humidity_sample.element.tag %>
 </p>
 
@@ -16,7 +16,7 @@
 </p>
 
 <p>
-  <strong>Status:</strong>
+  <strong>Estado:</strong>
   <%= @humidity_sample.status %>
 </p>
 
@@ -32,5 +32,7 @@
 
 
 
-<%= link_to 'Editar', edit_humidity_sample_path(@humidity_sample),  class: "btn btn-warning btn-xs" %> |
+<%=
+# link_to 'Editar', edit_humidity_sample_path(@humidity_sample),  class: "btn btn-warning btn-xs"
+%> |
 <%= link_to 'Atrás', humidity_samples_path,  class: "btn btn-primary btn-xs" %>

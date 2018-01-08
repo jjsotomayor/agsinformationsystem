@@ -1,6 +1,9 @@
 class SorbateSamplesController < ApplicationController
   include SamplesMethods
+  before_action :check_permissions_samples_controller_or_redirect
   before_action :set_sorbate_sample, only: [:show, :edit, :update, :destroy]
+  # Cambiarlo a solo update y destroy para disminuir la carga
+  before_action :permission_last_samples, only: [:edit, :update, :destroy]
 
   # GET /sorbate_samples
   # GET /sorbate_samples.json
@@ -80,5 +83,12 @@ class SorbateSamplesController < ApplicationController
 
     def element_params
       params.permit(:tag)
+    end
+
+    def permission_last_samples
+      return true if user_type != "UserControl"
+      if !SorbateSample.in_user_last_samples(@sorbate_sample, logged_user.name, 3, @process)
+        redirect_to root_path, alert: not_allowed
+      end
     end
 end

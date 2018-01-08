@@ -2,7 +2,7 @@
 
 <p>
   <strong>Tarja:</strong>
-  <%= @sorbate_sample.element %>
+  <%= @sorbate_sample.element.tag %>
 </p>
 
 <p>
@@ -20,5 +20,17 @@
   <%= @sorbate_sample.status %>
 </p>
 
-<%= link_to 'Editar', edit_sorbate_sample_path(@sorbate_sample) %> |
-<%= link_to 'Volver', sorbate_samples_path %>
+<p>
+  <strong>Creada:</strong>
+  <%= date_time(@sorbate_sample.created_at) %>
+</p>
+
+<p>
+  <strong>Ultima modificacion:</strong>
+  <%= date_time(@sorbate_sample.updated_at) %>
+</p>
+
+<%=
+# link_to 'Editar', edit_sorbate_sample_path(@sorbate_sample)
+%> |
+<%= link_to 'Atrás', sorbate_samples_path,  class: "btn btn-primary btn-xs" %>

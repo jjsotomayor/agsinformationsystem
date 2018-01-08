@@ -1,7 +1,10 @@
 class CaliberSamplesController < ApplicationController
   include SamplesMethods
+  before_action :check_permissions_samples_controller_or_redirect
   before_action :set_caliber_sample, only: [:show, :edit, :update, :destroy]
   before_action :set_process
+  # Cambiarlo a solo update y destroy para disminuir la carga
+  before_action :permission_last_samples, only: [:edit, :update, :destroy]
   before_action :set_sample_name, only: [:new, :edit]
   before_action :include_deviation, only: [:show, :new, :create, :edit]
 
@@ -107,4 +110,13 @@ class CaliberSamplesController < ApplicationController
     def element_params
       params.permit(:tag)
     end
+
+    def permission_last_samples
+      # NOTE Esto puede ser fuente de tiempos excesivos en el futuro
+      return true if user_type != "UserControl"
+      if !CaliberSample.in_user_last_samples(@caliber_sample, logged_user.name, 3, @process)
+        redirect_to root_path, alert: not_allowed
+      end
+    end
+
 end

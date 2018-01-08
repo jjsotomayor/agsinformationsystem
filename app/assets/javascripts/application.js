@@ -61,6 +61,7 @@ $(document).on('turbolinks:load', function(){
 
   // $(".validatable #small_fruits_in_sample").bind("keyup" , changeCommaToPoint);
   $(".validatable #small_fruits_in_sample").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
+  $(".validatable #caliber_sample_is_ex_caliber").on("input propertychange paste", {non_blank: true, number: false}, validation_event_handler);
 
   //////////////////////////////
   //// Damage Samples //////////
@@ -157,6 +158,7 @@ function run_all_validations(e){
     if (!validate($(".validatable #caliber_sample_fruits_in_sample"), true, "integer")){ error = true;}
     if (!validate($(".validatable #big_fruits_in_sample"),            true, "integer")){ error = true;}
     if (!validate($(".validatable #small_fruits_in_sample"),          true, "integer")){ error = true;}
+    if (!validate($(".validatable #caliber_sample_is_ex_caliber"),    true, false)){ error = true;}
     //// Damage Samples //////////
     if (!validate($(".validatable #process_order"),                   true, false)){ error = true;}
     if (!validate($(".validatable #drying_method_id"),                true, false)){ error = true;}

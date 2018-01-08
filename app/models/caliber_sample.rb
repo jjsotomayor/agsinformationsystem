@@ -41,4 +41,14 @@ class CaliberSample < ApplicationRecord
     caliber_samples.where(responsable: responsable)
   end
 
+  def self.in_user_last_samples(sample, responsable, number, process = nil)
+    pt = ProductType.find_by(name: process)
+    samples = pt.caliber_samples
+    samples = samples.where(responsable: responsable).where('caliber_samples.created_at > ?', 6.hours.ago)
+    samples = samples.order('caliber_samples.created_at DESC').ids.first(number)
+    # print samples
+    ret = sample.id.in?(samples)
+    return ret
+  end
+
 end

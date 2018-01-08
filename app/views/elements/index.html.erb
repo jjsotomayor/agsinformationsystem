@@ -27,7 +27,9 @@
         <td><%= element.previous_usda %></td>
         <td><%= element.ex_tag %></td>
         <td><%= link_to 'Ver', element, class: "btn btn-primary btn-xs" %></td>
-        <td><%= link_to 'Editar', edit_element_path(element),  class: "btn btn-warning btn-xs" %></td>
+        <% if access_edit_element_button %>
+          <td><%= link_to 'Editar', edit_element_path(element),  class: "btn btn-warning btn-xs" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

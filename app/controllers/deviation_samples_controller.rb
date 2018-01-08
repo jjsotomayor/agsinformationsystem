@@ -1,4 +1,5 @@
 class DeviationSamplesController < ApplicationController
+  before_action :check_permissions
   before_action :set_deviation_sample, only: [:show, :edit, :update, :destroy]
 
   # GET /deviation_samples
@@ -70,5 +71,10 @@ class DeviationSamplesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def deviation_sample_params
       params.require(:deviation_sample).permit(:caliber_sample_id, :big_fruits_in_sample, :small_fruits_in_sample, :sample_weight, :big_fruits_per_pound, :small_fruits_per_pound, :deviation, :status, :status_revised)
+    end
+
+    def check_permissions
+      # Este controlador quizas deberia eliminarse completamente
+      redirect_to root_path, alert: not_implemented
     end
 end

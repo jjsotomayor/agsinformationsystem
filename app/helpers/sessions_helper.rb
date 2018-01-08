@@ -35,4 +35,16 @@ module SessionsHelper
     end
   end
 
+  # Eficiente y seguro, solo "User Control" es inseguro por q es cookie, lo
+  # demas tiene el nivel de seguridad de devise
+  def get_role_or_nil
+    if user_type == "UserControl"
+      "UserControl"
+    elsif user_signed_in?
+      current_user.role.name
+    else
+      nil
+    end
+  end
+
 end

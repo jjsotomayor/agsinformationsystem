@@ -1,7 +1,10 @@
 class DamageSamplesController < ApplicationController
   include SamplesMethods
+  before_action :check_permissions_samples_controller_or_redirect
   before_action :set_damage_sample, only: [:show, :edit, :update, :destroy]
   before_action :set_process#, only: [:show, :edit, :update, :destroy]
+  # Cambiarlo a solo update y destroy para disminuir la carga
+  before_action :permission_last_samples, only: [:edit, :update, :destroy]
   before_action :set_sample_name, only: [:new, :edit]
   before_action :set_damages_list, only: [:show, :index]
 
@@ -93,6 +96,14 @@ class DamageSamplesController < ApplicationController
 
     def edit_element_params
       params.permit(:process_order, :product_type_id, :drying_method_id, :previous_usda, :ex_tag)
+    end
+
+    def permission_last_samples
+      # NOTE Esto puede ser fuente de tiempos excesivos en el futuro
+      return true if user_type != "UserControl"
+      if !DamageSample.in_user_last_samples(@damage_sample, logged_user.name, 3, @process)
+        redirect_to root_path, alert: not_allowed
+      end
     end
 
 end

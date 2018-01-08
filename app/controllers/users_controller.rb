@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user_control, only: [:show, :edit, :update, :destroy, :authorize, :change_role]
+  before_action :check_permissions
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :authorize, :change_role]
+
   def show
   end
 
@@ -46,12 +48,21 @@ class UsersController < ApplicationController
 
 private
   # Use callbacks to share common setup or constraints between actions.
-  def set_user_control
+  def set_user
     @user = User.find(params[:id])
   end
 
   def user_params
     params.require(:user).permit(:name, :last_name)
+  end
+
+  def check_permissions
+    # ["show", "edit", "update", "destroy¿?"] El usuario sobre si mismo(no implementado)
+    if action_name.in?(["show", "index", "destroy",
+      "authorize", "change_role"]) and can_manage_users?
+      return
+    end
+    redirect_to root_path, alert: not_allowed
   end
 
 end

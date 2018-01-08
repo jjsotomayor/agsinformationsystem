@@ -41,8 +41,10 @@
 
 
         <td><%= link_to 'Ver', cn_caliber_sample_path(caliber_sample),  class: "btn btn-primary btn-xs" %></td>
-        <td><%= link_to 'Editar', edit_cn_caliber_sample_path(caliber_sample),  class: "btn btn-warning btn-xs" %></td>
-        <td><%= link_to 'Eliminar', cn_caliber_sample_path(caliber_sample), method: :delete, data: { confirm: '¿Seguro que deseas eliminar la muestra?' },  class: "btn btn-danger btn-xs" %></td>
+        <%if access_edit_delete_sample_button%>
+          <td><%= link_to 'Editar', edit_cn_caliber_sample_path(caliber_sample),  class: "btn btn-warning btn-xs" %></td>
+          <td><%= link_to 'Eliminar', cn_caliber_sample_path(caliber_sample), method: :delete, data: { confirm: '¿Seguro que deseas eliminar la muestra?' },  class: "btn btn-danger btn-xs" %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>

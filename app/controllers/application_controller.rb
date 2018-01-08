@@ -8,12 +8,12 @@ class ApplicationController < ActionController::Base
   helper SessionsHelper
   include SessionsHelper
   include IconsHelper
+  include AccessControl
 
   protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :last_name])
     #devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :last_name]) #same but for update
-
   end
 end

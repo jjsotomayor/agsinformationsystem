@@ -24,8 +24,10 @@
         <td><%= sorbate_sample.sorbate %></td>
         <td><%= sorbate_sample.status %></td>
         <td><%= link_to 'Ver', sorbate_sample,  class: "btn btn-primary btn-xs" %></td>
-        <td><%= link_to 'Editar', edit_sorbate_sample_path(sorbate_sample),  class: "btn btn-warning btn-xs" %></td>
-        <td><%= link_to 'Eliminar', sorbate_sample, method: :delete, data: {confirm: 'Estas seguro?' },  class: "btn btn-danger btn-xs" %></td>
+        <%if access_edit_delete_sample_button%>
+          <td><%= link_to 'Editar', edit_sorbate_sample_path(sorbate_sample),  class: "btn btn-warning btn-xs" %></td>
+          <td><%= link_to 'Eliminar', sorbate_sample, method: :delete, data: {confirm: 'Estas seguro?' },  class: "btn btn-danger btn-xs" %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>

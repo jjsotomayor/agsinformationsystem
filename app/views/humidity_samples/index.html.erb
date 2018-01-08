@@ -24,8 +24,10 @@
         <td><%= humidity_sample.humidity %></td>
         <td><%= humidity_sample.status %></td>
         <td><%= link_to 'Ver', humidity_sample,  class: "btn btn-primary btn-xs" %></td>
-        <td><%= link_to 'Editar', edit_humidity_sample_path(humidity_sample),  class: "btn btn-warning btn-xs" %></td>
-        <td><%= link_to 'Eliminar', humidity_sample, method: :delete, data: { confirm: 'Estas seguro?' },  class: "btn btn-danger btn-xs" %></td>
+        <%if access_edit_delete_sample_button%>
+          <td><%= link_to 'Editar', edit_humidity_sample_path(humidity_sample),  class: "btn btn-warning btn-xs" %></td>
+          <td><%= link_to 'Eliminar', humidity_sample, method: :delete, data: { confirm: 'Estas seguro?' },  class: "btn btn-danger btn-xs" %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>

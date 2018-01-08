@@ -1,5 +1,6 @@
 class ElementsController < ApplicationController
   include ElementsMethods
+  before_action :check_permissions
   before_action :set_element, only: [:show, :edit, :update, :destroy]
 
   # GET /elements
@@ -14,11 +15,11 @@ class ElementsController < ApplicationController
   # GET /elements/1
   def show
     @product_type = @element.product_type ? @element.product_type.name : nil
-    @dam_samples = @element.damage_samples if show_samples?("damage_sample", @product_type)
-    @cal_samples = @element.caliber_samples if show_samples?("caliber_sample", @product_type)
-    @humidity_samples = @element.humidity_samples if show_samples?("humidity_sample", @product_type)
-    @sorbate_samples = @element.sorbate_samples if show_samples?("sorbate_sample", @product_type)
-    @carozo_samples = @element.carozo_samples if show_samples?("carozo_sample", @product_type)
+    @dam_samples = @element.damage_samples.ord if show_samples?("damage_sample", @product_type)
+    @cal_samples = @element.caliber_samples.ord if show_samples?("caliber_sample", @product_type)
+    @humidity_samples = @element.humidity_samples.ord if show_samples?("humidity_sample", @product_type)
+    @sorbate_samples = @element.sorbate_samples.ord if show_samples?("sorbate_sample", @product_type)
+    @carozo_samples = @element.carozo_samples.ord if show_samples?("carozo_sample", @product_type)
 
     @damages_list = Util.damages_of_product_type(@product_type) if @dam_samples
   end
@@ -72,5 +73,18 @@ class ElementsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def element_params
       params.require(:element).permit(:tag, :process_order, :product_type_id, :drying_method_id, :previous_usda, :ex_tag)
+    end
+
+    def check_permissions
+      #NOTE: EL ACTION NAME IN NO FUNCIONA con no strings,
+      # No se permite Destroy
+      if action_name.in?(["show", "index"]) and can_see_samples?
+        # puts "Entre1"
+        return
+      elsif action_name.in?(["new", "edit", "create", "update"]) and can_create_update_element?
+        # puts "Entre2"
+        return
+      end
+      redirect_to root_path, alert: not_allowed
     end
 end

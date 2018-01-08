@@ -1,4 +1,5 @@
 class IpAddressesController < ApplicationController
+  before_action :check_permissions
   before_action :set_ip_address, only: [:show, :edit, :update, :destroy]
   before_action :set_my_ip
 
@@ -42,5 +43,10 @@ class IpAddressesController < ApplicationController
 
     def set_my_ip
       @my_ip = request.remote_ip
+    end
+
+    def check_permissions
+      return if can_access_all_ip?
+      redirect_to root_path, alert: not_allowed
     end
 end

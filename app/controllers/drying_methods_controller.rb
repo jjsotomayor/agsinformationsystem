@@ -1,4 +1,5 @@
 class DryingMethodsController < ApplicationController
+  # NOTE Controlador no operativo ni accesible
   before_action :set_drying_method, only: [:show, :edit, :update, :destroy]
 
   # GET /drying_methods

@@ -30,8 +30,8 @@ Rails.application.routes.draw do
     end
   end
   # post '/users/authorize' => 'general#accept_invoice', as: :authorize
-  resources :drying_methods
-  resources :product_types
+  # resources :drying_methods
+  # resources :product_types
 
   resources :elements
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -39,11 +39,10 @@ Rails.application.routes.draw do
   #get '/' => "pages#home_quality_controls"
 
   # resources :damage_samples
+  # resources :caliber_samples
   # resources :carozo_samples
   resources :sorbate_samples
   resources :humidity_samples
-  resources :caliber_samples
-  resources :deviation_samples
 
 
 

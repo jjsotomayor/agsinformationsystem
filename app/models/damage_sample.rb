@@ -199,4 +199,14 @@ class DamageSample < ApplicationRecord
     damage_samples.where(responsable: responsable)
   end
 
+  def self.in_user_last_samples(sample, responsable, number, process = nil)
+    pt = ProductType.find_by(name: process)
+    samples = pt.damage_samples
+    samples = samples.where(responsable: responsable).where('damage_samples.created_at > ?', 6.hours.ago)
+    samples = samples.order('damage_samples.created_at DESC').ids.first(number)
+    # print samples
+    ret = sample.id.in?(samples)
+    return ret
+  end
+
 end

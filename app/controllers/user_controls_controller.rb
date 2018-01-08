@@ -1,4 +1,5 @@
 class UserControlsController < ApplicationController
+  before_action :check_permissions
   before_action :set_user_control, only: [:edit, :update, :destroy, :add_access, :remove_access]
   before_action :verify_no_user_logged_in, only: [:new_session, :create_session]
 
@@ -106,6 +107,17 @@ class UserControlsController < ApplicationController
       if logged_user
         redirect_to root_path, notice: 'Ya hay una sesion iniciada.'
       end
+    end
+
+    def check_permissions
+      if action_name.in?(["index", "new", "create", "edit", "update", "destroy",
+        "add_access", "remove_access"]) and can_manage_user_controls?
+        return
+      # Los siguientes son accesibles por todos
+      elsif action_name.in?(["new_session", "create_session", "destroy_session"])
+        return
+      end
+      redirect_to root_path, alert: not_allowed
     end
 
 end

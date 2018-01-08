@@ -1,5 +1,6 @@
 class CarozoSample < ApplicationRecord
   include SoftDeletable
+  include Methods
 
   enum status: [:rechazado, :aprobado]
   belongs_to :element

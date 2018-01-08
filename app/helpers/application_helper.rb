@@ -115,5 +115,24 @@ module ApplicationHelper
     end
   end
 
+  ##########################################
+  ###### Metodos de acceso a botones  ######
+  ##########################################
+
+  # Retorna true o false si se tiene o no acceso
+  def access_edit_delete_sample_button # Usado en index
+    role = get_role_or_nil
+    return true if role.in?(['admin', 'jefe_control_calidad'])
+    false
+  end
+
+  def access_edit_element_button
+    role = get_role_or_nil
+    return true if role.in?(['admin', 'jefe_control_calidad'])
+    false
+  end
+
+
+
 
 end

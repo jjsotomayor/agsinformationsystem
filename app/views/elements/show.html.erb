@@ -29,7 +29,9 @@
 
         <td><%= @element.ex_tag %></td>
         <td><%= @element.previous_usda %></td>
+        <% if access_edit_element_button %>
         <td><%= link_to 'Editar producto', edit_element_path(@element),  class: "btn btn-warning btn-xs" %></td>
+        <% end %>
       </tr>
   </tbody>
 </table>
@@ -72,9 +74,10 @@
             <td><%=damage_sample.total_damages_perc.round(1)%></td>
 
             <td><%= link_show_sample(damage_sample, "damage_sample", @product_type) %></td>
-            <td><%= link_edit_sample(damage_sample, "damage_sample", @product_type) %></td>
-            <td><%= link_delete_sample(damage_sample, "damage_sample", @product_type) %></td>
-
+            <% if access_edit_delete_sample_button %>
+              <td><%= link_edit_sample(damage_sample, "damage_sample", @product_type) %></td>
+              <td><%= link_delete_sample(damage_sample, "damage_sample", @product_type) %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
@@ -127,8 +130,10 @@
             <%end%>
 
             <td><%= link_show_sample(caliber_sample, "caliber_sample", @product_type) %></td>
-            <td><%= link_edit_sample(caliber_sample, "caliber_sample", @product_type) %></td>
-            <td><%= link_delete_sample(caliber_sample, "caliber_sample", @product_type) %></td>
+            <% if access_edit_delete_sample_button %>
+              <td><%= link_edit_sample(caliber_sample, "caliber_sample", @product_type) %></td>
+              <td><%= link_delete_sample(caliber_sample, "caliber_sample", @product_type) %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
@@ -167,8 +172,10 @@
             <td><%= humidity_sample.status %></td>
 
             <td><%= link_to 'Ver', humidity_sample,  class: "btn btn-primary btn-xs" %></td>
-            <td><%= link_to 'Editar', edit_humidity_sample_path(humidity_sample),  class: "btn btn-warning btn-xs" %></td>
-            <td><%= link_to 'Eliminar', humidity_sample, method: :delete, data: { confirm: 'Estas seguro?' },  class: "btn btn-danger btn-xs" %></td>
+            <% if access_edit_delete_sample_button %>
+              <td><%= link_to 'Editar', edit_humidity_sample_path(humidity_sample),  class: "btn btn-warning btn-xs" %></td>
+              <td><%= link_to 'Eliminar', humidity_sample, method: :delete, data: { confirm: 'Estas seguro?' },  class: "btn btn-danger btn-xs" %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
@@ -207,8 +214,10 @@
             <td><%= sorbate_sample.status %></td>
 
             <td><%= link_to 'Ver', sorbate_sample,  class: "btn btn-primary btn-xs" %></td>
-            <td><%= link_to 'Editar', edit_sorbate_sample_path(sorbate_sample),  class: "btn btn-warning btn-xs" %></td>
-            <td><%= link_to 'Eliminar', sorbate_sample, method: :delete, data: {confirm: 'Estas seguro?' },  class: "btn btn-danger btn-xs" %></td>
+            <% if access_edit_delete_sample_button %>
+              <td><%= link_to 'Editar', edit_sorbate_sample_path(sorbate_sample),  class: "btn btn-warning btn-xs" %></td>
+              <td><%= link_to 'Eliminar', sorbate_sample, method: :delete, data: {confirm: 'Estas seguro?' },  class: "btn btn-danger btn-xs" %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
@@ -249,8 +258,10 @@
             <td><%= carozo_sample.status %></td>
 
             <td><%= link_show_sample(carozo_sample, "carozo_sample", @product_type) %></td>
-            <td><%= link_edit_sample(carozo_sample, "carozo_sample", @product_type) %></td>
-            <td><%= link_delete_sample(carozo_sample, "carozo_sample", @product_type) %></td>
+            <% if access_edit_delete_sample_button %>
+              <td><%= link_edit_sample(carozo_sample, "carozo_sample", @product_type) %></td>
+              <td><%= link_delete_sample(carozo_sample, "carozo_sample", @product_type) %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

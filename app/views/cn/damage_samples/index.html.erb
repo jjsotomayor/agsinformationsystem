@@ -34,10 +34,11 @@
         <td><%=damage_sample.total_damages_perc.round(1)%></td>
 
 
-        <!-- FIXME  secado_damage_sample_path(damage_sample)-->
         <td><%= link_to 'Ver', cn_damage_sample_path(damage_sample),  class: "btn btn-primary btn-xs" %></td>
-        <td><%= link_to 'Editar', edit_cn_damage_sample_path(damage_sample),  class: "btn btn-warning btn-xs" %></td>
-        <td><%= link_to 'Eliminar', cn_damage_sample_path(damage_sample), method: :delete, data: { confirm: '¿Seguro que deseas eliminar la muestra?' },  class: "btn btn-danger btn-xs" %></td>
+        <%if access_edit_delete_sample_button%>
+          <td><%= link_to 'Editar', edit_cn_damage_sample_path(damage_sample),  class: "btn btn-warning btn-xs" %></td>
+          <td><%= link_to 'Eliminar', cn_damage_sample_path(damage_sample), method: :delete, data: { confirm: '¿Seguro que deseas eliminar la muestra?' },  class: "btn btn-danger btn-xs" %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>

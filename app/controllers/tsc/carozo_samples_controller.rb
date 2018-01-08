@@ -1,7 +1,10 @@
 class Tsc::CarozoSamplesController < ApplicationController
   include SamplesMethods
+  before_action :check_permissions_samples_controller_or_redirect
   before_action :set_process, only: [:create]
   before_action :set_carozo_sample, only: [:show, :edit, :update, :destroy]
+  # Cambiarlo a solo update y destroy para disminuir la carga
+  before_action :permission_last_samples, only: [:edit, :update, :destroy]
 
   # GET /carozo_samples
   def index
@@ -76,6 +79,13 @@ class Tsc::CarozoSamplesController < ApplicationController
 
     def element_params
       params.permit(:tag)
+    end
+
+    def permission_last_samples
+      return true if user_type != "UserControl"
+      if !CarozoSample.in_user_last_samples(@carozo_sample, logged_user.name, 3, @process)
+        redirect_to root_path, alert: not_allowed
+      end
     end
 
 end
