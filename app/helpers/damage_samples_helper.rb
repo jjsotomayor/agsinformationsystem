@@ -65,20 +65,6 @@ module DamageSamplesHelper
     html.html_safe
   end
 
-  ##########################################
-  ############## Links helpers ############
-  ##########################################
-
-  # Si no se es ninguno de los usuarios, no habra link
-  def link_back_from_show(user_type)
-    process_name
-    if user_type == "User"
-      link_to 'Atrás', send(process_name + "_damage_samples_path"), class: "btn btn-primary btn-xs"#secado_damage_samples_path
-    elsif user_type == "UserControl"
-      link_to 'Atrás', send("new_" + process_name + "_damage_sample_path"), class: "btn btn-primary btn-xs"#new_secado_damage_sample_path
-    end
-  end
-
   ##################################################################
   ### Metodos q permiten renderear creacion/edicion de datos de  ###
   ### element en new/edit damage_samples (type = "new"/"edit")   ###
