@@ -1,6 +1,7 @@
 class SorbateSample < ApplicationRecord
   include SoftDeletable
   include Methods
+  include ProcessIndependentSamplesModels
 
   enum status: [:rechazado, :aprobado, :pendiente]
 
@@ -19,7 +20,4 @@ class SorbateSample < ApplicationRecord
     self.status = between?(self.sorbate, min, max) ? "aprobado" : "rechazado"
   end
 
-  def counter # Metodo para modelos que usan el id como contador
-    self.id
-  end
 end

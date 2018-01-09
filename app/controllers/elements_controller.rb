@@ -5,7 +5,7 @@ class ElementsController < ApplicationController
 
   # GET /elements
   def index
-    @elements = Element.all.order('created_at DESC')
+    @elements = Element.all.ord
     respond_to do |format|
       format.html
       format.csv { send_data @elements.to_csv, filename: "#{Date.today} - Elementos.csv" }

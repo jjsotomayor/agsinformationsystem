@@ -1,6 +1,7 @@
 class CarozoSample < ApplicationRecord
   include SoftDeletable
   include Methods
+  include ProcessIndependentSamplesModels
 
   enum status: [:rechazado, :aprobado]
   belongs_to :element
@@ -21,7 +22,4 @@ class CarozoSample < ApplicationRecord
     self.status = "aprobado" if self.carozo_percentage < max
   end
 
-  def counter # Metodo para modelos que usan el id como contador
-    self.id
-  end
 end

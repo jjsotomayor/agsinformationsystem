@@ -19,7 +19,7 @@ class CaliberSamplesController < ApplicationController
 
   # GET /caliber_samples/new
   def new
-    @caliber_samples = CaliberSample.get_samples(@process, logged_user.name).first(3)
+    @caliber_samples = CaliberSample.get_recent_samples(@process, logged_user.name).first(3)
     @caliber_sample = CaliberSample.new
     @d_sample =  DeviationSample.new # Unicamente para que no se caiga al tratar de leer errores
     # Permite mostrar mensaje de exito en Creación/edicion muestra anterior
@@ -37,7 +37,7 @@ class CaliberSamplesController < ApplicationController
     @caliber_sample.element = @element
 
     if !status # Verifica que elemento sea del proceso actual
-      @caliber_samples = CaliberSample.get_samples(@process, logged_user.name).first(3)
+      @caliber_samples = CaliberSample.get_recent_samples(@process, logged_user.name).first(3)
       @d_sample =  DeviationSample.new(deviation_sample_params) if @include_deviation # Para q no se caiga, pq intenta leer errores despues
       session[:display_wrong_process_alert] = true
       render :new and return
@@ -54,7 +54,7 @@ class CaliberSamplesController < ApplicationController
       session[:display_created_alert] = true
       redirect_to send("new_"+@process+"_caliber_sample_path", success_id: @caliber_sample.id)
     else
-      @caliber_samples = CaliberSample.get_samples(@process, logged_user.name).first(3)
+      @caliber_samples = CaliberSample.get_recent_samples(@process, logged_user.name).first(3)
       render :new
     end
   end

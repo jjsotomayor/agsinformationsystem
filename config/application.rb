@@ -14,6 +14,9 @@ module Agsinformationsystem
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # Tiempo (hrs) maximo por el q la muestra aparece en new y es editable
+    config.max_sample_hrs = 24
+
     # FIXME Check all configuration values
     # Configurando lenguaje español
     config.i18n.default_locale = :es

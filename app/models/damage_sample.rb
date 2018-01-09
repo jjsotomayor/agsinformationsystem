@@ -194,15 +194,22 @@ class DamageSample < ApplicationRecord
   # Obtiene ultimas quantity muestras de daños del process
   def self.get_samples(process, responsable = nil)
     product_type = ProductType.find_by(name: process)
-    damage_samples =  product_type.damage_samples.active.order('created_at DESC')
+    damage_samples =  product_type.damage_samples.active.ord
     return damage_samples if !responsable
     damage_samples.where(responsable: responsable)
+  end
+
+  def self.get_recent_samples(process, responsable = nil)
+    t = Rails.configuration.max_sample_hrs
+    dam_samples = DamageSample.get_samples(process, responsable)
+    dam_samples = dam_samples.where('damage_samples.created_at > ?', t.hours.ago)
   end
 
   def self.in_user_last_samples(sample, responsable, number, process = nil)
     pt = ProductType.find_by(name: process)
     samples = pt.damage_samples
-    samples = samples.where(responsable: responsable).where('damage_samples.created_at > ?', 6.hours.ago)
+    samples = samples.where(responsable: responsable)
+    .where('damage_samples.created_at > ?', Rails.configuration.max_sample_hrs.hours.ago)
     samples = samples.order('damage_samples.created_at DESC').ids.first(number)
     # print samples
     ret = sample.id.in?(samples)

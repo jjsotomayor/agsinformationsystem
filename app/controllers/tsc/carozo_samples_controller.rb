@@ -8,7 +8,7 @@ class Tsc::CarozoSamplesController < ApplicationController
 
   # GET /carozo_samples
   def index
-    @carozo_samples = CarozoSample.active.order('created_at DESC')
+    @carozo_samples = CarozoSample.active.ord
   end
 
   # GET /carozo_samples/1
@@ -17,7 +17,7 @@ class Tsc::CarozoSamplesController < ApplicationController
 
   # GET /carozo_samples/new
   def new
-    @carozo_samples = CarozoSample.active.order('created_at DESC').first(3) # NOTE: Esta bien porque es la unica muestra de carozo
+    @carozo_samples = CarozoSample.get_recent_samples(logged_user.name).first(3)
     @carozo_sample = CarozoSample.new
     # Permite mostrar mensaje de exito en Creación/edicion muestra anterior
     @success_sample = CarozoSample.find(params[:success_id]) if params[:success_id]
@@ -34,14 +34,14 @@ class Tsc::CarozoSamplesController < ApplicationController
     @carozo_sample.element = @element
 
     if !status
-      @carozo_samples = CarozoSample.active.order('created_at DESC').first(3)
+      @carozo_samples = CarozoSample.get_recent_samples(logged_user.name).first(3)
       session[:display_wrong_process_alert] = true
       render :new
     elsif @carozo_sample.save
       session[:display_created_alert] = true
       redirect_to new_tsc_carozo_sample_path success_id: @carozo_sample.id
     else
-      @carozo_samples = CarozoSample.active.order('created_at DESC').first(3)
+      @carozo_samples = CarozoSample.get_recent_samples(logged_user.name).first(3)
       render :new
     end
   end

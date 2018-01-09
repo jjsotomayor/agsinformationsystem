@@ -20,7 +20,7 @@ class DamageSamplesController < ApplicationController
 
   # GET /damage_samples/new
   def new
-    @damage_samples = DamageSample.get_samples(@process, logged_user.name).first(3)
+    @damage_samples = DamageSample.get_recent_samples(@process, logged_user.name).first(3)
     @damage_sample = DamageSample.new
     # Permite mostrar mensaje de exito en Creación/edicion muestra anterior
     @success_sample = DamageSample.find(params[:success_id]) if params[:success_id]
@@ -38,14 +38,14 @@ class DamageSamplesController < ApplicationController
     @damage_sample.element = @element
 
     if !status
-      @damage_samples = DamageSample.get_samples(@process, logged_user.name)
+      @damage_samples = DamageSample.get_recent_samples(@process, logged_user.name).first(3)
       session[:display_wrong_process_alert] = true
       render :new
     elsif @damage_sample.save
       session[:display_created_alert] = true
       redirect_to send("new_"+@process+"_damage_sample_path", success_id: @damage_sample.id) # (url, parametros)
     else
-      @damage_samples = DamageSample.get_samples(@process, logged_user.name)
+      @damage_samples = DamageSample.get_recent_samples(@process, logged_user.name).first(3)
       render :new
     end
   end

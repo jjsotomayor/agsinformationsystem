@@ -2,7 +2,6 @@ class CaliberSample < ApplicationRecord
   include SoftDeletable
   # include Methods
 
-
   belongs_to :element
   belongs_to :caliber
   has_one :deviation_sample
@@ -34,17 +33,23 @@ class CaliberSample < ApplicationRecord
 
   # Obtiene ultimas quantity muestras de daños del process
   def self.get_samples(process, responsable = nil)
-    puts "PRoceso : #{process}"
     product_type = ProductType.find_by(name: process)
-    caliber_samples =  product_type.caliber_samples.active.order('created_at DESC')
-    return caliber_samples if ! responsable
+    caliber_samples =  product_type.caliber_samples.active.ord
+    return caliber_samples if !responsable
     caliber_samples.where(responsable: responsable)
+  end
+
+  def self.get_recent_samples(process, responsable = nil)
+    t = Rails.configuration.max_sample_hrs
+    cal_samples = CaliberSample.get_samples(process, responsable)
+    cal_samples = cal_samples.where('caliber_samples.created_at > ?', t.hours.ago)
   end
 
   def self.in_user_last_samples(sample, responsable, number, process = nil)
     pt = ProductType.find_by(name: process)
     samples = pt.caliber_samples
-    samples = samples.where(responsable: responsable).where('caliber_samples.created_at > ?', 6.hours.ago)
+    samples = samples.where(responsable: responsable)
+    .where('caliber_samples.created_at > ?', Rails.configuration.max_sample_hrs.hours.ago)
     samples = samples.order('caliber_samples.created_at DESC').ids.first(number)
     # print samples
     ret = sample.id.in?(samples)

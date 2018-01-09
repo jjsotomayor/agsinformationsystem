@@ -8,7 +8,7 @@ class SorbateSamplesController < ApplicationController
   # GET /sorbate_samples
   # GET /sorbate_samples.json
   def index
-    @sorbate_samples = SorbateSample.active.order('created_at DESC')
+    @sorbate_samples = SorbateSample.active.ord
   end
 
   # GET /sorbate_samples/1
@@ -18,7 +18,7 @@ class SorbateSamplesController < ApplicationController
 
   # GET /sorbate_samples/new
   def new
-    @sorbate_samples = SorbateSample.active.order('created_at DESC').first(3)
+    @sorbate_samples = SorbateSample.get_recent_samples(logged_user.name).first(3)
     @sorbate_sample = SorbateSample.new
     # Permite mostrar mensaje de exito en Creación/edicion muestra anterior
     @success_sample = SorbateSample.find(params[:success_id]) if params[:success_id]
@@ -42,7 +42,7 @@ class SorbateSamplesController < ApplicationController
     else
       pp @sorbate_sample.errors
       # redirect_to new_sorbate_sample_path
-      @sorbate_samples = SorbateSample.active.last(3)
+      @sorbate_samples = SorbateSample.get_recent_samples(logged_user.name).first(3)
       render :new
     end
 

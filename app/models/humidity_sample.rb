@@ -1,6 +1,7 @@
 class HumiditySample < ApplicationRecord
   include SoftDeletable
   include Methods
+  include ProcessIndependentSamplesModels
 
   enum status: [:rechazado, :aprobado, :pendiente]
 
@@ -21,7 +22,4 @@ class HumiditySample < ApplicationRecord
      self.status = between?(self.humidity, min, max) ? "aprobado" : "rechazado"
    end
 
-   def counter # Metodo para modelos que usan el id como contador
-     self.id
-   end
  end

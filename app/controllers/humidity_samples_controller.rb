@@ -7,8 +7,7 @@ class HumiditySamplesController < ApplicationController
 
   # GET /humidity_samples
   def index
-    @humidity_samples = HumiditySample.active.order('created_at DESC')
-    # @humidity_sample = HumiditySample.new
+    @humidity_samples = HumiditySample.active.ord
   end
 
   # GET /humidity_samples/1
@@ -17,7 +16,7 @@ class HumiditySamplesController < ApplicationController
 
   # GET /humidity_samples/new
   def new
-    @humidity_samples = HumiditySample.active.order('created_at DESC').first(3)
+    @humidity_samples = HumiditySample.get_recent_samples(logged_user.name).first(3)
     @humidity_sample = HumiditySample.new
     # Permite mostrar mensaje de exito en Creación/edicion muestra anterior
     @success_sample = HumiditySample.find(params[:success_id]) if params[:success_id]
@@ -39,7 +38,7 @@ class HumiditySamplesController < ApplicationController
       redirect_to new_humidity_sample_path success_id: @humidity_sample.id
     else
       #Si hago redirect, termino el proces, en cambio con render mantengo la info de los errores,y es buena practica pq lo hace scaffold
-      @humidity_samples = HumiditySample.active.last(3)
+      @humidity_samples = HumiditySample.get_recent_samples(logged_user.name).first(3)
       render :new
     end
 
