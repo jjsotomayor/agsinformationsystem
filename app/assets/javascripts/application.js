@@ -34,6 +34,8 @@ $(document).on('turbolinks:load', function(){
   //////////////////////////////
   $(".validatable #element_tag").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
   $(".validatable #element_product_type_id").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
+  // TODO validate kgs
+  // $(".validatable #element_weight").on("input propertychange paste", {non_blank: true, number: "integer" }, validation_event_handler);
 
   //////////////////////////////
   ////HUMIDITY samples //////////
@@ -149,6 +151,8 @@ function run_all_validations(e){
     // Elements form //
     if (!validate($(".validatable #element_tag"),                     true, false)){ error = true;}
     if (!validate($(".validatable #element_product_type_id"),         true, false)){ error = true;}
+    // TODO validar kgs
+    // if (!validate($(".validatable #element_weight"),                  true, "integer")){ error = true;}
     //// HUumidity samples //////////
     if (!validate($(".validatable #humidity_sample_humidity"),        true, "integer")){ error = true;}
     ////Sorbate samples //////////
