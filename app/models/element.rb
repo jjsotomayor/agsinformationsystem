@@ -56,17 +56,19 @@ class Element < ApplicationRecord
       return @element, false
     end
 
-    # TODO Dentro de este if podria gatillar actualizar el estado pendiente de humiditysamples
-    # Si existia el @element actualizo de ser nec. con los datos de la muestra,
-    if @element and element_params.count > 1# Si se ingresaron varios parametros del producto #!@element.product_type and process_name
-      @element.product_type = ProductType.find_by(name: process_name) if process_name
-      @element.update_attributes(element_params)
+    if @element
+      if !@element.product_type and process_name
+        @element.product_type = ProductType.find_by(name: process_name)
+      end
       # TODO Actualizar estado de productos que dependen del proceso,(humedad, q otro)
-    elsif !@element
+      # Si existia el @element actualizo de ser nec. con los datos de la muestra,
+      @element.update_attributes(element_params) if element_params.count > 1
+    else #!@element
       @element = Element.new(element_params)
       @element.product_type = ProductType.find_by(name: process_name) if process_name
-      @element.save!
     end
+    @element.save!
+
     return @element, true
   end
 

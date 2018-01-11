@@ -1,6 +1,8 @@
   <div class="container">
     <h2 class= "centered separated">Productos</h2>
-    
+
+    <!-- TODO: El descargar deberia hacerlo en excel y deberia descargar mas cosas -->
+    <%= link_to "Descargar csv", elements_path(:csv), class: "btn btn-primary btn-xs" %>
     <!-- Form para buscar elements -->
     <%= form_tag(elements_path, method: :get) do %>
       <%= text_field_tag :term, nil, placeholder: 'Buscar una tarja' %>
