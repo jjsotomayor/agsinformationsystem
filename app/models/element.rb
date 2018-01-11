@@ -70,6 +70,14 @@ class Element < ApplicationRecord
     return @element, true
   end
 
+  # Busca por tag si le pasan un term, sino retorna todos
+  def self.search(term = nil)
+    if term
+      where('tag LIKE ?', "%#{term}%").ord
+    else
+      ord
+    end
+  end
   # def valid?
   #   if Element.find_by(tag: self.tag)
   #     return false, 'Error: Ya existe producto con esa tarja/folio!'

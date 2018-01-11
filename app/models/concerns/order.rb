@@ -4,7 +4,8 @@ module Order
 
     # SCope q permite ordenar decrecientemente
     def ord
-      order('created_at DESC')
+      # order('created_at DESC')
+      order('id DESC')
     end
 
   end

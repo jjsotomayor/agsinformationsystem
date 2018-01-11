@@ -1,5 +1,12 @@
   <div class="container">
     <h2 class= "centered separated">Productos</h2>
+    
+    <!-- Form para buscar elements -->
+    <%= form_tag(elements_path, method: :get) do %>
+      <%= text_field_tag :term, nil, placeholder: 'Buscar una tarja' %>
+      <%= submit_tag 'Buscar', name: nil %>
+    <% end %>
+
   <table class = "table table-striped">
   <thead>
     <tr>

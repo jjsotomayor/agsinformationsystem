@@ -5,7 +5,7 @@ class ElementsController < ApplicationController
 
   # GET /elements
   def index
-    @elements = Element.all.ord
+    @elements = Element.search(params[:term])
     respond_to do |format|
       format.html
       format.csv { send_data @elements.to_csv, filename: "#{Date.today} - Elementos.csv" }
