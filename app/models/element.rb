@@ -61,6 +61,7 @@ class Element < ApplicationRecord
     if @element and element_params.count > 1# Si se ingresaron varios parametros del producto #!@element.product_type and process_name
       @element.product_type = ProductType.find_by(name: process_name) if process_name
       @element.update_attributes(element_params)
+      # TODO Actualizar estado de productos que dependen del proceso,(humedad, q otro)
     elsif !@element
       @element = Element.new(element_params)
       @element.product_type = ProductType.find_by(name: process_name) if process_name

@@ -87,4 +87,23 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  ########### ENVIO DE CORREOS MAilGUN ############
+  #################################################
+  #RECOMENDADO POR  https://github.com/plataformatec/devise
+  # CAmbiarlo a una variable de configuracion o de environment
+  config.action_mailer.default_url_options = { host: 'agssystem.herokuapp.com'}#, port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.smtp_settings = {
+  :port           => ENV['MAILGUN_SMTP_PORT'],
+  :address        => ENV['MAILGUN_SMTP_SERVER'],
+  :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+  :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+  :domain         => 'agssystem.herokuapp.com',
+  :authentication => :plain,
+}
+
 end

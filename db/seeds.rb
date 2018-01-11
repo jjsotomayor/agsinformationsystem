@@ -86,7 +86,11 @@ product_types = # products type / proceso
  UserControl.destroy_all
 
  User.create!(name:"Joaquin", last_name:"Soto", password:"123123", email: "jjsotomayor@uc.cl")
- User.create!(name:"admin", last_name:"Soto", password:"123123", email: "joaquinsotomayorc@gmail.com")
+ admin = User.create!(name:"admin", last_name:"admin", password:"123123", email: "joaquinsotomayorc@gmail.com")
+ admin.authorized = true
+ admin.role_id = Role.find_by(name: 'admin').id
+ admin.save!
+
  UserControl.create!(name:"joaquin", password:"123123")
  IpAddress.create(ip: "127.0.0.1")     # IP local
  IpAddress.create(ip: "190.9.57.115")  # IP programador

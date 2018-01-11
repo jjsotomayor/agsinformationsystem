@@ -57,3 +57,6 @@ gem 'cancancan'
 gem 'rolify'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'autoprefixer-rails'
+# Gema que permite el envio de correos a través de API de MailGun
+# Para envios SMTP por Mailgun no es necesaria
+# gem 'rest-client', '~> 2.0', '>= 2.0.2'
