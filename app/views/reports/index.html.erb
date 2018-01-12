@@ -1,3 +1,54 @@
+<div class="container-table">
+<!-- TODO Incorporar filtro fecha desde!-->
+<h3 class= "centered separated"><%= "Muestras tomadas los ultimos  #{@days} dias" %></h3>
+<table class = "table table-striped table-tight">
+  <thead>
+    <tr>
+      <th> </th>
+      <% @product_types.each do |pt| %>
+        <th><%= pt.name.upcase %></th>
+      <% end %>
+      <!-- <th colspan="3"></th> -->
+    </tr>
+  </thead>
 
-Todas las muestras de humedad: <%=@humidity_samples.count %><br>
-Muestras ultima semana:  <%=@last_week_samples.count%><br>
+  <tbody>
+    <!-- TODO Al final no uso la mayoria de las cosas calculadas en controller  -->
+      <tr>
+        <td> Daños </td>
+        <% @product_types.each do |pt| %>
+          <td><%= pt.damage_samples.count %></td>
+        <% end %>
+      </tr>
+
+      <tr>
+        <td> Calibre </td>
+        <% @product_types.each do |pt| %>
+          <td><%=pt.caliber_samples.count %></td>
+        <% end %>
+      </tr>
+
+      <tr>
+        <td> Humedad </td>
+        <% @product_types.each do |pt| %>
+          <td><%= pt.humidity_samples.count %></td>
+        <% end %>
+      </tr>
+
+      <tr>
+        <td> Sorbato </td>
+        <% @product_types.each do |pt| %>
+          <td><%= pt.sorbate_samples.count %></td>
+        <% end %>
+      </tr>
+
+      <tr>
+        <td> Carozo </td>
+        <% @product_types.each do |pt| %>
+          <td><%= pt.carozo_samples.count %></td>
+        <% end %>
+      </tr>
+
+  </tbody>
+</table>
+</div>

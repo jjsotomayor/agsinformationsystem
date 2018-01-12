@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # post '/user_controls/:id/add_access', to: 'user_controls#add_access'
   # post '/user_controls/:id/remove_access', to: 'user_controls#remove_access'
 
-  get 'reports/index'
+  get 'reports/index', as: :reports
 
   get 'pages/home'
   get 'pages/home_quality_controls'
