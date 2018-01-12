@@ -1,0 +1,157 @@
+wb = xlsx_package.workbook
+
+# wb = xlsx_package.workbook
+
+#### Hoja Productos ###
+wb.add_worksheet(name: "Productos") do |sheet|
+  sheet.add_row ["Tarja", "Fecha", "OrdenProceso", "Tipo", "Secado", "TarjaAnterior"]
+  @elements.each do |elem|
+    #  TODO Agregar Color!
+    row = [elem.tag, elem.created_at, elem.process_order]
+    # row << elem.product_type.nil? ? " " : elem.product_type.name
+    if elem.product_type
+      row << elem.product_type.name
+    else
+      row << " "
+    end
+
+    if elem.drying_method
+      row << elem.drying_method.name
+    else
+      row << " "
+    end
+    sheet.add_row (row)
+  end
+end
+
+
+#### Hoja Daños ###
+wb.add_worksheet(name: "Daños") do |sheet|
+  sheet.add_row ["Tarja", "Fecha", "Proceso", "Responsable", "Peso muestra(g)",
+  "USDA", "Total daños(%)"]
+  puts @dam_samples
+  puts @dam_samples.count
+  @dam_samples.each do |ds|
+    row = [ds.element.tag, ds.created_at]
+    # NOTE Llamar a element en cada fila es muy pesado
+    if ds.element.product_type
+      row << ds.element.product_type.name
+    else
+      row << ""
+    end
+    row = row + [ds.responsable, ds.sample_weight, ds.usda, ds.total_damages_perc.round(1)]
+    # TODO Falta añadirle el resto de los daños
+    sheet.add_row (row)
+  end
+end
+
+
+#### Hoja Calibre ###
+wb.add_worksheet(name: "Calibre") do |sheet|
+
+  sheet.add_row ["Tarja", "Fecha", "Proceso", "Responsable", "Peso muestra(g)",
+  "Tipo", "Frutos en muestra", "Frutos x libra", "Calibre", "Desviacion", "Estado"]
+
+  @cal_samples.each do |cs|
+    row = [cs.element.tag, cs.created_at]
+    # NOTE Llamar a element en cada fila es muy pesado
+    if cs.element.product_type
+      row << cs.element.product_type.name
+    else
+      row << ""
+    end
+
+    row = row + [cs.responsable, cs.sample_weight]
+
+    if cs.is_ex_caliber
+      row << "Ex calibre"
+    else
+      row << ""
+    end
+
+    row = row +  [cs.fruits_in_sample, cs.fruits_per_pound, cs.caliber.name]
+
+    if cs.deviation_sample
+      row << cs.deviation_sample.deviation.round(0)
+      row << cs.deviation_sample.status
+    else
+      row = row + ["N/A", "N/A"]
+    end
+    sheet.add_row (row)
+  end
+
+end
+
+
+#### Hoja Humedad ###
+wb.add_worksheet(name: "Humedad") do |sheet|
+
+  sheet.add_row ["Tarja", "Fecha", "Proceso", "Responsable",
+   "Humedad(%)", "Estado"]
+
+  @humidity_samples.each do |hs|
+    row = [hs.element.tag, hs.created_at]
+    # NOTE Llamar a element en cada fila es muy pesado
+    if hs.element.product_type
+      row << hs.element.product_type.name
+    else
+      row << ""
+    end
+
+    row << hs.responsable
+    row << hs.humidity
+    row << hs.status
+
+    sheet.add_row (row)
+  end
+
+end
+
+#### Hoja Sorbato ###
+wb.add_worksheet(name: "Sorbato") do |sheet|
+
+  sheet.add_row ["Tarja", "Fecha", "Proceso", "Responsable",
+   "Sorbato(ppm)", "Estado"]
+
+  @sorbate_samples.each do |ss|
+    row = [ss.element.tag, ss.created_at]
+    # NOTE Llamar a element en cada fila es muy pesado
+    if ss.element.product_type
+      row << ss.element.product_type.name
+    else
+      row << ""
+    end
+
+    row << ss.responsable
+    row << ss.sorbate
+    row << ss.status
+
+    sheet.add_row (row)
+  end
+
+end
+
+
+#### Hoja Carozo ###
+wb.add_worksheet(name: "Carozo") do |sheet|
+
+  sheet.add_row ["Tarja", "Fecha", "Proceso", "Responsable", "Peso muestra (g)",
+   "Porc. carozo(%)", "Estado"]
+
+  @carozo_samples.each do |cs|
+    row = [cs.element.tag, cs.created_at]
+    # NOTE Llamar a element en cada fila es muy pesado
+    if cs.element.product_type
+      row << cs.element.product_type.name
+    else
+      row << ""
+    end
+
+    row = row + [cs.responsable, cs.sample_weight]
+    row << cs.carozo_percentage
+    row << cs.status
+
+    sheet.add_row (row)
+  end
+
+end

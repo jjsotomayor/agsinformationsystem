@@ -111,3 +111,9 @@ product_types = # products type / proceso
     op = Operation.order("RANDOM()").first
     UserControlAccess.create(user_control: uc, operation: op)
   end
+
+  # Cuando necesita crear varias samples
+  # for i in 10000...12000 do
+  #   e = Element.create(tag: i, product_type_id: 7)
+  #   DamageSample.create!(element: e, responsable: "Juan_Diego", sample_weight: 1000, off_color: 55)
+  # end

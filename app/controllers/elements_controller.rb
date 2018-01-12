@@ -8,7 +8,15 @@ class ElementsController < ApplicationController
     @elements = Element.search(params[:term])
     respond_to do |format|
       format.html
-      format.csv { send_data @elements.to_csv, filename: "#{Date.today} - Elementos.csv" }
+      format.csv { send_data @elements.to_csv, filename: "#{Date.today} - Productos.csv" }
+      format.xlsx {
+        @dam_samples = DamageSample.ord
+        @cal_samples = CaliberSample.ord
+        @humidity_samples = HumiditySample.ord
+        @sorbate_samples = SorbateSample.ord
+        @carozo_samples = CarozoSample.ord
+        response.headers['Content-Disposition'] = 'attachment; filename="'+ Date.today.to_s + ' - Productos.xlsx"'
+      }
     end
   end
 
