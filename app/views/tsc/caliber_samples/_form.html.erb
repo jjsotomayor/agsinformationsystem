@@ -16,15 +16,8 @@
 
     <div class="field">
       <%= f.label :"con/sin carozo" %>
-      <%
-      # text_field_tag :drying_method_id, '', class: "vertical" 4
-      %>
       <%= f.select :is_ex_caliber,  options_for_select([{text: "sin_carozo", val: false},{text: "con_carozo", val: true}].map{|h| [h[:text],h[:val]]}), include_blank: true%>
     </div>
-    <!-- <div class="field">
-      <%= f.label :peso_muestra %>
-      <%= f.number_field :sample_weight, placeholder: " gramos" %>
-    </div> -->
 
     <div class="field">
       <%= f.label :"peso_muestra (g)" %>
@@ -40,12 +33,12 @@
     <p>------------------ Desviación (en 2.830g) -----------------</p>
         <div class="field">
           <%= f.label :frutos_grandes %>
-          <%= field_big_fruits_in_sample(type, caliber_sample) %>
+          <%= field_big_fruits_in_sample(type, caliber_sample, 0) %>
         </div>
 
         <div class="field">
           <%= f.label :frutos_pequeños %>
-          <%= field_small_fruits_in_sample(type, caliber_sample) %>
+          <%= field_small_fruits_in_sample(type, caliber_sample, 0) %>
         </div>
 
     <% end %>
