@@ -26,9 +26,16 @@ module Agsinformationsystem
     # Limites inferior y superior de Sorbato
     config.min_sorbate = 1000
     config.max_sorbate = 1200
-    # Max deviation for caliber sample
-    config.max_deviation = 40
 
+    ########## Deviation SAmples ##########
+    # Gramos usados para sacar big/small_fruits_in_sample
+    config.deviation_calc_weight = 283
+    # Magnitud en que cambia el criterio de aprobacion/rechazo por desviacion
+    config.limit_big_small_caliber = 50
+    # Max deviation fruta menor a X frutos por libra
+    config.max_deviation_big_caliber = 20
+    # Max deviation fruta mayor a X frutos por libra
+    config.max_deviation_small_caliber = 43
 
   end
 end

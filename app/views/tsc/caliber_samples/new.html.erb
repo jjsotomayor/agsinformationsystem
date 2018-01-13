@@ -26,8 +26,7 @@
       <th> </th>
       <th>Resp.</th>
       <th>Tarja</th>
-      <th>Frutos en muest.</th>
-      <th>Peso muest. (gr)</th>
+      <th>Frutos por libra</th>
       <th>Calib.</th>
       <th>FG</th>
       <th>FP</th>
@@ -45,14 +44,13 @@
         <td><%= time(caliber_sample.created_at) %></td>
         <td><%= caliber_sample.responsable.truncate(6) %></td>
         <td><%= caliber_sample.element.tag %></td>
-        <td><%= caliber_sample.fruits_in_sample %></td>
-        <td><%= caliber_sample.sample_weight %></td>
+        <td><%= caliber_sample.fruits_per_pound %></td>
         <td><%= caliber_sample.caliber.name %></td>
 
 
         <td><%= caliber_sample.deviation_sample.big_fruits_in_sample if caliber_sample.deviation_sample %></td>
         <td><%= caliber_sample.deviation_sample.small_fruits_in_sample if caliber_sample.deviation_sample %></td>
-        <td><%= caliber_sample.deviation_sample.deviation.round(0) if caliber_sample.deviation_sample  %></td>
+        <td><%= caliber_sample.deviation_sample.deviation.round(1) if caliber_sample.deviation_sample  %></td>
 
         <%if caliber_sample.deviation_sample%>
           <td><%= short_status(caliber_sample.deviation_sample)%></td>

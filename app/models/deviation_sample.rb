@@ -11,19 +11,34 @@ class DeviationSample < ApplicationRecord
 
   validates :big_fruits_in_sample, :small_fruits_in_sample, :deviation, numericality: true
 
-  # FIXME: Arreglar calculos
   def calculate_deviation
     self.big_fruits_in_sample
     self.small_fruits_in_sample
-    self.sample_weight = self.caliber_sample.sample_weight
+    dev_weight = Rails.configuration.deviation_calc_weight # 283
+    # self.sample_weight = 2830
 
     grams_per_lb = Rails.configuration.grams_per_lb
-    self.big_fruits_per_pound = (self.big_fruits_in_sample.to_f/self.sample_weight) * grams_per_lb
-    self.small_fruits_per_pound = (self.small_fruits_in_sample.to_f/self.sample_weight) * grams_per_lb
-    self.deviation = (self.big_fruits_per_pound - self.small_fruits_per_pound).abs
+    self.big_fruits_per_pound = (self.big_fruits_in_sample.to_f/dev_weight) * grams_per_lb
+    self.small_fruits_per_pound = (self.small_fruits_in_sample.to_f/dev_weight) * grams_per_lb
+    # p self.big_fruits_per_pound
+    # p self.small_fruits_per_pound
+    self.deviation = (self.big_fruits_per_pound - self.small_fruits_per_pound).abs.round(2)
 
+    # TODO Revisar el tema de aprobado / rechazado
+    # puts max_deviation
     self.status = "rechazado"
-    self.status = "aprobado" if self.deviation < Rails.configuration.max_deviation
+    self.status = "aprobado" if self.deviation < max_deviation
+  end
+
+  private
+
+  def max_deviation
+    limit = Rails.configuration.limit_big_small_caliber # 50
+    if self.caliber_sample.fruits_per_pound <= limit
+      Rails.configuration.max_deviation_big_caliber # 20
+    else
+      Rails.configuration.max_deviation_small_caliber # 43
+    end
   end
 
 end

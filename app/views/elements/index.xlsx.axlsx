@@ -72,7 +72,7 @@ wb.add_worksheet(name: "Calibre") do |sheet|
     row = row +  [cs.fruits_in_sample, cs.fruits_per_pound, cs.caliber.name]
 
     if cs.deviation_sample
-      row << cs.deviation_sample.deviation.round(0)
+      row << cs.deviation_sample.deviation.round(1)
       row << cs.deviation_sample.status
     else
       row = row + ["N/A", "N/A"]

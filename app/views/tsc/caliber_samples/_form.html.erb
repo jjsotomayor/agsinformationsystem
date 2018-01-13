@@ -27,8 +27,8 @@
     </div> -->
 
     <div class="field">
-      <%= f.label :peso_muestra %>
-      <%= f.number_field :sample_weight, placeholder: " gramos", step: 0.01, min:1 %>
+      <%= f.label :"peso_muestra (g)" %>
+      <%= field_sample_weight(f) %>
     </div>
     <div class="field">
       <%= f.label :frutos_en_muestra %>
@@ -37,17 +37,15 @@
 
 
     <% if @include_deviation%>
-    <p>------------------------- Desviación ------------------------</p>
+    <p>------------------ Desviación (en 2.830g) -----------------</p>
         <div class="field">
-          <% value = type == "edit" ? caliber_sample.deviation_sample.big_fruits_in_sample : ""  %>
           <%= f.label :frutos_grandes %>
-          <%= number_field_tag :big_fruits_in_sample, value,  placeholder: ' cantidad' %> <!--, min: 1, max: 1000  -->
+          <%= field_big_fruits_in_sample(type, caliber_sample) %>
         </div>
 
         <div class="field">
-          <% value = type == "edit" ? caliber_sample.deviation_sample.small_fruits_in_sample : ""  %>
           <%= f.label :frutos_pequeños %>
-          <%= number_field_tag :small_fruits_in_sample, value, placeholder: ' cantidad'%>
+          <%= field_small_fruits_in_sample(type, caliber_sample) %>
         </div>
 
     <% end %>

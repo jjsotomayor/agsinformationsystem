@@ -8,8 +8,6 @@
       <th>Creación</th>
       <th>Responsable</th>
       <th>Tarja</th>
-      <th>Peso muestra (gr)</th>
-      <th>Frutos en muestra</th>
       <th>Frutos x libra</th>
       <th>Calibre</th>
 
@@ -24,8 +22,6 @@
         <td><%= date_time(caliber_sample.created_at) %></td>
         <td><%= caliber_sample.responsable.truncate(14) %></td>
         <td><%= caliber_sample.element.tag %></td>
-        <td><%= caliber_sample.sample_weight %></td>
-        <td><%= caliber_sample.fruits_in_sample %></td>
         <td><%= caliber_sample.fruits_per_pound %></td>
         <td><%= caliber_sample.caliber.name %></td>
 
