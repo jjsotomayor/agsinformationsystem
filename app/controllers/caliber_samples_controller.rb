@@ -77,7 +77,8 @@ class CaliberSamplesController < ApplicationController
 
   # DELETE /caliber_samples/1
   def destroy
-    @caliber_sample.soft_delete
+    # @caliber_sample.soft_delete
+    @caliber_sample.destroy
     redirect_to send(@process+"_caliber_samples_url"), notice: 'Muestra de calibre eliminada'
   end
 

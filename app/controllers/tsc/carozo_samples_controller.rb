@@ -59,7 +59,8 @@ class Tsc::CarozoSamplesController < ApplicationController
 
   # DELETE /carozo_samples/1
   def destroy
-    @carozo_sample.soft_delete
+    # @carozo_sample.soft_delete
+    @carozo_sample.destroy
     redirect_to tsc_carozo_samples_url, notice: 'Muestra de carozo eliminada.'
   end
 

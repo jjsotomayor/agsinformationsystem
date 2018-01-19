@@ -63,8 +63,9 @@ class SorbateSamplesController < ApplicationController
 
   # DELETE /sorbate_samples/1
   def destroy
-    @sorbate_sample.soft_delete
-    redirect_to sorbate_samples_url, notice: 'Muestra de humedad eliminada.'
+    # @sorbate_sample.soft_delete
+    @sorbate_sample.destroy
+    redirect_to sorbate_samples_url, notice: 'Muestra de sorbato eliminada.'
   end
 
   private

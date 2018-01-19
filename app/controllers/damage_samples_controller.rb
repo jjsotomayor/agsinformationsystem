@@ -64,7 +64,8 @@ class DamageSamplesController < ApplicationController
 
   # DELETE /damage_samples/1
   def destroy
-    @damage_sample.soft_delete
+    # @damage_sample.soft_delete
+    @damage_sample.destroy
     redirect_to send(@process+"_damage_samples_url"), notice: 'Muestra de daños eliminada'
   end
 

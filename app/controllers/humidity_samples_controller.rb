@@ -58,7 +58,8 @@ class HumiditySamplesController < ApplicationController
 
   # DELETE /humidity_samples/1
   def destroy
-    @humidity_sample.soft_delete
+    # @humidity_sample.soft_delete
+    @humidity_sample.destroy
     redirect_to humidity_samples_url, notice: 'Muestra de humedad eliminada.'
   end
 
