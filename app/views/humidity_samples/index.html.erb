@@ -9,20 +9,20 @@
       <th>Responsable</th>
       <th>Tarja</th>
       <th>Humedad</th>
-      <th>Estado</th>
+      <!-- <th>Estado</th> -->
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @humidity_samples.each do |humidity_sample| %>
-        <tr class= "<%= colored_rows(humidity_sample)%>" >
+        <tr>
         <td><%= humidity_sample.counter %></td>
         <td><%= date_time(humidity_sample.created_at) %></td>
         <td><%= humidity_sample.responsable %></td>
         <td><%= humidity_sample.element.tag %></td>
         <td><%= humidity_sample.humidity %></td>
-        <td><%= humidity_sample.status %></td>
+        <!-- <td>humidity_sample.status</td> -->
         <td><%= link_to 'Ver', humidity_sample,  class: "btn btn-primary btn-xs" %></td>
         <%if access_edit_delete_sample_button%>
           <td><%= link_to 'Editar', edit_humidity_sample_path(humidity_sample),  class: "btn btn-warning btn-xs" %></td>

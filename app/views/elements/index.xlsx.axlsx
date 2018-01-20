@@ -87,7 +87,7 @@ end
 wb.add_worksheet(name: "Humedad") do |sheet|
 
   sheet.add_row ["Tarja", "Fecha", "Proceso", "Responsable",
-   "Humedad(%)", "Estado"]
+   "Humedad(%)"]
 
   @humidity_samples.each do |hs|
     row = [hs.element.tag, hs.created_at]
@@ -100,7 +100,6 @@ wb.add_worksheet(name: "Humedad") do |sheet|
 
     row << hs.responsable
     row << hs.humidity
-    row << hs.status
 
     sheet.add_row (row)
   end
@@ -111,7 +110,7 @@ end
 wb.add_worksheet(name: "Sorbato") do |sheet|
 
   sheet.add_row ["Tarja", "Fecha", "Proceso", "Responsable",
-   "Sorbato(ppm)", "Estado"]
+   "Sorbato(ppm)"]
 
   @sorbate_samples.each do |ss|
     row = [ss.element.tag, ss.created_at]
@@ -124,7 +123,6 @@ wb.add_worksheet(name: "Sorbato") do |sheet|
 
     row << ss.responsable
     row << ss.sorbate
-    row << ss.status
 
     sheet.add_row (row)
   end
@@ -136,7 +134,7 @@ end
 wb.add_worksheet(name: "Carozo") do |sheet|
 
   sheet.add_row ["Tarja", "Fecha", "Proceso", "Responsable", "Peso muestra (g)",
-   "Porc. carozo(%)", "Estado"]
+   "Porc. carozo(%)"]
 
   @carozo_samples.each do |cs|
     row = [cs.element.tag, cs.created_at]
@@ -149,7 +147,6 @@ wb.add_worksheet(name: "Carozo") do |sheet|
 
     row = row + [cs.responsable, cs.sample_weight]
     row << cs.carozo_percentage
-    row << cs.status
 
     sheet.add_row (row)
   end

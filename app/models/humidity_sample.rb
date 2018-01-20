@@ -8,14 +8,14 @@ class HumiditySample < ApplicationRecord
 
   belongs_to :element
 
-  before_validation :calculate_status
+  # before_validation :calculate_status
 
-  validates :element, :responsable, :humidity, :status, presence: true
+  validates :element, :responsable, :humidity, presence: true #, :status
   validates :humidity, numericality: true
 
    # Considera el proceso actual del element
-   def calculate_status
-     # TODO: Hacer tests que chequeen todos los limites.
+   def calculate_status #(No usado)
+     # TODO: Testear
      self.status = "pendiente" and return if !self.element.product_type
      min = self.element.product_type.humidity_min
      max = self.element.product_type.humidity_max

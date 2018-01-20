@@ -21,8 +21,12 @@
   <%msg = "Estado: #{sample.deviation_sample.status}"%>
   <%end%>
 
-  <%elsif sample.has_attribute?(:status) %>
-  <%msg = "Estado: #{sample.status}"%>
+  <%
+# elsif sample.has_attribute?(:status)
+%>
+  <%
+  # msg = "Estado: #{sample.status}"
+  %>
   <%end%>
 
   <%color = sample.element.color%>

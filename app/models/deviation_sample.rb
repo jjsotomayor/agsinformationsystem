@@ -24,10 +24,8 @@ class DeviationSample < ApplicationRecord
     # p self.small_fruits_per_pound
     self.deviation = (self.big_fruits_per_pound - self.small_fruits_per_pound).abs.round(2)
 
-    # TODO Revisar el tema de aprobado / rechazado
     # puts max_deviation
-    self.status = "rechazado"
-    self.status = "aprobado" if self.deviation < max_deviation
+    self.status = self.deviation < max_deviation ? "aprobado" : "rechazado"
   end
 
   private

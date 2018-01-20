@@ -11,14 +11,14 @@
       <th>Con carozo (gr)</th>
       <th>Peso muestra (gr)</th>
       <th>Porcentaje carozo (%)</th>
-      <th>Estado</th>
+      <!-- <th>Estado</th> -->
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @carozo_samples.each do |carozo_sample| %>
-      <tr class= "<%= colored_rows(carozo_sample)%>">
+      <tr>
         <td><%= carozo_sample.counter %></td>
         <td><%= date_time(carozo_sample.created_at)%></td>
         <td><%= carozo_sample.responsable %></td>
@@ -26,7 +26,7 @@
         <td><%= carozo_sample.carozo_weight %></td>
         <td><%= carozo_sample.sample_weight %></td>
         <td><%= carozo_sample.carozo_percentage %></td>
-        <td><%= carozo_sample.status %></td>
+        <!-- <td> carozo_sample.status </td> -->
 
         <td><%= link_to 'Ver', tsc_carozo_sample_path(carozo_sample), class: "btn btn-primary btn-xs" %></td>
         <%if access_edit_delete_sample_button%>

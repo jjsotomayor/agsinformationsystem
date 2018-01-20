@@ -1,3 +1,4 @@
+# NOTE No se esta importando ni usando. Ademas, los metodos estan repetidos en app_helper
 # frozen_string_literal: true
 
 module ViewsHelper
