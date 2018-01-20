@@ -95,4 +95,9 @@ module DamageSamplesHelper
     text_field_tag :ex_tag, value, class: class_type
   end
 
+  def field_previous_color(type, class_type, dam_sample)
+    value = type == "new" ? 0 : dam_sample.element.previous_color
+    select_tag :previous_color,  options_for_select([:azul, :verde, :amarillo, :rojo], value), include_blank: true, class: class_type
+  end
+
 end

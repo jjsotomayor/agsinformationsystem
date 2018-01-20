@@ -101,7 +101,7 @@ product_types = # products type / proceso
   #usda = ['A', 'B', 'C', 'SSTD', 'no califica']
   # 100.times do
   #   rand(1)
-  #   elem = Element.new(tag: rand(100000), lot: rand(1000), product_type_id: rand(5)+1, drying_method_id: rand(3)+1, previous_usda: rand(0..4))
+  #   elem = Element.new(tag: rand(100000), lot: rand(1000), product_type_id: rand(5)+1, drying_method_id: rand(3)+1)
   #   if !elem.save
   #     pp elem.errors
   #   end

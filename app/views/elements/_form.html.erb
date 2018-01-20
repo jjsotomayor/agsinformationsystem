@@ -28,14 +28,15 @@
   </div>
 
   <div class="field">
-    <%= f.label :USDA_anterior %><br>
-    <%= f.select "previous_usda",  options_for_select([:A, :B, :C, :SSTD, :'no califica'], @element.previous_usda), include_blank: true %>
-  </div>
-
-  <div class="field">
     <%= f.label :ex_tarja %><br>
     <%= f.text_field :ex_tag, autocomplete: 'off' %>
   </div>
+
+  <div class="field">
+    <%= f.label :color_anterior %><br>
+    <%= f.select :previous_color,  options_for_select([:azul, :verde, :amarillo, :rojo], @element.previous_color), include_blank: true %>
+  </div>
+
 
   <div class="actions">
     <%= f.submit :Aceptar, class: "btn btn-primary btn-lg btn-block" %>

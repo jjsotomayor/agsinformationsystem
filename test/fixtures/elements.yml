@@ -4,12 +4,10 @@ one:
   tag: MyString
   product_type: one
   drying_method: one
-  previous_usda: MyString
   ex_tag: MyString
 
 two:
   tag: MyString
   product_type: two
   drying_method: two
-  previous_usda: MyString
   ex_tag: MyString

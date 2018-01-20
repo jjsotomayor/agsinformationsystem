@@ -2,7 +2,7 @@ class Element < ApplicationRecord
   include Methods
 
   enum color: [:-, :azul, :verde, :amarillo, :rojo]
-  enum previous_usda: [:A, :B, :C, :SSTD, :'no califica']
+  # enum previous_usda: [:A, :B, :C, :SSTD, :'no califica']
   #enum status: [ :active, :archived ]
 
   belongs_to :product_type

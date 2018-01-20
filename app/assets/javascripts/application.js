@@ -166,7 +166,7 @@ function run_all_validations(e){
     if (!validate($(".validatable #caliber_sample_is_ex_caliber"),    true, false)){ error = true;}
     //// Damage Samples //////////
     // if (!validate($(".validatable #process_order"),                   true, false)){ error = true;}
-    if (!validate($(".validatable #lot"),                   true, false)){ error = true;}
+    if (!validate($(".validatable #lot"),                             true, false)){ error = true;}
     if (!validate($(".validatable #drying_method_id"),                true, false)){ error = true;}
     if (!validate($(".validatable #damage_sample_sample_weight"),     true, "integer")){ error = true;}
 

@@ -17,7 +17,7 @@
       <th>Color</th>
 
       <th>Ex tarja</th>
-      <th>USDA anterior</th>
+      <th>Color anterior</th>
 
       <th colspan="1"></th>
     </tr>
@@ -34,7 +34,7 @@
         <td><%= @element.color %></td>
 
         <td><%= @element.ex_tag %></td>
-        <td><%= @element.previous_usda %></td>
+        <td><%= @element.previous_color %></td>
         <% if access_edit_element_button %>
         <td><%= link_to 'Editar producto', edit_element_path(@element),  class: "btn btn-warning btn-xs" %></td>
         <% end %>

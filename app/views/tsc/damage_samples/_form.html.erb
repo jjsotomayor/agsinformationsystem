@@ -22,10 +22,14 @@
 
     <div class="field">
       <%= f.label :Ex_tarja, class: "vertical" %>
-      <%= field_ex_tag(type,  "vertical", damage_sample) %>
+      <%= field_ex_tag(type, "vertical", damage_sample) %>
     </div>
 
-    <!-- TODO: Agregar previous USDA   -->
+    <div class="field">
+      <%= f.label :color_anterior, class: "vertical" %>
+      <%= field_previous_color(type, "vertical", damage_sample) %>
+    </div>
+
 
 
   <div class="field">
