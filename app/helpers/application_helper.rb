@@ -43,7 +43,7 @@ module ApplicationHelper
   def common_table_body(sample)
     #html =  {}"<td>" + sample.id.to_s + "</td>"
     html = "<td>" + sample.responsable.truncate(7) + "</td>"
-    html << "<td>" + sample.element.tag.to_s + "</td>"
+    html << "<td>" + element_link(sample.element) + "</td>"
     html << "<td>" + round_or_nil(sample.sample_weight).to_s + "</td>"
     html.html_safe
   end
@@ -69,6 +69,10 @@ module ApplicationHelper
     else
       "-"
     end
+  end
+
+  def element_link(element)
+    link_to element.tag, element,  class: "btn btn-element btn-xs"
   end
 
   ##########################################

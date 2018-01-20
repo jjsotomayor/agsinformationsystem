@@ -19,7 +19,7 @@
     <% @humidity_samples.each do |humidity_sample| %>
       <tr>
         <td><%= time(humidity_sample.created_at)%></td>
-        <td><%= humidity_sample.element.tag %></td>
+        <td><%= element_link(humidity_sample.element) %></td>
         <td><%= humidity_sample.responsable.truncate(12) %></td>
         <td><%= humidity_sample.humidity %></td>
         <!-- <td> humidity_sample.status </td> -->

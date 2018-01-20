@@ -22,7 +22,7 @@
     <% @carozo_samples.each do |carozo_sample| %>
       <tr>
         <td><%= time(carozo_sample.created_at)%></td>
-        <td><%= carozo_sample.element.tag %></td>
+        <td><%= element_link(carozo_sample.element) %></td>
         <td><%= carozo_sample.responsable.truncate(10) %></td>
         <td><%= carozo_sample.carozo_weight %></td>
         <td><%= carozo_sample.sample_weight %></td>

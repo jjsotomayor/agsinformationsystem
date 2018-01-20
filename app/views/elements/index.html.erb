@@ -4,7 +4,7 @@
     <%=
     #link_to "Descargar csv", elements_path(:csv), class: "btn btn-primary btn-xs"
      %>
-    <%= link_to 'Descargar en excel', elements_path(format: :xlsx), class: "btn btn-primary btn-xs" %>
+    <%= link_to 'Descargar en excel', elements_path(format: :xlsx), class: "btn btn-primary btn-sm" %>
     <!-- Form para buscar elements -->
     <%= form_tag(elements_path, method: :get) do %>
       <%= text_field_tag :term, nil, placeholder: 'Buscar una tarja' %>
@@ -31,7 +31,7 @@
     <% @elements.each do |element| %>
       <!-- <tr> -->
       <tr class= "<%= colored_rows_with_color(element.color)%>" >
-        <td><%= element.tag %></td>
+        <td><%= element_link(element) %></td>
         <td><%= date_time(element.created_at) %></td>
         <td><%= element.lot %></td>
         <td><%= element.process_order %></td>

@@ -19,7 +19,7 @@
     <% @sorbate_samples.each do |sorbate_sample| %>
       <tr>
         <td><%= time(sorbate_sample.created_at)%></td>
-        <td><%= sorbate_sample.element.tag %></td>
+        <td><%= element_link(sorbate_sample.element) %></td>
         <td><%= sorbate_sample.responsable.truncate(12) %></td>
         <td><%= sorbate_sample.sorbate %></td>
         <!-- <td> sorbate_sample.status </td> -->

@@ -417,3 +417,14 @@ input[type=text]:focus {
 .yellow{ background-color: yellow;}
 .green{ background-color: green}
 .blue{ background-color: blue;}
+
+////// Link a elements #show /////
+.btn-element{
+  color: white;
+  background-color: #545454;
+  border-color: #545454;
+  &:hover{
+    color: white;
+    background-color: black;
+  }
+}

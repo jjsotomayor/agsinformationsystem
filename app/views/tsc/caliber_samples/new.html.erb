@@ -43,7 +43,7 @@
         <td><%= caliber_sample.is_ex_caliber ? "Ex calibre:" : "" %></td>
         <td><%= time(caliber_sample.created_at) %></td>
         <td><%= caliber_sample.responsable.truncate(6) %></td>
-        <td><%= caliber_sample.element.tag %></td>
+        <td><%= element_link(caliber_sample.element) %></td>
         <td><%= caliber_sample.fruits_per_pound %></td>
         <td><%= caliber_sample.caliber.name %></td>
 
