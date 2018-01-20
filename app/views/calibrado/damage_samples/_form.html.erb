@@ -16,6 +16,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :lote, class: "vertical" %>
+    <%= field_lot(type, "vertical", damage_sample) %>
+  </div>
+
+  <div class="field">
     <%= f.label :tipo_de_secado, class: "vertical" %>
     <%= field_drying_method_id(type, "vertical", damage_sample) %>
   </div>

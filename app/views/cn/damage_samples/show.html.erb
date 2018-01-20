@@ -9,7 +9,6 @@
         <th>Resp</th>
         <th>Tarja</th>
         <th>Tipo</th>
-        <th>Orden</th>
         <th>USDA</th>
 
       </tr>
@@ -21,7 +20,6 @@
           <td><%= @damage_sample.responsable.truncate(12) %></td>
           <td><%= @damage_sample.element.tag%></td>
           <td><%= @damage_sample.element.drying_method.name%></td>
-          <td><%= @damage_sample.element.process_order %></td>
           <td><%= @damage_sample.usda %></td>
 
         </tr>

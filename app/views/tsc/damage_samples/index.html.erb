@@ -9,7 +9,6 @@
 
       <%=common_table_headers%>
       <th>Tipo</th>
-      <th>Orden</th>
       <th>Ex tarja</th>
       <th>USDA</th>
       <th>DF07</th>
@@ -28,7 +27,6 @@
 
         <%=common_table_body(damage_sample)%>
         <td><%=damage_sample.element.drying_method.name%></td>
-        <td><%= damage_sample.element.process_order %></td>
         <td><%= damage_sample.element.ex_tag %></td>
         <td><%= damage_sample.usda %></td>
         <td><%= short_status(damage_sample) %></td>

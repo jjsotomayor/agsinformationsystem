@@ -4,10 +4,10 @@ wb = xlsx_package.workbook
 
 #### Hoja Productos ###
 wb.add_worksheet(name: "Productos") do |sheet|
-  sheet.add_row ["Tarja", "Fecha", "OrdenProceso", "Tipo", "Secado", "TarjaAnterior"]
+  sheet.add_row ["Tarja", "Fecha", "Lote", "Color", "Tipo", "Secado", "TarjaAnterior"]
   @elements.each do |elem|
     #  TODO Agregar Color!
-    row = [elem.tag, elem.created_at, elem.process_order]
+    row = [elem.tag, elem.created_at, elem.lot, elem.color]
     # row << elem.product_type.nil? ? " " : elem.product_type.name
     if elem.product_type
       row << elem.product_type.name

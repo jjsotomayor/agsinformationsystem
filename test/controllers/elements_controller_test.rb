@@ -17,7 +17,7 @@ class ElementsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create element" do
     assert_difference('Element.count') do
-      post elements_url, params: { element: { drying_method_id: @element.drying_method_id, ex_tag: @element.ex_tag, previous_usda: @element.previous_usda, process_order: @element.process_order, product_type_id: @element.product_type_id, tag: @element.tag } }
+      post elements_url, params: { element: { drying_method_id: @element.drying_method_id, ex_tag: @element.ex_tag, previous_usda: @element.previous_usda, product_type_id: @element.product_type_id, tag: @element.tag } }
     end
 
     assert_redirected_to element_url(Element.last)
@@ -34,7 +34,7 @@ class ElementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update element" do
-    patch element_url(@element), params: { element: { drying_method_id: @element.drying_method_id, ex_tag: @element.ex_tag, previous_usda: @element.previous_usda, process_order: @element.process_order, product_type_id: @element.product_type_id, tag: @element.tag } }
+    patch element_url(@element), params: { element: { drying_method_id: @element.drying_method_id, ex_tag: @element.ex_tag, previous_usda: @element.previous_usda, product_type_id: @element.product_type_id, tag: @element.tag } }
     assert_redirected_to element_url(@element)
   end
 

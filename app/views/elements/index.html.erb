@@ -17,7 +17,6 @@
       <th>Tarja</th>
       <th>Fecha</th>
       <th>Lote</th>
-      <th>Orden</th>
       <th>Tipo producto</th>
       <th>Tipo secado</th>
       <th>Color</th>
@@ -34,7 +33,6 @@
         <td><%= element_link(element) %></td>
         <td><%= date_time(element.created_at) %></td>
         <td><%= element.lot %></td>
-        <td><%= element.process_order %></td>
         <td><%= element.product_type.name.upcase unless element.product_type.nil? %></td>
         <td><%= element.drying_method.name unless element.drying_method.nil? %></td>
         <td><%= element.color%></td>

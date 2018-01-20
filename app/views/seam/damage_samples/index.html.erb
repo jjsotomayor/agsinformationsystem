@@ -9,7 +9,6 @@
 
       <%=common_table_headers%>
       <th>Tipo</th>
-      <th>Orden</th>
       <th>USDA</th>
 
       <%=table_headers_damages(" (%)")%>
@@ -26,7 +25,6 @@
 
         <%=common_table_body(damage_sample)%>
         <td><%=damage_sample.element.drying_method.name%></td>
-        <td><%= damage_sample.element.process_order %></td>
         <td><%= damage_sample.usda %></td>
 
 

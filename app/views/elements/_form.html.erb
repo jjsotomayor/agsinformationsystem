@@ -17,11 +17,6 @@
   </div>
 
   <div class="field">
-    <%= f.label :Orden_de_proceso %><br>
-    <%= f.text_field :process_order, autocomplete: 'off' %>
-  </div>
-
-  <div class="field">
     <%= f.label :Tipo_de_producto %><br>
     <%= f.select "product_type_id",  options_for_select(ProductType.all.map{|pt| [pt.name,pt.id]}, @element.product_type_id | 0), include_blank: true %>
 

@@ -2,7 +2,6 @@
 
 one:
   tag: MyString
-  process_order: MyString
   product_type: one
   drying_method: one
   previous_usda: MyString
@@ -10,7 +9,6 @@ one:
 
 two:
   tag: MyString
-  process_order: MyString
   product_type: two
   drying_method: two
   previous_usda: MyString

@@ -75,9 +75,14 @@ module DamageSamplesHelper
     text_field_tag :tag, value, class: class_type, autocomplete: 'off', disabled: (type == 'edit')
   end
 
-  def field_process_order(type, class_type, dam_sample)
-    value = type == "new" ? '' : dam_sample.element.process_order
-    text_field_tag :process_order, value, class: class_type, autocomplete: 'off'
+  # def field_process_order(type, class_type, dam_sample)
+  #   value = type == "new" ? '' : dam_sample.element.process_order
+  #   text_field_tag :process_order, value, class: class_type, autocomplete: 'off'
+  # end
+
+  def field_lot(type, class_type, dam_sample)
+    value = type == "new" ? '' : dam_sample.element.lot
+    text_field_tag :lot, value, class: class_type, autocomplete: 'off'
   end
 
   def field_drying_method_id(type, class_type, dam_sample)
