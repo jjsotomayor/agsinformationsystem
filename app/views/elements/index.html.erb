@@ -20,6 +20,7 @@
       <th>Orden</th>
       <th>Tipo producto</th>
       <th>Tipo secado</th>
+      <th>Color</th>
       <th>USDA anterior</th>
       <th>Tarja anterior</th>
       <th colspan="2"></th>
@@ -28,13 +29,15 @@
 
   <tbody>
     <% @elements.each do |element| %>
-      <tr>
+      <!-- <tr> -->
+      <tr class= "<%= colored_rows_with_color(element.color)%>" >
         <td><%= element.tag %></td>
         <td><%= date_time(element.created_at) %></td>
         <td><%= element.lot %></td>
         <td><%= element.process_order %></td>
         <td><%= element.product_type.name.upcase unless element.product_type.nil? %></td>
         <td><%= element.drying_method.name unless element.drying_method.nil? %></td>
+        <td><%= element.color%></td>
         <td><%= element.previous_usda %></td>
         <td><%= element.ex_tag %></td>
         <td><%= link_to 'Ver', element, class: "btn btn-primary btn-xs" %></td>

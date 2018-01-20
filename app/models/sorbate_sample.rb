@@ -2,6 +2,7 @@ class SorbateSample < ApplicationRecord
   include SoftDeletable
   include Methods
   include ProcessIndependentSamplesModels
+  include SamplesModelMethods
 
   enum status: [:rechazado, :aprobado, :pendiente]
 

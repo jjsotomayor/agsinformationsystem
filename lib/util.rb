@@ -108,4 +108,90 @@ module Util
     porc = s.insect_infestation_perc
   end
 
+  #############################################
+  ##### Limites que determinatan el color #####
+  #############################################
+
+  def self.color_humidity_limits(process)
+    process = "calibrado" if process.in?(["recepcion seco", "secado", "seam", "cn"])
+
+    limits = {
+      calibrado: [
+        {min: 18, max: 20, color: 1},
+        {min: 20, max: 22, color: 2},
+        {min: 0, max: 18, color: 3},
+        {min: 22, max: 9999999, color: 4},
+      ],
+
+      tsc: [
+        {min: 28, max: 31, color: 1},
+        {min: 31, max: 33, color: 2},
+        {min: 33, max: 34, color: 3},
+        {min: 0, max: 28, color: 3},
+        {min: 34, max: 9999999, color: 4},
+      ],
+
+      tcc: [
+        {min: 32, max: 36.5, color: 1},
+        {min: 27, max: 32, color: 2},
+        {min: 0, max: 27, color: 3},
+        {min: 36.5, max: 9999999, color: 4},
+      ],
+    }
+    limits[process.to_sym]
+  end
+
+  def self.color_sorbate_limits()
+    limits = [
+      {min: 1000, max: 1300, color: 1},
+      {min: 1300, max: 1400, color: 2},
+      {min: 900, max: 1000, color: 3},
+      {min: 1400, max: 9999999, color: 3},
+      {min: 0, max: 900, color: 4},
+    ]
+  end
+
+  def self.color_carozo_limits()
+    limits = [
+      {min: 0, max: 0.3, color: 1},
+      {min: 0.3, max: 0.6, color: 2},
+      {min: 0.6, max: 9999999, color: 3},
+    ]
+  end
+
+  # sum (:all y :not_all) determina si se usan todos los daños o no para la suma
+  def self.color_damage_limits(process)
+    # TODO: revisar que recepcion seco entren al q corresponde
+    process = "calibrado" if process.in?(["recepcion seco", "secado", "seam", "cn"])
+    process = "tsc" if process == "tcc"
+
+    limits = {
+      calibrado: [
+        {min: 0, max: 10,       sum: :all,   color: 1},
+        {min: 0, max: 15,       sum: :not_all, color: 2},
+        {min: 15, max: 9999999, sum: :not_all, color: 3},
+        # NO RED
+      ],
+      tsc: [
+        {min: 0, max: 5.95, color: 1},
+        {min: 5.95, max: 10, color: 2},
+        {min: 10, max: 9999999, color: 3},
+        # NO RED
+      ]
+    }
+    limits[process.to_sym]
+  end
+
+  # Retorna lista de las samples necesarias para calcular color
+  def self.required_samples(process)
+    # TODO: revisar que recepcion seco entren al q corresponde
+    process = "calibrado" if process.in?(["recepcion seco", "secado", "seam", "cn"])
+    samples = {
+      calibrado: [:damage, :humidity],
+      tcc: [:damage, :humidity, :sorbate],
+      tsc: [:damage, :humidity, :sorbate, :carozo]
+      }
+      samples[process.to_sym]
+  end
+
 end

@@ -71,7 +71,7 @@
   margin: 0 auto;
   text-align: center;
   span{
-    color: green;
+    // color: green;
     font-weight: bold;
   }
 }
@@ -400,3 +400,20 @@ input[type=text]:focus {
   background-color: #f3dadd !important; // Light red
   border: 1px solid #ff4040 !important;// Almost red
 }
+
+//////////////////////////////////////////////////////////////
+/////////////////////// Elements show ////////////////////////
+//////////////////////////////////////////////////////////////
+
+.box{
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline-block;
+  width: 80px;
+  height: 25px;
+}
+.red{ background-color: red;}
+.yellow{ background-color: yellow;}
+.green{ background-color: green}
+.blue{ background-color: blue;}

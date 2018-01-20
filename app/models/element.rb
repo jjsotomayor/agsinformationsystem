@@ -1,4 +1,7 @@
 class Element < ApplicationRecord
+  include Methods
+
+  enum color: [:-, :azul, :verde, :amarillo, :rojo]
   enum previous_usda: [:A, :B, :C, :SSTD, :'no califica']
   #enum status: [ :active, :archived ]
 
@@ -88,5 +91,146 @@ class Element < ApplicationRecord
   #   end
   #   true
   # end
+
+  def all_samples_taken?
+    return false if !pt = self.product_type
+    return false if self.damage_samples.count == 0
+    return false if self.humidity_samples.count == 0
+    req_samples = Util.required_samples(pt.name)
+    return false if :sorbate.in?(req_samples) and self.sorbate_samples.count == 0
+    return false if :carozo.in?(req_samples) and self.carozo_samples.count == 0
+    true
+  end
+
+  # Se llama cada vez que se completan todas las muestras nec. para calcular color
+  def calculate_color
+    # t1 = Time.current
+    logger.info {"All samples taken -> CALCULANDO COLOR"}
+    process = self.product_type.name
+    required_samples = Util.required_samples(process)
+    current_color = 1
+
+    humidity_color = :humidity.in?(required_samples) ? worst_humidity_color(process) : 1
+    logger.info {"Humidity Color #{humidity_color}"}
+    sorbate_color = :sorbate.in?(required_samples) ? worst_sorbate_color : 1
+    logger.info {"Sorbate Color #{sorbate_color}"}
+    carozo_color = :carozo.in?(required_samples) ? worst_carozo_color : 1
+    logger.info {"Carozo Color #{carozo_color}"}
+    damage_color = :damage.in?(required_samples) ? worst_damage_color(process) : 1
+    logger.info {"Damage Color #{damage_color}"}
+
+    # Set the worst color and store it in element table!
+    current_color = [humidity_color, sorbate_color, carozo_color, damage_color].max
+    self.update(color: current_color)
+    # t2 = Time.current
+    # puts "Finalizado el calculo de color"
+    # puts "T1: #{t1}"
+    # puts "T2: #{t2}"
+    # puts "Diferencia: #{t2-t1}"
+  end
+
+  # Revisa y pone rojo si se debe poner rojo de inmediato por sorbato
+  def check_if_red_sorbate_color
+    logger.info {"Revisando muestras de sorbato"}
+    process = self.product_type.name
+    color = worst_sorbate_color
+    self.update(color: color) if color == 4
+  end
+
+  # Revisa y pone rojo si se debe poner rojo de inmediato por sorbato
+  def check_if_red_humidity_color
+    logger.info {"Revisando muestras de humedad"}
+    process = self.product_type.name
+    color = worst_humidity_color(process)
+    self.update(color: color) if color == 4
+  end
+  
+
+  private
+
+  #############################################
+  ####### Metodos para determinar color #######
+  #############################################
+
+  def worst_humidity_color(process)
+    logger.info {"Buscando peor Humedad"}
+    limits = Util.color_humidity_limits(process)
+    sample_values = self.humidity_samples.pluck(:humidity)
+    worst_color_for_sample_group(sample_values, limits)
+  end
+
+  def worst_sorbate_color
+    logger.info {"Buscando peor Sorbato"}
+    limits = Util.color_sorbate_limits()
+    sample_values = self.sorbate_samples.pluck(:sorbate)
+    worst_color_for_sample_group(sample_values, limits)
+  end
+
+  # NOTE Este podria ser mucho mas rapido al tomar el maximo y ver en q rango queda
+  def worst_carozo_color
+    logger.info {"Buscando peor Carozo"}
+    limits = Util.color_carozo_limits()
+    sample_values = self.carozo_samples.pluck(:carozo_percentage)
+    worst_color_for_sample_group(sample_values, limits)
+  end
+
+  def worst_damage_color(process)
+    logger.info {"Buscando peor Daño"}
+    if process.in? ["tsc", "tcc"]
+      limits = Util.color_damage_limits(process)
+      sample_values = self.damage_samples.pluck(:total_damages_perc)
+      worst_color_for_sample_group(sample_values, limits)
+    else # Process calibrado/Secado/recepcion/seam/cn
+      limits = Util.color_damage_limits(process)
+      sample_values = self.damage_samples.select(:total_damages_perc, :foreign_material_perc,
+        :vegetal_foreign_material_perc, :dirt_perc, :off_color_perc).map {
+        |ds| {not_all: ds.total_damages_perc - ds.foreign_material_perc -
+          ds.vegetal_foreign_material_perc - ds.dirt_perc - ds.off_color_perc,
+              all: ds.total_damages_perc}
+      }
+      worst_color_damage_calibrado_group(sample_values, limits)
+    end
+  end
+
+  # Retorna peor color dedaño para elems de procesos calibrado/Secado/recepcion/seam/cn
+  # Recibe sample_values de la forma [{not_all: x, all: y}, {not_all: x, all: y}]
+  def worst_color_damage_calibrado_group(sample_values, limits)
+    worst_color = 1
+    sample_values.each do |damages|
+      limits.each do |range|
+
+        logger.info {"Muestra de daños: #{damages}"}
+        value = range[:sum] == :all ? damages[:all] : damages[:not_all]
+        logger.info {"Value: #{value}"}
+        logger.info {"Rango => #{range}"}
+        if between_min_max?(value, range[:min],  range[:max])
+          worst_color = max(worst_color, range[:color])
+          logger.info {"Entre, worst_color del group: #{worst_color}"}
+          break
+        end
+      end
+    end
+    worst_color
+  end
+
+  # Retorna peor color para una lista de daños sample_values y limites.
+  def worst_color_for_sample_group(sample_values, limits)
+    worst_color = 1
+    # Recorre cada muestra
+    sample_values.each do |value|
+      # Recorre cada rango para ver donde esta esa muestra
+      limits.each do |range|
+        logger.info {"Min: #{range[:min]}, Max: #{range[:max]}, Valor: #{value}"}
+        if between_min_max?(value, range[:min],  range[:max])
+          worst_color = max(worst_color, range[:color])
+          logger.info {"Entre, worst_color del group: #{worst_color}"}
+          break
+        end
+      end
+    end
+    worst_color
+  end
+
+
 
 end

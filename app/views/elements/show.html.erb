@@ -1,6 +1,11 @@
 <div class= "container-table">
-<h2 class= "centered separated">Tarja/Folio <span><%=@element.tag%></span></h2>
+<h2 class= "centered separated">
+  <div class = "<%= translate_color(@element.color)+ " box"%>"> </div>
+  Tarja/Folio <span><%=@element.tag%></span>
+  <div class = "<%= translate_color(@element.color)+ " box"%>"> </div>
+</h2>
 
+<!-- TODO Se podria agregar una tablita que muestre cant. de muestras de cada tipo  -->
 <table class = "table table-striped table-tight">
   <thead>
     <tr>
@@ -10,6 +15,7 @@
       <th>Orden</th>
       <th>Tipo</th>
       <th>Primera muestra</th>
+      <th>Color</th>
 
       <th>Ex tarja</th>
       <th>USDA anterior</th>
@@ -19,13 +25,15 @@
   </thead>
 
   <tbody>
-      <tr>
+      <!-- <tr> -->
+        <tr class= "<%= colored_rows_with_color(@element.color)%>" >
         <td><%= @element.id %></td>
         <td><%= @product_type.upcase if @product_type %></td>
         <td><%= @element.lot %></td>
         <td><%= @element.process_order %></td>
         <td><%= @element.drying_method.name if @element.drying_method%></td>
         <td><%= date_time(@element.created_at)%></td>
+        <td><%= @element.color %></td>
 
         <td><%= @element.ex_tag %></td>
         <td><%= @element.previous_usda %></td>

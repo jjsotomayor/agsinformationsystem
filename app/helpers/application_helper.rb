@@ -89,6 +89,27 @@ module ApplicationHelper
     boolean ? "warning" : ""
   end
 
+  def colored_rows_with_color(color)
+    colors = {
+      azul: "info",
+      verde: "success",
+      amarillo: "warning",
+      rojo: "danger",
+      "-": "active"
+      #NOTE: El active deberia ser "" y que por defecto muestre ese color
+    }
+    colors[color.to_sym]
+  end
+
+  def translate_color(color)
+    colors = {
+      azul: "blue",
+      verde: "green",
+      amarillo: "yellow",
+      rojo: "red",
+    }
+    colors[color.to_sym] || ""
+  end
 
   ##########################################
   ######### METHODS USED IN THE FORM #######

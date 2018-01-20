@@ -25,5 +25,10 @@
   <%msg = "Estado: #{sample.status}"%>
   <%end%>
 
+  <%color = sample.element.color%>
+  <%if color.in?(["azul", "verde", "amarillo", "rojo"])%>
+    <%msg << " - Color prod: #{color}" %>
+  <%end%>
+
   <script>swal("<%=title%>", "<%=msg%>", "success");</script>
 <%end%>

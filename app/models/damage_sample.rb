@@ -1,6 +1,8 @@
 class DamageSample < ApplicationRecord
   include SoftDeletable
   include Methods
+  include SamplesModelMethods
+
   enum usda: [:A, :B, :C, :SSTD, :no_califica]
   enum df07: [:rechazado, :aprobado]
 
