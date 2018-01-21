@@ -27,11 +27,13 @@
   <%
   # msg = "Estado: #{sample.status}"
   %>
+  <%else%>
+    <%msg = ""%>
   <%end%>
 
   <%color = sample.element.color%>
   <%if color.in?(["azul", "verde", "amarillo", "rojo"])%>
-    <%msg << " - Color prod: #{color}" %>
+    <%msg << " - Color prod: #{color.upcase}" %>
   <%end%>
 
   <script>swal("<%=title%>", "<%=msg%>", "success");</script>
