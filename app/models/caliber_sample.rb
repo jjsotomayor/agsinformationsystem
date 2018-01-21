@@ -1,6 +1,6 @@
 class CaliberSample < ApplicationRecord
   include SoftDeletable
-  # include Methods
+  include Methods
 
   belongs_to :element
   belongs_to :caliber
@@ -20,8 +20,9 @@ class CaliberSample < ApplicationRecord
     # NOTE Division de enteros es por defecto aproximada en cada calculo
     grams_per_lb = Rails.configuration.grams_per_lb
     self.fruits_per_pound = ((self.fruits_in_sample.to_f /  self.sample_weight) * grams_per_lb).round(0)
+    caliber_to_use = self.caliber_to_use
     Caliber.all.each do |cal|
-      if self.fruits_per_pound >= cal.minimum && self.fruits_per_pound <= cal.maximum
+      if between_min_max?(caliber_to_use, cal.minimum, cal.maximum)
          self.caliber = cal and break
       end
     end
@@ -56,4 +57,17 @@ class CaliberSample < ApplicationRecord
     return ret
   end
 
+  # Retorna el calibre a usar para calcular el rango de calibre, en TSC no se usa el real.
+  def caliber_to_use
+    fruitspp = self.fruits_per_pound
+    if self.product_type.name == "tsc" and !self.is_ex_caliber
+      # Se calcula el calibre proyectado con carozo(ex-calibre) para TSC
+      limit = Rails.configuration.ex_caliber_limit_big_small_caliber# = 85 #Menor o igual a 85, se suma 15.
+      big_fruits_sub = Rails.configuration.ex_caliber_big_fruits_subtraction# = 15
+      small_fruits_sub = Rails.configuration.ex_caliber_small_fruits_subtraction# = 20
+      fruitspp <= limit ? fruitspp - big_fruits_sub : fruitspp - small_fruits_sub
+    else
+      fruitspp
+    end
+  end
 end

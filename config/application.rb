@@ -24,8 +24,8 @@ module Agsinformationsystem
     # Gramos que hay en una libra
     config.grams_per_lb = 453.592
     # Limites inferior y superior de Sorbato
-    config.min_sorbate = 1000
-    config.max_sorbate = 1200
+    # config.min_sorbate = 1000
+    # config.max_sorbate = 1200
 
     ########## Deviation SAmples ##########
     # Gramos usados para sacar big/small_fruits_in_sample
@@ -37,5 +37,13 @@ module Agsinformationsystem
     # Max deviation fruta mayor a X frutos por libra
     config.max_deviation_small_caliber = 43
 
+    #####      Caliber SAmples    ######
+    ##### Ex-caliber calculation #######
+
+    # Magnitud en que cambia la cantidad a substraer para obtener ex-calibre
+    config.ex_caliber_limit_big_small_caliber = 90 #Menor o igual a 85(90en vdd), se suma 15.
+    # CAntidades a substraer para obtener calibre real
+    config.ex_caliber_big_fruits_subtraction = 15
+    config.ex_caliber_small_fruits_subtraction = 20
   end
 end

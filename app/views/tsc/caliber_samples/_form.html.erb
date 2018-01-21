@@ -16,7 +16,7 @@
 
     <div class="field">
       <%= f.label :"con/sin carozo" %>
-      <%= f.select :is_ex_caliber,  options_for_select([{text: "sin_carozo", val: false},{text: "con_carozo", val: true}].map{|h| [h[:text],h[:val]]}), include_blank: true%>
+      <%= f.select :is_ex_caliber,  options_for_select([["sin_carozo", false], ["con_carozo", true]], selected: false, disabled: [true])%><!-- include_blank: true -->
     </div>
 
     <div class="field">
