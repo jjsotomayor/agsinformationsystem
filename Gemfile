@@ -63,3 +63,5 @@ gem 'autoprefixer-rails'
 
 # Generacion de archivos excel
 gem 'axlsx_rails'
+# Permite trackear errores en su sitio web
+gem 'raygun4ruby', '~> 1.1', '>= 1.1.11'
