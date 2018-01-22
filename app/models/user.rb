@@ -4,5 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable# :lockable
 
-  belongs_to :role
+  belongs_to :role, optional: true
 end

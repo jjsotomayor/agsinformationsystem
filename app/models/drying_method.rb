@@ -1,4 +1,4 @@
 class DryingMethod < ApplicationRecord
-  belongs_to :element
+  # belongs_to :element
 
 end

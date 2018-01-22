@@ -5,8 +5,8 @@ class Element < ApplicationRecord
   # enum previous_usda: [:A, :B, :C, :SSTD, :'no califica']
   #enum status: [ :active, :archived ]
 
-  belongs_to :product_type
-  belongs_to :drying_method
+  belongs_to :product_type, optional: true
+  belongs_to :drying_method, optional: true
   has_many :damage_samples
   has_many :caliber_samples
   has_many :humidity_samples
