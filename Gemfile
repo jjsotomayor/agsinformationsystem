@@ -52,9 +52,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'devise'
-gem 'cancancan'
-gem 'rolify'
+# gem 'devise'
+gem 'devise', '~> 4.4'
+# gem 'cancancan'
+# gem 'rolify'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'autoprefixer-rails'
 # Gema que permite el envio de correos a través de API de MailGun
@@ -62,6 +63,7 @@ gem 'autoprefixer-rails'
 # gem 'rest-client', '~> 2.0', '>= 2.0.2'
 
 # Generacion de archivos excel
-gem 'axlsx_rails'
+# gem 'axlsx_rails'
+gem 'axlsx_rails', '~> 0.5.1'
 # Permite trackear errores en su sitio web
 gem 'raygun4ruby', '~> 1.1', '>= 1.1.11'
