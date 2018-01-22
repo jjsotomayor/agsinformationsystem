@@ -92,6 +92,20 @@ class Element < ApplicationRecord
   #   true
   # end
 
+  # Actualiza color de element de ser necesario.
+  def refresh_element_color
+    logger.info {"Revisando si se actualizan colores de element #{self.tag}!!!"}
+    if self.all_samples_taken?
+      self.calculate_color
+    elsif self.product_type
+      self.check_if_red_color
+    end
+  end
+
+  ######################################################
+  ###### SOLO LLAMAR DESDE REFRESH ELEMENT COLOR #######
+  ######################################################
+
   def all_samples_taken?
     return false if !pt = self.product_type
     return false if self.damage_samples.count == 0
@@ -129,22 +143,19 @@ class Element < ApplicationRecord
     # puts "Diferencia: #{t2-t1}"
   end
 
-  # Revisa y pone rojo si se debe poner rojo de inmediato por sorbato
-  def check_if_red_sorbate_color
-    logger.info {"Revisando muestras de sorbato"}
+  # Revisa si hay muestra en rojo, si no lo hay lo pone en color= 0
+  # Solo ejecutar cuando no se ejecute calculate_color, pq lo sobreescribiria!
+  def check_if_red_color
+    logger.info {"Revisando si hay color rojo"}
     process = self.product_type.name
-    color = worst_sorbate_color
-    self.update(color: color) if color == 4
+    colors = []
+    colors << worst_sorbate_color if self.sorbate_samples.count > 0
+    colors << worst_humidity_color(process) if self.humidity_samples.count > 0
+    # Si habia un rojo (4) lo pongo en rojo, sino indeterminado
+    color = colors.max == 4 ? 4 : 0
+    self.update(color: color)
   end
 
-  # Revisa y pone rojo si se debe poner rojo de inmediato por sorbato
-  def check_if_red_humidity_color
-    logger.info {"Revisando muestras de humedad"}
-    process = self.product_type.name
-    color = worst_humidity_color(process)
-    self.update(color: color) if color == 4
-  end
-  
 
   private
 
