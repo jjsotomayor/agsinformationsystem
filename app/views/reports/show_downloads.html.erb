@@ -1,0 +1,21 @@
+<div class="container">
+  <h2 class= "centered separated">Descargas disponibles</h2>
+
+  <%= link_to 'Descargar productos en Excel', elements_path(format: :xlsx), class: "btn btn-primary btn-xl" %>
+
+  <br><br>
+  --------------------------------------------------------------------------------
+  <br>
+
+    <div >
+      <%= form_tag(process_products_xls_path(format: :xlsx), method: :get) do %>
+      <%= select_tag "product_type_id",  options_for_select(@product_types.map{|pt| [pt.name.upcase,pt.id]}), include_blank: 'Ingrese proceso', class: "margin-up-select" %>
+      <%= select_tag "days",  options_for_select([["Último día", 1], ["Últimos 7 días", 7], ["Últimos 15 días", 15], ["Últimos 30 días", 30], ["Últimos 365 días", 365]]),
+       class: "margin-up-select" %>
+        <%= submit_tag 'Descargar muestras a Excel', name: nil, class: "btn btn-primary btn-xl close-up"%>
+      <%end%>
+    </div>
+
+  <br>
+  --------------------------------------------------------------------------------
+</div>

@@ -6,10 +6,12 @@ class ElementsController < ApplicationController
   # GET /elements
   def index
     @elements = Element.search(params[:term])
+    @download_access = can_access_all_report?
     respond_to do |format|
       format.html
       format.csv { send_data @elements.to_csv, filename: "#{Date.today} - Productos.csv" }
       format.xlsx {
+        redirect_to root_path, alert: not_allowed if !can_access_all_report?
         @dam_samples = DamageSample.ord
         @cal_samples = CaliberSample.ord
         @humidity_samples = HumiditySample.ord

@@ -32,6 +32,32 @@ class ReportsController < ApplicationController
 
   end
 
+  def show_downloads
+    @product_types = ProductType.where.not(name: "fresco")
+  end
+
+
+  def process_products_xls
+    pt_id = params[:product_type_id].blank? ? 7 : params[:product_type_id]
+    @pt = ProductType.find(pt_id)
+    @is_tsc = @pt.name == "tsc"
+    start_date = (Time.current - params[:days].to_i.days).change(hour: 0)
+    pp start_date
+    # TODO LA FECHA NO DEBERIA SER CREATED_AT, DEBERIA SER LA FECHA DE LA ULTIMA MUESTRA!!
+    # YO CREO PQ SI EL ELEM SE CREO MUUUCHO ANTES NO SALDRIA. cREAR DAte en elem que se actualice con c/muestra
+    # Y deberia ser desde el ppio del diA
+    @elements = @pt.elements.where("created_at > ?", start_date).ord
+    @required_samples = Util.all_required_samples(@pt.name)
+    @damages_list = Util.damages_of_product_type(@pt.name)
+    respond_to do |format|
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="'+ Date.today.to_s + ' - '+ @pt.name.upcase + '.xlsx"'
+      }
+    end
+  end
+
+  private
+
   def check_permissions
     return if can_access_all_report?
     redirect_to root_path, alert: not_allowed

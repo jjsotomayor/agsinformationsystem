@@ -1,0 +1,141 @@
+
+wb = xlsx_package.workbook
+
+# wb.styles permite dar estilos, todo el excel se debe anidar adentro
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  header = style.add_style :bg_color => "00", :fg_color => "FF", :height => 30
+
+
+  #### Hoja Productos ###
+  wb.add_worksheet(name: "Muestras") do |sheet|
+    first_row = ["Tarja", "Fecha", "Lote", "Color", "Proceso", "Secado"]#, "TarjaAnterior", "ColorAnterior"] De ser nec.
+
+    first_row = first_row + ["Tarja anterior", "Color anterior"] if @is_tsc
+
+    first_row = first_row + ["FxL", "Calibre"] if :caliber.in?(@required_samples)
+    first_row = first_row + ["Desviacion", "Aprob/Rech"] if :deviation.in?(@required_samples)
+    first_row << "H%" if :humidity.in?(@required_samples)
+    first_row << "Sorbato(ppm)" if :sorbate.in?(@required_samples)
+    first_row << "Carozo en caja %" if :carozo.in?(@required_samples)
+    if :damage.in?(@required_samples)
+      first_row << "Daño total(%)"
+      @damages_list.each do |dam|
+        first_row << translate_damage(dam)
+      end
+    end
+
+    sheet.add_row(first_row, style: header)
+
+    @elements.each do |elem|
+      row_elem = [elem.tag, elem.created_at, elem.lot, elem.color, elem.product_type.name]
+
+      # NOTE Esto se deberia hacer con un join!
+      if elem.drying_method
+        row_elem << elem.drying_method.name
+      else
+        row_elem << " "
+      end
+
+      row_elem = row_elem + [elem.ex_tag, elem.previous_color] if @is_tsc # SOLO EN TSC
+
+      # TODO. Encontrar la que tiene mayor cant. de muestras par aiterar (Usar Size)
+      # O iterar hasta cuando no agregue nada. ME tinca que al hacer size aga db request. asi que quiza es mas facil
+      # hacer pluck, pasar todo a arreglo y hacer todo con los arreglos! y la informacion minima suficiente!
+
+      # ORDENAR INVERSAMENTE
+      caliber_s = elem.caliber_samples.ord_inverse
+      damage_s = elem.damage_samples.ord_inverse
+      carozo_s = elem.carozo_samples.ord_inverse
+      humidity_s = elem.humidity_samples.ord_inverse
+      sorbate_s = elem.sorbate_samples.ord_inverse
+      max = [damage_s.size, caliber_s.size, carozo_s.size, humidity_s.size, sorbate_s.size].max
+
+      (0..(max-1)).each do |i|
+        row_sample = []
+
+        # Caliber Sample
+        if :caliber.in?(@required_samples)
+          if caliber_s[i]
+            row_sample = row_sample + [caliber_s[i].fruits_per_pound, caliber_s[i].caliber.name]
+          else
+            row_sample = row_sample + ["", ""]
+          end
+        end
+
+        # Deviation Sample
+        if :deviation.in?(@required_samples)
+          if caliber_s[i]
+            row_sample = row_sample + [caliber_s[i].deviation_sample.deviation.round(1), caliber_s[i].deviation_sample.status]
+          else
+            row_sample = row_sample + ["", ""]
+          end
+        end
+
+        # Humidity Sample
+        if :humidity.in?(@required_samples)
+          if humidity_s[i]
+            row_sample << humidity_s[i].humidity
+          else
+            row_sample << ""
+          end
+        end
+
+        # Sorbate Samplei]
+        if :sorbate.in?(@required_samples)
+          if sorbate_s[i]
+            row_sample << sorbate_s[i].sorbate
+          else
+            row_sample << ""
+          end
+        end
+
+        # Carozo Sample
+        if :carozo.in?(@required_samples)
+          if carozo_s[i]
+            row_sample << carozo_s[i].carozo_percentage
+          else
+            row_sample << ""
+          end
+        end
+
+        # Damage Sample
+        if damage_s[i]
+          row_sample << damage_s[i].total_damages_perc
+          @damages_list.each do |dam|
+            row_sample << round_or_nil(damage_s[i].send(dam + "_perc"))#.to_s
+          end
+        end
+
+        # puts row_elem + row_sample
+        sheet.add_row (row_elem + row_sample)
+      end
+
+      c_sizes = [9, 10, 8, 8, 8, 7] # Columnas fijas
+      c_sizes = c_sizes + [12, 12] if @is_tsc
+
+      # ["FxL", "Calibre"]
+      c_sizes = c_sizes + [4, 7] if :caliber.in?(@required_samples)
+      # ["Desviacion", "Aprob/Rech"]
+      c_sizes = c_sizes + [10, 10] if :deviation.in?(@required_samples)
+      c_sizes << 4 if :humidity.in?(@required_samples)
+      c_sizes << 11 if :sorbate.in?(@required_samples)
+      c_sizes << 14 if :carozo.in?(@required_samples)
+      if :damage.in?(@required_samples)
+        c_sizes << 13 # "Daño total"
+        @damages_list.each do |dam|
+          # Los que quiero que se vean bien!
+           if dam.in? ["scars", "skin_or_flesh_damage", "dirt", "foreign_material", "vegetal_foreign_material"]
+             c_sizes << 12
+           else
+             c_sizes << 0.1
+           end
+        end
+      end
+
+      # Se fija el ancho de las columnas
+      sheet.column_widths(*c_sizes)
+
+    end
+  end
+end

@@ -8,5 +8,9 @@ module Order
       order('id DESC')
     end
 
+    def ord_inverse
+      order('id ASC')
+    end
+
   end
 end

@@ -194,4 +194,16 @@ module Util
       samples[process.to_sym]
   end
 
+  def self.all_required_samples(process)
+    process = "calibrado" if process.in?(["seam", "cn"])
+    process = "secado" if process.in?(["recepcion seco"])
+    samples = {
+      secado: [:damage, :caliber, :humidity],
+      calibrado: [:damage, :caliber, :deviation, :humidity],
+      tcc: [:damage, :caliber, :deviation, :humidity, :sorbate],
+      tsc: [:damage, :caliber, :deviation, :humidity, :sorbate, :carozo]
+      }
+      samples[process.to_sym]
+  end
+
 end

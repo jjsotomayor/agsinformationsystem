@@ -56,7 +56,7 @@ module DamageSamplesHelper
   # Retorn los daños como porcentaje o gramos, ademas permite incluir (% o g) si type = "%" o "g"
   def table_body_damages(damage_sample, type = "", include_sign = false)
     attr_end = type.include?("%") ? "_perc" : ""
-    pp "agregar: #{attr_end}"
+    # pp "agregar: #{attr_end}"
     type = "" unless include_sign
     html = ""
     @damages_list.each do |dam|

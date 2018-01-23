@@ -4,7 +4,9 @@
     <%=
     #link_to "Descargar csv", elements_path(:csv), class: "btn btn-primary btn-xs"
      %>
-    <%= link_to 'Descargar en excel', elements_path(format: :xlsx), class: "btn btn-primary btn-sm" %>
+    <% if @download_access %>
+      <%= link_to 'Descargar en excel', elements_path(format: :xlsx), class: "btn btn-primary btn-sm" %>
+    <% end %>
     <!-- Form para buscar elements -->
     <%= form_tag(elements_path, method: :get) do %>
       <%= text_field_tag :term, nil, placeholder: 'Buscar una tarja' %>
