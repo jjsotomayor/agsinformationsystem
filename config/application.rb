@@ -14,6 +14,11 @@ module Agsinformationsystem
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # Time zone Gmt -4:00 (Santiago)
+    config.time_zone = 'Santiago'
+    # Hace que las fechas se guarden no en utc, sino q hora segun timezone
+    config.active_record.default_timezone = :local
+
     # Tiempo (hrs) maximo por el q la muestra aparece en new y es editable
     config.max_sample_hrs = 24
 
