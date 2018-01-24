@@ -24,7 +24,7 @@ module Agsinformationsystem
 
     # FIXME Check all configuration values
     # Configurando lenguaje español
-    # config.i18n.default_locale = :es
+    config.i18n.default_locale = :es
 
     # Gramos que hay en una libra
     config.grams_per_lb = 453.592
