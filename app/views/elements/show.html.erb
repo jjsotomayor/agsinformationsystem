@@ -12,7 +12,8 @@
       <th>#</th>
       <th>Producto</th>
       <th>Lote</th>
-      <th>Tipo</th>
+      <th>Secado</th>
+      <th>Items</th>
       <th>Primera muestra</th>
       <th>Color</th>
 
@@ -30,6 +31,7 @@
         <td><%= @product_type.upcase if @product_type %></td>
         <td><%= @element.lot %></td>
         <td><%= @element.drying_method.name if @element.drying_method%></td>
+        <td><%= first_last_item(@element)%></td>
         <td><%= date_time(@element.created_at)%></td>
         <td><%= @element.color %></td>
 

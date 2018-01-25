@@ -1,5 +1,15 @@
 module ElementsHelper
 
+
+  def first_last_item(element, with_space = true)
+    # separation = with_space ? "- " : "-"
+    ((element.first_item || "") + "- " + (element.last_item || ""))
+  end
+
+  ##################################################################
+  ###################### Links  ####################################
+  ##################################################################
+
   ### Links para usar en el show de elements ###
   def link_show_sample(sample, sample_type, product_type)
     #Example: tsc_damage_sample_path(damage_sample)

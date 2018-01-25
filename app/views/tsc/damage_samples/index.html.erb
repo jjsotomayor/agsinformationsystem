@@ -9,6 +9,7 @@
 
       <%=common_table_headers%>
       <th>Tipo</th>
+      <th>Cajas</th>
       <th>Ex tarja</th>
       <!-- <th>Color anterior</th> Podria hacer que piensen que es el color del element-->
       <th>USDA</th>
@@ -28,6 +29,7 @@
 
         <%=common_table_body(damage_sample)%>
         <td><%=damage_sample.element.drying_method.name%></td>
+        <td><%= first_last_item(damage_sample.element)%></td>
         <td><%= damage_sample.element.ex_tag %></td>
         <td><%= damage_sample.usda %></td>
         <td><%= short_status(damage_sample) %></td>

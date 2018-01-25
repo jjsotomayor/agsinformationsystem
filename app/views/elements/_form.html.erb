@@ -28,6 +28,16 @@
   </div>
 
   <div class="field">
+    <%= f.label :item_inicial %><br>
+    <%= f.text_field :first_item, value: @element.first_item%>
+  </div>
+
+  <div class="field">
+    <%= f.label :item_final %><br>
+    <%= f.text_field :last_item, value: @element.last_item%>
+  </div>
+
+  <div class="field">
     <%= f.label :ex_tarja %><br>
     <%= f.text_field :ex_tag, autocomplete: 'off' %>
   </div>

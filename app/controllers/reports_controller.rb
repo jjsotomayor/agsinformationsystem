@@ -40,6 +40,7 @@ class ReportsController < ApplicationController
   def process_products_xls
     pt_id = params[:product_type_id].blank? ? 7 : params[:product_type_id]
     @pt = ProductType.find(pt_id)
+    @add_items = @pt.name.in? ["seam", "cn", "tsc", "tcc"]
     @is_tsc = @pt.name == "tsc"
     start_date = (Time.current - params[:days].to_i.days).change(hour: 0)
     pp start_date

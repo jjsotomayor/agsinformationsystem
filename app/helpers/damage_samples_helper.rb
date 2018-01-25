@@ -90,6 +90,16 @@ module DamageSamplesHelper
     select_tag "drying_method_id",  options_for_select(DryingMethod.all.map{|dm| [dm.name,dm.id]}, value), include_blank: true, class: class_type
   end
 
+  def field_first_item(type, class_type, dam_sample)
+    value = type == "new" ? '' : dam_sample.element.first_item
+    text_field_tag :first_item, value, class: class_type, placeholder: "Ingreso único", autocomplete: 'off'
+  end
+
+  def field_last_item(type, class_type, dam_sample)
+    value = type == "new" ? '' : dam_sample.element.last_item
+    text_field_tag :last_item, value, class: class_type, placeholder: "Ingreso único", autocomplete: 'off'
+  end
+
   def field_ex_tag(type, class_type, dam_sample)
     value = type == "new" ? '' : dam_sample.element.ex_tag
     text_field_tag :ex_tag, value, class: class_type

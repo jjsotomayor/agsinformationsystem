@@ -9,6 +9,7 @@
         <th>Resp</th>
         <th>Tarja</th>
         <th>Tipo</th>
+        <th>Cajas</th>
         <th>Ex tarja</th>
       </tr>
     </thead>
@@ -19,6 +20,7 @@
           <td><%= @damage_sample.responsable.truncate(12) %></td>
           <td><%= @damage_sample.element.tag%></td>
           <td><%= @damage_sample.element.drying_method.name%></td>
+          <td><%= first_last_item(@damage_sample.element)%></td>
           <td><%= @damage_sample.element.ex_tag %></td>
         </tr>
     </tbody>

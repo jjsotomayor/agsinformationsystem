@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180120215225) do
+ActiveRecord::Schema.define(version: 20180124214333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,8 @@ ActiveRecord::Schema.define(version: 20180120215225) do
     t.datetime "updated_at",                   null: false
     t.integer  "color",            default: 0, null: false
     t.string   "previous_color"
+    t.string   "first_item"
+    t.string   "last_item"
     t.index ["color"], name: "index_elements_on_color", using: :btree
     t.index ["drying_method_id"], name: "index_elements_on_drying_method_id", using: :btree
     t.index ["product_type_id"], name: "index_elements_on_product_type_id", using: :btree

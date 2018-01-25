@@ -4,9 +4,8 @@ wb = xlsx_package.workbook
 
 #### Hoja Productos ###
 wb.add_worksheet(name: "Productos") do |sheet|
-  sheet.add_row ["Tarja", "Fecha", "Lote", "Color", "Tipo", "Secado", "TarjaAnterior", "ColorAnterior"]
+  sheet.add_row ["Tarja", "Fecha", "Lote", "Color", "Proceso", "Secado", "Items", "TarjaAnterior", "ColorAnterior"]
   @elements.each do |elem|
-    #  TODO Agregar Color!
     row = [elem.tag, elem.created_at, elem.lot, elem.color]
     # row << elem.product_type.nil? ? " " : elem.product_type.name
     if elem.product_type
@@ -20,7 +19,7 @@ wb.add_worksheet(name: "Productos") do |sheet|
     else
       row << " "
     end
-    row = row + [elem.ex_tag, elem.previous_color]
+    row = row + [first_last_item(elem), elem.ex_tag, elem.previous_color]
     sheet.add_row (row)
   end
 end

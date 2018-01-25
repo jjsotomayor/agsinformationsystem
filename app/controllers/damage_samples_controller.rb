@@ -92,11 +92,11 @@ class DamageSamplesController < ApplicationController
     end
 
     def element_params
-      params.permit(:tag, :process_order, :product_type_id, :drying_method_id, :previous_color, :ex_tag, :lot) # Quitar process_order
+      params.permit(:tag, :process_order, :product_type_id, :drying_method_id, :previous_color, :ex_tag, :lot, :first_item, :last_item) # Quitar process_order
     end
 
     def edit_element_params
-      params.permit(:process_order, :product_type_id, :drying_method_id, :previous_color, :ex_tag, :lot) # Quitar process_order
+      params.permit(:process_order, :product_type_id, :drying_method_id, :previous_color, :ex_tag, :lot, :first_item, :last_item) # Quitar process_order
     end
 
     def permission_last_samples
