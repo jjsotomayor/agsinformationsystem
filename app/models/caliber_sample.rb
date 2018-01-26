@@ -4,7 +4,7 @@ class CaliberSample < ApplicationRecord
 
   belongs_to :element
   belongs_to :caliber
-  has_one :deviation_sample
+  has_one :deviation_sample, dependent: :destroy
   delegate :product_type, :to => :element, :allow_nil => true
 
   before_validation :calculate_caliber
