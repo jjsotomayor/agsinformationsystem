@@ -138,6 +138,9 @@ $(document).on('turbolinks:load', function(){
       }
     });
 
+  // Ajax request para obtener los datos de un element en new damage_samples forms
+  // TODO chequear que no se ejecuta cuando se esita una damagesample
+  $("#new_damage_sample #tag").on("input propertychange paste", get_element_through_ajax);
 
 });
 
@@ -221,6 +224,19 @@ function validate($elem, non_blank, number_format){
 }
 
 
+// Hace la AJAX request al controlador para ver si esta la tarja
+function get_element_through_ajax(e){
+  var tag = $(this).val();
+  $.ajax ({
+    url: "/elements/show_ajax",
+    type: 'get',
+    data:
+    {
+      tag: tag
+    },
+    dataType: 'script'
+  });
+}
 
 
 

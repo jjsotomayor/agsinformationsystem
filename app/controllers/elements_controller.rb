@@ -34,6 +34,14 @@ class ElementsController < ApplicationController
     @damages_list = Util.damages_of_product_type(@product_type) if @dam_samples
   end
 
+  # NOTE Podria chequear que sean del mismo proceso
+  def show_ajax
+    @element = Element.find_by(tag: params[:tag])
+    respond_to do |format|
+       format.js
+    end
+  end
+
   # GET /elements/new
   def new
     @element = Element.new
@@ -88,7 +96,7 @@ class ElementsController < ApplicationController
     def check_permissions
       #NOTE: EL ACTION NAME IN NO FUNCIONA con no strings,
       # No se permite Destroy
-      if action_name.in?(["show", "index"]) and can_see_samples?
+      if action_name.in?(["show", "index", "show_ajax"]) and can_see_samples?
         # puts "Entre1"
         return
       elsif action_name.in?(["new", "edit", "create", "update"]) and can_create_update_element?

@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  class OnlyAjaxRequest
+     def matches?(request)
+       request.xhr?
+     end
+   end
+
+  # Rutas mediante AJAX
+  get 'elements/show_ajax' => 'elements#show_ajax', constraint: OnlyAjaxRequest.new
+
   resources :user_control_accesses
   resources :ip_addresses
   # User Control routes
