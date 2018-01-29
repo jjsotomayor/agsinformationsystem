@@ -76,6 +76,9 @@ module Util
     return porc = s.off_color_perc
   end
 
+  ########### Calculo de df07 ###########
+  # Scars dirt y foreign_material "acomodados" en un grupo de acuerdo a JCC y GSC
+
   def self.df07_g1(s)
     return porc = s.off_color_perc + s.poor_texture_perc
   end
@@ -85,7 +88,7 @@ module Util
   end
 
   def self.df07_g3(s)
-    return porc = s.skin_or_flesh_damage_perc + s.heat_damage_perc + s.insect_injury_perc
+    return porc = s.skin_or_flesh_damage_perc + s.heat_damage_perc + s.insect_injury_perc + s.scars_perc
   end
 
   def self.df07_g4(s)
@@ -93,15 +96,11 @@ module Util
   end
 
   def self.df07_g5(s)
-    return porc = s.vegetal_foreign_material_perc
+    return porc = s.vegetal_foreign_material_perc + s.dirt_perc + s.foreign_material_perc
   end
 
   def self.df07_g6(s)
     return porc = s.decay_perc + s.mold_perc
-  end
-
-  def self.df07_g7(s)
-    return porc = s.insect_infestation_perc
   end
 
   def self.df07_g7(s)
