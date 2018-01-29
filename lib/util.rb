@@ -58,54 +58,54 @@ module Util
   # Todos reciben la muestra y generan la suma
   # inc quiere decir que genera la suma incremental necesaria para obtener el valor
   def self.usda_inc_b(s)
-    porc = s.mold_perc + s.dirt_perc + s.foreign_material_perc
+    return porc = s.mold_perc + s.dirt_perc + s.foreign_material_perc
     + s.vegetal_foreign_material_perc + s.insect_infestation_perc
   end
 
   def self.usda_inc_c(s)
-    porc = s.scars_perc + s.skin_or_flesh_damage_perc + s.fermentation_perc
+    return porc = s.scars_perc + s.skin_or_flesh_damage_perc + s.fermentation_perc
     + s.heat_damage_perc + s.insect_injury_perc
   end
   def self.usda_inc_d(s)
-    porc = s.end_cracks_perc
+    return porc = s.end_cracks_perc
   end
   def self.usda_inc_e(s)
-    porc = s.poor_texture_perc
+    return porc = s.poor_texture_perc
   end
   def self.usda_inc_f(s)
-    porc = s.off_color_perc
+    return porc = s.off_color_perc
   end
 
   def self.df07_g1(s)
-    porc = s.off_color_perc + s.poor_texture_perc
+    return porc = s.off_color_perc + s.poor_texture_perc
   end
 
   def self.df07_g2(s)
-    porc = s.end_cracks_perc
+    return porc = s.end_cracks_perc
   end
 
   def self.df07_g3(s)
-    porc = s.skin_or_flesh_damage_perc + s.heat_damage_perc + s.insect_injury_perc
+    return porc = s.skin_or_flesh_damage_perc + s.heat_damage_perc + s.insect_injury_perc
   end
 
   def self.df07_g4(s)
-    porc = s.fermentation_perc
+    return porc = s.fermentation_perc
   end
 
   def self.df07_g5(s)
-    porc = s.vegetal_foreign_material_perc
+    return porc = s.vegetal_foreign_material_perc
   end
 
   def self.df07_g6(s)
-    porc = s.decay_perc + s.mold_perc
+    return porc = s.decay_perc + s.mold_perc
   end
 
   def self.df07_g7(s)
-    porc = s.insect_infestation_perc
+    return porc = s.insect_infestation_perc
   end
 
   def self.df07_g7(s)
-    porc = s.insect_infestation_perc
+    return porc = s.insect_infestation_perc
   end
 
   #############################################
@@ -183,7 +183,7 @@ module Util
   end
 
   # Retorna lista de las samples necesarias para calcular color
-  def self.required_samples(process)
+  def self.required_samples(process) # Para determinar color!
     # TODO: revisar que recepcion seco entren al q corresponde
     process = "calibrado" if process.in?(["recepcion seco", "secado", "seam", "cn"])
     samples = {
@@ -194,6 +194,7 @@ module Util
       samples[process.to_sym]
   end
 
+  # Retorna todas las samples tomables para cada proceso
   def self.all_required_samples(process)
     process = "calibrado" if process.in?(["seam", "cn"])
     process = "secado" if process.in?(["recepcion seco"])
@@ -201,7 +202,8 @@ module Util
       secado: [:damage, :caliber, :humidity],
       calibrado: [:damage, :caliber, :deviation, :humidity],
       tcc: [:damage, :caliber, :deviation, :humidity, :sorbate],
-      tsc: [:damage, :caliber, :deviation, :humidity, :sorbate, :carozo]
+      tsc: [:damage, :caliber, :deviation, :humidity, :sorbate, :carozo],
+      all: [:damage, :caliber, :deviation, :humidity, :sorbate, :carozo]
       }
       samples[process.to_sym]
   end
