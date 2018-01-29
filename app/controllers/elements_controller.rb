@@ -37,6 +37,7 @@ class ElementsController < ApplicationController
   # NOTE Podria chequear que sean del mismo proceso
   def show_ajax
     @element = Element.find_by(tag: params[:tag])
+    @previous_color = @element.previous_color || "" if @element
     respond_to do |format|
        format.js
     end
