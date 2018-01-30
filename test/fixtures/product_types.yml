@@ -1,7 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
 
-two:
-  name: MyString
+recepcion:
+  name: "recepcion seco"
+
+secado:
+  name: secado
+
+calibrado:
+  name: calibrado
+
+seam:
+  name: seam
+
+cn:
+  name: cn
+
+tsc:
+  name: tsc
+
+tcc:
+  name: tcc

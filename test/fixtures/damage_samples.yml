@@ -1,8 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  responsable: MyString
-  element: one
+tsc:
+  responsable: Joaquin
+  element: tsc
+  total_damages: 40
+  total_damages_perc: 40
   sample_weight: 9.99
   off_color: 1.5
   off_color_perc: 1.5
@@ -40,10 +42,15 @@ one:
   ruset_perc: 1.5
   reventados: 1.5
   reventados_perc: 1.5
+  usda: 1
+  df07: 0
+  counter: 1
 
-two:
-  responsable: MyString
-  element: two
+tcc:
+  responsable: Joaquin
+  element: tcc
+  total_damages: 40
+  total_damages_perc: 40
   sample_weight: 9.99
   off_color: 1.5
   off_color_perc: 1.5
@@ -81,3 +88,190 @@ two:
   ruset_perc: 1.5
   reventados: 1.5
   reventados_perc: 1.5
+  usda: 1
+  df07: 0
+  counter: 2
+
+calibrado:
+  responsable: Joaquin
+  element: calibrado
+  total_damages: 40
+  total_damages_perc: 40
+  sample_weight: 9.99
+  off_color: 1.5
+  off_color_perc: 1.5
+  poor_texture: 1.5
+  poor_texture_perc: 1.5
+  scars: 1.5
+  scars_perc: 1.5
+  end_cracks: 1.5
+  end_cracks_perc: 1.5
+  skin_or_flesh_damage: 1.5
+  skin_or_flesh_damage_perc: 1.5
+  fermentation: 1.5
+  fermentation_perc: 1.5
+  heat_damage: 1.5
+  heat_damage_perc: 1.5
+  insect_injury: 1.5
+  insect_injury_perc: 1.5
+  mold: 1.5
+  mold_perc: 1.5
+  dirt: 1.5
+  dirt_perc: 1.5
+  foreign_material: 1.5
+  foreign_material_perc: 1.5
+  vegetal_foreign_material: 1.5
+  vegetal_foreign_material_perc: 1.5
+  insect_infestation: 1.5
+  insect_infestation_perc: 1.5
+  decay: 1.5
+  decay_perc: 1.5
+  deshidratado: 1.5
+  deshidratado_perc: 1.5
+  bolsa_de_agua: 1.5
+  bolsa_de_agua_perc: 1.5
+  ruset: 1.5
+  ruset_perc: 1.5
+  reventados: 1.5
+  reventados_perc: 1.5
+  usda: 1
+  df07: 0
+  counter: 3
+
+secado:
+  responsable: Joaquin
+  element: secado
+  total_damages: 40
+  total_damages_perc: 40
+  sample_weight: 9.99
+  off_color: 1.5
+  off_color_perc: 1.5
+  poor_texture: 1.5
+  poor_texture_perc: 1.5
+  scars: 1.5
+  scars_perc: 1.5
+  end_cracks: 1.5
+  end_cracks_perc: 1.5
+  skin_or_flesh_damage: 1.5
+  skin_or_flesh_damage_perc: 1.5
+  fermentation: 1.5
+  fermentation_perc: 1.5
+  heat_damage: 1.5
+  heat_damage_perc: 1.5
+  insect_injury: 1.5
+  insect_injury_perc: 1.5
+  mold: 1.5
+  mold_perc: 1.5
+  dirt: 1.5
+  dirt_perc: 1.5
+  foreign_material: 1.5
+  foreign_material_perc: 1.5
+  vegetal_foreign_material: 1.5
+  vegetal_foreign_material_perc: 1.5
+  insect_infestation: 1.5
+  insect_infestation_perc: 1.5
+  decay: 1.5
+  decay_perc: 1.5
+  deshidratado: 1.5
+  deshidratado_perc: 1.5
+  bolsa_de_agua: 1.5
+  bolsa_de_agua_perc: 1.5
+  ruset: 1.5
+  ruset_perc: 1.5
+  reventados: 1.5
+  reventados_perc: 1.5
+  usda: 1
+  df07: 0
+  counter: 4
+
+seam:
+  responsable: Joaquin
+  element: seam
+  total_damages: 40
+  total_damages_perc: 40
+  sample_weight: 9.99
+  off_color: 1.5
+  off_color_perc: 1.5
+  poor_texture: 1.5
+  poor_texture_perc: 1.5
+  scars: 1.5
+  scars_perc: 1.5
+  end_cracks: 1.5
+  end_cracks_perc: 1.5
+  skin_or_flesh_damage: 1.5
+  skin_or_flesh_damage_perc: 1.5
+  fermentation: 1.5
+  fermentation_perc: 1.5
+  heat_damage: 1.5
+  heat_damage_perc: 1.5
+  insect_injury: 1.5
+  insect_injury_perc: 1.5
+  mold: 1.5
+  mold_perc: 1.5
+  dirt: 1.5
+  dirt_perc: 1.5
+  foreign_material: 1.5
+  foreign_material_perc: 1.5
+  vegetal_foreign_material: 1.5
+  vegetal_foreign_material_perc: 1.5
+  insect_infestation: 1.5
+  insect_infestation_perc: 1.5
+  decay: 1.5
+  decay_perc: 1.5
+  deshidratado: 1.5
+  deshidratado_perc: 1.5
+  bolsa_de_agua: 1.5
+  bolsa_de_agua_perc: 1.5
+  ruset: 1.5
+  ruset_perc: 1.5
+  reventados: 1.5
+  reventados_perc: 1.5
+  usda: 1
+  df07: 0
+  counter: 5
+
+cn:
+  responsable: Joaquin
+  element: cn
+  total_damages: 40
+  total_damages_perc: 40
+  sample_weight: 9.99
+  off_color: 1.5
+  off_color_perc: 1.5
+  poor_texture: 1.5
+  poor_texture_perc: 1.5
+  scars: 1.5
+  scars_perc: 1.5
+  end_cracks: 1.5
+  end_cracks_perc: 1.5
+  skin_or_flesh_damage: 1.5
+  skin_or_flesh_damage_perc: 1.5
+  fermentation: 1.5
+  fermentation_perc: 1.5
+  heat_damage: 1.5
+  heat_damage_perc: 1.5
+  insect_injury: 1.5
+  insect_injury_perc: 1.5
+  mold: 1.5
+  mold_perc: 1.5
+  dirt: 1.5
+  dirt_perc: 1.5
+  foreign_material: 1.5
+  foreign_material_perc: 1.5
+  vegetal_foreign_material: 1.5
+  vegetal_foreign_material_perc: 1.5
+  insect_infestation: 1.5
+  insect_infestation_perc: 1.5
+  decay: 1.5
+  decay_perc: 1.5
+  deshidratado: 1.5
+  deshidratado_perc: 1.5
+  bolsa_de_agua: 1.5
+  bolsa_de_agua_perc: 1.5
+  ruset: 1.5
+  ruset_perc: 1.5
+  reventados: 1.5
+  reventados_perc: 1.5
+  usda: 1
+  df07: 0
+  counter: 6

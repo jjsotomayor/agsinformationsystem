@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  caliber_sample: one
+  caliber_sample: calibrado
   big_fruits_in_sample: 1
   small_fruits_in_sample: 1
   sample_weight: 1
@@ -9,10 +9,9 @@ one:
   small_fruits_per_pound: 9.99
   deviation: 9.99
   status: false
-  status_revised: false
 
 two:
-  caliber_sample: two
+  caliber_sample: cn
   big_fruits_in_sample: 1
   small_fruits_in_sample: 1
   sample_weight: 1
@@ -20,4 +19,33 @@ two:
   small_fruits_per_pound: 9.99
   deviation: 9.99
   status: false
-  status_revised: false
+
+three:
+  caliber_sample: seam
+  big_fruits_in_sample: 1
+  small_fruits_in_sample: 1
+  sample_weight: 1
+  big_fruits_per_pound: 9.99
+  small_fruits_per_pound: 9.99
+  deviation: 9.99
+  status: false
+
+four:
+  caliber_sample: tsc
+  big_fruits_in_sample: 1
+  small_fruits_in_sample: 1
+  sample_weight: 1
+  big_fruits_per_pound: 9.99
+  small_fruits_per_pound: 9.99
+  deviation: 9.99
+  status: false
+
+tcc:
+  caliber_sample: tcc
+  big_fruits_in_sample: 1
+  small_fruits_in_sample: 1
+  sample_weight: 1
+  big_fruits_per_pound: 9.99
+  small_fruits_per_pound: 9.99
+  deviation: 9.99
+  status: false

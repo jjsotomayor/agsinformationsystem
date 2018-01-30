@@ -2,7 +2,7 @@ require 'test_helper'
 
 class HumiditySamplesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @humidity_sample = humidity_samples(:one)
+    prepare_all
   end
 
   test "should get index" do
@@ -16,33 +16,62 @@ class HumiditySamplesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create humidity_sample" do
-    assert_difference('HumiditySample.count') do
-      post humidity_samples_url, params: { humidity_sample: { element_id: @humidity_sample.element_id, humidity: @humidity_sample.humidity, responsable: @humidity_sample.responsable, status: @humidity_sample.status } }
+    processes_available(:humidity).each do |process|
+      @humidity_sample = humidity_samples(process.to_sym)
+      assert_difference('HumiditySample.count') do
+        post humidity_samples_url, params: params_humidity(@humidity_sample)
+      end
+      assert_redirected_to new_humidity_sample_url(success_id: HumiditySample.last.id)
     end
-
-    assert_redirected_to humidity_sample_url(HumiditySample.last)
   end
 
   test "should show humidity_sample" do
-    get humidity_sample_url(@humidity_sample)
-    assert_response :success
+    processes_available(:humidity).each do |process|
+      @humidity_sample = humidity_samples(process.to_sym)
+      get humidity_sample_url(@humidity_sample)
+      assert_response :success
+    end
   end
 
   test "should get edit" do
-    get edit_humidity_sample_url(@humidity_sample)
-    assert_response :success
+    processes_available(:humidity).each do |process|
+      @humidity_sample = humidity_samples(process.to_sym)
+      get edit_humidity_sample_url(@humidity_sample)
+      assert_response :success
+    end
   end
 
   test "should update humidity_sample" do
-    patch humidity_sample_url(@humidity_sample), params: { humidity_sample: { element_id: @humidity_sample.element_id, humidity: @humidity_sample.humidity, responsable: @humidity_sample.responsable, status: @humidity_sample.status } }
-    assert_redirected_to humidity_sample_url(@humidity_sample)
+    processes_available(:humidity).each do |process|
+      @humidity_sample = humidity_samples(process.to_sym)
+      patch humidity_sample_url(@humidity_sample), params: params_humidity(@humidity_sample)
+      assert_redirected_to new_humidity_sample_url(success_id: @humidity_sample.id)
+    end
   end
+
+
+  test "should update tag of humidity_sample" do
+    @sample = humidity_samples(random_process)
+    old_tag = @sample.element.tag
+    @params = params_humidity(@sample)
+    @params[:tag] = "new_tag"
+    patch humidity_sample_url(@sample), params: @params
+    assert_redirected_to new_humidity_sample_url(success_id: @sample.id)
+    assert_equal("new_tag", HumiditySample.find(@sample.id).element.tag, "Deberia haber cambiao tag")
+    assert_not_equal(nil, Element.find_by(tag: old_tag), "Element previo no borrado!")
+  end
+
 
   test "should destroy humidity_sample" do
-    assert_difference('HumiditySample.count', -1) do
-      delete humidity_sample_url(@humidity_sample)
-    end
+    processes_available(:humidity).each do |process|
+      @humidity_sample = humidity_samples(process.to_sym)
+      assert_difference('HumiditySample.count', -1) do
+        delete humidity_sample_url(@humidity_sample)
+      end
+      # FIXME where to redirect
+      # assert_redirected_to humidity_samples_url
 
-    assert_redirected_to humidity_samples_url
+    end
   end
+
 end

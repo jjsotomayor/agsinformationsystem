@@ -2,7 +2,13 @@ require 'test_helper'
 
 class ElementsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @element = elements(:one)
+    #NOTE Deberia testear con varios elems distintos
+    @process = "tsc"
+    @element = elements(@process.to_sym)
+    prepare_all(:admin)
+    dry_method = drying_methods(random("dm" ,1 , 3))
+    pt = product_types(@process.to_sym)
+    @params = { element: { drying_method_id: dry_method.id, ex_tag: "ex tarja", product_type_id: pt.id, tag: "tartar1" } }
   end
 
   test "should get index" do
@@ -17,7 +23,7 @@ class ElementsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create element" do
     assert_difference('Element.count') do
-      post elements_url, params: { element: { drying_method_id: @element.drying_method_id, ex_tag: @element.ex_tag, product_type_id: @element.product_type_id, tag: @element.tag } }
+      post elements_url, params: @params
     end
 
     assert_redirected_to element_url(Element.last)
@@ -34,15 +40,16 @@ class ElementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update element" do
-    patch element_url(@element), params: { element: { drying_method_id: @element.drying_method_id, ex_tag: @element.ex_tag, product_type_id: @element.product_type_id, tag: @element.tag } }
+    patch element_url(@element), params: @params
     assert_redirected_to element_url(@element)
   end
 
-  test "should destroy element" do
-    assert_difference('Element.count', -1) do
-      delete element_url(@element)
-    end
-
-    assert_redirected_to elements_url
-  end
+  # No hay destroy element hasta ahora
+  # test "should destroy element" do
+  #   assert_difference('Element.count', -1) do
+  #     delete element_url(@element)
+  #   end
+    # TODO agregar donde redirige
+    # assert_redirected_to elements_url
+  # end
 end

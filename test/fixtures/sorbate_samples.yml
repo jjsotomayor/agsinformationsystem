@@ -1,15 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  element: one
-  responsable: MyString
-  sorbate: 9.99
-  status: 1
-  status_revised: false
+tsc:
+  element: tsc
+  responsable: Joaquin
+  sorbate: 1000
 
-two:
-  element: two
-  responsable: MyString
-  sorbate: 9.99
-  status: 1
-  status_revised: false
+tcc:
+  element: tcc
+  responsable: Joaquin
+  sorbate: 1100
