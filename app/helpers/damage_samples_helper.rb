@@ -70,10 +70,6 @@ module DamageSamplesHelper
   ### element en new/edit damage_samples (type = "new"/"edit")   ###
   ##################################################################
 
-  def field_tag(type, class_type, dam_sample)
-    value = type == "new" ? '' : dam_sample.element.tag
-    text_field_tag :tag, value, class: class_type, autocomplete: 'off', disabled: (type == 'edit')
-  end
 
   # def field_process_order(type, class_type, dam_sample)
   #   value = type == "new" ? '' : dam_sample.element.process_order

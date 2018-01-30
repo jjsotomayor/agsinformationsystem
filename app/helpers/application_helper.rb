@@ -157,6 +157,14 @@ module ApplicationHelper
     false
   end
 
+  ##########################################
+  ################## Fields  ###############
+  ##########################################
+
+  def field_tag(type, class_type, sample)
+    value = type == "new" ? '' : sample.element.tag
+    text_field_tag :tag, value, class: class_type, autocomplete: 'off'#, disabled: (type == 'edit')
+  end
 
 
 

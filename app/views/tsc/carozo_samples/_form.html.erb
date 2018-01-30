@@ -25,8 +25,8 @@
   <%= f.hidden_field :responsable, value: logged_user.name %>
 
   <div class="field">
-    <%= f.label :Tarja %>
-    <%= text_field_tag :tag, '', autocomplete: 'off'%>
+    <%= f.label :tarja  %>
+    <%= field_tag("new", "", carozo_sample)%>
   </div>
 
   <div class="field">

@@ -52,8 +52,17 @@ class DamageSamplesController < ApplicationController
 
   # PATCH/PUT /damage_samples/1
   def update
+    if params[:tag] != @damage_sample.element.tag
+      @element, status = Element.change_element_of_sample(@damage_sample, element_params, @process)
+      if !status
+        session[:display_wrong_process_alert] = true
+        return render :edit
+        raise "Esto no se deberia haber ejecutado"
+      end
+    end
+
     if @damage_sample.update(damage_sample_params)
-      @damage_sample.element.update(edit_element_params)
+      @damage_sample.element.update(element_params.except(:tag)) # Esto no hace hit a db si ya lo hizo en if !status
       session[:display_updated_alert] = true
       redirect_to send("new_"+@process+"_damage_sample_path", success_id: @damage_sample.id) # (url, parametros)
     else
@@ -93,10 +102,6 @@ class DamageSamplesController < ApplicationController
 
     def element_params
       params.permit(:tag, :process_order, :product_type_id, :drying_method_id, :previous_color, :ex_tag, :lot, :first_item, :last_item) # Quitar process_order
-    end
-
-    def edit_element_params
-      params.permit(:process_order, :product_type_id, :drying_method_id, :previous_color, :ex_tag, :lot, :first_item, :last_item) # Quitar process_order
     end
 
     def permission_last_samples

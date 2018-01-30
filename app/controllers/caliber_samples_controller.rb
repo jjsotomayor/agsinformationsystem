@@ -6,7 +6,7 @@ class CaliberSamplesController < ApplicationController
   # Cambiarlo a solo update y destroy para disminuir la carga
   before_action :permission_last_samples, only: [:edit, :update, :destroy]
   before_action :set_sample_name, only: [:new, :edit]
-  before_action :include_deviation, only: [:show, :new, :create, :edit]
+  before_action :include_deviation, only: [:show, :new, :create, :edit, :update]
 
   # GET /caliber_samples
   def index
@@ -61,6 +61,16 @@ class CaliberSamplesController < ApplicationController
 
   # PATCH/PUT /caliber_samples/1
   def update
+
+    if params[:tag] != @caliber_sample.element.tag
+      @element, status = Element.change_element_of_sample(@caliber_sample, element_params, @process)
+      if !status
+        session[:display_wrong_process_alert] = true
+        return render :edit
+        raise "Esto no se deberia haber ejecutado"
+      end
+    end
+
     success = @caliber_sample.update(caliber_sample_params)
     if success and @caliber_sample.deviation_sample
       success = @caliber_sample.deviation_sample.update(deviation_sample_params)

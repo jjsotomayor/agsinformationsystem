@@ -100,7 +100,7 @@ wb.styles do |style|
 
         # Damage Sample
         if damage_s[i]
-          row_sample << damage_s[i].total_damages_perc
+          row_sample << damage_s[i].total_damages_perc.round(1)
           @damages_list.each do |dam|
             row_sample << round_or_nil(damage_s[i].send(dam + "_perc"))#.to_s
           end

@@ -1,3 +1,4 @@
+<%= render 'shared/message_wrong_process_error_js', tag: @element.tag if session[:display_wrong_process_alert]%>
 <% if @carozo_sample.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(@carozo_sample.errors.count, "error") %> prohibited this carozo_sample from being saved:</h2>
@@ -21,6 +22,10 @@
 
 <%= f.hidden_field :responsable, value: logged_user.name %>
 
+<div class="field">
+  <%= f.label :tarja  %>
+  <%= field_tag("edit", "", @carozo_sample)%>
+</div>
 
 <div class="field">
   <%= f.label :peso_con_carozo %>

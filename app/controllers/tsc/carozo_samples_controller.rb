@@ -1,7 +1,7 @@
 class Tsc::CarozoSamplesController < ApplicationController
   include SamplesMethods
   before_action :check_permissions_samples_controller_or_redirect
-  before_action :set_process, only: [:create]
+  before_action :set_process, only: [:create, :update]
   before_action :set_carozo_sample, only: [:show, :edit, :update, :destroy]
   # Cambiarlo a solo update y destroy para disminuir la carga
   before_action :permission_last_samples, only: [:edit, :update, :destroy]
@@ -48,6 +48,16 @@ class Tsc::CarozoSamplesController < ApplicationController
 
   # PATCH/PUT /carozo_samples/1
   def update
+
+    if params[:tag] != @carozo_sample.element.tag
+      @element, status = Element.change_element_of_sample(@carozo_sample, element_params, @process)
+      if !status
+        session[:display_wrong_process_alert] = true
+        return render :edit
+        raise "Esto no se deberia haber ejecutado"
+      end
+    end
+
     if @carozo_sample.update(carozo_sample_params)
       session[:display_updated_alert] = true
       redirect_to new_tsc_carozo_sample_path success_id: @carozo_sample.id

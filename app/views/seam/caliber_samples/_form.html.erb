@@ -6,12 +6,10 @@
 
     <%= f.hidden_field :responsable, value: logged_user.name %>
 
-    <% if type == "new"  %>
-      <div class="field">
-        <%= f.label :Tarja %>
-        <%= text_field_tag :tag, '', autocomplete: 'off' %>
-      </div>
-    <% end %>
+    <div class="field">
+      <%= f.label :tarja  %>
+      <%= field_tag(type, "", caliber_sample)%>
+    </div>
 
     <div class="field">
       <%= f.label :"peso_muestra (g)" %>

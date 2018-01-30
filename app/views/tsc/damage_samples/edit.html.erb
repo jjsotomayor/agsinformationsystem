@@ -1,1 +1,6 @@
-<%= render 'shared_damage_samples/form_calling', damage_sample: @damage_sample, type: "edit"%>
+<%=
+render 'shared_damage_samples/edit',
+  damage_sample: @damage_sample,
+  element: @element, # Esto es por si hubo error con el element
+  type: "edit"
+  %>

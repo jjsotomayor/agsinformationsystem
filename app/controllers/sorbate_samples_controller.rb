@@ -52,6 +52,12 @@ class SorbateSamplesController < ApplicationController
   # PATCH/PUT /sorbate_samples/1
   # PATCH/PUT /sorbate_samples/1.json
   def update
+
+    if params[:tag] != @sorbate_sample.element.tag
+      @element, status = Element.change_element_of_sample(@sorbate_sample, element_params)
+      #Aqui no hay process / product_type => No hay wrong process error
+    end
+
     if @sorbate_sample.update(sorbate_sample_params)
       session[:display_updated_alert] = true
       redirect_to new_sorbate_sample_path success_id: @sorbate_sample.id

@@ -48,14 +48,13 @@ class Element < ApplicationRecord
   end
 
 
-  # TODO, si implemento el ajax fill del form, aqui podria implementar el update tag (mejor q no en verdad)
   # Retorna [elemento, Boolean] Boolean true si esta todo Ok
   def self.create_element_if_doesnt_exist(element_params, process_name = nil)
     @element = Element.find_by(tag: element_params[:tag])
 
     # Si el proceso del elemento almacenado es distinto al proceso actual
     if @element and @element.product_type and process_name and @element.product_type.name != process_name
-      puts "Muestra RECIEN almacenada ES DE OTRO PROCESO #{@element.product_type.name}"
+      logger.info "Muestra RECIEN almacenada ES DE OTRO PROCESO #{@element.product_type.name}"
       return @element, false
     end
 
@@ -73,6 +72,42 @@ class Element < ApplicationRecord
     @element.save!
 
     return @element, true
+  end
+
+  # Permite desasociar sample de un element y asociarlo a otro.
+  # Si element queda vacio y no está en una bodega, se elimina.(Pq la sample lo creo por error)
+  def self.change_element_of_sample(sample, element_params, process = nil)
+    @original_element = sample.element
+    # Crea element con el nuevo tag
+    @new_element, status = Element.create_element_if_doesnt_exist(element_params, process)
+    return @new_element, false if !status # Element es de otro proceso
+
+    time_diff1 = (@original_element.updated_at - sample.created_at).abs
+    time_diff2 = (@original_element.updated_at - sample.updated_at).abs # Permite editar varias veces tarja eliminando la mal creada
+
+    # Se le asigna el new_element a sample
+    sample.update(element: @new_element)
+
+    time_difference = [time_diff1, time_diff2].min
+    #Si original_element vacio y no se ha tocado desde que se creo la muestra erronea
+    if @original_element.samples_count == 0 and time_difference < 0.5
+      logger.info "Element erroneo #{@original_element.tag} se creo con la muestra a la q se le está editando tarja -> BORRAR elem"
+      # NOTE Unico lugar donde se destruyen elements
+      @original_element.destroy
+      # Por seguridad element no tiene dependent destroy, para no borrar muestras por accidente
+    end
+
+    return @element, status # status = true
+  end
+
+  # Retorna la cantidad de muestras de un element.
+  def samples_count
+    count = 0
+    sample_types = Util.all_required_samples(:all) - [:deviation]
+    sample_types.each do |sample_type|
+      count += self.send(sample_type.to_s + "_samples").count
+    end
+    count
   end
 
   # Busca por tag si le pasan un term, sino retorna todos

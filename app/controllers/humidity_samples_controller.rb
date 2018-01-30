@@ -29,7 +29,7 @@ class HumiditySamplesController < ApplicationController
   # POST /humidity_samples
   def create #TESTEAR
     @element, status = Element.create_element_if_doesnt_exist(element_params)
-    @humidity_sample = HumiditySample.new(humidity_sample_create_params)
+    @humidity_sample = HumiditySample.new(humidity_sample_params)
     @humidity_sample.element = @element
 
     #NOTE: No se necesita if !status, pq status identifica error no ocurrible aca
@@ -46,8 +46,12 @@ class HumiditySamplesController < ApplicationController
 
   # PATCH/PUT /humidity_samples/1
   def update
+    if params[:tag] != @humidity_sample.element.tag
+      @element, status = Element.change_element_of_sample(@humidity_sample, element_params)
+      #Aqui no hay process / product_type => No hay wrong process error
+    end
 
-    if @humidity_sample.update(humidity_sample_create_params)
+    if @humidity_sample.update(humidity_sample_params)
       session[:display_updated_alert] = true
       redirect_to new_humidity_sample_path success_id: @humidity_sample.id
     else
@@ -69,11 +73,7 @@ class HumiditySamplesController < ApplicationController
       @humidity_sample = HumiditySample.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def humidity_sample_params
-      params.require(:humidity_sample).permit(:element_id, :responsable, :humidity, :status)
-    end
-    def humidity_sample_create_params
       params.require(:humidity_sample).permit(:responsable, :humidity)
     end
 
