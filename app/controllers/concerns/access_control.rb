@@ -9,65 +9,71 @@ module AccessControl
   ######### Chequea los permisos de samples ##########
   def check_permissions_samples_controller_or_redirect
     #TODO: Mejorar, esto por defecto deberia bloquear, como todos los demas.
-    if action_name.in?(["show", "index"]) and !can_see_samples?
-      redirect_to root_path, alert: not_allowed
-    elsif !can_modify_samples?
-      redirect_to root_path, alert: not_allowed
+    # if action_name.in?(["show", "index"]) and !can_see_samples?
+    #   redirect_to root_path, alert: not_allowed
+    # elsif !can_modify_samples?
+    #   redirect_to root_path, alert: not_allowed
+    # end
+    if action_name.in?(["show", "index"]) and can_see_samples?
+      return
+    elsif can_modify_samples? # Podria especificar cuales!
+      return
     end
+    redirect_to root_path, alert: not_allowed
   end
 
   ####################################################
   ############## Access Samples ######################
 
-  def can_see_samples?
-    return true if get_role_or_nil
+  # Recibe arreglo con lista de roles autorizados
+  def role_belongs_to?(admitted)
+    role = get_role_or_nil
+    return true if role.in?(admitted)
     false
   end
 
+  def can_see_samples?
+    get_role_or_nil ? true : false
+  end
+
   def can_modify_samples?
-    role = get_role_or_nil
-    return true if role.in?(['admin', "UserControl", 'jefe_control_calidad'])
-    false
+    role_belongs_to?(['admin', "UserControl", 'jefe_calidad'])
   end
 
   ####################################################
   ############## Access Element ######################
   def can_create_update_element?
-    role = get_role_or_nil
-    return true if role.in?(['admin', 'jefe_control_calidad'])
-    false
+    role_belongs_to?(['admin', 'jefe_calidad'])
   end
 
   ####################################################
   ################# Access IP's ######################
   def can_access_all_ip?
-    role = get_role_or_nil
-    return true if role.in?(['admin'])
-    false
+    role_belongs_to?(['admin'])
   end
 
   ####################################################
   ################ Access Report #####################
   def can_access_all_report?
-    role = get_role_or_nil
-    return true if role.in?(['admin', 'jefe_planta', 'jefe_control_calidad', 'jefe_bodega'])
-    false
+    role_belongs_to?(['admin', 'jefe_calidad', 'jefe_bodega', 'lector', 'op_bodega'])
   end
 
   ####################################################
   ############# Access UserControles #################
   def can_manage_user_controls?
-    role = get_role_or_nil
-    return true if role.in?(['admin', 'jefe_control_calidad'])
-    false
+    role_belongs_to?(['admin', 'jefe_calidad'])
   end
 
   ####################################################
   ################# Access Users #####################
   def can_manage_users?
-    role = get_role_or_nil
-    return true if role.in?(['admin'])
-    false
+    role_belongs_to?(['admin'])
+  end
+
+  ####################################################
+  ################# Access Bodega #####################
+  def can_move_element?
+    role_belongs_to?(['admin', 'jefe_bodega', 'op_bodega'])
   end
 
   ####################################################
