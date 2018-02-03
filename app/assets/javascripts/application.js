@@ -123,6 +123,11 @@ $(document).on('turbolinks:load', function(){
   // $(".validatable #damage_sample_carozo").bind("keyup" , changeCommaToPoint);
   // $(".validatable #damage_sample_carozo").on("input propertychange paste", {non_blank: false, number: "integer"}, validation_event_handler);
 
+  //////////////////////////////
+  //// Carozo Samples //////////
+  //////////////////////////////
+  $(".validatable #carozo_sample_sample_weight").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
+  $(".validatable #carozo_sample_carozo_weight").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
 
 
   // Valida los formularios de los form de warehouse
@@ -196,6 +201,10 @@ function run_all_validations(e){
     if (!validate($(".validatable #lot"),                             true, false)){ error = true;}
     if (!validate($(".validatable #drying_method_id"),                true, false)){ error = true;}
     if (!validate($(".validatable #damage_sample_sample_weight"),     true, "integer")){ error = true;}
+
+    //// Carozo Samples //////////
+    if (!validate($(".validatable #carozo_sample_sample_weight"),     true, "integer")){ error = true;}
+    if (!validate($(".validatable #carozo_sample_carozo_weight"),     true, "integer")){ error = true;}
 
     return error;
 }
