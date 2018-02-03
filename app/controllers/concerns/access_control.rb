@@ -58,6 +58,11 @@ module AccessControl
     role_belongs_to?(['admin', 'jefe_calidad', 'jefe_bodega', 'lector', 'op_bodega'])
   end
 
+  # NOTE operador bodega no puede descargar
+  def can_download?
+    role_belongs_to?(['admin', 'jefe_calidad', 'jefe_bodega', 'lector'])
+  end
+
   ####################################################
   ############# Access UserControles #################
   def can_manage_user_controls?

@@ -60,8 +60,11 @@ class ReportsController < ApplicationController
   private
 
   def check_permissions
-    return if can_access_all_report?
+    if action_name.in?(["index"]) and can_access_all_report? # element
+      return
+    elsif action_name.in?(["show_downloads", "process_products_xls"]) and can_download?
+      return
+    end
     redirect_to root_path, alert: not_allowed
   end
-
 end
