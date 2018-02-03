@@ -135,9 +135,9 @@ module ApplicationHelper
   ##########################################
   ##########################################
   def navbar_user(user)
-    if role = user.role
-      'shared/navbar_' + role.name
-    end
+    role = user.role.name
+    role = 'jefe_bodega' if role == 'op_bodega'
+    'shared/navbar_' + role
   end
 
   ##########################################
@@ -147,13 +147,13 @@ module ApplicationHelper
   # Retorna true o false si se tiene o no acceso
   def access_edit_delete_sample_button # Usado en index
     role = get_role_or_nil
-    return true if role.in?(['admin', 'jefe_control_calidad'])
+    return true if role.in?(['admin', 'jefe_calidad'])
     false
   end
 
   def access_edit_element_button
     role = get_role_or_nil
-    return true if role.in?(['admin', 'jefe_control_calidad'])
+    return true if role.in?(['admin', 'jefe_calidad'])
     false
   end
 
@@ -167,5 +167,19 @@ module ApplicationHelper
   end
 
 
+  ##########################################
+  ############ Bodega render  ##############
+  ##########################################
+
+  def banda_pos_altura_nil_safe(element)
+    if element.warehouse
+      banda = element.banda || ""
+      pos = element.posicion || ""
+      altura = element.altura || ""
+      banda + ", " + pos + ", " + altura
+    else
+      ""
+    end
+  end
 
 end

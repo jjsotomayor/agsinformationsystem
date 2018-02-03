@@ -8,6 +8,6 @@
 #   name: 'admin'
 #
 # two:
-#   name: jefe_control_calidad'
+#   name: jefe_calidad'
 
-# 'admin', 'jefe_planta', 'jefe_control_calidad', 'jefe_bodega'
+# 'admin', 'jefe_planta', 'jefe_calidad', 'jefe_bodega'

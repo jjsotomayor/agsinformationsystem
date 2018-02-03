@@ -1,0 +1,74 @@
+<%= render 'movements/message_success_js', tag: @success_elem.tag if  @success_elem%>
+<%= render 'shared/message_js', message: @message if @message %>
+
+
+<div class= "container-samples">
+  <div class= "pestaña">BODEGA</div>
+    <div class="outside-new-form">
+      <h1><span class= "glyphicon glyphicon-list-alt"></span> Salida</h1>
+
+      <%=form_tag(movements_exit_element_path, {id: 'exit-movement', class: 'inside-new-form validate warehouse-form'}) do %>
+
+      <div class="field">
+        <label> Ingresada por error </label>
+        <%= check_box_tag :was_error%>
+      </div>
+
+        <div class="field">
+          <label> Tarja </label>
+          <%= text_field_tag :tag, "", class: "", autocomplete: 'off'%>
+        </div>
+
+        <div class="field">
+          <label> Destino </label>
+          <%= select_tag :destination, options_for_select(@destinations), include_blank: true%>
+        </div>
+
+        <div class="field">
+          <label> Orden Proceso </label>
+          <%= text_field_tag :process_order, "", class: "", autocomplete: 'off'%>
+        </div>
+
+
+
+        <div class="actions">
+          <%= submit_tag "Sacar",  class: "btn btn-primary btn-lg btn-block" %>
+        </div>
+
+      <% end %>
+
+  </div>
+</div>
+
+
+<div class="container-last-samples">
+      <h3>Últimas Salidas</h3>
+
+      <table class = "table table-striped">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Tarja</th>
+            <th>Peso (kg)</th>
+            <th>Resp.</th>
+            <th>Destino.</th>
+            <th>OP</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%@recently_moved.each do |elem|%>
+            <tr>
+              <td><%= date_time_nil_safe(elem.last_movement_at) %></td>
+              <td><%= elem.tag %></td>
+              <td><%= elem.weight %></td>
+              <td><%= elem.warehouse_responsable %></td>
+              <td><%= elem.destination %></td>
+              <td><%= elem.process_order %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+<%= link_to 'Todos los movimientos', movements_path,  class: "btn btn-primary btn-sm" %>
+</div>

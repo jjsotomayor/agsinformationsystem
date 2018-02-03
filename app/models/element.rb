@@ -1,12 +1,15 @@
 class Element < ApplicationRecord
   include Methods
 
+  # NOTE Nunca cambiar el orden de los enum, alterara el valor de los registros en ls db!
   enum color: [:-, :azul, :verde, :amarillo, :rojo]
   # enum previous_usda: [:A, :B, :C, :SSTD, :'no califica']
   #enum status: [ :active, :archived ]
+  enum last_movement_type: [:ingreso, :edicion, :salida, :salida_rectifica_error, :devolucion_bins_incompleto]
 
   belongs_to :product_type, optional: true
   belongs_to :drying_method, optional: true
+  belongs_to :warehouse, optional: true
   has_many :damage_samples
   has_many :caliber_samples
   has_many :humidity_samples
@@ -14,7 +17,11 @@ class Element < ApplicationRecord
   has_many :carozo_samples
 
   validates :tag,  uniqueness: true, presence: true
+  validates :weight, numericality: {greater_than: 0}, allow_nil: true
   # validates :product_type, presence: true. No esta cuando secrea humidity sample antes q otra
+
+  scope :last_move_type, -> (type) { where last_movement_type: type }
+  scope :product_type, -> (product_type_id) { where product_type_id: product_type_id }
 
   def self.to_csv
     attributes = %w{Tarja N OrdenProceso Producto Secado UsdaAnterior TarjaAnterior}
@@ -126,6 +133,107 @@ class Element < ApplicationRecord
   #   end
   #   true
   # end
+
+  ##########################################################
+  ################## Metodos para bodega ###################
+  ##########################################################
+
+  def in_warehouse?
+    return self.warehouse ? true : false
+  end
+
+  def left_warehouse?
+    return self.dispatched_at ? true : false
+  end
+
+  def has_entered_warehouse?
+    return true if self.warehouse || self.dispatched_at
+    false
+  end
+
+  # Si hay varios ingresos y salidas quedara registrada la primera entrada
+  # y la ultima salida
+  # Responsable se actualiza cuando entra, sale, o se edita el producto
+  def enter_warehouse(enter_params)
+    now = Time.now
+    enter_params[:stored_at] = now if !self.stored_at
+    enter_params[:last_movement_at] = now
+    enter_params[:last_movement_type] = :ingreso
+    enter_params[:dispatched_at] = nil
+    enter_params[:destination] = nil
+    enter_params[:process_order] = nil
+    self.update!(enter_params)
+    logger.info {"#{self.tag} Entra a bodega!"}
+  end
+
+  def remove_from_warehouse(exit_params, error)
+    now = Time.now
+    params = {warehouse_id: nil, banda: nil, posicion: nil, altura: nil,
+        warehouse_responsable: exit_params[:warehouse_responsable],
+        last_movement_at: now} #Se registra sea salida corrigiendo error o normal
+
+    if error
+      logger.info {"#{self.tag} Sacado de bodega por error de ingreso!"}
+      params = params.merge({dispatched_at: nil, last_movement_type: :salida_rectifica_error})
+      #stored_at lo deja nil solo si el 1ER INGRESO(STORED) fue el ultimo edicion (stored_at = last_movement_at)
+      params[:stored_at] = nil if self.stored_at == self.last_movement_at
+    else
+      logger.info "#{self.tag} Sacado de bodega normal!"
+      params = params.merge({dispatched_at: now, last_movement_type: :salida})
+      params = params.merge(exit_params) # Tiene destino, OP, responsable(repetido)
+    end
+
+    self.update!(params)
+    logger.info "#{self.tag} Sacado finalizado!"
+  end
+
+  # Crea copia de element y añade overwrite_params, retorna elem + status
+  def self.create_copy(element, overwrite_params, resp)
+    # FIXME revisar todos los save! quizas hay que cambiarlos por otra cosa
+    now = Time.now
+    # NOTE Cada vez que se agreguen columnas a element actualizar este metodo!
+    @new_element = Element.new
+    @new_element.assign_attributes(element.attributes.slice("lot", "product_type_id", "drying_method_id", "ex_tag", "previous_color"))
+    @new_element.assign_attributes(overwrite_params)
+    # NOTE first_item y last_item no copiados. Podria ser fuente de error
+    @new_element.incomplete_bin_tag = element.tag
+    @new_element.stored_at = now
+    @new_element.last_movement_at = now
+    @new_element.warehouse_responsable = resp
+    @new_element.last_movement_type = :devolucion_bins_incompleto
+
+    ActiveRecord::Base.transaction do
+      @new_element.save!
+      element.update!(weight: element.weight - @new_element.weight) # Actualiza peso tarja original
+    end
+    logger.info {"Creo copia: #{@new_element}, a partir de #{element.tag}"}
+
+    ####### Duplicar muestras! #######
+    # NOTE Esto podria ser un proceso after job! Que responda al user aqui.
+    sample_types = Util.all_required_samples(:all) - [:deviation]
+    sample_types.each do |sample_type|
+      logger.info "Duplicando muestras #{sample_type}"
+      element.send(sample_type.to_s + "_samples").each do |sample|
+        logger.info "Duplicando muestra #{sample.id}"
+        new_sample = sample.dup
+        new_sample.element = @new_element
+        new_sample.save
+
+        # Deviation Samples se tratan aparte
+        logger.info {"Copiando dev_samples"}
+        if sample.class.name == "CaliberSample" and sample.deviation_sample
+          new_dev_sample = sample.deviation_sample.dup
+          new_dev_sample.caliber_sample = new_sample
+          new_dev_sample.save
+        end
+
+      end
+    end
+    return @new_element, true
+  end
+
+  ##########################################################
+
 
   # Actualiza color de element de ser necesario.
   def refresh_element_color

@@ -8,6 +8,17 @@ Rails.application.routes.draw do
 
   # Rutas mediante AJAX
   get 'elements/show_ajax' => 'elements#show_ajax', constraint: OnlyAjaxRequest.new
+  get 'movements/get_element_ajax' => 'movements#get_element_ajax', constraint: OnlyAjaxRequest.new
+
+  get 'movements' => 'movements#index' , as: :movements
+  get 'movements/enter'
+  get 'movements/exit'
+  get 'movements/edit'
+  get 'movements/incomplete_bin'
+  post 'movements/enter_element'
+  post 'movements/exit_element'
+  post 'movements/update'
+  post 'movements/incomplete_bin_save'
 
   resources :user_control_accesses
   resources :ip_addresses

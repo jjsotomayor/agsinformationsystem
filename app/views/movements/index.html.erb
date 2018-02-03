@@ -1,0 +1,70 @@
+  <div class="container">
+    <h2 class= "centered separated">Últimos Movimiento de productos</h2>
+
+    <%= form_tag(movements_path, method: :get) do %>
+      <%= select_tag "last_movement_type",  options_for_select(Element.last_movement_types, params[:last_movement_type]), include_blank: 'Todo Movimiento', class: "margin-up-select" %>
+      <%= select_tag "product_type_id", options_from_collection_for_select(@product_types, "id", "name", params[:product_type_id]), include_blank: 'Todo Producto', class: "margin-up-select" %>
+
+      <%= submit_tag 'Filtrar', name: nil, class: "btn btn-primary btn-sm margin0" %>
+    <% end %>
+
+  <table class = "table table-striped">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Tarja</th>
+      <th>Producto</th>
+      <th>Movimiento</th>
+      <th>Responsable</th>
+      <th>Peso (kg)</th>
+
+      <th>F. Llegada</th>
+      <th>Bodega</th>
+      <th>Banda, posición, altura</th>
+
+      <th>F. Salida</th>
+      <th>Destino</th>
+      <th>OP</th>
+
+      <!-- TODO BORRAR SGTS 2  -->
+      <!-- NOTE No esta: stored_at dispatched_at  -->
+
+
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @last_moved_elems.each do |element| %>
+      <tr>
+        <td><%= date_time(element.last_movement_at) %></td>
+        <td><%= element_link(element) %></td>
+        <td><%= element.product_type.name if element.product_type %></td>
+        <% if element.devolucion_bins_incompleto? %>
+          <td><%= element.last_movement_type.to_s.capitalize + " (" + element.incomplete_bin_tag + ")"  %></td>
+        <% else %>
+          <td><%= element.last_movement_type.capitalize %></td>
+        <% end %>
+
+<!-- element.incomplete_bin_tag -->
+
+        <td><%= element.warehouse_responsable %></td>
+        <td><%= element.weight %></td>
+
+        <td><%= date_time_nil_safe(element.stored_at)%></td>
+        <td><%= element.warehouse.name if element.warehouse%></td>
+        <td><%= banda_pos_altura_nil_safe(element) %></td>
+
+        <td><%= date_time_nil_safe(element.dispatched_at)%></td>
+        <td><%= element.destination%></td>
+        <td><%= element.process_order%></td>
+
+
+        <td><%=
+        # link_to 'Ver', element, class: "btn btn-primary btn-xs"
+        %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

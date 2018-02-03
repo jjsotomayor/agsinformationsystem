@@ -120,3 +120,22 @@ end
 def random_process(except = nil)
   ([:secado, :calibrado, :seam, :cn, :tsc, :tcc]-[except]).sample
 end
+
+ #### Warehouses_methods ######
+def warehouse_movement_params(type, element)
+  tag = element.tag
+  wh_id =warehouses(:one).id
+  params = {
+    ingreso: {tag: tag, weight: 455.50,
+              warehouse_id: wh_id, banda: "a", posicion: "b", altura: "c"},
+    edicion: {tag: tag,
+              warehouse_id: wh_id, banda: "a", posicion: "b", altura: "c"},
+    salida: {tag: tag, destination: Util.possible_destinations.sample, process_order: "poxxx"},
+    salida_rectifica_error: {tag: tag, destination: "", process_order: "", was_error: "1"},
+    devolucion_bins_incompleto: {original_tag: tag, tag: "new_tag", weight: 255.50,
+              warehouse_id: wh_id, banda: "a", posicion: "b", altura: "c"}
+    # FIXME CREO QUE EL CHECKBOXNO GENERA TRUE FALSE
+    }
+    # p params
+    params[type.to_sym]
+end

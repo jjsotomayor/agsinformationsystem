@@ -32,6 +32,9 @@ class ElementsController < ApplicationController
     @carozo_samples = @element.carozo_samples.ord if show_samples?("carozo_sample", @product_type)
 
     @damages_list = Util.damages_of_product_type(@product_type) if @dam_samples
+
+    @in_warehouse = @element.in_warehouse?
+    @left_warehouse = @element.left_warehouse?
   end
 
   # NOTE Podria chequear que sean del mismo proceso

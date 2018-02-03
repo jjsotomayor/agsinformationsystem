@@ -25,6 +25,11 @@
       <th>Color</th>
       <th>Tarja anterior</th>
       <th>Color anterior</th>
+      <th>Peso (kg)</th>
+      <th>Bodega</th>
+      <th>Destino</th>
+      <th>OP</th>
+      <!-- NOTE Quizas agregar banda pos, altura como en show  -->
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -42,6 +47,10 @@
         <td><%= element.color%></td>
         <td><%= element.ex_tag %></td>
         <td><%= element.previous_color %></td>
+        <td><%= element.weight %></td>
+        <td><%= element.warehouse.name if element.warehouse %></td>
+        <td><%= element.destination %></td>
+        <td><%= element.process_order %></td>
         <td><%= link_to 'Ver', element, class: "btn btn-primary btn-xs" %></td>
         <% if access_edit_element_button %>
           <td><%= link_to 'Editar', edit_element_path(element),  class: "btn btn-warning btn-xs" %></td>

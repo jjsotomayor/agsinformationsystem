@@ -125,13 +125,20 @@ $(document).on('turbolinks:load', function(){
 
 
 
-
-  // TODO solo detener el submit si hay errores
-  // $("form#new_humidity_sample").submit(function(e){
-// form
-// $(".validatable").submit(function(e){
+  // Valida los formularios de los form de warehouse
   $("form.validatable").submit(function(e){
       if (run_all_validations(e)){
+        e.preventDefault();
+        swal('No almacenada!','Arregla las celdas en rojo e intenta nuevamente', 'error') //success warning error
+        $(".btn[type=submit]").removeAttr("data-disable-with") //NOTE El selector del boton "guardar" es muy general
+      }
+    });
+
+  $("#exit-movement #was_error").on("input propertychange paste click", disable_exit_warehouse_fields);
+
+  // Válida las celdas de los form de warehouse
+  $("form.warehouse-form").submit(function(e){
+      if (run_all_warehouse_validations(e)){
         e.preventDefault();
         swal('No almacenada!','Arregla las celdas en rojo e intenta nuevamente', 'error') //success warning error
         $(".btn[type=submit]").removeAttr("data-disable-with") //NOTE El selector del boton "guardar" es muy general
@@ -141,10 +148,27 @@ $(document).on('turbolinks:load', function(){
   // Ajax request para obtener los datos de un element en new damage_samples forms
   // TODO chequear que no se ejecuta cuando se esita una damagesample
   $("#new_damage_sample #tag").on("input propertychange paste", get_element_through_ajax);
+  $("#edit-movement #tag").on("input propertychange paste", get_element_to_edit_movement_ajax);
 
 });
 
+////////////////////////////////////////
+////////////// Funciones //////////////
+////////////////////////////////////////
 
+// Cuando se cliques el boton was_error, deshabilita inputs
+function disable_exit_warehouse_fields(e){
+  // console.log("Hubo un movimiento en was_error checkbox");
+  if ($(this).is(":checked")){
+    // console.log("Deshabilitando");
+    $("#destination").prop('disabled', true);
+    $("#process_order").prop('disabled', true);
+  } else{
+    // console.log("Habilitando");
+    $("#destination").prop('disabled', false);
+    $("#process_order").prop('disabled', false);
+  }
+}
 
 // Estas son las validaciones que se corren al cliguear guardar!
 function run_all_validations(e){
@@ -177,6 +201,26 @@ function run_all_validations(e){
 }
 
 
+// Corre las validaciones para las form de bodega
+function run_all_warehouse_validations(e){
+    console.log("Running validations");
+    // function validate($elem, non_blank, number_format){
+    var error = false;
+    // TODO cambiar aqui y en forms a "validatable"
+    if (!validate($(".validate #original_tag"),                    true, false)){ error = true;}
+    if (!validate($(".validate #tag"),                             true, false)){ error = true;}
+    if (!validate($(".validate #weight"),                          true, false)){ error = true;}
+    if (!validate($(".validate #warehouse_id"),                    true, false)){ error = true;}
+    if (!validate($(".validate #destination"),                     true, false)){ error = true;}
+    if (!validate($(".validate #process_order"),                   true, false)){ error = true;}
+    // Elements form //
+    // if (!validate($(".validatable #element_tag"),                     true, false)){ error = true;}
+    // if (!validate($(".validatable #element_product_type_id"),         true, false)){ error = true;}
+
+    return error;
+}
+
+
 function validation_event_handler(event){
   // console.log("Validando");
   var non_blank = event.data.non_blank;
@@ -189,6 +233,10 @@ function validation_event_handler(event){
 // TODO: actualmente no distingue integer de decimal(solo valida que sea numero)
 function validate($elem, non_blank, number_format){
   if (!$elem.length){ //Chequea si $elem es un elemento o esta vacio
+    return true;
+  }
+
+  if ($elem.prop('disabled')){ // Si el input field esta disabled, no lo revisa
     return true;
   }
 
@@ -238,6 +286,19 @@ function get_element_through_ajax(e){
   });
 }
 
+// Hace la AJAX request al controlador para ver si esta la tarja
+function get_element_to_edit_movement_ajax(e){
+  var tag = $(this).val();
+  $.ajax ({
+    url: "/movements/get_element_ajax",
+    type: 'get',
+    data:
+    {
+      tag: tag
+    },
+    dataType: 'script'
+  });
+}
 
 
 

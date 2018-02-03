@@ -16,4 +16,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :last_name])
     #devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :last_name]) #same but for update
   end
+
+  def display_message_in_session
+    session[:display_message] = true
+  end
+
+  def display_message?
+    session[:display_message] || false
+  end
+
 end

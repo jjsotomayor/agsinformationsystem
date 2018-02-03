@@ -202,7 +202,7 @@ input[type=submit]{
 
 
 // Field tag en todos los form
-.inside-new-form .field input#tag{
+.inside-new-form .field input#tag, input#original_tag{
   font-size: 19px;
   width: 177px;
   height: 34px;// !important;
@@ -452,3 +452,24 @@ input[type=text]:focus {
 .close-up{
   margin-top: 0px !important;
 }
+
+//////////////////////////////////////////////////////////////
+//////////////////////// BODEGA //////////////////////////////
+//////////////////////////////////////////////////////////////
+
+.warehouse-form{
+  // css for the checkbox in edit movement
+  input[type="checkbox"]{
+    height: 17px;
+    width: 17px;
+    margin-right: 158px;
+    vertical-align: bottom;
+  }
+}
+
+.margin0{
+  margin: 0px !important;
+}
+// span.bold {
+//   font-weight: bold;
+// }

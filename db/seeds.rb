@@ -6,7 +6,7 @@
 #  ProductType.all.destroy_all
 #  Role.all.destroy_all
 def create_roles
- ['admin', 'jefe_planta', 'jefe_control_calidad', 'jefe_bodega'].each do |role_name|
+ ['admin', 'jefe_calidad', 'jefe_bodega', 'lector', 'op_bodega'].each do |role_name|
    Role.create!(name: role_name)
  end
 end
@@ -112,6 +112,19 @@ def create_users_and_ips
   end
 end
 
+def create_warehouses
+  Warehouse.destroy_all
+  wahehouses = [
+    { name: "Bodega 5"},
+    { name: "Bodega 6"},
+    { name: "Bodega 9"},
+  ]
+  Warehouse.create!(wahehouses)
+end
+
+
+
+
   #usda = ['A', 'B', 'C', 'SSTD', 'no califica']
   # 100.times do
   #   rand(1)
@@ -141,3 +154,4 @@ end
     create_drying_methods if Rails.env != "test"
     create_counts
     create_users_and_ips if Rails.env != "test"
+    create_warehouses if Rails.env != "test"

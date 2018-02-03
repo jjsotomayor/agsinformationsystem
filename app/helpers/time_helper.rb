@@ -15,4 +15,8 @@ module TimeHelper
     # timestamp.strftime("%H:%M:%S")
   end
 
+  def date_time_nil_safe(timestamp)
+    timestamp.strftime("%d/%b/%y - %H:%M") if timestamp
+  end
+
 end

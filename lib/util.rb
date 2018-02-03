@@ -207,4 +207,13 @@ module Util
       samples[process.to_sym]
   end
 
+  ##############################################
+  ########## Metodos para bodega ###############
+  ##############################################
+
+  def self.possible_destinations
+    [:Calibrado, :TSC, :TCC, :SEAM, :CN, :Mejoramiento, :Venta]
+  end
+
+
 end

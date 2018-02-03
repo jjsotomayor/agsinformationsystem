@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180124214333) do
+ActiveRecord::Schema.define(version: 20180203014326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,21 +142,36 @@ ActiveRecord::Schema.define(version: 20180124214333) do
   end
 
   create_table "elements", force: :cascade do |t|
-    t.string   "tag",                          null: false
+    t.string   "tag",                               null: false
     t.string   "lot"
     t.string   "process_order"
     t.integer  "product_type_id"
     t.integer  "drying_method_id"
     t.string   "ex_tag"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.integer  "color",            default: 0, null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "color",                 default: 0, null: false
     t.string   "previous_color"
     t.string   "first_item"
     t.string   "last_item"
+    t.decimal  "weight"
+    t.integer  "warehouse_id"
+    t.string   "banda"
+    t.string   "posicion"
+    t.string   "altura"
+    t.datetime "stored_at"
+    t.datetime "dispatched_at"
+    t.string   "warehouse_responsable"
+    t.string   "destination"
+    t.datetime "last_movement_at"
+    t.integer  "last_movement_type"
+    t.string   "incomplete_bin_tag"
     t.index ["color"], name: "index_elements_on_color", using: :btree
     t.index ["drying_method_id"], name: "index_elements_on_drying_method_id", using: :btree
+    t.index ["last_movement_at"], name: "index_elements_on_last_movement_at", using: :btree
+    t.index ["last_movement_type"], name: "index_elements_on_last_movement_type", using: :btree
     t.index ["product_type_id"], name: "index_elements_on_product_type_id", using: :btree
+    t.index ["warehouse_id"], name: "index_elements_on_warehouse_id", using: :btree
   end
 
   create_table "humidity_samples", force: :cascade do |t|
@@ -261,6 +276,12 @@ ActiveRecord::Schema.define(version: 20180124214333) do
     t.integer  "role_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "warehouses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "caliber_samples", "calibers"

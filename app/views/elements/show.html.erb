@@ -19,6 +19,19 @@
 
       <th>Ex tarja</th>
       <th>Color anterior</th>
+      <th>Peso (kg)</th>
+
+      <% if @in_warehouse %>
+        <th>Bodega</th>
+        <th>Banda, posición, altura</th>
+        <th>Entrada</th>
+        <th>Salida</th>
+      <% elsif @left_warehouse %>
+        <th>Entrada</th>
+        <th>Salida</th>
+        <th>Destino</th>
+        <th>OP</th>
+      <% end %>
 
       <th colspan="1"></th>
     </tr>
@@ -37,6 +50,22 @@
 
         <td><%= @element.ex_tag %></td>
         <td><%= @element.previous_color %></td>
+        <td><%= @element.weight %></td>
+
+        <% if @in_warehouse %>
+          <td><%= @element.warehouse.name if @element.warehouse %></td>
+          <td><%= banda_pos_altura_nil_safe(@element) %></td>
+          <td><%= date_time_nil_safe(@element.stored_at) %></td>
+          <td><%= date_time_nil_safe(@element.dispatched_at) %></td>
+        <% elsif @left_warehouse %>
+          <td><%= date_time_nil_safe(@element.stored_at) %></td>
+          <td><%= date_time_nil_safe(@element.dispatched_at) %></td>
+          <td><%= @element.destination %></td>
+          <td><%= @element.process_order %></td>
+
+        <% end %>
+
+
         <% if access_edit_element_button %>
         <td><%= link_to 'Editar producto', edit_element_path(@element),  class: "btn btn-warning btn-xs" %></td>
         <% end %>
