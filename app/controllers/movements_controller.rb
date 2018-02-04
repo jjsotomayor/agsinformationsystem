@@ -8,11 +8,13 @@ class MovementsController < ApplicationController
 
 
   def index
-    params = filter_params.reject{|k, v| v.blank?}
+    f_params = filter_params.reject{|k, v| v.blank?}
     @last_moved_elems = Element.where.not(last_movement_at: nil)
-    @last_moved_elems = @last_moved_elems.last_move_type(params[:last_movement_type]) if params[:last_movement_type]
-    @last_moved_elems = @last_moved_elems.product_type(params[:product_type_id]) if params[:product_type_id]
-    @last_moved_elems = @last_moved_elems.order('last_movement_at DESC').first(50)
+    @last_moved_elems = @last_moved_elems.last_move_type(f_params[:last_movement_type]) if f_params[:last_movement_type]
+    @last_moved_elems = @last_moved_elems.product_type(f_params[:product_type_id]) if f_params[:product_type_id]
+    @last_moved_elems = @last_moved_elems.order('last_movement_at DESC')#.first(50)
+    @last_moved_elems = @last_moved_elems.page(params[:page]).per(30)
+
 
     @product_types = ProductType.all
   end

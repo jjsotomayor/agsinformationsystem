@@ -8,7 +8,8 @@ class SorbateSamplesController < ApplicationController
   # GET /sorbate_samples
   # GET /sorbate_samples.json
   def index
-    @sorbate_samples = SorbateSample.active.ord
+    @sorbate_samples = SorbateSample.all
+    @sorbate_samples = @sorbate_samples.page(params[:page]).ord
   end
 
   # GET /sorbate_samples/1

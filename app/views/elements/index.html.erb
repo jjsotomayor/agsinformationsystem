@@ -15,6 +15,7 @@
       <%= submit_tag 'Filtrar', name: nil, class: "btn btn-primary btn-sm margin0" %>
     <% end %>
 
+    <%= paginate @elements %>
   <table class = "table table-striped">
   <thead>
     <tr>
@@ -61,4 +62,5 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @elements %>
 </div>

@@ -5,14 +5,18 @@ class ElementsController < ApplicationController
 
   # GET /elements
   def index
-    @elements = Element.search(params[:term])
 
-    # Applying filterss
-    params = filter_params.reject{|k, v| v.blank?}
-    @elements = @elements.product_type(params[:product_type_id]) if params[:product_type_id]
-    @elements = @elements.drying_method(params[:drying_method_id]) if params[:drying_method_id]
-    @elements = @elements.color(params[:color]) if params[:color]
-    @elements = @elements.location(params[:location]) if params[:location]
+    @elements = Element.all
+    @elements = Element.search(params[:term]) if params[:term]
+
+    # Applying filters
+    f_params = params.reject{|k, v| v.blank?}
+    @elements = @elements.product_type(f_params[:product_type_id]) if f_params[:product_type_id]
+    @elements = @elements.drying_method(f_params[:drying_method_id]) if f_params[:drying_method_id]
+    @elements = @elements.color(f_params[:color]) if f_params[:color]
+    @elements = @elements.location(f_params[:location]) if f_params[:location]
+
+    @elements = @elements.page(params[:page]).ord
 
     @product_types = ProductType.all
     @drying_methods = DryingMethod.all
@@ -108,7 +112,8 @@ class ElementsController < ApplicationController
       params.require(:element).permit(:tag, :process_order, :product_type_id, :drying_method_id, :previous_color, :ex_tag, :lot, :first_item, :last_item)
     end
 
-    def filter_params
+    # Parametros de filtro
+    def f_params
       params.permit(:drying_method_id, :product_type_id, :color, :location)
     end
 

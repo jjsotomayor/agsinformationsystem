@@ -12,6 +12,7 @@ class DamageSamplesController < ApplicationController
   # GET /damage_samples
   def index
     @damage_samples = DamageSample.get_samples(@process)
+    @damage_samples = @damage_samples.page(params[:page]).ord
   end
 
   # GET /damage_samples/1

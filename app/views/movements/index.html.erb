@@ -8,6 +8,7 @@
       <%= submit_tag 'Filtrar', name: nil, class: "btn btn-primary btn-sm margin0" %>
     <% end %>
 
+  <%= paginate @last_moved_elems %>
   <table class = "table table-striped">
   <thead>
     <tr>
@@ -67,4 +68,5 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @last_moved_elems %>
 </div>

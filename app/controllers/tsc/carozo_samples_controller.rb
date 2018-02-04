@@ -8,7 +8,8 @@ class Tsc::CarozoSamplesController < ApplicationController
 
   # GET /carozo_samples
   def index
-    @carozo_samples = CarozoSample.active.ord
+    @carozo_samples = CarozoSample.all.includes(:element)
+    @carozo_samples = @carozo_samples.page(params[:page]).ord
   end
 
   # GET /carozo_samples/1

@@ -70,3 +70,5 @@ gem 'raygun4ruby', '~> 1.1', '>= 1.1.11'
 # Heroku solicita ingresar version de ruby a utilizar
 ruby '2.4.1'
 # NOTE Heroku tb solicita definir procfile para definir web server a utilizar(puma)
+
+gem 'kaminari', '~> 1.1.1'

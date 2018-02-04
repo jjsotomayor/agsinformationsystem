@@ -11,6 +11,7 @@ class CaliberSamplesController < ApplicationController
   # GET /caliber_samples
   def index
     @caliber_samples = CaliberSample.get_samples(@process)
+    @caliber_samples = @caliber_samples.page(params[:page]).ord
   end
 
   # GET /caliber_samples/1

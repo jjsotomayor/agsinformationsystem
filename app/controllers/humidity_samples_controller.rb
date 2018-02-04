@@ -7,7 +7,8 @@ class HumiditySamplesController < ApplicationController
 
   # GET /humidity_samples
   def index
-    @humidity_samples = HumiditySample.active.ord
+    @humidity_samples = HumiditySample.all.includes(:element)#.active
+    @humidity_samples = @humidity_samples.page(params[:page]).ord
   end
 
   # GET /humidity_samples/1
