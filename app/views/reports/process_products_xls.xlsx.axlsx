@@ -43,11 +43,11 @@ wb.styles do |style|
       # hacer pluck, pasar todo a arreglo y hacer todo con los arreglos! y la informacion minima suficiente!
 
       # ORDENAR INVERSAMENTE
-      caliber_s = elem.caliber_samples.ord_inverse
-      damage_s = elem.damage_samples.ord_inverse
-      carozo_s = elem.carozo_samples.ord_inverse
-      humidity_s = elem.humidity_samples.ord_inverse
-      sorbate_s = elem.sorbate_samples.ord_inverse
+      caliber_s = elem.caliber_samples.includes(:caliber, :deviation_sample).ord_inverse.to_a
+      damage_s = elem.damage_samples.ord_inverse.to_a
+      carozo_s = elem.carozo_samples.ord_inverse.to_a
+      humidity_s = elem.humidity_samples.ord_inverse.to_a
+      sorbate_s = elem.sorbate_samples.ord_inverse.to_a
       max = [damage_s.size, caliber_s.size, carozo_s.size, humidity_s.size, sorbate_s.size].max
 
       (0..(max-1)).each do |i|
