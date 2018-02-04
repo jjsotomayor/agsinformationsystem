@@ -1,0 +1,64 @@
+<!-- reports_warehouse_report -->
+
+<div class="container-table">
+<!-- TODO Incorporar filtro fecha desde!-->
+<h3 class= "centered separated">Stock</h3>
+<table class = "table table-striped" id = "table_stock">
+  <thead>
+    <tr>
+      <th> </th>
+      <% Element.colors.each do |name, id| %>
+        <th><%= name.capitalize %></th>
+      <% end %>
+      <th>Total</th>
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product_types.each do |pt| %>
+          <tr>
+                  <td><%= pt.name.capitalize %></td>
+                  <% Element.colors.each do |color, id| %>
+                  <% @pt_elements = @elements.where(product_type: pt)%>
+                      <td>
+                        <%= amount_and_weight_of_color_elems(@pt_elements, color) %>
+                      </td>
+                  <% end %>
+                  <td><%= amount_and_weight_of_color_elems(@pt_elements) %></td>
+              </tr>
+      <% end %>
+  </tbody>
+</table>
+</div>
+
+<br><br><br>
+
+<div class="container-table">
+<h3 class= "centered separated">Movimientos últimas 24 horas</h3>
+<table class = "table table-striped table-tight" >
+  <thead>
+    <tr>
+      <th> </th>
+        <th> Ingresos </th>
+        <th> Salidas </th>
+      <!-- <th> Neto </th> -->
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product_types.each do |pt| %>
+        <tr>
+          <td><%= pt.name.capitalize %></td>
+          <!-- NOTE Estas no tienen para que ser asi, pero si las anteriores!  -->
+          <!-- TODO Implementar esta estrategia en infore calidad tb  -->
+          <td><%= @last_elements_enter.select{|e| e.product_type_id == pt.id}.count%></td>
+          <td><%= @last_elements_exit.select{|e| e.product_type_id == pt.id}.count %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

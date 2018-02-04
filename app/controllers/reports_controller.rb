@@ -32,6 +32,17 @@ class ReportsController < ApplicationController
 
   end
 
+  def warehouse_report
+    # Cuantas unidades. Por color, warehouse_id (Todo lo ingresado, todo lo salido! dia semana, etc)
+    @elements = Element.where.not(stored_at: nil).select(:product_type_id, :color, :weight, :warehouse_id, :stored_at, :dispatched_at, :destination)
+    # TODO para ganar velocidad element deberia ser .includes(:product_type). Aqui y en hartos lugares mas
+    @product_types = ProductType.where('name not in (?)', ["fresco"])
+
+    @last_elements_enter = Element.where(stored_at: 1.days.ago..Time.current)
+    @last_elements_exit = Element.where(dispatched_at: 1.days.ago..Time.current)
+
+  end
+
   def show_downloads
     @product_types = ProductType.where.not(name: "fresco")
   end
@@ -60,7 +71,7 @@ class ReportsController < ApplicationController
   private
 
   def check_permissions
-    if action_name.in?(["index"]) and can_access_all_report? # element
+    if action_name.in?(["index", "warehouse_report"]) and can_access_all_report? # element
       return
     elsif action_name.in?(["show_downloads", "process_products_xls"]) and can_download?
       return

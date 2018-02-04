@@ -4,7 +4,10 @@ wb = xlsx_package.workbook
 
 #### Hoja Productos ###
 wb.add_worksheet(name: "Productos") do |sheet|
-  sheet.add_row ["Tarja", "Fecha", "Lote", "Color", "Proceso", "Secado", "Items", "TarjaAnterior", "ColorAnterior"]
+  sheet.add_row ["Tarja", "Fecha", "Lote", "Color", "Proceso", "Secado", "Items",
+      "TarjaAnterior", "ColorAnterior", "Peso(kg)", "Fecha ingreso bodega", "Bodega",
+      "Banda", "Posicion", "altura", "Fecha salida bodega", "Destino", "Orden de proceso"]
+
   @elements.each do |elem|
     row = [elem.tag, elem.created_at, elem.lot, elem.color]
     # row << elem.product_type.nil? ? " " : elem.product_type.name
@@ -20,6 +23,21 @@ wb.add_worksheet(name: "Productos") do |sheet|
       row << " "
     end
     row = row + [first_last_item(elem), elem.ex_tag, elem.previous_color]
+
+    ##############################
+    ########### Bodega ###########
+    ##############################
+    row = row + [elem.weight, elem.stored_at]
+
+    if elem.warehouse
+      row << elem.warehouse.name
+    else
+      row << " "
+    end
+    row = row + [elem.banda, elem.posicion, elem.altura, elem.dispatched_at,
+      elem.destination, elem.process_order]
+
+
     sheet.add_row (row)
   end
 end

@@ -1,16 +1,18 @@
   <div class="container">
     <h2 class= "centered separated">Productos</h2>
 
-    <%=
-    #link_to "Descargar csv", elements_path(:csv), class: "btn btn-primary btn-xs"
-     %>
-    <% if @download_access %>
-      <%= link_to 'Descargar en excel', elements_path(format: :xlsx), class: "btn btn-primary btn-sm" %>
-    <% end %>
     <!-- Form para buscar elements -->
     <%= form_tag(elements_path, method: :get) do %>
       <%= text_field_tag :term, nil, placeholder: 'Buscar una tarja' %>
       <%= submit_tag 'Buscar', name: nil %>
+    <% end %>
+
+    <%= form_tag(elements_path, method: :get) do %>
+      <%= select_tag "product_type_id", options_from_collection_for_select(@product_types, "id", "name", params[:product_type_id]), include_blank: 'Todo Producto', class: "margin-up-select" %>
+      <%= select_tag "drying_method_id", options_from_collection_for_select(@drying_methods, "id", "name", params[:drying_method_id]), include_blank: 'Todo Secado', class: "margin-up-select" %>
+      <%= select_tag "color",  options_for_select(Element.colors, params[:color]), include_blank: 'Todo Color', class: "margin-up-select" %>
+      <%= select_tag "location", options_for_select([["Toda ubicación", 0], ["En bodega", 1]], params[:location]), class: "margin-up-select" %>
+      <%= submit_tag 'Filtrar', name: nil, class: "btn btn-primary btn-sm margin0" %>
     <% end %>
 
   <table class = "table table-striped">

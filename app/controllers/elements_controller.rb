@@ -6,12 +6,23 @@ class ElementsController < ApplicationController
   # GET /elements
   def index
     @elements = Element.search(params[:term])
-    @download_access = can_access_all_report?
+
+    # Applying filterss
+    params = filter_params.reject{|k, v| v.blank?}
+    @elements = @elements.product_type(params[:product_type_id]) if params[:product_type_id]
+    @elements = @elements.drying_method(params[:drying_method_id]) if params[:drying_method_id]
+    @elements = @elements.color(params[:color]) if params[:color]
+    @elements = @elements.location(params[:location]) if params[:location]
+
+    @product_types = ProductType.all
+    @drying_methods = DryingMethod.all
+
+    # @download_access = can_download?
     respond_to do |format|
       format.html
       format.csv { send_data @elements.to_csv, filename: "#{Date.today} - Productos.csv" }
       format.xlsx {
-        redirect_to root_path, alert: not_allowed if !can_access_all_report?
+        redirect_to root_path, alert: not_allowed if !can_download?
         @dam_samples = DamageSample.ord
         @cal_samples = CaliberSample.ord
         @humidity_samples = HumiditySample.ord
@@ -95,6 +106,10 @@ class ElementsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def element_params
       params.require(:element).permit(:tag, :process_order, :product_type_id, :drying_method_id, :previous_color, :ex_tag, :lot, :first_item, :last_item)
+    end
+
+    def filter_params
+      params.permit(:drying_method_id, :product_type_id, :color, :location)
     end
 
     def check_permissions

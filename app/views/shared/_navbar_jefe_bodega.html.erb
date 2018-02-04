@@ -21,7 +21,9 @@
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrar<span class="caret"></span></a>
       <ul class="dropdown-menu">
         <li><%=link_to 'Productos', elements_path %></li>
-        <li><%=link_to 'Informe', reports_path %></li>
+        <li><%=link_to 'Informe calidad', reports_path %></li>
+        <li><%=link_to 'Informe bodega', reports_warehouse_report_path %></li>
+        
         <% if current_user.role.name == 'jefe_bodega' %>
           <li><%=link_to 'Descargas', downloads_path%></li>
         <% end %>

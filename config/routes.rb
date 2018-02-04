@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   # post '/user_controls/:id/remove_access', to: 'user_controls#remove_access'
 
   get 'reports/index', as: :reports
+  get 'reports/warehouse_report'#, as: :reports
   get 'reports/show_downloads', as: :downloads
   get 'reports/process_products_xls', as: :process_products_xls
 

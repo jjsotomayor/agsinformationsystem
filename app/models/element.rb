@@ -22,6 +22,18 @@ class Element < ApplicationRecord
 
   scope :last_move_type, -> (type) { where last_movement_type: type }
   scope :product_type, -> (product_type_id) { where product_type_id: product_type_id }
+  scope :drying_method, -> (drying_method_id) { where drying_method_id: drying_method_id }
+  scope :color, -> (color) { where color: color }
+
+
+  def self.location(location_id) # Filter
+    # ["Toda ubicación", 0], ["En bodega", 1]
+    if location_id == "1"
+      where.not(warehouse_id: nil)
+    else
+      all
+    end
+  end
 
   def self.to_csv
     attributes = %w{Tarja N OrdenProceso Producto Secado UsdaAnterior TarjaAnterior}
