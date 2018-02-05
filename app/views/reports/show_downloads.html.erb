@@ -1,12 +1,23 @@
 <div class="container">
   <h2 class= "centered separated">Descargas disponibles</h2>
 
-  <%= link_to 'Descargar productos y bodega en Excel', elements_path(format: :xlsx), class: "btn btn-primary btn-xl" %>
-
-  <br><br>
-  --------------------------------------------------------------------------------
   <br>
+  1) Generar Excel de productos. Muestra informacion de bodega y la informacion de calidad:<br>
 
+      <%= form_tag(elems_in_wh_and_quality_path(format: :xlsx), method: :get) do %>
+      <%= select_tag "product_type_id",  options_for_select(@product_types.map{|pt| [pt.name.upcase,pt.id]}), include_blank: 'Ingrese proceso', class: "margin-up-select" %>
+      <%= select_tag "location", options_for_select([["Todo", 0], ["En bodega", 1]], 1), class: "margin-up-select" %>
+      <%= submit_tag 'Descargar productos bodega y calidad a Excel', name: nil, class: "btn btn-primary btn-xl close-up"%>
+      <%end%>
+
+    <%=
+     # link_to 'Descargar productos, bodega y calidad a Excel', elems_in_wh_and_quality_path(format: :xlsx), class: "btn btn-primary btn-xl"
+     %>
+    <br><br>
+
+  -----------------------------------------------------------------------------------------------
+  <br><br>
+  2) Generar Excel con todas las muestras de todos los productos del proceso seleccionado .<br>
     <div >
       <%= form_tag(process_products_xls_path(format: :xlsx), method: :get) do %>
       <%= select_tag "product_type_id",  options_for_select(@product_types.map{|pt| [pt.name.upcase,pt.id]}), include_blank: 'Ingrese proceso', class: "margin-up-select" %>
@@ -16,6 +27,15 @@
       <%end%>
     </div>
 
-  <br>
-  --------------------------------------------------------------------------------
+  <br><br>
+  -----------------------------------------------------------------------------------------------
+  <br><br>
+
+    3) Generar Excel con toda la informacion sin procesar.<br>
+    <%= link_to 'Descargar todo', elements_path(format: :xlsx), class: "btn btn-primary btn-xl" %>
+
+    <br><br>
+
+
+
 </div>

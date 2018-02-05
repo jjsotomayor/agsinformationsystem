@@ -37,6 +37,39 @@ class ElementsController < ApplicationController
     end
   end
 
+  # GET /elements/elems_in_wh_and_quality.xlsx
+  def elems_in_wh_and_quality
+    respond_to do |format|
+      format.xlsx {
+        @elements = Element.all.includes(:product_type, :drying_method, :warehouse)#.to_a
+
+        # Applying filters
+        f_params = params.reject{|k, v| v.blank?}
+        if !f_params[:product_type_id]
+          redirect_back(fallback_location: root_path, alert: "Debe seleccionar un proceso.")
+        end
+        @process = ProductType.find(f_params[:product_type_id]).name
+        @elements = @elements.product_type(f_params[:product_type_id]) if f_params[:product_type_id]
+        @elements = @elements.location(f_params[:location]) if f_params[:location]
+
+        logger.info {"Descargando elems_in_wh_and_quality"}
+        logger.info {"Tamaño en memoria #{ActiveSupport::JSON.encode(@elements).size} bytes"}
+
+        elems_ids = @elements.ids
+        @dam_samples = DamageSample.where(element_id: elems_ids).to_a
+        @cal_samples = CaliberSample.where(element_id: elems_ids).to_a#includes(:caliber, :deviation_sample).to_a
+        cal_samples_ids = @cal_samples.map {|cs| cs.id}
+        @dev_samples = DeviationSample.where(caliber_sample_id: cal_samples_ids).select(:caliber_sample_id, :deviation).to_a
+        @humidity_samples = HumiditySample.where(element_id: elems_ids).select(:element_id, :humidity).to_a
+        @sorbate_samples = SorbateSample.where(element_id: elems_ids).select(:element_id, :sorbate).to_a
+        @carozo_samples = CarozoSample.where(element_id: elems_ids).select(:element_id, :carozo_percentage).to_a
+
+        @damages_list = Util.damages_of_product_type(@process)
+        response.headers['Content-Disposition'] = 'attachment; filename="'+ Date.today.to_s + ' - Productos: Bodega y calidad.xlsx"'
+      }
+    end
+  end
+
   # GET /elements/1
   def show
     @product_type = @element.product_type ? @element.product_type.name : nil
@@ -125,6 +158,8 @@ class ElementsController < ApplicationController
         return
       elsif action_name.in?(["new", "edit", "create", "update"]) and can_create_update_element?
         # puts "Entre2"
+        return
+      elsif action_name.in?(["elems_in_wh_and_quality"]) and can_download?
         return
       end
       redirect_to root_path, alert: not_allowed

@@ -1,0 +1,126 @@
+wb = xlsx_package.workbook
+
+# wb = xlsx_package.workbook
+
+# wb.styles permite dar estilos, todo el excel se debe anidar adentro
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  header = style.add_style :bg_color => "00", :fg_color => "FF", :height => 30
+
+
+  #### Hoja Productos ###
+  wb.add_worksheet(name: "Productos") do |sheet|
+    first_row = ["Tarja", "Fecha", "Lote", "Color", "Proceso", "Secado", "Items",
+        "TarjaAnterior", "ColorAnterior", "Peso(kg)", "Fecha ingreso bodega", "Bodega",
+        "Banda", "Posicion", "altura", "Fecha salida bodega", "Destino", "Orden de proceso",
+        "FxL", #"Calibre",
+        "Desviacion",# "Aprob/Rech",  # Aqui van los de calidad
+         "H%", "Sorbato(ppm)", "Carozo en caja %","Daño total(%)"]
+
+    @damages_list.each do |dam|
+      first_row << translate_damage(dam)
+    end
+
+    sheet.add_row(first_row, style: header)
+
+    @elements.each do |elem|
+      # p "Nuevo elemento!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+      # p elem.tag
+      row = [elem.tag, elem.created_at, elem.lot, elem.color]
+      if elem.product_type
+        row << elem.product_type.name
+      else
+        row << ""
+      end
+
+      if elem.drying_method
+        row << elem.drying_method.name
+      else
+        row << ""
+      end
+      row = row + [first_last_item(elem), elem.ex_tag, elem.previous_color]
+
+      ##############################
+      ########### Bodega ###########
+      ##############################
+      row = row + [elem.weight, elem.stored_at]
+
+      if elem.warehouse
+        row << elem.warehouse.name
+      else
+        row << " "
+      end
+      row = row + [elem.banda, elem.posicion, elem.altura, elem.dispatched_at,
+        elem.destination, elem.process_order]
+
+      ##############################
+      ########### Calidad ##########
+      ##############################
+      # NOTE V1: Lo va a buscar a la base de datos
+      # NOTE V2: Lo tiene todo almacenado de antes en memoria
+
+      ##############################
+      ########## CAlibre ##########
+      ##############################
+      # V1:
+      # @cs = elem.caliber_samples.includes(:caliber, :deviation_sample)
+      # row = row  + [@cs.average(:fruits_per_pound), "Calibre"]
+      # @dev_s = DeviationSample.where(caliber_sample: @cs.ids)
+      # row << @dev_s.average(:deviation)
+      # row << "A/R..."
+      # V2:
+      cal_samples_arr = @cal_samples.select {|cs| cs[:element_id] == elem.id}
+      row = row  + [cal_samples_arr.sum(&:fruits_per_pound) / [cal_samples_arr.size,1].max]#, "Calibre"]
+
+      ids = cal_samples_arr.map {|cs| cs.id}
+      dev_samples_arr = @dev_samples.select {|ds| ds[:caliber_sample_id].in?(ids)}
+      row << dev_samples_arr.sum(&:deviation) / [dev_samples_arr.size,1].max
+      #row << "A/R..."
+
+
+      ##############################
+      ########## Humedad ##########
+      ##############################
+      # V1:
+      # row << elem.humidity_samples.average(:humidity)
+      # V2:
+      arr = @humidity_samples.select {|hs| hs[:element_id] == elem.id}
+      row << arr.sum(&:humidity) / [arr.size,1].max
+
+      ##############################
+      ########## Sorbato ##########
+      ##############################
+      # V1:
+      # row << elem.sorbate_samples.average(:sorbate)
+      # V2:
+      arr = @sorbate_samples.select {|ss| ss[:element_id] == elem.id}
+      row << arr.sum(&:sorbate) / [arr.size,1].max
+
+      ##############################
+      ########## Carozo ##########
+      ##############################
+      # V1:
+      # row << elem.carozo_samples.average(:carozo_percentage)
+      # V2:
+      arr = @carozo_samples.select {|cs| cs[:element_id] == elem.id}
+      row << arr.sum(&:carozo_percentage) / [arr.size,1].max
+
+      ##############################
+      ########## Daños ##########
+      ##############################
+      # V1:
+      @dam_s = elem.damage_samples.to_a
+      size = [@dam_s.size,1].max
+      # d_total = @dam_s.sum(&:total_damages_perc) / size
+      # p "daño total = #{d_total}"
+      row << @dam_s.sum(&:total_damages_perc) / size
+
+      @damages_list.each do |dam|
+        row << @dam_s.sum(&(dam+"_perc").to_sym) / size
+      end
+
+      sheet.add_row (row)
+    end
+  end
+
+end

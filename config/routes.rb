@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   # resources :drying_methods
   # resources :product_types
 
+  get 'elements/elems_in_wh_and_quality', as: :elems_in_wh_and_quality
   resources :elements
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #get '/' => "elements#index"
