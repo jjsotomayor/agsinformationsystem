@@ -8,7 +8,7 @@ class ReportsController < ApplicationController
     # O mejor uno que permita filtrar la fecha dede del analisis
     @product_types = ProductType.where('name not in (?)', ["fresco"])
     this_year_date = DateTime.new(Date.current.year)
-    @days = "X"
+    # @days = "X"
 
     # @humidity_s = HumiditySample.where('created_at > ?', this_year_date).ord
     # @last_week_humidity_s = HumiditySample.where('created_at > ?', DateTime.now - 7.days).ord

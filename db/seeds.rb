@@ -6,7 +6,7 @@
 #  ProductType.all.destroy_all
 #  Role.all.destroy_all
 def create_roles
- ['admin', 'jefe_calidad', 'jefe_bodega', 'lector', 'op_bodega'].each do |role_name|
+ ['admin', 'lector', 'jefe_calidad', 'jefe_bodega', 'op_bodega'].each do |role_name|
    Role.create!(name: role_name)
  end
 end
