@@ -163,7 +163,8 @@ class Element < ApplicationRecord
 
   #NOTE Esto deberia ser solamente return true if stored_at
   def has_entered_warehouse?
-    return true if self.warehouse || self.dispatched_at
+    return true if self.stored_at
+    # return true if self.warehouse || self.dispatched_at
     false
   end
 

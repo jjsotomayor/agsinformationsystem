@@ -1,6 +1,7 @@
 class ElementsController < ApplicationController
   include ElementsMethods
   before_action :check_permissions
+  before_action :set_message, only: [:show, :index]
   before_action :set_element, only: [:show, :edit, :update, :destroy]
 
   # GET /elements
@@ -127,11 +128,19 @@ class ElementsController < ApplicationController
 
   # DELETE /elements/1
   def destroy
-    @element.destroy
-    respond_to do |format|
-      format.html { redirect_to elements_url, notice: 'Element was successfully destroyed.' }
-      format.json { head :no_content }
+    # La única eliminacion es JefaCC de productos que no tengan muestras y no hayan pasado por bodega
+    can_destroy, message = can_destroy_this_element?(logged_user, @element)
+
+    if can_destroy
+      logger.info {"Deletion: Deleting elemento de tarja: #{@element.tag}"}
+      @element.destroy
+      display_message_in_session
+      redirect_to elements_path(message)
+    else
+      display_message_in_session
+      redirect_to element_path(@element, message)
     end
+    # Tiene que mostrar mensaje ne elements_path
   end
 
   private
@@ -152,7 +161,6 @@ class ElementsController < ApplicationController
 
     def check_permissions
       #NOTE: EL ACTION NAME IN NO FUNCIONA con no strings,
-      # No se permite Destroy
       if action_name.in?(["show", "index", "show_ajax"]) and can_see_samples?
         # puts "Entre1"
         return
@@ -160,6 +168,8 @@ class ElementsController < ApplicationController
         # puts "Entre2"
         return
       elsif action_name.in?(["elems_in_wh_and_quality"]) and can_download?
+        return
+      elsif action_name.in?(["destroy"]) and can_destroy_element?
         return
       end
       redirect_to root_path, alert: not_allowed

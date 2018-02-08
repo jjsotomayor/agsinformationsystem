@@ -1,3 +1,5 @@
+<%= render 'shared/message_js', message: @message if @message %>
+
 <div class= "container-table">
 <h2 class= "centered separated">
   <div class = "<%= translate_color(@element.color)+ " box"%>"> </div>
@@ -33,7 +35,7 @@
         <th>OP</th>
       <% end %>
 
-      <th colspan="1"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -66,8 +68,9 @@
         <% end %>
 
 
-        <% if access_edit_element_button %>
-        <td><%= link_to 'Editar producto', edit_element_path(@element),  class: "btn btn-warning btn-xs" %></td>
+        <% if access_edit_destroy_element_button %>
+          <td><%= link_to 'Editar producto', edit_element_path(@element),  class: "btn btn-warning btn-xs" %></td>
+          <td><%= link_to 'Eliminar', element_path(@element), method: :delete, data: { confirm: '¿Seguro que deseas eliminar el producto?' },  class: "btn btn-danger btn-xs" %></td>
         <% end %>
       </tr>
   </tbody>

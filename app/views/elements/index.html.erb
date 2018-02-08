@@ -1,3 +1,5 @@
+<%= render 'shared/message_js', message: @message if @message %>
+
   <div class="container">
     <h2 class= "centered separated">Productos</h2>
 
@@ -55,7 +57,7 @@
         <td><%= element.destination %></td>
         <td><%= element.process_order %></td>
         <td><%= link_to 'Ver', element, class: "btn btn-primary btn-xs" %></td>
-        <% if access_edit_element_button %>
+        <% if access_edit_destroy_element_button %>
           <td><%= link_to 'Editar', edit_element_path(element),  class: "btn btn-warning btn-xs" %></td>
         <% end %>
       </tr>

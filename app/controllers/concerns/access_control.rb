@@ -46,6 +46,10 @@ module AccessControl
     role_belongs_to?(['admin', 'jefe_calidad'])
   end
 
+  def can_destroy_element?
+    role_belongs_to?(['admin', 'jefe_calidad'])
+  end
+
   ####################################################
   ################# Access IP's ######################
   def can_access_all_ip?
@@ -92,5 +96,31 @@ module AccessControl
     'El sitio buscado no está implementado'
   end
 
+  ####################################################
+  ######### Inside controller accesses ###############
+  ###### Accesos una vez dentro del controlador ######
+  ####################################################
+
+  # Retorna can_destroy?, message. Message contiene el error
+  def can_destroy_this_element?(logged_user, element)
+    # Asume que ya se chequeo que usuario esta logueado
+
+    if logged_user.role.name == "jefe_calidad"
+
+      if element.has_entered_warehouse?
+        message = {type: :error,
+                  title: "No puedes eliminar producto que haya ingresado a bodega"}
+        return false, message
+      elsif @element.samples_count > 0
+        message = {type: :error,
+                  title: "Debes eliminar todas las muestras de un producto antes de poder eliminarlo"}
+        return false, message
+      end
+      return true, {type: :success, title: "Producto eliminado exitosamente"}
+    end
+    
+    return false, {type: :error, title: not_allowed}# No se encontró al usuario
+
+  end
 
 end

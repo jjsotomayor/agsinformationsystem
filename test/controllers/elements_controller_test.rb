@@ -1,4 +1,5 @@
 require 'test_helper'
+include Warden::Test::Helpers
 
 class ElementsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -45,11 +46,49 @@ class ElementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   # No hay destroy element hasta ahora
-  # test "should destroy element" do
-  #   assert_difference('Element.count', -1) do
-  #     delete element_url(@element)
-  #   end
-    # TODO agregar donde redirige
-    # assert_redirected_to elements_url
-  # end
+  test "should/shouldnt destroy element" do
+    @element = elements(:no_samples_elem)
+
+    ['admin', 'lector', 'jefe_bodega', 'op_bodega'].each do |role_name|
+      p role_name
+      @user = get_user(role_name)
+      login_as(@user)
+      assert_difference('Element.count', 0) do
+        delete element_url(@element)
+      end
+      # assert_redirected_to root_path
+    end
+
+    ['jefe_calidad'].each do |role_name|
+      @user = get_user(role_name)
+      login_as(@user)
+
+      # Element No tiene muestra y no ha entrado a bodega
+      p "samples_count= #{@element.samples_count}"
+      assert_difference('Element.count', -1) do
+        delete element_url(@element)
+      end
+      # assert_redirected_to elements_url
+
+
+      # Element ha entrado a bodega
+      @element = create_element()
+      @element.update(warehouse_id: 1, stored_at: Time.now)
+      assert_difference('Element.count', 0) do
+        delete element_url(@element)
+      end
+      # assert_redirected_to elements_url
+
+      # Element tiene muestra
+      @element = create_element()
+      @sample = humidity_samples(:tsc)
+      @sample.update(element: @element)
+      assert_difference('Element.count', 0) do
+        delete element_url(@element)
+      end
+      # assert_redirected_to elements_url
+    end
+
+  end
+
 end

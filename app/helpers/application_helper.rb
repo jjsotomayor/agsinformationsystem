@@ -151,7 +151,7 @@ module ApplicationHelper
     false
   end
 
-  def access_edit_element_button
+  def access_edit_destroy_element_button
     role = get_role_or_nil
     return true if role.in?(['admin', 'jefe_calidad'])
     false
@@ -171,6 +171,7 @@ module ApplicationHelper
   ############ Bodega render  ##############
   ##########################################
 
+  # Recibe un element o un movement
   def banda_pos_altura_nil_safe(element)
     if element.warehouse
       banda = element.banda || ""

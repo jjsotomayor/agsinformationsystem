@@ -80,7 +80,7 @@ def create_counts
  if Count.count == 0
    puts "Creando contadores:"
    ["secado", "calibrado", "seam", "cn", "tsc", "tcc"].each do |pt_name|
-     puts "    " + pt_name
+     # puts "    " + pt_name
      pt = ProductType.find_by!(name: pt_name)
      Count.create!(product_type: pt, sample_type:"damage_sample", counter:0)
      Count.create!(product_type: pt, sample_type:"caliber_sample", counter:0)
