@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180203014326) do
+ActiveRecord::Schema.define(version: 20180208024826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -194,6 +194,28 @@ ActiveRecord::Schema.define(version: 20180203014326) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "movements", force: :cascade do |t|
+    t.integer  "element_id",            null: false
+    t.integer  "movement_type",         null: false
+    t.integer  "weight"
+    t.integer  "warehouse_id"
+    t.string   "banda"
+    t.string   "posicion"
+    t.string   "altura"
+    t.string   "warehouse_responsable", null: false
+    t.string   "destination"
+    t.string   "process_order"
+    t.string   "incomplete_bin_tag"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["destination"], name: "index_movements_on_destination", using: :btree
+    t.index ["element_id"], name: "index_movements_on_element_id", using: :btree
+    t.index ["movement_type"], name: "index_movements_on_movement_type", using: :btree
+    t.index ["process_order"], name: "index_movements_on_process_order", using: :btree
+    t.index ["warehouse_id"], name: "index_movements_on_warehouse_id", using: :btree
+    t.index ["warehouse_responsable"], name: "index_movements_on_warehouse_responsable", using: :btree
+  end
+
   create_table "operations", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -293,6 +315,8 @@ ActiveRecord::Schema.define(version: 20180203014326) do
   add_foreign_key "elements", "drying_methods"
   add_foreign_key "elements", "product_types"
   add_foreign_key "humidity_samples", "elements"
+  add_foreign_key "movements", "elements"
+  add_foreign_key "movements", "warehouses"
   add_foreign_key "sorbate_samples", "elements"
   add_foreign_key "user_control_accesses", "operations"
   add_foreign_key "user_control_accesses", "user_controls"

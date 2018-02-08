@@ -101,7 +101,7 @@ class MovementsControllerTest < ActionDispatch::IntegrationTest
     post movements_exit_element_url, params: @params
     assert_redirected_to movements_exit_url(success_id: @element.id)
     @element_after = Element.find_by(tag: @element.tag)
-    assert_not_equal(nil, @element_after.weight, "Element tiene peso")
+    assert_equal(nil, @element_after.weight, "Element tiene peso")
     assert_equal(nil, @element_after.warehouse, "Element NO tiene warehouse")
     assert_equal(nil, @element_after.banda, "Element NO tiene banda")
     assert_equal(nil, @element_after.posicion, "Element NO tiene pos")

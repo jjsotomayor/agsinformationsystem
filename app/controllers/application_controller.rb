@@ -25,4 +25,10 @@ class ApplicationController < ActionController::Base
     session[:display_message] || false
   end
 
+  # NOTE En el futuro mensajes deberian ser pasados en la sesion! no get_params
+  def set_message
+    @message = {type: params[:type], title: params[:title], msg: params[:msg]} if display_message?
+    logger.info "HAy mensaje? = #{@message}"
+  end
+
 end

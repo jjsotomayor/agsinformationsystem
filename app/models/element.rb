@@ -16,6 +16,8 @@ class Element < ApplicationRecord
   has_many :sorbate_samples
   has_many :carozo_samples
 
+  has_many :movements
+
   validates :tag,  uniqueness: true, presence: true
   validates :weight, numericality: {greater_than: 0}, allow_nil: true
   # validates :product_type, presence: true. No esta cuando secrea humidity sample antes q otra
@@ -69,6 +71,7 @@ class Element < ApplicationRecord
 
   # Retorna [elemento, Boolean] Boolean true si esta todo Ok
   def self.create_element_if_doesnt_exist(element_params, process_name = nil)
+    # TODO Aqui seria necesario tener un lock y una transaction al parecer
     @element = Element.find_by(tag: element_params[:tag])
 
     # Si el proceso del elemento almacenado es distinto al proceso actual
@@ -158,6 +161,7 @@ class Element < ApplicationRecord
     return self.dispatched_at ? true : false
   end
 
+  #NOTE Esto deberia ser solamente return true if stored_at
   def has_entered_warehouse?
     return true if self.warehouse || self.dispatched_at
     false
@@ -168,14 +172,19 @@ class Element < ApplicationRecord
   # Responsable se actualiza cuando entra, sale, o se edita el producto
   def enter_warehouse(enter_params)
     now = Time.now
+    move_params = enter_params.clone
     enter_params[:stored_at] = now if !self.stored_at
     enter_params[:last_movement_at] = now
     enter_params[:last_movement_type] = :ingreso
     enter_params[:dispatched_at] = nil
     enter_params[:destination] = nil
     enter_params[:process_order] = nil
-    self.update!(enter_params)
-    logger.info {"#{self.tag} Entra a bodega!"}
+    move_params[:element_id] = self.id
+    move_params[:movement_type] = :ingreso
+    ActiveRecord::Base.transaction do
+      self.update!(enter_params)
+      Movement.create!(move_params)
+    end
   end
 
   def remove_from_warehouse(exit_params, error)
@@ -183,20 +192,25 @@ class Element < ApplicationRecord
     params = {warehouse_id: nil, banda: nil, posicion: nil, altura: nil,
         warehouse_responsable: exit_params[:warehouse_responsable],
         last_movement_at: now} #Se registra sea salida corrigiendo error o normal
+    move_params = {element_id: self.id, warehouse_responsable: params[:warehouse_responsable]}
 
     if error
-      logger.info {"#{self.tag} Sacado de bodega por error de ingreso!"}
-      params = params.merge({dispatched_at: nil, last_movement_type: :salida_rectifica_error})
+      params = params.merge({dispatched_at: nil, last_movement_type: :salida_rectifica_error, weight: nil})
       #stored_at lo deja nil solo si el 1ER INGRESO(STORED) fue el ultimo edicion (stored_at = last_movement_at)
       params[:stored_at] = nil if self.stored_at == self.last_movement_at
+      move_params[:movement_type] = :salida_rectifica_error
     else
-      logger.info "#{self.tag} Sacado de bodega normal!"
+      # logger.info "#{self.tag} Sacado de bodega normal!"
       params = params.merge({dispatched_at: now, last_movement_type: :salida})
       params = params.merge(exit_params) # Tiene destino, OP, responsable(repetido)
+      move_params[:movement_type] = :salida
+      move_params = move_params.merge(exit_params.slice(:destination, :process_order))
     end
-
-    self.update!(params)
-    logger.info "#{self.tag} Sacado finalizado!"
+    ActiveRecord::Base.transaction do
+      self.update!(params)
+      pp move_params
+      Movement.create!(move_params)
+    end
   end
 
   # Crea copia de element y añade overwrite_params, retorna elem + status
@@ -214,11 +228,17 @@ class Element < ApplicationRecord
     @new_element.warehouse_responsable = resp
     @new_element.last_movement_type = :devolucion_bins_incompleto
 
+    move_params = overwrite_params.slice(:weight, :warehouse_id, :banda, :posicion, :altura)
+    move_params[:movement_type] = :devolucion_bins_incompleto
+    move_params[:warehouse_responsable] = resp
+    move_params[:incomplete_bin_tag] = element.tag
+
     ActiveRecord::Base.transaction do
       @new_element.save!
       element.update!(weight: element.weight - @new_element.weight) # Actualiza peso tarja original
+      move_params[:element_id] = @new_element.id
+      Movement.create!(move_params)
     end
-    logger.info {"Creo copia: #{@new_element}, a partir de #{element.tag}"}
 
     ####### Duplicar muestras! #######
     # NOTE Esto podria ser un proceso after job! Que responda al user aqui.
@@ -226,7 +246,7 @@ class Element < ApplicationRecord
     sample_types.each do |sample_type|
       logger.info "Duplicando muestras #{sample_type}"
       element.send(sample_type.to_s + "_samples").each do |sample|
-        logger.info "Duplicando muestra #{sample.id}"
+        # logger.info "Duplicando muestra #{sample.id}"
         new_sample = sample.dup
         new_sample.element = @new_element
         new_sample.save

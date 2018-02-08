@@ -212,7 +212,7 @@ module Util
   ##############################################
 
   def self.possible_destinations
-    [:Calibrado, :TSC, :TCC, :SEAM, :CN, :Mejoramiento, :Venta]
+    [:Calibrado, :TSC, :TCC, :SEAM, :CN, :Mejoramiento, :Despacho]
   end
 
 

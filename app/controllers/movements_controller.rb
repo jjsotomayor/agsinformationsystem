@@ -8,13 +8,18 @@ class MovementsController < ApplicationController
 
 
   def index
-    f_params = filter_params.reject{|k, v| v.blank?}
-    @last_moved_elems = Element.where.not(last_movement_at: nil)
-    @last_moved_elems = @last_moved_elems.last_move_type(f_params[:last_movement_type]) if f_params[:last_movement_type]
-    @last_moved_elems = @last_moved_elems.product_type(f_params[:product_type_id]) if f_params[:product_type_id]
-    @last_moved_elems = @last_moved_elems.order('last_movement_at DESC')#.first(50)
-    @last_moved_elems = @last_moved_elems.page(params[:page]).per(30)
+    # f_params = filter_params.reject{|k, v| v.blank?}
+    # @last_moved_elems = Element.where.not(last_movement_at: nil)
+    # @last_moved_elems = @last_moved_elems.last_move_type(f_params[:last_movement_type]) if f_params[:last_movement_type]
+    # @last_moved_elems = @last_moved_elems.product_type(f_params[:product_type_id]) if f_params[:product_type_id]
+    # @last_moved_elems = @last_moved_elems.order('last_movement_at DESC')#.first(50)
+    # @last_moved_elems = @last_moved_elems.page(params[:page]).per(30)
 
+    f_params = filter_params.reject{|k, v| v.blank?}
+    @movements = Movement.all
+    @movements = @movements.product_type(f_params[:product_type_id]) if f_params[:product_type_id]
+    @movements = @movements.movement_type(f_params[:movement_type]) if f_params[:movement_type]
+    @movements = @movements.ord.page(params[:page]).per(30)
 
     @product_types = ProductType.all
   end
@@ -95,18 +100,31 @@ class MovementsController < ApplicationController
     end
     aditional_params = {last_movement_type: :edicion, last_movement_at: Time.now}
     aditional_params[:warehouse_responsable] = current_user.name
+    move_params = {element_id: @element.id, movement_type: :edicion, warehouse_responsable: current_user.name}
+    move_params = move_params.merge(params.slice(:weight, :warehouse_id, :banda,
+                              :posicion, :altura, :destination, :process_order))
+
     if @element.warehouse
-      @element.update!(enter_params.merge(aditional_params))
+      ActiveRecord::Base.transaction do
+        @element.update!(enter_params.merge(aditional_params))
+        Movement.create!(move_params)
+      end
       display_message_in_session
       redirect_to movements_edit_path(type: :success, title: "#{params[:tag]} editado correctamente!")
+
     elsif @element.left_warehouse?
-      @element.update!(exit_params.merge(aditional_params).merge({weight: params[:weight]}))
+      ActiveRecord::Base.transaction do
+        @element.update!(exit_params.merge(aditional_params).merge({weight: params[:weight]}))
+        Movement.create!(move_params)
+      end
       display_message_in_session
       redirect_to movements_edit_path(type: :success, title: "#{params[:tag]} editado correctamente!")
+
     else
       display_message_in_session
       redirect_to movements_edit_path(type: :error, title: "#{params[:tag]} no ha entrado a bodega")
     end
+
   end
 
 
@@ -168,10 +186,10 @@ class MovementsController < ApplicationController
       @success_elem = Element.find(params[:success_id]) if params[:success_id]
     end
 
-    def set_message
-      @message = {type: params[:type], title: params[:title], msg: params[:msg]} if display_message?
-      logger.info "HAy mensaje? = #{@message}"
-    end
+    # def set_message
+    #   @message = {type: params[:type], title: params[:title], msg: params[:msg]} if display_message?
+    #   logger.info "HAy mensaje? = #{@message}"
+    # end
 
     def get_element
       @element = Element.find_by(tag: params[:tag])
@@ -190,7 +208,7 @@ class MovementsController < ApplicationController
     end
 
     def filter_params
-      params.permit(:last_movement_type, :product_type_id)
+      params.permit(:movement_type, :product_type_id)
     end
 
     def check_permission_to_update

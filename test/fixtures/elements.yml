@@ -29,3 +29,8 @@ tcc:
   tag: MyString6
   product_type: tcc
   drying_method: dm2
+
+no_samples_elem:
+  tag: MyString7
+  product_type: tsc
+  drying_method: dm2

@@ -27,7 +27,7 @@ end
 
 def get_user(role)
   @role = Role.find_by(name: role)#(name: 'admin')
-  @admin = User.create!(email: "admin@mail.com", name: 'Pablo', last_name: 'Alvarado',
+  @admin = User.create!(email: random("admin",0,1000000).to_s + "@mail.com", name: 'Pablo', last_name: 'Alvarado',
     confirmed_at: "2018-01-24 17:00:00",
     role_id: @role.id,# ADMIN Role.find_by(name: 'admin').id,#Role.where(name: "admin"),
     authorized: true,
@@ -138,4 +138,10 @@ def warehouse_movement_params(type, element)
     }
     # p params
     params[type.to_sym]
+end
+
+def create_element()
+  dm = drying_methods(random("dm", 1, 3))
+  pt = product_types(random_process)
+  element = Element.create!(tag: random("tag",0,1000000).to_s, drying_method: dm, product_type: pt)
 end
