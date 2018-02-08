@@ -34,7 +34,7 @@ class ReportsController < ApplicationController
 
   def warehouse_report
     # Cuantas unidades. Por color, warehouse_id (Todo lo ingresado, todo lo salido! dia semana, etc)
-    @elements = Element.where.not(stored_at: nil).select(:product_type_id, :color, :weight, :warehouse_id, :stored_at, :dispatched_at, :destination)
+    @elements = Element.where.not(warehouse_id: nil).select(:product_type_id, :color, :weight, :warehouse_id, :stored_at, :dispatched_at, :destination)
     # TODO para ganar velocidad element deberia ser .includes(:product_type). Aqui y en hartos lugares mas
     @product_types = ProductType.where('name not in (?)', ["fresco"])
 
