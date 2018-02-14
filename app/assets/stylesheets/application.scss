@@ -66,6 +66,12 @@
   text-align:center;
 }
 
+.to-left{
+  // text-align:left;
+  // NOTE seria mejor alinearlo a la izquierda
+  margin-right: 600px;
+}
+
 // Permite Centrar Encabezado
 .centered{
   margin: 0 auto;
@@ -99,7 +105,7 @@
 }
 
 .pestaña{
-  width: 160px;
+  width: 205px;
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 3px;
@@ -480,3 +486,16 @@ input[type=text]:focus {
 // span.bold {
 //   font-weight: bold;
 // }
+
+.add-element{
+ width: 160px;
+ margin: 0 auto;
+ input#tag{
+   width:120px;
+   height:28px;
+ }
+ input[type="submit"]{
+   margin: 2px !important;
+   margin-left: 0px!important;
+ }
+}

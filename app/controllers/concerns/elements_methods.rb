@@ -1,7 +1,7 @@
 module ElementsMethods
 
   private
-    def show_samples?(sample_type, process)
+    def show_samples?(sample_type, process) # Recibe product_type
       # ["secado", "calibrado", "seam", "cn"]
       return true if !process
       return true if sample_type.in?(["damage_sample", "caliber_sample", "humidity_sample"])

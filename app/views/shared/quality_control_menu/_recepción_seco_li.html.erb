@@ -1,8 +1,8 @@
 <li class="dropdown">
-  <a class="dropdown-toggle" data-toggle="dropdown" href="#">#Recepción Sol#<span class="caret"></span></a>
+  <a class="<%="dropdown-toggle " + is_recepcion_seco%>" data-toggle="dropdown" href="#">Rec. seco<span class="caret"></span></a>
   <ul class="dropdown-menu">
-    <!-- FIXME Agregar que tipo de daño y calibre es -->
-    <li><%=link_to 'Daños(no implementado)' %></li>
-    <li><%=link_to 'Calibre(no implementado)'%></li>
+    <li><%=link_to 'Crear grupo', new_elements_group_path%></li>
+    <li><%=link_to 'Daños', new_recepcion_seco_damage_sample_path%></li>
+    <li><%=link_to 'Calibre', new_recepcion_seco_caliber_sample_path%></li>
   </ul>
 </li>

@@ -105,7 +105,7 @@ class CaliberSamplesController < ApplicationController
 
     def include_deviation
       @include_deviation = true
-      @include_deviation = false if @process == "secado"
+      @include_deviation = false if @process.in? ["secado", "recepcion_seco"]
     end
 
     def deviation_sample_params
@@ -123,6 +123,7 @@ class CaliberSamplesController < ApplicationController
       params.permit(:tag)
     end
 
+    # Si es UserControl, puede editar o eliminar solo sus ultimas 3 muestras
     def permission_last_samples
       # NOTE Esto puede ser fuente de tiempos excesivos en el futuro
       return true if user_type != "UserControl"

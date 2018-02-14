@@ -1,0 +1,41 @@
+<%= form_for(elements_group, html: {class: 'inside-new-form validatable '}) do |f| %>
+
+  <% if elements_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(elements_group.errors.count, "error") %> prohibited this elements_group from being saved:</h2>
+      <ul>
+      <% elements_group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :responsable, value: logged_user.name %>
+
+  <div class="field">
+    <%= f.label :tarja_inicial %>
+    <%= field_first_tag(f, type)
+    %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tarja_final %>
+    <%= field_last_tag(f, type)
+    %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lote %>
+    <%= f.text_field :lot, autocomplete: 'off' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :proveedor %>
+    <%= f.text_field :provider, autocomplete: 'off' %>
+  </div>
+
+  <!-- <div class="actions"> -->
+    <%= render 'shared/buttons', f: f, form_type: type%>
+  <!-- </div> -->
+<% end %>

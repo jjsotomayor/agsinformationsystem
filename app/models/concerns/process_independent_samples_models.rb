@@ -10,7 +10,7 @@ module ProcessIndependentSamplesModels
 
   module ClassMethods
 
-    # MEtodo para obtener las recientes muestras
+    # Metodo para obtener las recientes muestras
     def get_recent_samples(responsable = nil)
       t = Rails.configuration.max_sample_hrs
       samples = self.where('created_at > ?', t.hours.ago).ord

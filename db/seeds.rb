@@ -35,7 +35,7 @@ def create_product_types
   product_types = # products type / proceso
   [
     { name: "fresco", humidity_min: nil, humidity_max: nil} ,
-    { name: "recepcion seco", humidity_min: nil, humidity_max: nil} ,
+    # { name: "recepcion_seco", humidity_min: nil, humidity_max: nil} ,
     { name: "secado", humidity_min: 16, humidity_max: 19} , # Es el unico que se puede almacenar desde 2 interfaces.
     { name: "calibrado", humidity_min: nil, humidity_max: 20} ,
     { name: "seam", humidity_min: nil, humidity_max: 22} ,
@@ -59,7 +59,7 @@ def create_operations
   operaciones = [ # = PRocesos
     { name: "laboratorio"} ,
     { name: "fresco"} ,
-    { name: "recepcion seco"} ,
+    { name: "recepcion_seco"} ,
     { name: "secado"} , # Es el unico que se puede almacenar desde 2 interfaces.
     { name: "calibrado"} ,
     { name: "seam"} ,
@@ -80,7 +80,7 @@ def create_counts
  if Count.count == 0
    puts "Creando contadores:"
    ["secado", "calibrado", "seam", "cn", "tsc", "tcc"].each do |pt_name|
-     puts "    " + pt_name
+     # puts "    " + pt_name
      pt = ProductType.find_by!(name: pt_name)
      Count.create!(product_type: pt, sample_type:"damage_sample", counter:0)
      Count.create!(product_type: pt, sample_type:"caliber_sample", counter:0)

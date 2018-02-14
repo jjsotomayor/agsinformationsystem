@@ -4,10 +4,12 @@ class HumiditySamplesController < ApplicationController
   before_action :set_humidity_sample, only: [:show, :edit, :update, :destroy]
   # Cambiarlo a solo update y destroy para disminuir la carga
   before_action :permission_last_samples, only: [:edit, :update, :destroy]
+  before_action :set_group_or_elem, only: [:index, :new, :create]
 
   # GET /humidity_samples
   def index
     @humidity_samples = HumiditySample.all.includes(:element)#.active
+    @humidity_samples = @humidity_samples.group_or_elem(@group_elem)
     @humidity_samples = @humidity_samples.page(params[:page]).ord
   end
 
@@ -17,7 +19,7 @@ class HumiditySamplesController < ApplicationController
 
   # GET /humidity_samples/new
   def new
-    @humidity_samples = HumiditySample.get_recent_samples(logged_user.name).first(3)
+    @humidity_samples = HumiditySample.get_recent_samples(logged_user.name).group_or_elem(@group_elem).first(3)
     @humidity_sample = HumiditySample.new
     # Permite mostrar mensaje de exito en Creación/edicion muestra anterior
     @success_sample = HumiditySample.find(params[:success_id]) if params[:success_id]
@@ -39,7 +41,7 @@ class HumiditySamplesController < ApplicationController
       redirect_to new_humidity_sample_path success_id: @humidity_sample.id
     else
       #Si hago redirect, termino el proces, en cambio con render mantengo la info de los errores,y es buena practica pq lo hace scaffold
-      @humidity_samples = HumiditySample.get_recent_samples(logged_user.name).first(3)
+      @humidity_samples = HumiditySample.get_recent_samples(logged_user.name).group_or_elem(@group_elem).first(3)
       render :new
     end
 
@@ -65,7 +67,8 @@ class HumiditySamplesController < ApplicationController
   def destroy
     # @humidity_sample.soft_delete
     @humidity_sample.destroy
-    redirect_to humidity_samples_url, notice: 'Muestra de humedad eliminada.'
+    # redirect_to humidity_samples_url, notice: 'Muestra de humedad eliminada.'
+    redirect_to({action: 'index'}, notice: 'Muestra de humedad eliminada.')
   end
 
   private
@@ -86,6 +89,17 @@ class HumiditySamplesController < ApplicationController
       return true if user_type != "UserControl"
       if !HumiditySample.in_user_last_samples(@humidity_sample, logged_user.name, 3, @process)
         redirect_to root_path, alert: not_allowed
+      end
+    end
+
+    # Sets the name of the group, allows to know what to render, elems or groups
+    def set_group_or_elem
+      # p "controlador = "
+      controller = Rails.application.routes.recognize_path(request.path)[:controller]
+      if controller == "humidity_samples"
+        @group_elem = :elem
+      elsif controller == "group_humidity_samples"
+        @group_elem = :group
       end
     end
 

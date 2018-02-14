@@ -1,0 +1,43 @@
+<% if humidity_sample.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(humidity_sample.errors.count, "error") %> prohibited this humidity_sample from being saved:</h2>
+  <ul>
+    <% humidity_sample.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+
+<div class= "container-samples">
+  <div class= "pestaña">Laboratorio</div>
+    <div class="outside-new-form green-outside-new-form">
+      <h1><span class= "glyphicon glyphicon-list-alt"></span> Humedad de Grupo</h1>
+
+<% url = group_humidity_samples_path %>
+<% method = set_form_method("new")%>
+<%= form_for(humidity_sample, url: url, method: method, html: {class: 'inside-new-form validatable'})  do |f| %>
+
+  <%= f.hidden_field :responsable, value: logged_user.name %>
+
+  <div class="field">
+    <%= f.label :tarjas  %>
+    <%= field_elements_group(f, 'new', "", humidity_sample)%>
+  </div>
+
+  <div class="field">
+    <%= f.label :"humedad (%)" %>
+    <%= f.number_field :humidity, step: 0.01, min:0 %>
+
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Guardar",  class: "btn btn-primary btn-lg btn-block" %>
+  </div>
+<% end %>
+
+
+    </div>
+  </div>
+</div>

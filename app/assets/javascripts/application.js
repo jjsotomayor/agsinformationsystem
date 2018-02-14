@@ -129,6 +129,17 @@ $(document).on('turbolinks:load', function(){
   $(".validatable #carozo_sample_sample_weight").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
   $(".validatable #carozo_sample_carozo_weight").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
 
+  ////////////////////////////////////////////////
+  //// Group Samples and Group creation //////////
+  ////////////////////////////////////////////////
+  $(".validatable #humidity_sample_elements_group_id").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
+  $(".validatable #caliber_sample_elements_group_id").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
+  $(".validatable #damage_sample_elements_group_id").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
+
+  $(".validatable #elements_group_first_tag").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
+  $(".validatable #elements_group_last_tag").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
+  $(".validatable #elements_group_lot").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
+  $(".validatable #elements_group_provider").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
 
   // Valida los formularios de los form de warehouse
   $("form.validatable").submit(function(e){
@@ -180,32 +191,41 @@ function run_all_validations(e){
     console.log("Running validations");
     // function validate($elem, non_blank, number_format){
     var error = false;
-    if (!validate($(".validatable #tag"),                             true, false)){ error = true;}
+    if (!validate($(".validatable #tag"),                               true, false)){ error = true;}
     // Elements form //
-    if (!validate($(".validatable #element_tag"),                     true, false)){ error = true;}
-    if (!validate($(".validatable #element_product_type_id"),         true, false)){ error = true;}
+    if (!validate($(".validatable #element_tag"),                       true, false)){ error = true;}
+    if (!validate($(".validatable #element_product_type_id"),           true, false)){ error = true;}
     // TODO validar kgs
     // if (!validate($(".validatable #element_weight"),                  true, "integer")){ error = true;}
     //// HUumidity samples //////////
-    if (!validate($(".validatable #humidity_sample_humidity"),        true, "integer")){ error = true;}
+    if (!validate($(".validatable #humidity_sample_humidity"),          true, "integer")){ error = true;}
     ////Sorbate samples //////////
-    if (!validate($(".validatable #sorbate_sample_sorbate"),          true, "integer")){ error = true;}
+    if (!validate($(".validatable #sorbate_sample_sorbate"),            true, "integer")){ error = true;}
     ////Caliber samples //////////
-    if (!validate($(".validatable #caliber_sample_sample_weight"),    true, "integer")){ error = true;}
-    if (!validate($(".validatable #caliber_sample_fruits_in_sample"), true, "integer")){ error = true;}
-    if (!validate($(".validatable #big_fruits_in_sample"),            true, "integer")){ error = true;}
-    if (!validate($(".validatable #small_fruits_in_sample"),          true, "integer")){ error = true;}
-    if (!validate($(".validatable #caliber_sample_is_ex_caliber"),    true, false)){ error = true;}
+    if (!validate($(".validatable #caliber_sample_sample_weight"),      true, "integer")){ error = true;}
+    if (!validate($(".validatable #caliber_sample_fruits_in_sample"),   true, "integer")){ error = true;}
+    if (!validate($(".validatable #big_fruits_in_sample"),              true, "integer")){ error = true;}
+    if (!validate($(".validatable #small_fruits_in_sample"),            true, "integer")){ error = true;}
+    if (!validate($(".validatable #caliber_sample_is_ex_caliber"),      true, false)){ error = true;}
     //// Damage Samples //////////
     // if (!validate($(".validatable #process_order"),                   true, false)){ error = true;}
-    if (!validate($(".validatable #lot"),                             true, false)){ error = true;}
-    if (!validate($(".validatable #drying_method_id"),                true, false)){ error = true;}
-    if (!validate($(".validatable #damage_sample_sample_weight"),     true, "integer")){ error = true;}
+    if (!validate($(".validatable #lot"),                               true, false)){ error = true;}
+    if (!validate($(".validatable #drying_method_id"),                  true, false)){ error = true;}
+    if (!validate($(".validatable #damage_sample_sample_weight"),       true, "integer")){ error = true;}
 
     //// Carozo Samples //////////
-    if (!validate($(".validatable #carozo_sample_sample_weight"),     true, "integer")){ error = true;}
-    if (!validate($(".validatable #carozo_sample_carozo_weight"),     true, "integer")){ error = true;}
+    if (!validate($(".validatable #carozo_sample_sample_weight"),       true, "integer")){ error = true;}
+    if (!validate($(".validatable #carozo_sample_carozo_weight"),       true, "integer")){ error = true;}
 
+    //// Group Samples and Group creation //////////
+    if (!validate($(".validatable #humidity_sample_elements_group_id"), true, false)){ error = true;}
+    if (!validate($(".validatable #caliber_sample_elements_group_id"),  true, false)){ error = true;}
+    if (!validate($(".validatable #damage_sample_elements_group_id"),   true, false)){ error = true;}
+
+    if (!validate($(".validatable #elements_group_first_tag"),          true, false)){ error = true;}
+    if (!validate($(".validatable #elements_group_last_tag"),           true, false)){ error = true;}
+    if (!validate($(".validatable #elements_group_lot"),                true, false)){ error = true;}
+    if (!validate($(".validatable #elements_group_provider"),           true, false)){ error = true;}
     return error;
 }
 

@@ -1,3 +1,5 @@
+<%= render 'shared/message_js', message: @message if @message %>
+
   <div class="container">
     <h2 class= "centered separated">Productos</h2>
 
@@ -21,6 +23,7 @@
     <tr>
       <th>Tarja</th>
       <th>Fecha</th>
+      <th>Prov.</th>
       <th>Lote</th>
       <th>Tipo producto</th>
       <th>Tipo secado</th>
@@ -43,6 +46,7 @@
       <tr class= "<%= colored_rows_with_color(element.color)%>" >
         <td><%= element_link(element) %></td>
         <td><%= date_time(element.created_at) %></td>
+        <td><%= element.provider %></td>
         <td><%= element.lot %></td>
         <td><%= element.product_type.name.upcase unless element.product_type.nil? %></td>
         <td><%= element.drying_method.name unless element.drying_method.nil? %></td>
@@ -55,7 +59,7 @@
         <td><%= element.destination %></td>
         <td><%= element.process_order %></td>
         <td><%= link_to 'Ver', element, class: "btn btn-primary btn-xs" %></td>
-        <% if access_edit_element_button %>
+        <% if access_edit_destroy_element_button %>
           <td><%= link_to 'Editar', edit_element_path(element),  class: "btn btn-warning btn-xs" %></td>
         <% end %>
       </tr>

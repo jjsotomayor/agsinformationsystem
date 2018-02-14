@@ -1,7 +1,9 @@
 class ElementsController < ApplicationController
   include ElementsMethods
   before_action :check_permissions
+  before_action :set_message, only: [:show, :index]
   before_action :set_element, only: [:show, :edit, :update, :destroy]
+  before_action :check_not_modifying_group_element, only: [:edit, :update]
 
   # GET /elements
   def index
@@ -72,10 +74,11 @@ class ElementsController < ApplicationController
 
   # GET /elements/1
   def show
+    @group_member = @element.belongs_to_group?
     @product_type = @element.product_type ? @element.product_type.name : nil
-    @dam_samples = @element.damage_samples.ord if show_samples?("damage_sample", @product_type)
-    @cal_samples = @element.caliber_samples.ord if show_samples?("caliber_sample", @product_type)
-    @humidity_samples = @element.humidity_samples.ord if show_samples?("humidity_sample", @product_type)
+    @dam_samples = @element.get_damage_samples.ord if show_samples?("damage_sample", @product_type)
+    @cal_samples = @element.get_caliber_samples.ord if show_samples?("caliber_sample", @product_type)
+    @humidity_samples = @element.get_humidity_samples.ord if show_samples?("humidity_sample", @product_type)
     @sorbate_samples = @element.sorbate_samples.ord if show_samples?("sorbate_sample", @product_type)
     @carozo_samples = @element.carozo_samples.ord if show_samples?("carozo_sample", @product_type)
 
@@ -127,10 +130,18 @@ class ElementsController < ApplicationController
 
   # DELETE /elements/1
   def destroy
-    @element.destroy
-    respond_to do |format|
-      format.html { redirect_to elements_url, notice: 'Element was successfully destroyed.' }
-      format.json { head :no_content }
+    # La única eliminacion es JefaCC, de productos que no tengan muestras y no hayan pasado por bodega
+    # NOTE Esta verificacion si puede eliminar no deberia hacerse en el modelo
+    can_destroy, message = can_destroy_this_element?(logged_user, @element)
+
+    if can_destroy
+      logger.info {"Deletion: Deleting elemento de tarja: #{@element.tag}"}
+      @element.destroy
+      display_message_in_session
+      redirect_to elements_path(message)
+    else
+      display_message_in_session
+      redirect_to element_path(@element, message)
     end
   end
 
@@ -152,7 +163,6 @@ class ElementsController < ApplicationController
 
     def check_permissions
       #NOTE: EL ACTION NAME IN NO FUNCIONA con no strings,
-      # No se permite Destroy
       if action_name.in?(["show", "index", "show_ajax"]) and can_see_samples?
         # puts "Entre1"
         return
@@ -161,7 +171,17 @@ class ElementsController < ApplicationController
         return
       elsif action_name.in?(["elems_in_wh_and_quality"]) and can_download?
         return
+      elsif action_name.in?(["destroy"]) and can_destroy_element?
+        return
       end
       redirect_to root_path, alert: not_allowed
+    end
+
+    def check_not_modifying_group_element
+      if @element.belongs_to_group?
+        redirect_back(fallback_location: root_path,
+          alert: "No es posible editar datos de una tarja perteneciente a grupo,
+           edita el grupo directamente.")
+      end
     end
 end

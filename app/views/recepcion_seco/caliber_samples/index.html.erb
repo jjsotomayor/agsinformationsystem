@@ -1,0 +1,41 @@
+<div class="container">
+<h1>Muestras de Calibre</h1>
+<%= paginate @caliber_samples %>
+<table class = "table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Creación</th>
+      <th>Responsable</th>
+      <th>Grupo de tarjas</th>
+      <th>Frutos x libra</th>
+      <th>Calibre</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @caliber_samples.each do |caliber_sample| %>
+      <tr>
+        <td><%= caliber_sample.counter %></td>
+        <td><%= date_time(caliber_sample.created_at) %></td>
+        <td><%= caliber_sample.responsable.truncate(14) %></td>
+        <td><%= group_link(caliber_sample.group) %></td>
+        <td><%= caliber_sample.fruits_per_pound %></td>
+        <td><%= caliber_sample.caliber.name %></td>
+
+        <td><%= link_to 'Ver', recepcion_seco_caliber_sample_path(caliber_sample),  class: "btn btn-primary btn-xs" %></td>
+        <%if access_edit_delete_sample_button%>
+          <td><%= link_to 'Editar', edit_recepcion_seco_caliber_sample_path(caliber_sample),  class: "btn btn-warning btn-xs" %></td>
+          <td><%= link_to 'Eliminar', recepcion_seco_caliber_sample_path(caliber_sample), method: :delete, data: { confirm: '¿Seguro que deseas eliminar la muestra?' },  class: "btn btn-danger btn-xs" %></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nueva muestra de calibre', new_recepcion_seco_caliber_sample_path,  class: "btn btn-primary btn-xs" %>
+</div>

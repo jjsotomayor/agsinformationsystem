@@ -1,13 +1,19 @@
 class DamageSample < ApplicationRecord
   include SoftDeletable
+  include AllSamplesMethods
   include Methods
   include SamplesModelMethods
 
   enum usda: [:A, :B, :C, :SSTD, :no_califica]
   enum df07: [:rechazado, :aprobado]
 
-  belongs_to :element
-  delegate :product_type, :to => :element, :allow_nil => true
+  belongs_to :element, optional: true
+  belongs_to :elements_group, optional: true
+  alias_attribute :group, :elements_group
+
+  validate :has_element_or_group
+
+  # delegate :product_type, :to => :element, :allow_nil => true
 
   before_validation :calculate_percentages
   before_validation :calculate_usda
@@ -15,9 +21,23 @@ class DamageSample < ApplicationRecord
 
   before_create :increase_and_store_counter
 
-  validates :element, :responsable, :sample_weight, :usda, presence: true
+  validates :responsable, :sample_weight, :usda, presence: true
   validates :sample_weight, numericality: true
 
+  ### Metodos para hacer que sea posible trabajar con elem y group ####
+  #####################################################################
+  def product_type
+    return self.element.product_type if self.element
+    return self.group.product_type if self.group
+    nil
+  end
+  # Get all Damage_Samples of a process
+  def self.process(process)
+    group_or_elem = Util.group_or_elem(process)
+    product_type = ProductType.find_by_process(process) # if process = recepcion_seco, lo convierte a secado
+    product_type.dam_samples(group_or_elem)
+  end
+  #####################################################################
 
   def calculate_percentages
     total = 0
@@ -193,26 +213,26 @@ class DamageSample < ApplicationRecord
 
   end
 
+
+  # NOTE sgts 3 Metodos adaptados para soportar elements_group
   # Obtiene ultimas quantity muestras de daños del process
   def self.get_samples(process, responsable = nil)
-    product_type = ProductType.find_by(name: process)
-    damage_samples =  product_type.damage_samples.active.ord
-    return damage_samples if !responsable
-    damage_samples.where(responsable: responsable)
+    samples = DamageSample.process(process).active.ord
+    return samples if !responsable
+    samples.where(responsable: responsable)
   end
 
   def self.get_recent_samples(process, responsable = nil)
     t = Rails.configuration.max_sample_hrs
-    dam_samples = DamageSample.get_samples(process, responsable)
-    dam_samples = dam_samples.where('damage_samples.created_at > ?', t.hours.ago)
+    samples = DamageSample.get_samples(process, responsable)
+    samples = samples.where('damage_samples.created_at > ?', t.hours.ago)
   end
 
   def self.in_user_last_samples(sample, responsable, number, process = nil)
-    pt = ProductType.find_by(name: process)
-    samples = pt.damage_samples
+    samples = DamageSample.process(process)
     samples = samples.where(responsable: responsable)
     .where('damage_samples.created_at > ?', Rails.configuration.max_sample_hrs.hours.ago)
-    samples = samples.order('damage_samples.created_at DESC').ids.first(number)
+    samples = samples.ord.ids.first(number)
     # print samples
     ret = sample.id.in?(samples)
     return ret

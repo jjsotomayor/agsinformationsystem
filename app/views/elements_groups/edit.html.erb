@@ -1,0 +1,12 @@
+<%= render 'shared/message_js', message: @message if @message %>
+
+
+
+
+<div class= "container-samples" id ="dam">
+  <div class= "pestaña"><%= @process.capitalize%></div>
+    <div class="outside-new-form" id = "dam">
+      <h1><span class= "glyphicon glyphicon-list-alt"></span> Editar grupo de Tarjas</h1>
+        <%= render 'form', elements_group: @elements_group, type: "edit" %>
+    </div>
+</div>

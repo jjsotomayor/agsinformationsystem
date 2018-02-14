@@ -61,7 +61,8 @@ module ColorCalculation
     logger.info {"Revisando si hay color rojo"}
     process = self.product_type.name
     colors = []
-    colors << worst_sorbate_color if self.sorbate_samples.count > 0
+    # self.respond_to  In case its called by a group
+    colors << worst_sorbate_color if self.respond_to?(:sorbate_samples) and self.sorbate_samples.count > 0
     colors << worst_humidity_color(process) if self.humidity_samples.count > 0
     # Si habia un rojo (4) lo pongo en rojo, sino indeterminado
     color = colors.max == 4 ? 4 : 0

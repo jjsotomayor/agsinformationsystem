@@ -24,10 +24,22 @@ module ApplicationHelper
 
   def is_laboratorio
     name = controller.class.name
-    return "selected" if  name == "HumiditySamplesController" or name == "SorbateSamplesController"
-    ""
+    if name.in?(["HumiditySamplesController", "SorbateSamplesController", "GroupHumiditySamplesController"])
+      return "selected"
+    else
+      ""
+    end
   end
 
+  def is_recepcion_seco
+    if process_name == "recepcion_seco"
+      return "selected"
+    elsif controller.class.name == "ElementsGroupsController"
+      return "selected"
+    else
+      return ""
+    end
+end
 
   ##########################################
   ############## HELPING TO RENDER #########
@@ -55,7 +67,9 @@ module ApplicationHelper
 
   # Retorna el proceso actual. Corresponse al namespace padre del controlador
   def process_name
-    controller.class.parent.to_s.downcase
+    # controller.class.parent.to_s.downcase
+    controller = Rails.application.routes.recognize_path(request.path)[:controller]
+    process = controller.split("/").first
   end
 
 
@@ -120,14 +134,13 @@ module ApplicationHelper
   ##########################################
   def set_url_for_form(type, sample)
     # Obtiene process actual de la url!
-    process = controller.class.parent.to_s.downcase
+    process = process_name
+
     if type == "new"
       # Arma el string y con send llama al path/url helper autogenerado para las rutas de la app
       url = send(process + "_" + controller_name + "_path")
     elsif type == "edit"
-      puts "ID: #{sample.id.to_s}"
       url = "/"+process + "/" + controller_name + "/"+ sample.id.to_s
-      puts url
       url
     end
   end
@@ -151,7 +164,13 @@ module ApplicationHelper
     false
   end
 
-  def access_edit_element_button
+  def access_edit_destroy_element_button
+    role = get_role_or_nil
+    return true if role.in?(['admin', 'jefe_calidad'])
+    false
+  end
+
+  def access_link_to_groups
     role = get_role_or_nil
     return true if role.in?(['admin', 'jefe_calidad'])
     false
@@ -171,6 +190,7 @@ module ApplicationHelper
   ############ Bodega render  ##############
   ##########################################
 
+  # Recibe un element o un movement
   def banda_pos_altura_nil_safe(element)
     if element.warehouse
       banda = element.banda || ""

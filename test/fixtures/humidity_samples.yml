@@ -31,3 +31,8 @@ secado:
   element: secado
   responsable: Joaquin
   humidity: 30
+
+group_humidity_sample:
+  elements_group: one
+  responsable: Joaquin
+  humidity: 30
