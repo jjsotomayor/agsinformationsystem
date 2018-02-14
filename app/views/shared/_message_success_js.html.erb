@@ -17,6 +17,7 @@
   <%msg << ", Df07: #{sample.df07}" if sample.df07%>
 
   <%elsif sample.class.name == "CaliberSample"%>
+  <%msg = ""%>
   <%if sample.deviation_sample %>
   <%msg = "Estado: #{sample.deviation_sample.status}"%>
   <%end%>
