@@ -15,7 +15,7 @@ wb.styles do |style|
         "Banda", "Posicion", "altura", "Fecha salida bodega", "Destino", "Orden de proceso",
         "FxL", #"Calibre",
         "Desviacion",# "Aprob/Rech",  # Aqui van los de calidad
-         "H%", "Sorbato(ppm)", "Carozo en caja %","Daño total(%)"]
+         "H%", "Sorbato(ppm)", "Carozo en caja %", "USDA", "Daño total(%)"]
 
     @damages_list.each do |dam|
       first_row << translate_damage(dam)
@@ -111,6 +111,14 @@ wb.styles do |style|
       # V1:
       @dam_s = elem.damage_samples.to_a
       size = [@dam_s.size,1].max
+
+      # NOTE USDA solo se esta agregando cuando hay una muestra de daños, corregir en Abril
+      if @dam_s.size == 1
+        row << @dam_s.first.usda
+      else
+        row <<  "-"
+      end
+
       # d_total = @dam_s.sum(&:total_damages_perc) / size
       # p "daño total = #{d_total}"
       row << @dam_s.sum(&:total_damages_perc) / size
