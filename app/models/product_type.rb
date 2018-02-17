@@ -46,4 +46,13 @@ class ProductType < ApplicationRecord
     find_by(name: pt_name)
   end
 
+  # Obtiene todos los grupos o elementos del ProductType
+  def all_group_or_elems(type)
+    if type == :group
+      self.elements_groups
+    elsif type == :elem
+      self.elements
+    end
+  end
+
 end

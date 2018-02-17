@@ -25,6 +25,13 @@ class HumiditySample < ApplicationRecord
     return self.group.product_type if self.group
     nil
   end
+
+  def self.process(process)
+    # Asume que todas las muestras de recepcion_Seco son grupales
+    group_or_elem = Util.group_or_elem(process)
+    product_type = ProductType.find_by_process(process) # if process = recepcion_seco, lo convierte a secado
+    product_type.hum_samples(group_or_elem)
+  end
   #####################################################################
 
    # Considera el proceso actual del element
@@ -37,7 +44,7 @@ class HumiditySample < ApplicationRecord
      self.status = between?(self.humidity, min, max) ? "aprobado" : "rechazado"
    end
 
-   # Receives :group or :elem
+   # Receives :group or :elem and gets all samples of that type
    def self.group_or_elem(group_or_elem)
      group_or_elem == :group ? where.not(elements_group_id: nil) : where.not(element_id: nil)
    end

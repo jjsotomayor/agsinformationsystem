@@ -53,7 +53,25 @@ class Element < ApplicationRecord
     self.group ? self.group.humidity_samples : self.humidity_samples
   end
 
+  def self.get_by_process(process)
+    # p "Entro get by process"
+    pt = ProductType.find_by_process(process)
+    elems = pt.elements.includes(:drying_method)
 
+    if process.in? ["secado", "recepcion_seco"]
+      # dmethods = DryingMethod.all.to_a
+      if process == "recepcion_seco"
+        dmethods_ids = DryingMethod.where(name: "sol").ids
+      else #secado
+        # Se pone asi pq si tiene sol siempre es recepcion y si tiene nil será "secado"
+        dmethods_ids = DryingMethod.where.not(name: "sol").ids + [nil]
+      end
+      elems = elems.where(drying_method_id: dmethods_ids)
+    end
+
+    # p "Salgo get by process"
+    elems
+  end
 
 
 

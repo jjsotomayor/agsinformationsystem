@@ -82,6 +82,18 @@
   }
 }
 
+td.bold{
+  font-weight: bold;
+}
+
+table.small-height{
+  td{
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+  }
+}
+
+
 //Separar encabezado de lo que esta abajo
 .separated{
   margin-bottom: 20px;

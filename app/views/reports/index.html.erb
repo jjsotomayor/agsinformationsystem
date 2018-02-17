@@ -1,12 +1,18 @@
 <div class="container-table">
 <!-- TODO Incorporar filtro fecha desde!-->
+  <%=
+  # NOTE Solo funciona si idioma en application.rb esta en ingles
+  # date_select :birthday, { :order => [:day, :month, :year], :prompt => { :day => 'Select day', :month => 'Select month' } }, {:class => ""}
+   %>
+
+
 <h3 class= "centered separated"><%= "Muestras tomadas los ultimos  #{@days} dias" %></h3>
-<table class = "table table-striped table-tight">
+<table class = "table table-striped table-tight small-height">
   <thead>
     <tr>
       <th> </th>
-      <% @product_types.each do |pt| %>
-        <th><%= pt.name.upcase %></th>
+      <% @processes.each do |process| %>
+        <th><%= process.upcase %></th>
       <% end %>
       <!-- <th colspan="3"></th> -->
     </tr>
@@ -16,39 +22,102 @@
     <!-- TODO Al final no uso la mayoria de las cosas calculadas en controller  -->
       <tr>
         <td> Daños </td>
-        <% @product_types.each do |pt| %>
-          <td><%= pt.damage_samples.count %></td>
+        <%  @processes.each do |process| %>
+          <td><%= DamageSample.process(process).count %></td>
         <% end %>
       </tr>
 
       <tr>
         <td> Calibre </td>
-        <% @product_types.each do |pt| %>
-          <td><%=pt.caliber_samples.count %></td>
+        <% @processes.each do |process| %>
+          <td><%= CaliberSample.process(process).count %></td>
         <% end %>
       </tr>
 
       <tr>
         <td> Humedad </td>
-        <% @product_types.each do |pt| %>
-          <td><%= pt.humidity_samples.count %></td>
+        <% @processes.each do |process| %>
+          <td><%= HumiditySample.process(process).count %></td>
         <% end %>
       </tr>
 
       <tr>
         <td> Sorbato </td>
-        <% @product_types.each do |pt| %>
-          <td><%= pt.sorbate_samples.count %></td>
+        <% @processes.each do |process| %>
+          <td><%= ProductType.find_by_process(process).sorbate_samples.count %></td>
         <% end %>
       </tr>
 
       <tr>
         <td> Carozo </td>
-        <% @product_types.each do |pt| %>
-          <td><%= pt.carozo_samples.count %></td>
+        <% @processes.each do |process| %>
+          <td><%= ProductType.find_by_process(process).carozo_samples.count %></td>
         <% end %>
       </tr>
 
   </tbody>
 </table>
 </div>
+
+
+
+
+
+
+<br><br><br>
+
+<div class="container-table">
+<!-- TODO Incorporar filtro fecha desde!-->
+<h3 class= "centered separated"><%= "Cantidad de productos por color de los últimos #{@days} dias" %></h3>
+<table class = "table table-striped table-tight small-height">
+  <thead>
+    <tr>
+      <th> </th>
+      <% Element.colors.each do |name, id| %>
+        <th><%= name.capitalize %></th>
+      <% end %>
+      <th>Total</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <!-- NOTE ojo que hay productos que no aparecerian aqui.
+        Los que no se sepa de que proceso son => Solo tienen humedad/Sorbato-->
+
+    <% @processes.each do |process| %>
+          <% elems = Element.get_by_process(process)%>
+          <tr>
+                  <td class = "bold"><%= process.capitalize %></td>
+                  <% Element.colors.each do |color, id| %>
+                      <td>
+                        <%= elems.where(color: color).count%>
+                      </td>
+                  <% end %>
+                  <td class = "bold"><%= elems.count %></td>
+              </tr>
+
+      <% end %>
+
+      <!-- Fila de productos sin PT  -->
+      <% elems = Element.where(product_type: nil)%>
+      <tr>
+        <td> Sin Producto</td>
+        <% Element.colors.each do |color, id| %>
+        <td>
+          <%= elems.where(color: color).count%>
+        </td>
+        <% end %>
+        <td><%= elems.count %></td>
+
+      </tr>
+  </tbody>
+
+
+
+
+
+</table>
+</div>
+
+<br>

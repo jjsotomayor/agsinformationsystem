@@ -221,8 +221,18 @@ module Util
 
   # Retorna por donde encontrar las muestras para cada proceso.
   def self.group_or_elem(process)
+    # NOTE Se rompera si se agregan muestras grupales en otros procesos
     process == "recepcion_seco" ? :group : :elem
     # Retorna solo group si es recepcion_seco
+  end
+
+  # Retorna todos los procesos disponibles
+  def self.available_processes
+    ["recepcion_seco", "secado", "calibrado", "seam", "cn", "tsc", "tcc"]
+  end
+
+  def self.available_samples_for_groups
+    [:damage, :caliber, :humidity]
   end
 
 end

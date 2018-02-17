@@ -141,9 +141,20 @@ class ElementsGroup < ApplicationRecord
     elems.each do |elem|
       if elem.has_entered_warehouse?
         return false, "No es posible eliminar. Una de las tarjas ya fue ingresada a bodega."
+      elsif self.samples_count > 0
+        return false, "No es posible eliminar. Debes eliminar todas las muestras asignadas primero."
       end
     end
     return true, ""
+  end
+
+  def samples_count
+    count = 0
+    sample_types = Util.available_samples_for_groups
+    sample_types.each do |sample_type|
+      count += self.send(sample_type.to_s + "_samples").count
+    end
+    count
   end
 
   private

@@ -7,6 +7,8 @@ class ReportsController < ApplicationController
     # TODO Incorporar un filtro que permita cambiar a dia, semana, mes, año
     # O mejor uno que permita filtrar la fecha dede del analisis
     @product_types = ProductType.where('name not in (?)', ["fresco"])
+    # Secado ahora se dividirá en 2: procesos "secado" y "rec_seco"
+    @processes = Util.available_processes
     this_year_date = DateTime.new(Date.current.year)
     # @days = "X"
 
@@ -52,7 +54,7 @@ class ReportsController < ApplicationController
     pt_id = params[:product_type_id].blank? ? 7 : params[:product_type_id]
     @pt = ProductType.find(pt_id)
     @add_items = @pt.name.in? ["seam", "cn", "tsc", "tcc"]
-    @is_tsc = @pt.name == "tsc"
+    @is_tiernizado = @pt.name.in? ["tsc", "tcc"]
     start_date = (Time.current - params[:days].to_i.days).change(hour: 0)
     pp start_date
     # TODO LA FECHA NO DEBERIA SER CREATED_AT, DEBERIA SER LA FECHA DE LA ULTIMA MUESTRA!!
@@ -60,6 +62,11 @@ class ReportsController < ApplicationController
     # Y deberia ser desde el ppio del diA
     @elements = @pt.elements.where("created_at > ?", start_date).ord
     @required_samples = Util.all_required_samples(@pt.name)
+
+    # if @pt.name.in? ["tsc", "tcc"]
+    #   @reproceso_elems = @elements.where.not(ex_tag: [nil, "S/N"])
+    # end
+
     @damages_list = Util.damages_of_product_type(@pt.name)
     respond_to do |format|
       format.xlsx {

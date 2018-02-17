@@ -41,6 +41,7 @@ class ElementsController < ApplicationController
 
   # GET /elements/elems_in_wh_and_quality.xlsx
   def elems_in_wh_and_quality
+    # Los Secado de process rec_seco los muestra por tarja todos separados
     respond_to do |format|
       format.xlsx {
         @elements = Element.all.includes(:product_type, :drying_method, :warehouse)#.to_a
@@ -57,12 +58,22 @@ class ElementsController < ApplicationController
         logger.info {"Descargando elems_in_wh_and_quality"}
         logger.info {"Tamaño en memoria #{ActiveSupport::JSON.encode(@elements).size} bytes"}
 
+        # Los elems fueron filtrados por cosas comunes a groups
+        # Obtengo todos los elems_ids que cumplen los parametros!
         elems_ids = @elements.ids
-        @dam_samples = DamageSample.where(element_id: elems_ids).to_a
-        @cal_samples = CaliberSample.where(element_id: elems_ids).to_a#includes(:caliber, :deviation_sample).to_a
+        group_ids = @elements.distinct.pluck(:elements_group_id)
+        # p "Groups IDS"
+        # p group_ids
+        # Busco las muestras que pertenezcan a los elements o group_samples(para damage, caliber and humidity).
+        @dam_samples = DamageSample.where(element_id: elems_ids).or(
+                        DamageSample.where(elements_group_id: group_ids)).to_a
+        @cal_samples = CaliberSample.where(element_id: elems_ids).or( #includes(:caliber, :deviation_sample).to_a
+                        CaliberSample.where(elements_group_id: group_ids)).to_a
         cal_samples_ids = @cal_samples.map {|cs| cs.id}
         @dev_samples = DeviationSample.where(caliber_sample_id: cal_samples_ids).select(:caliber_sample_id, :deviation).to_a
-        @humidity_samples = HumiditySample.where(element_id: elems_ids).select(:element_id, :humidity).to_a
+        @humidity_samples = HumiditySample.where(element_id: elems_ids).or(
+                            HumiditySample.where(elements_group_id: group_ids))
+                            .select(:element_id, :humidity, :elements_group_id).to_a
         @sorbate_samples = SorbateSample.where(element_id: elems_ids).select(:element_id, :sorbate).to_a
         @carozo_samples = CarozoSample.where(element_id: elems_ids).select(:element_id, :carozo_percentage).to_a
 
