@@ -10,24 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180208024826) do
+ActiveRecord::Schema.define(version: 20180209002321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "caliber_samples", force: :cascade do |t|
-    t.string   "responsable",                      null: false
+    t.string   "responsable",                       null: false
     t.integer  "element_id"
-    t.integer  "fruits_in_sample",                 null: false
-    t.integer  "sample_weight",                    null: false
-    t.integer  "fruits_per_pound",                 null: false
+    t.integer  "fruits_in_sample",                  null: false
+    t.integer  "sample_weight",                     null: false
+    t.integer  "fruits_per_pound",                  null: false
     t.integer  "caliber_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.boolean  "active",           default: true,  null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.boolean  "active",            default: true,  null: false
     t.datetime "deleted_at"
-    t.boolean  "is_ex_caliber",    default: false, null: false
-    t.integer  "counter",                          null: false
+    t.boolean  "is_ex_caliber",     default: false, null: false
+    t.integer  "counter",                           null: false
+    t.integer  "elements_group_id"
     t.index ["caliber_id"], name: "index_caliber_samples_on_caliber_id", using: :btree
     t.index ["element_id"], name: "index_caliber_samples_on_element_id", using: :btree
   end
@@ -117,6 +118,7 @@ ActiveRecord::Schema.define(version: 20180208024826) do
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
     t.integer  "counter",                                      null: false
+    t.integer  "elements_group_id"
     t.index ["element_id"], name: "index_damage_samples_on_element_id", using: :btree
   end
 
@@ -166,6 +168,8 @@ ActiveRecord::Schema.define(version: 20180208024826) do
     t.datetime "last_movement_at"
     t.integer  "last_movement_type"
     t.string   "incomplete_bin_tag"
+    t.integer  "elements_group_id"
+    t.string   "provider"
     t.index ["color"], name: "index_elements_on_color", using: :btree
     t.index ["drying_method_id"], name: "index_elements_on_drying_method_id", using: :btree
     t.index ["last_movement_at"], name: "index_elements_on_last_movement_at", using: :btree
@@ -174,16 +178,37 @@ ActiveRecord::Schema.define(version: 20180208024826) do
     t.index ["warehouse_id"], name: "index_elements_on_warehouse_id", using: :btree
   end
 
+  create_table "elements_groups", force: :cascade do |t|
+    t.string   "first_tag"
+    t.string   "last_tag"
+    t.string   "pre"
+    t.integer  "first"
+    t.integer  "last"
+    t.integer  "int_pattern"
+    t.string   "lot"
+    t.string   "provider"
+    t.integer  "product_type_id"
+    t.integer  "drying_method_id"
+    t.integer  "color",            default: 0, null: false
+    t.string   "responsable"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["color"], name: "index_elements_groups_on_color", using: :btree
+    t.index ["drying_method_id"], name: "index_elements_groups_on_drying_method_id", using: :btree
+    t.index ["product_type_id"], name: "index_elements_groups_on_product_type_id", using: :btree
+  end
+
   create_table "humidity_samples", force: :cascade do |t|
     t.integer  "element_id"
-    t.string   "responsable",                     null: false
-    t.decimal  "humidity",                        null: false
-    t.integer  "status",          default: 0,     null: false
-    t.boolean  "status_modified", default: false, null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "active",          default: true,  null: false
+    t.string   "responsable",                       null: false
+    t.decimal  "humidity",                          null: false
+    t.integer  "status",            default: 0,     null: false
+    t.boolean  "status_modified",   default: false, null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.boolean  "active",            default: true,  null: false
     t.datetime "deleted_at"
+    t.integer  "elements_group_id"
     t.index ["element_id"], name: "index_humidity_samples_on_element_id", using: :btree
   end
 
@@ -314,6 +339,8 @@ ActiveRecord::Schema.define(version: 20180208024826) do
   add_foreign_key "deviation_samples", "caliber_samples"
   add_foreign_key "elements", "drying_methods"
   add_foreign_key "elements", "product_types"
+  add_foreign_key "elements_groups", "drying_methods"
+  add_foreign_key "elements_groups", "product_types"
   add_foreign_key "humidity_samples", "elements"
   add_foreign_key "movements", "elements"
   add_foreign_key "movements", "warehouses"

@@ -1,0 +1,65 @@
+<%= render 'shared/message_js', message: @message if @message %>
+
+<div class= "container-table">
+<h2 class= "centered separated">Grupos de tarjas creados</h2>
+<%= link_to 'Nuevo grupo de tarjas', new_elements_group_path,  class: "btn btn-primary btn-xs to-left" %>
+<br><%= paginate @elements_groups %>
+<table class = "table table-striped table-tight">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Creación</th>
+      <th>Resp.</th>
+      <th>Tarja inicial</th>
+      <th>Tarja final</th>
+      <!-- <th>Pre</th>
+      <th>Inicial</th>
+      <th>Final</th> -->
+      <th>Cantidad</th>
+      <th>Proveedor</th>
+      <th>Lote</th>
+      <th>Producto</th>
+      <th>Tipo secado</th>
+      <th>Color</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @elements_groups.each do |group| %>
+      <tr class= "<%= colored_rows_with_color(group.color)%>">
+        <td><%= group.id %></td>
+        <td><%= date_time(group.created_at) %></td>
+        <td><%= group.responsable %></td>
+        <td><%= group.first_tag %></td>
+        <td><%= group.last_tag %></td>
+        <!-- <td> -->
+          <%=
+         # group.pre
+         %>
+       <!-- </td> -->
+        <!-- <td> -->
+          <%=
+         # group.first.to_s.rjust(group.int_pattern, '0')
+         %>
+       <!-- </td> -->
+        <!-- <td> -->
+          <%=
+         # group.last.to_s.rjust(group.int_pattern, '0')
+         %>
+       <!-- </td> -->
+        <td><%= group.elements.count %></td>
+        <td><%= group.provider %></td>
+        <td><%= group.lot %></td>
+        <td><%= group.product_type.name if group.product_type %></td>
+        <td><%= group.drying_method.name if group.drying_method %></td>
+        <td><%= group.color %></td>
+        <td><%= link_to 'Ver', group,  class: "btn btn-primary btn-xs" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+</div>

@@ -41,6 +41,8 @@ def login_user_control
 end
 
 def set_element_product_type(sample, process)
+  # Process de laizquierda es el pt en verdad
+  # process = "recepcion_seco" if process == "secado"
   elem = sample.element
   elem.update(product_type: ProductType.find_by(name: process))
 end
@@ -59,6 +61,13 @@ def params_humidity(humidity_sample)
     humidity_sample:
       {humidity: humidity_sample.humidity, responsable: humidity_sample.responsable},
     tag: humidity_sample.element.tag
+  }
+end
+def params_group_humidity(humidity_sample)
+  {
+    humidity_sample:
+      {humidity: humidity_sample.humidity, responsable: humidity_sample.responsable,
+    elements_group_id: humidity_sample.group.id}
   }
 end
 
@@ -81,6 +90,13 @@ def params_caliber_sample(dev_sample = false)
   params
 end
 
+def params_group_caliber_sample()
+  params = {
+    caliber_sample: {responsable: "person", fruits_in_sample: 62, sample_weight: 454,
+    elements_group_id: caliber_samples(:recepcion_seco).group.id}}
+  params
+end
+
 def params_damage_sample(process, sample)
   dry_method = drying_methods(random("dm", 1, 3))
   ds_params = {responsable: "Joaq", sample_weight: 100}
@@ -97,6 +113,21 @@ def params_damage_sample(process, sample)
   end
   params = {damage_sample: ds_params}.merge(elem_params)
 end
+
+def params_group_damage_sample(process, sample)
+  dry_method = drying_methods(:dm2)
+  ds_params = {responsable: "Joaq", sample_weight: 100}
+  elem_params = {elements_group_id: caliber_samples(:recepcion_seco).group.id}
+
+  # Aqui se añaden los daños directamente
+  Util.damages_of_product_type(process).each do |dam|
+    ds_params[dam.to_s] = rand(0..1)
+  end
+  ds_params = ds_params.merge(elem_params)
+  params = {damage_sample: ds_params}
+end
+
+
 
 # REtorna un fixture aleatorio entre textfirst y tesxtlast
 def random(text, first, last)

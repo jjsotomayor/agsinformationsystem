@@ -1,5 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+recepcion_seco:
+  responsable: Joaquin
+  elements_group: one
+  fruits_per_pound: 1
+  caliber: two
+  fruits_in_sample: 1
+  sample_weight: 1
+  counter: 1
+
 secado:
   responsable: Joaquin
   element: secado

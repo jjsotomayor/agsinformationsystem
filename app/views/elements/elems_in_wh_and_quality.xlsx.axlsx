@@ -10,7 +10,7 @@ wb.styles do |style|
 
   #### Hoja Productos ###
   wb.add_worksheet(name: "Productos") do |sheet|
-    first_row = ["Tarja", "Fecha", "Lote", "Color", "Proceso", "Secado", "Items",
+    first_row = ["Tarja", "Fecha", "Lote", "Proovedor", "Color", "Producto", "Secado", "Items",
         "TarjaAnterior", "ColorAnterior", "Peso(kg)", "Fecha ingreso bodega", "Bodega",
         "Banda", "Posicion", "altura", "Fecha salida bodega", "Destino", "Orden de proceso",
         "FxL", #"Calibre",
@@ -26,7 +26,7 @@ wb.styles do |style|
     @elements.each do |elem|
       # p "Nuevo elemento!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
       # p elem.tag
-      row = [elem.tag, elem.created_at, elem.lot, elem.color]
+      row = [elem.tag, elem.created_at, elem.lot, elem.provider , elem.color]
       if elem.product_type
         row << elem.product_type.name
       else
@@ -56,6 +56,17 @@ wb.styles do |style|
       ##############################
       ########### Calidad ##########
       ##############################
+
+      # NOTE Solo asume que elementos tienen muestras individuales o grupales
+      @group = elem.elements_group_id ? true : false
+      if @group
+        parent_name = :elements_group_id
+        parent = elem.group
+      else
+        parent_name = :element_id
+        parent = elem
+      end
+
       # NOTE V1: Lo va a buscar a la base de datos
       # NOTE V2: Lo tiene todo almacenado de antes en memoria
 
@@ -69,7 +80,7 @@ wb.styles do |style|
       # row << @dev_s.average(:deviation)
       # row << "A/R..."
       # V2:
-      cal_samples_arr = @cal_samples.select {|cs| cs[:element_id] == elem.id}
+      cal_samples_arr = @cal_samples.select {|cs| cs[parent_name] == parent.id}
       row = row  + [cal_samples_arr.sum(&:fruits_per_pound) / [cal_samples_arr.size,1].max]#, "Calibre"]
 
       ids = cal_samples_arr.map {|cs| cs.id}
@@ -84,7 +95,7 @@ wb.styles do |style|
       # V1:
       # row << elem.humidity_samples.average(:humidity)
       # V2:
-      arr = @humidity_samples.select {|hs| hs[:element_id] == elem.id}
+      arr = @humidity_samples.select {|hs| hs[parent_name] == parent.id}
       row << arr.sum(&:humidity) / [arr.size,1].max
 
       ##############################
@@ -93,7 +104,7 @@ wb.styles do |style|
       # V1:
       # row << elem.sorbate_samples.average(:sorbate)
       # V2:
-      arr = @sorbate_samples.select {|ss| ss[:element_id] == elem.id}
+      arr = @sorbate_samples.select {|ss| ss[parent_name] == parent.id}
       row << arr.sum(&:sorbate) / [arr.size,1].max
 
       ##############################
@@ -102,14 +113,14 @@ wb.styles do |style|
       # V1:
       # row << elem.carozo_samples.average(:carozo_percentage)
       # V2:
-      arr = @carozo_samples.select {|cs| cs[:element_id] == elem.id}
+      arr = @carozo_samples.select {|cs| cs[parent_name] == parent.id}
       row << arr.sum(&:carozo_percentage) / [arr.size,1].max
 
       ##############################
       ########## Daños ##########
       ##############################
       # V1:
-      @dam_s = elem.damage_samples.to_a
+      @dam_s = parent.damage_samples.to_a
       size = [@dam_s.size,1].max
 
       # NOTE USDA solo se esta agregando cuando hay una muestra de daños, corregir en Abril

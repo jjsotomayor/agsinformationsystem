@@ -1,0 +1,73 @@
+<div class= "container-for-sample">
+
+  <%=render "shared/title_show", text: "Muestra daños #{process_name.capitalize} ##{@damage_sample.counter}"%>
+
+  <table class = "table table-striped table-tight">
+    <thead>
+      <tr>
+        <th>Creación</th>
+        <th>Responsable</th>
+        <th>Tarjas</th>
+        <th>USDA</th>
+        <th>DF07</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+          <td><%=date_time(@damage_sample.created_at)%></td>
+          <td><%= @damage_sample.responsable %></td>
+          <td><%= @damage_sample.group.name%></td>
+          <!-- .first_tag + " -> ..." -->
+          <td><%= @damage_sample.usda %></td>
+          <td><%= short_status(@damage_sample) %></td> <!--TODO check if it works everywhere-->
+        </tr>
+    </tbody>
+  </table>
+  <br>
+
+  <table class = "table table-striped display-weight">
+    <thead>
+      <tr>
+        <th>Peso muestra</th>
+        <th><%=@damage_sample.sample_weight%> g</th>
+      </tr>
+    </thead>
+  </table>
+
+
+  <br>
+  <table class = "table table-striped display-damages">
+    <thead>
+      <tr>
+        <th>Daño</th>
+        <th>g</th>
+        <th>%</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <%@damages_list.each do |dam|%>
+        <tr>
+          <td><%=translate_damage(dam)%></td>
+          <td><%=@damage_sample.send(dam)%></td>
+          <td><%=round_or_nil(@damage_sample.send(dam+ "_perc"), 1)%></td>
+        </tr>
+      <%end%>
+      <tr class = "total success">
+        <td>Total</td>
+        <td><%=@damage_sample.total_damages%></td>
+        <td><%=@damage_sample.total_damages_perc.round(1)%></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+
+  <div class = "links-below-show" >
+  <%= link_to 'Atrás', :back,  class: "btn btn-primary btn-xs" %>
+</div>
+</div>
+
+<br>

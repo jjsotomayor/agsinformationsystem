@@ -11,7 +11,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
 
 <ul class="nav navbar-nav">
-  <!-- NOTE Esta es una fuente de tiempos excesivos  -->
+  <!-- NOTE Esta es una fuente de tiempos excesivos
+        Podria ir a buscar un arreglo con accesos y recorrerlo-->
   <!--TODO Que pasa aqui con el acceso al laboratorio, que no es un producto sino un proceso  -->
       <% if logged_user.has_access_to?("laboratorio")%>
         <%= render 'shared/quality_control_menu/laboratorio_li'%>
@@ -21,7 +22,7 @@
         <%= render 'shared/quality_control_menu/recepción_fresco_li'%>
       <% end%>
 
-      <% if logged_user.has_access_to?("recepcion seco")%>
+      <% if logged_user.has_access_to?("recepcion_seco")%>
         <%= render 'shared/quality_control_menu/recepción_seco_li'%>
       <% end%>
 

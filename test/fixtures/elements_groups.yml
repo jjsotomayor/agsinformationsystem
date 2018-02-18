@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_tag: MyString
+  last_tag: MyString
+  pre: MyString
+  first: 1
+  last: 1
+  provider: "prov"
+  lot: MyString
+  product_type: secado
+  drying_method: dm2
+  color: 1
+
+two:
+  first_tag: MyString
+  last_tag: MyString
+  pre: MyString
+  first: 1
+  last: 1
+  provider: "prov"
+  lot: MyString
+  product_type: secado
+  drying_method: dm2
+  color: 1

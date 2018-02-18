@@ -1,5 +1,6 @@
 class SorbateSample < ApplicationRecord
   include SoftDeletable
+  include AllSamplesMethods
   include Methods
   include ProcessIndependentSamplesModels
   include SamplesModelMethods
@@ -7,6 +8,7 @@ class SorbateSample < ApplicationRecord
   enum status: [:rechazado, :aprobado, :pendiente]
 
   belongs_to :element
+  delegate :product_type, :to => :element, :allow_nil => true
 
   # before_validation :calculate_status
 

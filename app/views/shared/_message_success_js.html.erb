@@ -32,7 +32,7 @@
     <%msg = ""%>
   <%end%>
 
-  <%color = sample.element.color%>
+  <%color = sample.parent_color%>
   <%if color.in?(["azul", "verde", "amarillo", "rojo"])%>
     <%msg << " - Color prod: #{color.upcase}" %>
   <%end%>

@@ -86,6 +86,54 @@ module AccessControl
   end
 
   ####################################################
+  ############ Access Elements_group ################
+  ####################################################
+  def can_see_groups?
+    role_belongs_to?(['admin', 'jefe_calidad', 'UserControl', 'lector'])
+  end
+
+  def can_create_group?
+    role = get_role_or_nil
+    if role == 'UserControl' and logged_user.has_access_to?("recepcion_seco")
+      return true
+    elsif role.in?(['admin', 'jefe_calidad'])
+      return true
+    end
+    false
+  end
+
+  def can_update_group?(group)
+    role = get_role_or_nil
+    if role == 'UserControl' and logged_user.has_access_to?("recepcion_seco") and Time.now - group.created_at < 2*3600# 1 horas
+      return true
+    elsif role.in?(['admin', 'jefe_calidad'])
+      return true
+    end
+    false
+  end
+
+  def can_add_remove_element_of_group?(group)
+    role = get_role_or_nil
+    if role == 'UserControl' and logged_user.has_access_to?("recepcion_seco") and Time.now - group.created_at < 2*3600# 1 horas
+      return true
+    elsif role.in?(['admin', 'jefe_calidad'])
+      return true
+    end
+    false
+  end
+
+  def can_destroy_group?(group)
+    role = get_role_or_nil
+    if role.in?(['UserControl']) and logged_user.has_access_to?("recepcion_seco") and Time.now - group.created_at < 2*3600# 1 horas
+      return true
+    elsif role.in?(['admin', 'jefe_calidad'])
+      return true
+    end
+    false
+  end
+
+
+  ####################################################
   ################### Mensajes #######################
 
   def not_allowed
@@ -104,9 +152,7 @@ module AccessControl
   # Retorna can_destroy?, message. Message contiene el error
   def can_destroy_this_element?(logged_user, element)
     # Asume que ya se chequeo que usuario esta logueado
-
-    if logged_user.role.name == "jefe_calidad"
-
+    if logged_user.role.name.in?(["jefe_calidad", "admin"])
       if element.has_entered_warehouse?
         message = {type: :error,
                   title: "No puedes eliminar producto que haya ingresado a bodega"}

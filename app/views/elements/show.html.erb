@@ -1,5 +1,5 @@
 <%= render 'shared/message_js', message: @message if @message %>
-
+<!-- FIXME links te permiten acceder a grupos que es peligroso  -->
 <div class= "container-table">
 <h2 class= "centered separated">
   <div class = "<%= translate_color(@element.color)+ " box"%>"> </div>
@@ -7,12 +7,17 @@
   <div class = "<%= translate_color(@element.color)+ " box"%>"> </div>
 </h2>
 
+<% if @group_member %>
+  <h4>Grupo: <%= link_or_group_name(@element.group) %></h4>
+<% end %>
+
 <!-- TODO Se podria agregar una tablita que muestre cant. de muestras de cada tipo  -->
 <table class = "table table-striped table-tight">
   <thead>
     <tr>
       <th>#</th>
       <th>Producto</th>
+      <th>Proveedor</th>
       <th>Lote</th>
       <th>Secado</th>
       <th>Items</th>
@@ -44,6 +49,7 @@
         <tr class= "<%= colored_rows_with_color(@element.color)%>" >
         <td><%= @element.id %></td>
         <td><%= @product_type.upcase if @product_type %></td>
+        <td><%= @element.provider %></td>
         <td><%= @element.lot %></td>
         <td><%= @element.drying_method.name if @element.drying_method%></td>
         <td><%= first_last_item(@element)%></td>
@@ -89,7 +95,11 @@
           <th>#</th>
           <th></th>
 
-          <%=common_table_headers%>
+          <th>Resp.</th>
+
+          <th><%= @group_member ? "Tarjas" : "Tarja" %></th>
+          <th>Peso muest. (gr)</th>
+
           <th>USDA</th>
           <th>DF07</th>
 
@@ -105,7 +115,12 @@
             <td><%= damage_sample.counter %></td>
             <td><%= date_time(damage_sample.created_at)%></td>
 
-            <%=common_table_body(damage_sample)%>
+            <td><%= damage_sample.responsable.truncate(7) %></td>
+
+            <td><%= @group_member ? link_or_group_name(damage_sample.group) : damage_sample.element.tag %></td>
+
+            <td><%= round_or_nil(damage_sample.sample_weight).to_s %></td>
+
             <td><%= damage_sample.usda %></td>
             <td><%= short_status(damage_sample) %></td>
 
@@ -113,11 +128,14 @@
             <%=table_body_damages(damage_sample, "%")%>
             <td><%=damage_sample.total_damages_perc.round(1)%></td>
 
-            <td><%= link_show_sample(damage_sample, "damage_sample", @product_type) %></td>
-            <% if access_edit_delete_sample_button %>
-              <td><%= link_edit_sample(damage_sample, "damage_sample", @product_type) %></td>
-              <td><%= link_delete_sample(damage_sample, "damage_sample", @product_type) %></td>
+            <% if !@group_member %>
+              <td><%= link_show_sample(damage_sample, "damage_sample", @product_type) %></td>
+              <% if access_edit_delete_sample_button %>
+                <td><%= link_edit_sample(damage_sample, "damage_sample", @product_type) %></td>
+                <td><%= link_delete_sample(damage_sample, "damage_sample", @product_type) %></td>
+              <% end %>
             <% end %>
+
           </tr>
         <% end %>
       </tbody>
@@ -137,7 +155,7 @@
           <th>#</th>
           <th>Creación</th>
           <th>Responsable</th>
-          <th>Tarja</th>
+          <th><%= @group_member ? "Tarjas" : "Tarja" %></th>
           <th>Frutos x libra</th>
           <th>Calibre</th>
           <th>Desviación</th>
@@ -153,7 +171,8 @@
             <td><%= caliber_sample.counter %></td>
             <td><%= date_time(caliber_sample.created_at) %></td>
             <td><%= caliber_sample.responsable.truncate(14) %></td>
-            <td><%= caliber_sample.element.tag %></td>
+            <td><%= @group_member ? link_or_group_name(caliber_sample.group) : caliber_sample.element.tag %></td>
+
             <td><%= caliber_sample.fruits_per_pound %></td>
             <td><%= caliber_sample.caliber.name %></td>
 
@@ -165,11 +184,14 @@
               <td>no aplica</td>
             <%end%>
 
-            <td><%= link_show_sample(caliber_sample, "caliber_sample", @product_type) %></td>
-            <% if access_edit_delete_sample_button %>
-              <td><%= link_edit_sample(caliber_sample, "caliber_sample", @product_type) %></td>
-              <td><%= link_delete_sample(caliber_sample, "caliber_sample", @product_type) %></td>
+            <% if !@group_member %>
+              <td><%= link_show_sample(caliber_sample, "caliber_sample", @product_type) %></td>
+              <% if access_edit_delete_sample_button %>
+                <td><%= link_edit_sample(caliber_sample, "caliber_sample", @product_type) %></td>
+                <td><%= link_delete_sample(caliber_sample, "caliber_sample", @product_type) %></td>
+              <% end %>
             <% end %>
+
           </tr>
         <% end %>
       </tbody>
@@ -190,7 +212,7 @@
           <th>#</th>
           <th>Creación</th>
           <th>Responsable</th>
-          <th>Tarja</th>
+          <th><%= @group_member ? "Tarjas" : "Tarja" %></th>
           <th>Humedad</th>
           <th colspan="3"></th>
         </tr>
@@ -202,14 +224,19 @@
             <td><%= humidity_sample.counter %></td>
             <td><%= date_time(humidity_sample.created_at) %></td>
             <td><%= humidity_sample.responsable %></td>
-            <td><%= humidity_sample.element.tag %></td>
+
+            <td><%= @group_member ? link_or_group_name(humidity_sample.group) : humidity_sample.element.tag %></td>
+
             <td><%= humidity_sample.humidity %></td>
 
-            <td><%= link_to 'Ver', humidity_sample,  class: "btn btn-primary btn-xs" %></td>
-            <% if access_edit_delete_sample_button %>
-              <td><%= link_to 'Editar', edit_humidity_sample_path(humidity_sample),  class: "btn btn-warning btn-xs" %></td>
-              <td><%= link_to 'Eliminar', humidity_sample, method: :delete, data: { confirm: 'Estas seguro?' },  class: "btn btn-danger btn-xs" %></td>
+            <% if !@group_member %>
+              <td><%= link_to 'Ver', humidity_sample,  class: "btn btn-primary btn-xs" %></td>
+              <% if access_edit_delete_sample_button %>
+                <td><%= link_to 'Editar', edit_humidity_sample_path(humidity_sample),  class: "btn btn-warning btn-xs" %></td>
+                <td><%= link_to 'Eliminar', humidity_sample, method: :delete, data: { confirm: 'Estas seguro?' },  class: "btn btn-danger btn-xs" %></td>
+              <% end %>
             <% end %>
+
           </tr>
         <% end %>
       </tbody>

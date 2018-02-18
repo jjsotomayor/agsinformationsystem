@@ -25,7 +25,7 @@ module Util
         "insect_injury", "mold", "dirt", "foreign_material",
          "insect_infestation", "decay"
       ],
-      "recepcion seco": [
+      "recepcion_seco": [
         "off_color", "poor_texture", "scars", "skin_or_flesh_damage",
         "fermentation", "heat_damage", "insect_injury", "mold", "dirt",
         "foreign_material", "insect_infestation", "decay"
@@ -112,7 +112,7 @@ module Util
   #############################################
 
   def self.color_humidity_limits(process)
-    process = "calibrado" if process.in?(["recepcion seco", "secado", "seam", "cn"])
+    process = "calibrado" if process.in?(["recepcion_seco", "secado", "seam", "cn"])
 
     limits = {
       calibrado: [
@@ -161,7 +161,7 @@ module Util
   # sum (:all y :not_all) determina si se usan todos los daños o no para la suma
   def self.color_damage_limits(process)
     # TODO: revisar que recepcion seco entren al q corresponde
-    process = "calibrado" if process.in?(["recepcion seco", "secado", "seam", "cn"])
+    process = "calibrado" if process.in?(["recepcion_seco", "secado", "seam", "cn"])
     process = "tsc" if process == "tcc"
 
     limits = {
@@ -184,7 +184,7 @@ module Util
   # Retorna lista de las samples necesarias para calcular color
   def self.required_samples(process) # Para determinar color!
     # TODO: revisar que recepcion seco entren al q corresponde
-    process = "calibrado" if process.in?(["recepcion seco", "secado", "seam", "cn"])
+    process = "calibrado" if process.in?(["recepcion_seco", "secado", "seam", "cn"])
     samples = {
       calibrado: [:damage, :humidity],
       tcc: [:damage, :humidity, :sorbate],
@@ -196,7 +196,7 @@ module Util
   # Retorna todas las samples tomables para cada proceso
   def self.all_required_samples(process)
     process = "calibrado" if process.in?(["seam", "cn"])
-    process = "secado" if process.in?(["recepcion seco"])
+    process = "secado" if process.in?(["recepcion_seco"])
     samples = {
       secado: [:damage, :caliber, :humidity],
       calibrado: [:damage, :caliber, :deviation, :humidity],
@@ -215,5 +215,24 @@ module Util
     [:Calibrado, :TSC, :TCC, :SEAM, :CN, :Mejoramiento, :Despacho]
   end
 
+  ##############################################
+  ################ OTROS #######################
+  ##############################################
+
+  # Retorna por donde encontrar las muestras para cada proceso.
+  def self.group_or_elem(process)
+    # NOTE Se rompera si se agregan muestras grupales en otros procesos
+    process == "recepcion_seco" ? :group : :elem
+    # Retorna solo group si es recepcion_seco
+  end
+
+  # Retorna todos los procesos disponibles
+  def self.available_processes
+    ["recepcion_seco", "secado", "calibrado", "seam", "cn", "tsc", "tcc"]
+  end
+
+  def self.available_samples_for_groups
+    [:damage, :caliber, :humidity]
+  end
 
 end

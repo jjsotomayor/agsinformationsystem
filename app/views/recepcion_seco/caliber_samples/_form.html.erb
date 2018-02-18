@@ -1,0 +1,24 @@
+  <% url = set_url_for_form(type, caliber_sample) %>
+  <% method =  set_form_method(type)%>
+
+  <%= form_for(caliber_sample,  url: url, method: method, html: {class: 'inside-new-form validatable'}) do |f| %>
+  <!-- , autocomplete: :off -->
+
+    <%= f.hidden_field :responsable, value: logged_user.name %>
+
+    <div class="field">
+      <%= f.label :tarjas  %>
+      <%= field_elements_group(f, type, "", caliber_sample)%>
+    </div>
+
+    <div class="field">
+      <%= f.label :"peso_muestra (g)" %>
+      <%= field_sample_weight(f) %>
+    </div>
+    <div class="field">
+      <%= f.label :frutos_en_muestra %>
+      <%= f.number_field :fruits_in_sample, min:0 %>
+    </div>
+
+    <%= render 'shared/buttons', f: f, form_type: type%>
+  <% end %>

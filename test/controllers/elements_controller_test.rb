@@ -45,12 +45,13 @@ class ElementsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to element_url(@element)
   end
 
-  # No hay destroy element hasta ahora
   test "should/shouldnt destroy element" do
     @element = elements(:no_samples_elem)
 
-    ['admin', 'lector', 'jefe_bodega', 'op_bodega'].each do |role_name|
+    ['lector', 'jefe_bodega', 'op_bodega'].each do |role_name|
       p role_name
+      p "Tratando borrar algo sin muestras"
+      p "samples_count= #{@element.samples_count}"
       @user = get_user(role_name)
       login_as(@user)
       assert_difference('Element.count', 0) do
@@ -58,12 +59,13 @@ class ElementsControllerTest < ActionDispatch::IntegrationTest
       end
       # assert_redirected_to root_path
     end
-
-    ['jefe_calidad'].each do |role_name|
+    # => 'admin',
+    ['admin', 'jefe_calidad'].each do |role_name|
       @user = get_user(role_name)
       login_as(@user)
 
       # Element No tiene muestra y no ha entrado a bodega
+      @element = create_element()
       p "samples_count= #{@element.samples_count}"
       assert_difference('Element.count', -1) do
         delete element_url(@element)
@@ -73,7 +75,7 @@ class ElementsControllerTest < ActionDispatch::IntegrationTest
 
       # Element ha entrado a bodega
       @element = create_element()
-      @element.update(warehouse_id: 1, stored_at: Time.now)
+      @element.update(warehouse_id: warehouses(:one).id, stored_at: Time.now)
       assert_difference('Element.count', 0) do
         delete element_url(@element)
       end

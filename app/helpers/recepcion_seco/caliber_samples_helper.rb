@@ -1,0 +1,2 @@
+module RecepcionSeco::CaliberSamplesHelper
+end

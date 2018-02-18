@@ -1,11 +1,13 @@
 class CarozoSample < ApplicationRecord
   include SoftDeletable
+  include AllSamplesMethods
   include Methods
   include ProcessIndependentSamplesModels
   include SamplesModelMethods
 
   enum status: [:rechazado, :aprobado]
   belongs_to :element
+  delegate :product_type, :to => :element, :allow_nil => true
 
   before_validation :calculate_percentage
 

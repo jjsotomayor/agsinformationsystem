@@ -3,6 +3,7 @@ class ElementsController < ApplicationController
   before_action :check_permissions
   before_action :set_message, only: [:show, :index]
   before_action :set_element, only: [:show, :edit, :update, :destroy]
+  before_action :check_not_modifying_group_element, only: [:edit, :update]
 
   # GET /elements
   def index
@@ -40,6 +41,7 @@ class ElementsController < ApplicationController
 
   # GET /elements/elems_in_wh_and_quality.xlsx
   def elems_in_wh_and_quality
+    # Los Secado de process rec_seco los muestra por tarja todos separados
     respond_to do |format|
       format.xlsx {
         @elements = Element.all.includes(:product_type, :drying_method, :warehouse)#.to_a
@@ -56,12 +58,22 @@ class ElementsController < ApplicationController
         logger.info {"Descargando elems_in_wh_and_quality"}
         logger.info {"Tamaño en memoria #{ActiveSupport::JSON.encode(@elements).size} bytes"}
 
+        # Los elems fueron filtrados por cosas comunes a groups
+        # Obtengo todos los elems_ids que cumplen los parametros!
         elems_ids = @elements.ids
-        @dam_samples = DamageSample.where(element_id: elems_ids).to_a
-        @cal_samples = CaliberSample.where(element_id: elems_ids).to_a#includes(:caliber, :deviation_sample).to_a
+        group_ids = @elements.distinct.pluck(:elements_group_id)
+        # p "Groups IDS"
+        # p group_ids
+        # Busco las muestras que pertenezcan a los elements o group_samples(para damage, caliber and humidity).
+        @dam_samples = DamageSample.where(element_id: elems_ids).or(
+                        DamageSample.where(elements_group_id: group_ids)).to_a
+        @cal_samples = CaliberSample.where(element_id: elems_ids).or( #includes(:caliber, :deviation_sample).to_a
+                        CaliberSample.where(elements_group_id: group_ids)).to_a
         cal_samples_ids = @cal_samples.map {|cs| cs.id}
         @dev_samples = DeviationSample.where(caliber_sample_id: cal_samples_ids).select(:caliber_sample_id, :deviation).to_a
-        @humidity_samples = HumiditySample.where(element_id: elems_ids).select(:element_id, :humidity).to_a
+        @humidity_samples = HumiditySample.where(element_id: elems_ids).or(
+                            HumiditySample.where(elements_group_id: group_ids))
+                            .select(:element_id, :humidity, :elements_group_id).to_a
         @sorbate_samples = SorbateSample.where(element_id: elems_ids).select(:element_id, :sorbate).to_a
         @carozo_samples = CarozoSample.where(element_id: elems_ids).select(:element_id, :carozo_percentage).to_a
 
@@ -73,10 +85,11 @@ class ElementsController < ApplicationController
 
   # GET /elements/1
   def show
+    @group_member = @element.belongs_to_group?
     @product_type = @element.product_type ? @element.product_type.name : nil
-    @dam_samples = @element.damage_samples.ord if show_samples?("damage_sample", @product_type)
-    @cal_samples = @element.caliber_samples.ord if show_samples?("caliber_sample", @product_type)
-    @humidity_samples = @element.humidity_samples.ord if show_samples?("humidity_sample", @product_type)
+    @dam_samples = @element.get_damage_samples.ord if show_samples?("damage_sample", @product_type)
+    @cal_samples = @element.get_caliber_samples.ord if show_samples?("caliber_sample", @product_type)
+    @humidity_samples = @element.get_humidity_samples.ord if show_samples?("humidity_sample", @product_type)
     @sorbate_samples = @element.sorbate_samples.ord if show_samples?("sorbate_sample", @product_type)
     @carozo_samples = @element.carozo_samples.ord if show_samples?("carozo_sample", @product_type)
 
@@ -128,7 +141,8 @@ class ElementsController < ApplicationController
 
   # DELETE /elements/1
   def destroy
-    # La única eliminacion es JefaCC de productos que no tengan muestras y no hayan pasado por bodega
+    # La única eliminacion es JefaCC, de productos que no tengan muestras y no hayan pasado por bodega
+    # NOTE Esta verificacion si puede eliminar no deberia hacerse en el modelo
     can_destroy, message = can_destroy_this_element?(logged_user, @element)
 
     if can_destroy
@@ -173,5 +187,13 @@ class ElementsController < ApplicationController
         return
       end
       redirect_to root_path, alert: not_allowed
+    end
+
+    def check_not_modifying_group_element
+      if @element.belongs_to_group?
+        redirect_back(fallback_location: root_path,
+          alert: "No es posible editar datos de una tarja perteneciente a grupo,
+           edita el grupo directamente.")
+      end
     end
 end

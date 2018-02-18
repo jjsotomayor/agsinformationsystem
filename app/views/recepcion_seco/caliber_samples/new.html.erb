@@ -1,0 +1,37 @@
+<%= render 'shared/message_success_js', sample: @success_sample if  @success_sample%>
+<%= render 'shared/message_wrong_process_error_js', tag: @element.tag if session[:display_wrong_process_alert]%>
+<%= render 'shared/errors', sample: @caliber_sample%>
+
+<%= render 'shared_caliber_samples/form_calling', caliber_sample: @caliber_sample, type: "new"%>
+
+
+<div class="container-last-samples caliber">
+  <h3>Tus ultimas muestras de calibre en <%=process_name%></h3>
+<table class = "table table-striped">
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Resp.</th>
+      <th>Grupo de tarjas</th>
+      <th>Frutos por libra</th>
+      <th>Calib.</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @caliber_samples.each do |caliber_sample| %>
+      <tr>
+        <td><%= time(caliber_sample.created_at) %></td>
+        <td><%= caliber_sample.responsable.truncate(6) %></td>
+        <td><%= group_link(caliber_sample.group) %></td>
+        <td><%= caliber_sample.fruits_per_pound %></td>
+        <td><%= caliber_sample.caliber.name %></td>
+
+        <td><%= link_to 'Editar', edit_recepcion_seco_caliber_sample_path(caliber_sample),  class: "btn btn-warning btn-xs" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Todas las muestras de calibre', recepcion_seco_caliber_samples_path,  class: "btn btn-primary btn-xs" %>
+</div>

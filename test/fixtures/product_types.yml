@@ -1,8 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 
-recepcion:
-  name: "recepcion seco"
+# Recepcion_seco es un operation, se distingue pq es element grupal
+# recepcion:
+#   name: "recepcion_seco"
 
 secado:
   name: secado

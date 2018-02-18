@@ -35,7 +35,7 @@ def create_product_types
   product_types = # products type / proceso
   [
     { name: "fresco", humidity_min: nil, humidity_max: nil} ,
-    { name: "recepcion seco", humidity_min: nil, humidity_max: nil} ,
+    # { name: "recepcion_seco", humidity_min: nil, humidity_max: nil} ,
     { name: "secado", humidity_min: 16, humidity_max: 19} , # Es el unico que se puede almacenar desde 2 interfaces.
     { name: "calibrado", humidity_min: nil, humidity_max: 20} ,
     { name: "seam", humidity_min: nil, humidity_max: 22} ,
@@ -59,7 +59,7 @@ def create_operations
   operaciones = [ # = PRocesos
     { name: "laboratorio"} ,
     { name: "fresco"} ,
-    { name: "recepcion seco"} ,
+    { name: "recepcion_seco"} ,
     { name: "secado"} , # Es el unico que se puede almacenar desde 2 interfaces.
     { name: "calibrado"} ,
     { name: "seam"} ,

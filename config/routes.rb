@@ -57,6 +57,13 @@ Rails.application.routes.draw do
   # resources :drying_methods
   # resources :product_types
 
+  resources :elements_groups do
+    member do
+      post :add_element# => , as: :authorize_user
+      post :remove_element
+    end
+  end
+
   get 'elements/elems_in_wh_and_quality', as: :elems_in_wh_and_quality
   resources :elements
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -68,10 +75,16 @@ Rails.application.routes.draw do
   # resources :carozo_samples
   resources :sorbate_samples
   resources :humidity_samples
+  resources :group_humidity_samples
 
 
 
   namespace :calibrado do
+    resources :caliber_samples
+    resources :damage_samples
+  end
+
+  namespace :recepcion_seco do
     resources :caliber_samples
     resources :damage_samples
   end
