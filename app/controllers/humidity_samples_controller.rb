@@ -36,7 +36,11 @@ class HumiditySamplesController < ApplicationController
     @humidity_sample.element = @element
 
     #NOTE: No se necesita if !status, pq status identifica error no ocurrible aca
-    if @humidity_sample.save
+    if !status
+      @humidity_samples = HumiditySample.get_recent_samples(logged_user.name).group_or_elem(@group_elem).first(3)
+      session[:display_wrong_process_alert] = true
+      render :new
+    elsif @humidity_sample.save
       session[:display_created_alert] = true
       redirect_to new_humidity_sample_path success_id: @humidity_sample.id
     else
@@ -52,6 +56,10 @@ class HumiditySamplesController < ApplicationController
     if params[:tag] != @humidity_sample.element.tag
       @element, status = Element.change_element_of_sample(@humidity_sample, element_params)
       #Aqui no hay process / product_type => No hay wrong process error
+      if !status
+        session[:display_wrong_process_alert] = true
+        return render :edit
+      end
     end
 
     if @humidity_sample.update(humidity_sample_params)

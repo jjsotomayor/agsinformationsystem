@@ -115,7 +115,7 @@ class Element < ApplicationRecord
     end
   end
 
-
+  # Permite crear/encontrar elemento para las muestras de elementos (no elementos de grupo)
   # Retorna [elemento, Boolean] Boolean true si esta todo Ok
   def self.create_element_if_doesnt_exist(element_params, process_name = nil)
     # TODO Aqui seria necesario tener un lock y una transaction al parecer
@@ -124,6 +124,10 @@ class Element < ApplicationRecord
     # Si el proceso del elemento almacenado es distinto al proceso actual
     if @element and @element.product_type and process_name and @element.product_type.name != process_name
       logger.info "Muestra RECIEN almacenada ES DE OTRO PROCESO #{@element.product_type.name}"
+      return @element, false
+    elsif @element and @element.group #El elemento encontrado es un elemento grupal
+      # NOTE Msje mostrado a usuario será el mismo que para WrONG PROCESS ERROR
+      logger.info "Tarja de muestra RECIEN ingresada corresponde a tarja de grupo! No guardada"
       return @element, false
     end
 

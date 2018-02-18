@@ -37,7 +37,11 @@ class SorbateSamplesController < ApplicationController
     @sorbate_sample.element = @element
 
     #NOTE: No se necesita if !status, pq status identifica error no ocurrible aca
-    if @sorbate_sample.save
+    if !status
+      @sorbate_samples = SorbateSample.get_recent_samples(logged_user.name).first(3)
+      session[:display_wrong_process_alert] = true
+      render :new
+    elsif @sorbate_sample.save
       session[:display_created_alert] = true
       redirect_to new_sorbate_sample_path success_id: @sorbate_sample.id
     else
@@ -57,6 +61,10 @@ class SorbateSamplesController < ApplicationController
     if params[:tag] != @sorbate_sample.element.tag
       @element, status = Element.change_element_of_sample(@sorbate_sample, element_params)
       #Aqui no hay process / product_type => No hay wrong process error
+      if !status
+        session[:display_wrong_process_alert] = true
+        return render :edit
+      end
     end
 
     if @sorbate_sample.update(sorbate_sample_params)

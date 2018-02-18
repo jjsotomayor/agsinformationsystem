@@ -1,3 +1,5 @@
+<%= render 'shared/message_wrong_process_error_js', tag: @element.tag if session[:display_wrong_process_alert]%>
+
 <% if @sorbate_sample.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(@sorbate_sample.errors.count, "error") %> prohibited this sorbate_sample from being saved:</h2>

@@ -1,4 +1,5 @@
 <%= render 'shared/message_success_js', sample: @success_sample if  @success_sample%>
+<%= render 'shared/message_wrong_process_error_js', tag: @element.tag if session[:display_wrong_process_alert]%>
 <%= render 'form', sorbate_sample: @sorbate_sample %>
 
 <div class="container-last-samples sorbate">
