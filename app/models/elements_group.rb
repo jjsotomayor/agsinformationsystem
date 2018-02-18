@@ -103,6 +103,7 @@ class ElementsGroup < ApplicationRecord
     new_elem = Element.new(attrs)
 
     if new_elem.save
+      self.update_first_last_tag
       return true, {}
     else
       return false, {type: :error, title: "No fue posible crear la tarja"}
@@ -119,7 +120,25 @@ class ElementsGroup < ApplicationRecord
 
     # Se destruye el element
     elem.destroy
+    self.update_first_last_tag
     return true, {}
+  end
+
+  def update_first_last_tag
+    numbers = self.elements.pluck(:tag).map {|tag| tag.scan(/\d+/).last.to_i}
+    min = numbers.min
+    max = numbers.max
+
+    if min != self.first or max != self.last
+      first_tag = self.pre + min.to_s.rjust(self.int_pattern, '0')
+      last_tag = self.pre + max.to_s.rjust(self.int_pattern, '0')
+      self.update(
+        first_tag: first_tag,
+        last_tag: last_tag,
+        first: min,
+        last: max
+      )
+    end
   end
 
   # Cada vez que se ejecuta un update se corre esto!

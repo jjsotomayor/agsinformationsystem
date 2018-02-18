@@ -3,7 +3,7 @@ require 'test_helper'
 class GroupHumiditySamplesControllerTest < ActionDispatch::IntegrationTest
   setup do
     prepare_all
-    p "ALOJA!!!!!!!!!!!!!!!!!!!"
+    # p "ALOJA!!!!!!!!!!!!!!!!!!!"
   end
 
   test "should get index" do

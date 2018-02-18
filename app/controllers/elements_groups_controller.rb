@@ -14,7 +14,8 @@ class ElementsGroupsController < ApplicationController
 
   # GET /elements_groups/1
   def show
-    @elements = @elements_group.elements.to_a#pluck(:id, :tag)
+    # NOTE Si hay tarjas q no tienen "0's padding" (ej: x1 -> x20) se ordenan mal
+    @elements = @elements_group.elements.order(:tag).to_a#pluck(:id, :tag)
     @q = @elements.count
 
     @product_type = @elements_group.product_type ? @elements_group.product_type.name : nil
