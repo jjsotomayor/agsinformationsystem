@@ -80,7 +80,9 @@ class SorbateSamplesController < ApplicationController
   def destroy
     # @sorbate_sample.soft_delete
     @sorbate_sample.destroy
-    redirect_to sorbate_samples_url, notice: 'Muestra de sorbato eliminada.'
+    # redirect_to sorbate_samples_url, notice: 'Muestra de sorbato eliminada.'
+    # Hace que se caiga si se elimina desde show, pq trata de volver
+    redirect_back(fallback_location: root_path, notice: 'Muestra de sorbato eliminada.')
   end
 
   private

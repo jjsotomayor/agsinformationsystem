@@ -76,7 +76,9 @@ class DamageSamplesController < ApplicationController
   def destroy
     # @damage_sample.soft_delete
     @damage_sample.destroy
-    redirect_to send(@process+"_damage_samples_url"), notice: 'Muestra de daños eliminada'
+    # redirect_to send(@process+"_damage_samples_url"), notice: 'Muestra de daños eliminada'
+    # Hace que se caiga si se elimina desde show, pq trata de volver
+    redirect_back(fallback_location: root_path, notice: 'Muestra de daños eliminada')
   end
 
   private

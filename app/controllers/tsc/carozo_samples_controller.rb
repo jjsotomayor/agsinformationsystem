@@ -72,7 +72,9 @@ class Tsc::CarozoSamplesController < ApplicationController
   def destroy
     # @carozo_sample.soft_delete
     @carozo_sample.destroy
-    redirect_to tsc_carozo_samples_url, notice: 'Muestra de carozo eliminada.'
+    # redirect_to tsc_carozo_samples_url, notice: 'Muestra de carozo eliminada.'
+    # Hace que se caiga si se elimina desde show, pq trata de volver
+    redirect_back(fallback_location: root_path, notice: 'Muestra de carozo eliminada')
   end
 
   private

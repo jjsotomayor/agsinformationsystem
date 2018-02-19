@@ -90,7 +90,9 @@ class CaliberSamplesController < ApplicationController
   def destroy
     # @caliber_sample.soft_delete
     @caliber_sample.destroy
-    redirect_to send(@process+"_caliber_samples_url"), notice: 'Muestra de calibre eliminada'
+    # redirect_to send(@process+"_caliber_samples_url"), notice: 'Muestra de calibre eliminada'
+    # Hace que se caiga si se elimina desde show, pq trata de volver
+    redirect_back(fallback_location: root_path, notice: 'Muestra de calibre eliminada')
   end
 
   private

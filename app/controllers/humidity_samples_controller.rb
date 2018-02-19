@@ -75,8 +75,9 @@ class HumiditySamplesController < ApplicationController
   def destroy
     # @humidity_sample.soft_delete
     @humidity_sample.destroy
-    # redirect_to humidity_samples_url, notice: 'Muestra de humedad eliminada.'
-    redirect_to({action: 'index'}, notice: 'Muestra de humedad eliminada.')
+    # redirect_to({action: 'index'}, notice: 'Muestra de humedad eliminada.')
+    # Hace que se caiga si se elimina desde show, pq trata de volver
+    redirect_back(fallback_location: root_path, notice: 'Muestra de humedad eliminada.')
   end
 
   private
