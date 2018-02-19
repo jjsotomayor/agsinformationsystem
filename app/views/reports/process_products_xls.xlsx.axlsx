@@ -22,7 +22,8 @@ wb.styles do |style|
     first_row << "Sorbato(ppm)" if :sorbate.in?(@required_samples)
     first_row << "Carozo en caja %" if :carozo.in?(@required_samples)
     if :damage.in?(@required_samples)
-      first_row << "Daño total(%)"
+      # first_row << "Daño total(%)"
+      first_row = first_row + ["USDA", "Df07", "Daño total(%)"]
       @damages_list.each do |dam|
         first_row << translate_damage(dam)
       end
@@ -111,6 +112,8 @@ wb.styles do |style|
 
         # Damage Sample
         if damage_s[i]
+          row_sample << damage_s[i].usda
+          row_sample << damage_s[i].df07
           row_sample << damage_s[i].total_damages_perc.round(1)
           @damages_list.each do |dam|
             row_sample << round_or_nil(damage_s[i].send(dam + "_perc"))#.to_s
@@ -136,7 +139,8 @@ wb.styles do |style|
     c_sizes << 15 if :carozo.in?(@required_samples)
 
     if :damage.in?(@required_samples)
-      c_sizes << 13 # "Daño total"
+      # c_sizes << 13 # "Daño total"
+      c_sizes = c_sizes + [7, 7, 13] # usda, df07, "Daño total"
       @damages_list.each do |dam|
         # Los que quiero que se vean bien!
          if dam.in? ["scars", "skin_or_flesh_damage", "dirt", "foreign_material", "vegetal_foreign_material"]
