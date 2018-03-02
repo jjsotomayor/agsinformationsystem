@@ -23,7 +23,7 @@ class SamplesAverage < ApplicationRecord
     end
 
     cal_samples = parent.caliber_samples.includes(:caliber, :deviation_sample)
-    self.fruits_per_pound = cal_samples.average(:fruits_per_pound)
+    self.fruits_per_pound = cal_samples.average(:fruits_per_pound).round(1)
     self.deviation = cal_samples.average(:deviation)
     self.humidity = parent.humidity_samples.average(:humidity)
 

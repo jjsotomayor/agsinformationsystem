@@ -3,9 +3,9 @@ module RefreshSamplesAverages
   extend ActiveSupport::Concern
 
   included do
-   after_destroy :refresh_parent_samples_averages
-   # after_update :refresh_parent_samples_averages # El save lo abarca
-   after_save :refresh_parent_samples_averages
+   # after_destroy :refresh_parent_samples_averages
+   # after_save :refresh_parent_samples_averages
+   after_commit :refresh_parent_samples_averages
   end
 
   # Update los promedios que permiten generar el excel de bodega.
