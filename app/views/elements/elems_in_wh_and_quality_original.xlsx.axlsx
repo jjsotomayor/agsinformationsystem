@@ -1,3 +1,4 @@
+# NOTE UNUSED, borrar
 wb = xlsx_package.workbook
 
 # wb = xlsx_package.workbook
@@ -57,38 +58,85 @@ wb.styles do |style|
       ########### Calidad ##########
       ##############################
 
+      # NOTE Solo asume que elementos tienen muestras individuales o grupales
+      @group = elem.elements_group_id ? true : false
+      if @group
+        parent_name = :elements_group_id
+        parent = elem.group
+      else
+        parent_name = :element_id
+        parent = elem
+      end
+
+      # NOTE V1: Lo va a buscar a la base de datos
+      # NOTE V2: Lo tiene todo almacenado de antes en memoria
+
       ##############################
       ########## CAlibre ##########
       ##############################
-      row = row  << elem.samples_average.fruits_per_pound#, "Calibre"]
-      row = row  << elem.samples_average.deviation#, "Calibre"]
+      # V1:
+      # @cs = elem.caliber_samples.includes(:caliber, :deviation_sample)
+      # row = row  + [@cs.average(:fruits_per_pound), "Calibre"]
+      # @dev_s = DeviationSample.where(caliber_sample: @cs.ids)
+      # row << @dev_s.average(:deviation)
+      # row << "A/R..."
+      # V2:
+      cal_samples_arr = @cal_samples.select {|cs| cs[parent_name] == parent.id}
+      row = row  + [cal_samples_arr.sum(&:fruits_per_pound) / [cal_samples_arr.size,1].max]#, "Calibre"]
+
+      ids = cal_samples_arr.map {|cs| cs.id}
+      dev_samples_arr = @dev_samples.select {|ds| ds[:caliber_sample_id].in?(ids)}
+      row << dev_samples_arr.sum(&:deviation) / [dev_samples_arr.size,1].max
+      #row << "A/R..."
+
+
       ##############################
       ########## Humedad ##########
       ##############################
-      row << elem.samples_average.humidity
+      # V1:
+      # row << elem.humidity_samples.average(:humidity)
+      # V2:
+      arr = @humidity_samples.select {|hs| hs[parent_name] == parent.id}
+      row << arr.sum(&:humidity) / [arr.size,1].max
 
       ##############################
       ########## Sorbato ##########
       ##############################
-      row << elem.samples_average.sorbate
+      # V1:
+      # row << elem.sorbate_samples.average(:sorbate)
+      # V2:
+      arr = @sorbate_samples.select {|ss| ss[parent_name] == parent.id}
+      row << arr.sum(&:sorbate) / [arr.size,1].max
 
       ##############################
       ########## Carozo ##########
       ##############################
-      row << elem.samples_average.carozo_percentage
+      # V1:
+      # row << elem.carozo_samples.average(:carozo_percentage)
+      # V2:
+      arr = @carozo_samples.select {|cs| cs[parent_name] == parent.id}
+      row << arr.sum(&:carozo_percentage) / [arr.size,1].max
 
       ##############################
       ########## Daños ##########
       ##############################
+      # V1:
+      @dam_s = parent.damage_samples.to_a
+      size = [@dam_s.size,1].max
 
-      row << elem.samples_average.usda
-      # FIXME que pasa si no tiene muestra de daños???
-      # row <<  "-"
-      row << elem.samples_average.total_damages_perc
+      # NOTE USDA solo se esta agregando cuando hay una muestra de daños, corregir en Abril
+      if @dam_s.size == 1
+        row << @dam_s.first.usda
+      else
+        row <<  "-"
+      end
+
+      # d_total = @dam_s.sum(&:total_damages_perc) / size
+      # p "daño total = #{d_total}"
+      row << @dam_s.sum(&:total_damages_perc) / size
 
       @damages_list.each do |dam|
-        # row << @dam_s.sum(&(dam+"_perc").to_sym) / size
-        row << elem.samples_average.send((dam+"_perc").to_sym)
+        row << @dam_s.sum(&(dam+"_perc").to_sym) / size
       end
 
       sheet.add_row (row)

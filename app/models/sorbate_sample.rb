@@ -4,6 +4,7 @@ class SorbateSample < ApplicationRecord
   include Methods
   include ProcessIndependentSamplesModels
   include SamplesModelMethods
+  include RefreshSamplesAverages
 
   enum status: [:rechazado, :aprobado, :pendiente]
 

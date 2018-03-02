@@ -40,7 +40,8 @@ class ElementsController < ApplicationController
   end
 
   # GET /elements/elems_in_wh_and_quality.xlsx
-  def elems_in_wh_and_quality
+  # NOTE UNUSED, borrar
+  def elems_in_wh_and_quality_original_calculate_all_at_once
     # Los Secado de process rec_seco los muestra por tarja todos separados
     respond_to do |format|
       format.xlsx {
@@ -77,6 +78,33 @@ class ElementsController < ApplicationController
         @sorbate_samples = SorbateSample.where(element_id: elems_ids).select(:element_id, :sorbate).to_a
         @carozo_samples = CarozoSample.where(element_id: elems_ids).select(:element_id, :carozo_percentage).to_a
 
+        @damages_list = Util.damages_of_product_type(@process)
+        response.headers['Content-Disposition'] = 'attachment; filename="'+ Date.today.to_s + ' - Productos: Bodega y calidad.xlsx"'
+      }
+    end
+  end
+
+  # GET /elements/elems_in_wh_and_quality.xlsx
+  def elems_in_wh_and_quality
+    # Los Secado de process rec_seco los muestra por tarja todos separados
+    respond_to do |format|
+      format.xlsx {
+        @elements = Element.all.includes(:product_type, :drying_method, :warehouse, :samples_average)#.to_a
+
+        # Applying filters
+        f_params = params.reject{|k, v| v.blank?}
+        if !f_params[:product_type_id]
+          redirect_back(fallback_location: root_path, alert: "Debe seleccionar un proceso.")
+        end
+        @process = ProductType.find(f_params[:product_type_id]).name
+        @elements = @elements.product_type(f_params[:product_type_id]) if f_params[:product_type_id]
+        @elements = @elements.location(f_params[:location]) if f_params[:location]
+
+        logger.info {"Descargando elems_in_wh_and_quality"}
+        logger.info {"Tamaño en memoria #{ActiveSupport::JSON.encode(@elements).size} bytes"}
+
+        # Los elems fueron filtrados por cosas comunes a groups
+        # Obtengo todos los elems_ids que cumplen los parametros!
         @damages_list = Util.damages_of_product_type(@process)
         response.headers['Content-Disposition'] = 'attachment; filename="'+ Date.today.to_s + ' - Productos: Bodega y calidad.xlsx"'
       }

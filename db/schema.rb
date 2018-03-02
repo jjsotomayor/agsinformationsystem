@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180209002321) do
+ActiveRecord::Schema.define(version: 20180302034209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -264,6 +264,40 @@ ActiveRecord::Schema.define(version: 20180209002321) do
     t.index ["name"], name: "index_roles_on_name", unique: true, using: :btree
   end
 
+  create_table "samples_averages", force: :cascade do |t|
+    t.integer  "element_id"
+    t.decimal  "fruits_per_pound"
+    t.decimal  "deviation"
+    t.integer  "deviation_status"
+    t.decimal  "humidity"
+    t.decimal  "sorbate"
+    t.decimal  "carozo_percentage"
+    t.float    "off_color_perc"
+    t.float    "poor_texture_perc"
+    t.float    "scars_perc"
+    t.float    "end_cracks_perc"
+    t.float    "skin_or_flesh_damage_perc"
+    t.float    "fermentation_perc"
+    t.float    "heat_damage_perc"
+    t.float    "insect_injury_perc"
+    t.float    "mold_perc"
+    t.float    "dirt_perc"
+    t.float    "foreign_material_perc"
+    t.float    "vegetal_foreign_material_perc"
+    t.float    "insect_infestation_perc"
+    t.float    "decay_perc"
+    t.float    "deshidratado_perc"
+    t.float    "bolsa_de_agua_perc"
+    t.float    "ruset_perc"
+    t.float    "reventados_perc"
+    t.float    "carozo_perc"
+    t.float    "total_damages_perc"
+    t.integer  "usda"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["element_id"], name: "index_samples_averages_on_element_id", using: :btree
+  end
+
   create_table "sorbate_samples", force: :cascade do |t|
     t.integer  "element_id"
     t.string   "responsable",                     null: false
@@ -344,6 +378,7 @@ ActiveRecord::Schema.define(version: 20180209002321) do
   add_foreign_key "humidity_samples", "elements"
   add_foreign_key "movements", "elements"
   add_foreign_key "movements", "warehouses"
+  add_foreign_key "samples_averages", "elements"
   add_foreign_key "sorbate_samples", "elements"
   add_foreign_key "user_control_accesses", "operations"
   add_foreign_key "user_control_accesses", "user_controls"

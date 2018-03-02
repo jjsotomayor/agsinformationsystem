@@ -2,6 +2,7 @@ class CaliberSample < ApplicationRecord
   include SoftDeletable
   include AllSamplesMethods
   include Methods
+  include RefreshSamplesAverages
 
   belongs_to :element, optional: true
   belongs_to :elements_group, optional: true

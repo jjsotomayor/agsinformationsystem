@@ -6,7 +6,10 @@
 
       <%= form_tag(elems_in_wh_and_quality_path(format: :xlsx), method: :get) do %>
       <%= select_tag "product_type_id",  options_for_select(@product_types.map{|pt| [pt.name.upcase,pt.id]}), include_blank: 'Ingrese proceso', class: "margin-up-select" %>
-      <%= select_tag "location", options_for_select([["Todo", 0], ["En bodega", 1]], 1), class: "margin-up-select" %>
+      <%=
+      # select_tag "location", options_for_select([["Todo", 0], ["En bodega", 1]], 1), class: "margin-up-select"
+      select_tag "location", options_for_select([["En bodega", 1]], 1), class: "margin-up-select" 
+      %>
       <%= submit_tag 'Descargar productos bodega y calidad a Excel', name: nil, class: "btn btn-primary btn-xl close-up"%>
       <%end%>
 

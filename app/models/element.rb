@@ -21,6 +21,8 @@ class Element < ApplicationRecord
   has_many :sorbate_samples
   has_many :carozo_samples
 
+  has_one :samples_average, dependent: :destroy
+
   has_many :movements, dependent: :destroy
 
   validates :tag,  uniqueness: true, presence: true
@@ -73,6 +75,23 @@ class Element < ApplicationRecord
     elems
   end
 
+  # Actualiza los averages en tabla samples_average q permite generar excel bodega
+  # Se debe llamar cada vez que ingresa algo a bodega o se toma muestra de algo de bodega.
+  # LA idea es que se llame dentro de un Thread.new do
+  def refresh_samples_averages
+    # Thread.abort_on_exception = true # PErmite q haya error cdo se cae Thread, es para debuguear
+    # Cuando un thread que no es main se cae, no hay ningun aviso
+    # p " ESTOY EN refresh_samples_averages de Element"
+    # sleep 2 # NOTE lo habia probado siempre antes de comentar esto!
+    return if !self.has_entered_warehouse? or !self.product_type
+    # p " ESTOY EN refresh_samples_averages de Element2222"
+    if self.samples_average
+      self.samples_average.refresh
+    else
+      SamplesAverage.create(element: self)
+    end
+    # p "FINALIZADO SAMPLES AVERAGEE!"
+  end
 
 
   def self.location(location_id) # Filter
@@ -236,6 +255,9 @@ class Element < ApplicationRecord
     ActiveRecord::Base.transaction do
       self.update!(enter_params)
       Movement.create!(move_params)
+    end
+    Thread.new do
+      self.refresh_samples_averages
     end
   end
 

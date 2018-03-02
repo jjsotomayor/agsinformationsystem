@@ -3,6 +3,7 @@ class DamageSample < ApplicationRecord
   include AllSamplesMethods
   include Methods
   include SamplesModelMethods
+  include RefreshSamplesAverages
 
   enum usda: [:A, :B, :C, :SSTD, :no_califica]
   enum df07: [:rechazado, :aprobado]
