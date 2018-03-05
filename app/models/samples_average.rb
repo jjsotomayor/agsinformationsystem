@@ -1,4 +1,6 @@
 class SamplesAverage < ApplicationRecord
+  include Methods
+
   enum color: [:-, :azul, :verde, :amarillo, :rojo]
   enum usda: [:A, :B, :C, :SSTD, :no_califica]
 
@@ -23,7 +25,8 @@ class SamplesAverage < ApplicationRecord
     end
 
     cal_samples = parent.caliber_samples.includes(:caliber, :deviation_sample)
-    self.fruits_per_pound = cal_samples.average(:fruits_per_pound).round(1)
+    # self.fruits_per_pound = cal_samples.average(:fruits_per_pound).round(1)
+    self.fruits_per_pound = round_nil_safe(cal_samples.average(:fruits_per_pound), 1)
     self.deviation = cal_samples.average(:deviation)
     self.humidity = parent.humidity_samples.average(:humidity)
 

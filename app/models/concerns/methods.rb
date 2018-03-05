@@ -36,6 +36,12 @@ def string_numbers_same_format?(n1, n2)
     return false
   end
 end
+
+#Redondea a n decimal, o retorna nil
+def round_nil_safe(value, n = 1)
+  value.round(n) if value
+end
+
   # module ClassMethods
   # end
 
