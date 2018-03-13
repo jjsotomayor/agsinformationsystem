@@ -13,7 +13,7 @@ wb.styles do |style|
     first_row = ["Tarja", "Fecha", "Lote", "Proovedor", "Color", "Producto", "Secado", "Items",
         "TarjaAnterior", "ColorAnterior", "Peso(kg)", "Fecha ingreso bodega", "Bodega",
         "Banda", "Posicion", "altura", "Fecha salida bodega", "Destino", "Orden de proceso",
-        "FxL", #"Calibre",
+        "FxL", "Calibre",
         "Desviacion",# "Aprob/Rech",  # Aqui van los de calidad
          "H%", "Sorbato(ppm)", "Carozo en caja %", "USDA", "Daño total(%)"]
 
@@ -61,6 +61,7 @@ wb.styles do |style|
       ########## CAlibre ##########
       ##############################
       row = row  << elem.samples_average.fruits_per_pound#, "Calibre"]
+      row = row  << Util.caliber(elem.samples_average.fruits_per_pound) # FIXME NO SE DEBERIAN HACER CALCULOS AQUI
       row = row  << elem.samples_average.deviation#, "Calibre"]
       ##############################
       ########## Humedad ##########
