@@ -118,6 +118,8 @@ def create_warehouses
     { name: "Bodega 5"},
     { name: "Bodega 6"},
     { name: "Bodega 9"},
+    { name: "Bodega 4"},
+    { name: "Bodega virtual"},
   ]
   Warehouse.create!(wahehouses)
 end
