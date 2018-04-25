@@ -248,12 +248,12 @@ module Util
       {name:"100-110", minimum:100, maximum:110},
       {name:"110-120", minimum:110, maximum:120},
       {name:"120-130", minimum:120, maximum:130},
-      {name:"130-144", minimum:130, maximum:145},
-      {name:"145+", minimum:145, maximum:1000000}
+      {name:"130-144", minimum:130, maximum:144},
+      {name:"145+", minimum:144, maximum:1000000}
      ]
     return "" if !value
     calibers.each do |cal|
-      if value >= cal[:minimum] and value < cal[:maximum]
+      if value > cal[:minimum] and value <= cal[:maximum]
         return cal[:name]# and break
       end
     end
