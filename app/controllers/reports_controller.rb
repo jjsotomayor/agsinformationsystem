@@ -47,6 +47,12 @@ class ReportsController < ApplicationController
 
   def show_downloads
     @product_types = ProductType.where.not(name: "fresco")
+    @files = File_management.get_downloadable_files
+  end
+
+  # Recibe key del file de S3 a descargar y realiza la descarga
+  def download_s3_file
+    redirect_to File_management.download_url(params[:file])
   end
 
 
@@ -80,7 +86,7 @@ class ReportsController < ApplicationController
   def check_permissions
     if action_name.in?(["index", "warehouse_report"]) and can_access_all_report? # element
       return
-    elsif action_name.in?(["show_downloads", "process_products_xls"]) and can_download?
+    elsif action_name.in?(["show_downloads", "download_s3_file", "process_products_xls"]) and can_download?
       return
     end
     redirect_to root_path, alert: not_allowed

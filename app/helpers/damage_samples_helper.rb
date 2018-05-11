@@ -15,30 +15,31 @@ module DamageSamplesHelper
   #   process
   # end
 
-  def translate_damage(damage)
-    translation = {
-      "off_color":	"Fuera de color",
-      "poor_texture":	"Textura deficiente",
-      "scars":	"Cicatrices",
-      "end_cracks":	"Cola",
-      "skin_or_flesh_damage":	"Daño piel o pulpa",
-      "fermentation":	"Fermentacion",
-      "heat_damage":	"Daño por calor",
-      "insect_injury":	"Daño por insectos",
-      "mold":	"Hongo",
-      "dirt":	"Suciedad adherida",
-      "foreign_material":	"Materias extrañas",
-      "vegetal_foreign_material":	"Materia ext vegetal",
-      "insect_infestation":	"Infestac insectos",
-      "decay":	"Pudricion",
-      "deshidratado": "Deshidratado",
-      "bolsa_de_agua": "Bolsa de agua",
-      "ruset": "Ruset",
-      "reventados": "Reventados",
-      "carozo": "Carozo"
-    }
-    translation[damage.to_sym]
-  end
+  # NOTE Comentado porque se paso al lib/utilities
+  # def translate_damage(damage)
+  #   translation = {
+  #     "off_color":	"Fuera de color",
+  #     "poor_texture":	"Textura deficiente",
+  #     "scars":	"Cicatrices",
+  #     "end_cracks":	"Cola",
+  #     "skin_or_flesh_damage":	"Daño piel o pulpa",
+  #     "fermentation":	"Fermentacion",
+  #     "heat_damage":	"Daño por calor",
+  #     "insect_injury":	"Daño por insectos",
+  #     "mold":	"Hongo",
+  #     "dirt":	"Suciedad adherida",
+  #     "foreign_material":	"Materias extrañas",
+  #     "vegetal_foreign_material":	"Materia ext vegetal",
+  #     "insect_infestation":	"Infestac insectos",
+  #     "decay":	"Pudricion",
+  #     "deshidratado": "Deshidratado",
+  #     "bolsa_de_agua": "Bolsa de agua",
+  #     "ruset": "Ruset",
+  #     "reventados": "Reventados",
+  #     "carozo": "Carozo"
+  #   }
+  #   translation[damage.to_sym]
+  # end
 
 
 

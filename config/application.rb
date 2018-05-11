@@ -50,5 +50,12 @@ module Agsinformationsystem
     # CAntidades a substraer para obtener calibre real
     config.ex_caliber_big_fruits_subtraction = 15
     config.ex_caliber_small_fruits_subtraction = 20
+
+    #####      AWS S3 data    ######
+    config.aws_s3_profile = "jjsotomayor"
+    config.aws_s3_region = "us-west-1"
+    # Usado como prefijo para las carpetas que iran creandose cada dia
+    config.aws_folder_prefix = "day_"
+
   end
 end

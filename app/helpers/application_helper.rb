@@ -1,9 +1,10 @@
 module ApplicationHelper
 
+  # NOTE Comentado porque se paso al lib/utilities
   #Redondea a n decimal, o retorna nil
-  def round_or_nil(value, n = 1)
-    value.round(n) if value
-  end
+  # def round_or_nil(value, n = 1)
+  #   value.round(n) if value
+  # end
 
   def str(string_value, type)
     string_value + type if string_value

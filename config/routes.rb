@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   get 'reports/index', as: :reports
   get 'reports/warehouse_report'#, as: :reports
   get 'reports/show_downloads', as: :downloads
+  get 'reports/download_s3_file', as: :download_s3_file
   get 'reports/process_products_xls', as: :process_products_xls
 
 

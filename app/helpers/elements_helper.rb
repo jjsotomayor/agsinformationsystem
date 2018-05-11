@@ -1,10 +1,10 @@
 module ElementsHelper
 
-
-  def first_last_item(element, with_space = true)
-    # separation = with_space ? "- " : "-"
-    ((element.first_item || "") + "- " + (element.last_item || ""))
-  end
+  # NOTE Comentado porque se paso al lib/utilities
+  # def first_last_item(element, with_space = true)
+  #   # separation = with_space ? "- " : "-"
+  #   ((element.first_item || "") + "- " + (element.last_item || ""))
+  # end
 
   ##################################################################
   ###################### Links  ####################################
