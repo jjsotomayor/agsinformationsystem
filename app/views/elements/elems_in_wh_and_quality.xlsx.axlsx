@@ -61,7 +61,7 @@ wb.styles do |style|
       ########## CAlibre ##########
       ##############################
       row = row  << elem.samples_average.fruits_per_pound#, "Calibre"]
-      row = row  << Util.caliber(elem.samples_average.fruits_per_pound) # FIXME NO SE DEBERIAN HACER CALCULOS AQUI
+      row = row  << elem.samples_average.caliber
       row = row  << elem.samples_average.deviation#, "Calibre"]
       ##############################
       ########## Humedad ##########

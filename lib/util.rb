@@ -235,29 +235,60 @@ module Util
     [:damage, :caliber, :humidity]
   end
 
-  def self.caliber(value)
-    calibers = [
-      {name:"70-80", minimum:70, maximum:80},
-      {name:"80-90", minimum:80, maximum:90},
-      {name:"60-70", minimum:60, maximum:70},
-      {name:"90-100", minimum:90, maximum:100},
-      {name:"20-30", minimum:0, maximum:30},
-      {name:"30-40", minimum:30, maximum:40},
-      {name:"40-50", minimum:40, maximum:50},
-      {name:"50-60", minimum:50, maximum:60},
-      {name:"100-110", minimum:100, maximum:110},
-      {name:"110-120", minimum:110, maximum:120},
-      {name:"120-130", minimum:120, maximum:130},
-      {name:"130-144", minimum:130, maximum:144},
-      {name:"145+", minimum:144, maximum:1000000}
-     ]
-    return "" if !value
-    calibers.each do |cal|
-      if value > cal[:minimum] and value <= cal[:maximum]
-        return cal[:name]# and break
+  #######################################
+  ######### Calculos de calibre #########
+  #######################################
+
+  # Retorna objeto Caliber que corresponde al caliber
+  def self.calculate_caliber(fruits_pp, pt_name)
+    if pt_name == 'tsc'
+      caliber_to_use = Util.caliber_to_use_tsc(fruits_pp)
+    else
+      caliber_to_use = fruits_pp
+    end
+    return Util.caliber(caliber_to_use)
+  end
+
+  # Calcula y retorna el calibre proyectado con carozo(ex-calibre) para TSC
+  def self.caliber_to_use_tsc(fruits_pp)
+    limit = Rails.configuration.ex_caliber_limit_big_small_caliber# = 85 #Menor o igual a 85, se suma 15.
+    big_fruits_sub = Rails.configuration.ex_caliber_big_fruits_subtraction# = 15
+    small_fruits_sub = Rails.configuration.ex_caliber_small_fruits_subtraction# = 20
+    fruits_pp <= limit ? fruits_pp - big_fruits_sub : fruits_pp - small_fruits_sub
+  end
+
+  def self.caliber(caliber_to_use)
+    Caliber.all.each do |cal|
+      if between_min_max?(caliber_to_use, cal.minimum, cal.maximum)
+         return cal #and break
       end
     end
-    "-"
   end
+
+  # Ya no se usa, Es mas rapido pq tenia otro orden en los calibres
+  # def self.caliber_name(value)
+  #   calibers = [
+  #     {name:"70-80", minimum:70, maximum:80},
+  #     {name:"80-90", minimum:80, maximum:90},
+  #     {name:"60-70", minimum:60, maximum:70},
+  #     {name:"90-100", minimum:90, maximum:100},
+  #     {name:"20-30", minimum:0, maximum:30},
+  #     {name:"30-40", minimum:30, maximum:40},
+  #     {name:"40-50", minimum:40, maximum:50},
+  #     {name:"50-60", minimum:50, maximum:60},
+  #     {name:"100-110", minimum:100, maximum:110},
+  #     {name:"110-120", minimum:110, maximum:120},
+  #     {name:"120-130", minimum:120, maximum:130},
+  #     {name:"130-144", minimum:130, maximum:144},
+  #     {name:"145+", minimum:144, maximum:1000000}
+  #    ]
+  #   return "" if !value
+  #   calibers.each do |cal|
+  #     if value > cal[:minimum] and value <= cal[:maximum]
+  #       return cal[:name]# and break
+  #     end
+  #   end
+  #   "-"
+  # end
 
 end

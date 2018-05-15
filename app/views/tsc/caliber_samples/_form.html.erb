@@ -14,6 +14,7 @@
     <div class="field">
       <%= f.label :"con/sin carozo" %>
       <%= f.select :is_ex_caliber,  options_for_select([["sin_carozo", false], ["con_carozo", true]], selected: false, disabled: [true])%><!-- include_blank: true -->
+      <!-- NOTE Si se quiere reactivar "Ex-calibre" (con carozo), se debera arreglar todo el tema del calculo de calibres (habra q rehacer)  -->
     </div>
 
     <div class="field">

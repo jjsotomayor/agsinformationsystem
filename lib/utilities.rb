@@ -10,6 +10,12 @@ module Utilities
     value.round(n) if value
   end
 
+  # Between, but requires min and max inputs
+  def between_min_max?(value, min, max) # TODO Repetido en concern/Methods
+    return true if value >= min and value <= max
+    return false
+  end
+
   def translate_damage(damage)
     translation = {
       "off_color":	"Fuera de color",

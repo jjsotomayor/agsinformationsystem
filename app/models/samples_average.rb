@@ -27,6 +27,9 @@ class SamplesAverage < ApplicationRecord
     cal_samples = parent.caliber_samples.includes(:caliber, :deviation_sample)
     # self.fruits_per_pound = cal_samples.average(:fruits_per_pound).round(1)
     self.fruits_per_pound = round_nil_safe(cal_samples.average(:fruits_per_pound), 1)
+    if pt = parent.product_type and self.fruits_per_pound
+      self.caliber = Util.calculate_caliber(self.fruits_per_pound, pt.name).name
+    end
     self.deviation = cal_samples.average(:deviation)
     self.humidity = parent.humidity_samples.average(:humidity)
 
@@ -40,7 +43,7 @@ class SamplesAverage < ApplicationRecord
     dam_samples = parent.damage_samples.to_a
     size = [dam_samples.size,1].max
 
-    # NOTE USDA solo se esta agregando cuando hay una muestra de daños, corregir en Abril
+    # TODO NOTE FIXME USDA se calcula como promedio de USDA's. Y no como un recalculo considerando daños
     if dam_samples.size >= 1
       usda = parent.damage_samples.average(:usda).round(0)
       # puts "USDA = #{usda}"

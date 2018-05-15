@@ -1,4 +1,4 @@
-class PopulateTableSamplesAverage < ActiveRecord::Migration[5.0]
+class PopulateTableSamplesAverage2 < ActiveRecord::Migration[5.0]
   def change
     Element.all.each do |elem|
       p "Element ID = #{elem.id}"
