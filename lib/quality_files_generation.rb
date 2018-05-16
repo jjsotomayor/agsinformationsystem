@@ -37,7 +37,7 @@ module Quality_files_generation
     # wb.styles permite dar estilos, todo el excel se debe anidar adentro
     wb.styles do |style|
       highlight_cell = style.add_style(bg_color: "EFC376")
-      header = style.add_style :bg_color => "00", :fg_color => "FF", :height => 30
+      header = File_management.header_style(style)
 
       # first_row = []
 
@@ -191,18 +191,10 @@ module Quality_files_generation
 
     end
 
-    name = Quality_files_generation.generate_file_name(@pt)
-    file_string = File_management.convert_to_string(package) # Convirtiendo a string
+    name = File_management.gen_file_name('CALIDAD ' + @pt.name.upcase + ' muestras')
+    file_string = File_management.convert_to_string(package)
     File_management.upload(file_string, name)
     p "Uploaded " + name
-  end
-
-
-  def self.generate_file_name(pt)
-    number = ((Time.current - Time.zone.parse("2018-01-01"))/1.day).floor.to_s
-    prefix = Rails.configuration.aws_folder_prefix
-    today = Time.now.strftime("%Y-%m-%d")
-    prefix + number + '_' + today + '/' + today + " _ " + pt.name.upcase + ' muestras.xlsx'#' (Este archivo tiene 1 dia de desfase).xlsx'
   end
 
 end

@@ -15,6 +15,7 @@ module File_management
     client = File_management.aws_connect
     bucket = ENV['AWS_S3_bucket_name']
     client.put_object(bucket: bucket, key: key, body: file_string)
+      # metadata: {"var": "text"}, # Metadata no se puede obtener de AWS S3
   end
 
 
@@ -53,4 +54,20 @@ module File_management
     )
   end
 
+  ####### Metodos especificos a la creacion de excels  #######
+  ############################################################
+
+  # Retorna	day_130_2018-05-13/2018-05-13__<texto>.xlsx
+  def self.gen_file_name(text)
+    # FIXME El day no se corresponde con la fecha
+    number = ((Time.current - Time.zone.parse("2018-01-01"))/1.day).floor.to_s
+    prefix = Rails.configuration.aws_folder_prefix # "day_"
+    today = Time.now.strftime("%Y-%m-%d")
+    prefix + number + '_' + today + '/' + today + "__" + text + '.xlsx'
+  end
+
+  # Retorna style para primera fila de Excels axlsx
+  def self.header_style(style_object)
+    style_object.add_style :bg_color => "00", :fg_color => "FF", :height => 30
+  end
 end
