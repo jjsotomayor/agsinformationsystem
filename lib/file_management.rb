@@ -16,6 +16,7 @@ module File_management
     bucket = ENV['AWS_S3_bucket_name']
     client.put_object(bucket: bucket, key: key, body: file_string)
       # metadata: {"var": "text"}, # Metadata no se puede obtener de AWS S3
+    p "Uploaded " + key
   end
 
 
@@ -64,6 +65,7 @@ module File_management
     prefix = Rails.configuration.aws_folder_prefix # "day_"
     today = Time.now.strftime("%Y-%m-%d")
     prefix + number + '_' + today + '/' + today + "__" + text + '.xlsx'
+    # prefix + number + '_' + today + '/' + text + '.xlsx'
   end
 
   # Retorna style para primera fila de Excels axlsx

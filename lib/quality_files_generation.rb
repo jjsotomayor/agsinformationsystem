@@ -194,7 +194,6 @@ module Quality_files_generation
     name = File_management.gen_file_name('CALIDAD ' + @pt.name.upcase + ' muestras')
     file_string = File_management.convert_to_string(package)
     File_management.upload(file_string, name)
-    p "Uploaded " + name
   end
 
 end

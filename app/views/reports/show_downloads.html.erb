@@ -67,7 +67,7 @@
         <% @files.each do |f| %>
           <tr>
             <td><%= i = i+1 %></td>
-            <td><%= f.key.split("/")[1] %></td>
+            <td><%= f.key.split("/")[1].split("__")[1] %></td>
             <td><%= date_time_nil_safe(f.last_modified.localtime).to_s + " " + time_ago_in_text(f.last_modified.localtime) %></td>
             <td><%= (f.size/1024).to_s + " KB" %></td>
             <td><%= link_to 'Descargar', download_s3_file_path(file: f.key),  class: "btn btn-primary btn-xs" %></td>
