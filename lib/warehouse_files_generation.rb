@@ -9,7 +9,7 @@ module Warehouse_files_generation
     ##########################
     ### Setting Variables ####
     ##########################
-    @elements = Element.all.includes(:product_type, :drying_method, :warehouse, :samples_average)#.to_a
+    @elements = Element.all.includes(:product_type, :drying_method, :warehouse, :samples_average).find_each#.to_a
 
     @pt = ProductType.find(product_type_id)#.name
     @elements = @elements.product_type(product_type_id)# if f_params[:product_type_id]
@@ -42,7 +42,7 @@ module Warehouse_files_generation
       end
     end
 
-    name = File_management.gen_file_name('EN-BODEGA ' + @pt.name.upcase)
+    name = File_management.gen_file_name('STOCK-EN-BODEGA ' + @pt.name.upcase)
     file_string = File_management.convert_to_string(package)
     File_management.upload(file_string, name)
 
@@ -69,9 +69,12 @@ module Warehouse_files_generation
   def self.generate_historic_file
 
     ######### Setting Variables ##########
-
-    @elements = Element.where.not(last_movement_at: nil).includes(
-        :product_type, :drying_method, :warehouse, :samples_average)#.to_a
+    # p "Starting: Waiting 20 seconds to read memory"
+    # sleep 20
+    # NOTE Futuros problemas de memoria, achicar el batch size (batch_size: 500)
+    # @elements = Element.where.not(last_movement_at: nil).includes(
+    @elements = Element.where.not(stored_at: nil).includes(
+        :product_type, :drying_method, :warehouse, :samples_average).find_each#(batch_size: 200)
     @damages_list = Util.damages_of_product_type(:all)
 
     ######### Generating the file ##########
@@ -96,6 +99,8 @@ module Warehouse_files_generation
     name = File_management.gen_file_name('HISTÓRICO AGREGADO')
     file_string = File_management.convert_to_string(package)
     File_management.upload(file_string, name)
+    # p "Finishing: Waiting 20 seconds to read memory"
+    # sleep 20
   end
 
 
