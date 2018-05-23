@@ -9,7 +9,7 @@ module Warehouse_files_generation
     ##########################
     ### Setting Variables ####
     ##########################
-    @elements = Element.all.includes(:product_type, :drying_method, :warehouse, :samples_average).find_each#.to_a
+    @elements = Element.all.includes(:product_type, :drying_method, :warehouse, :samples_average)#.to_a
 
     @pt = ProductType.find(product_type_id)#.name
     @elements = @elements.product_type(product_type_id)# if f_params[:product_type_id]
@@ -35,7 +35,7 @@ module Warehouse_files_generation
         first_row = Warehouse_files_generation.gen_first_row(@damages_list)
         sheet.add_row(first_row, style: header)
 
-         @elements.each do |elem|
+         @elements.find_each do |elem|
            row = Warehouse_files_generation.gen_element_row(elem, @damages_list)
            sheet.add_row (row)
          end
