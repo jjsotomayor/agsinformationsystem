@@ -51,33 +51,12 @@ module Util
     damages[process.to_sym]
   end
 
-  ##########################################
-  ## Metodos para calcular USDA y DF07    ##
-  ##########################################
-
-  # Todos reciben la muestra y generan la suma
-  # inc quiere decir que genera la suma incremental necesaria para obtener el valor
-  def self.usda_inc_b(s)
-    return porc = s.mold_perc + s.dirt_perc + s.foreign_material_perc
-    + s.vegetal_foreign_material_perc + s.insect_infestation_perc
-  end
-
-  def self.usda_inc_c(s)
-    return porc = s.scars_perc + s.skin_or_flesh_damage_perc + s.fermentation_perc
-    + s.heat_damage_perc + s.insect_injury_perc
-  end
-  def self.usda_inc_d(s)
-    return porc = s.end_cracks_perc
-  end
-  def self.usda_inc_e(s)
-    return porc = s.poor_texture_perc
-  end
-  def self.usda_inc_f(s)
-    return porc = s.off_color_perc
-  end
-
-  ########### Calculo de df07 ###########
-  # Scars dirt y foreign_material "acomodados" en un grupo de acuerdo a JCC y GSC
+  ###########################################
+  ###### Metodos para calcular DF07    ######
+  ###########################################
+  
+  # Scars dirt y foreign_material "acomodados" en un grupo de acuerdo a
+  # solicitud Jefa control calidad y Gonzalos Sotomayor
 
   def self.df07_g1(s)
     return porc = s.off_color_perc + s.poor_texture_perc
