@@ -54,7 +54,7 @@ module Util
   ###########################################
   ###### Metodos para calcular DF07    ######
   ###########################################
-  
+
   # Scars dirt y foreign_material "acomodados" en un grupo de acuerdo a
   # solicitud Jefa control calidad y Gonzalos Sotomayor
 
@@ -219,6 +219,7 @@ module Util
   #######################################
 
   # Retorna objeto Caliber que corresponde al caliber
+  # NOTE TSC se caera para calibres menores a 15
   def self.calculate_caliber(fruits_pp, pt_name)
     if pt_name == 'tsc'
       caliber_to_use = Util.caliber_to_use_tsc(fruits_pp)

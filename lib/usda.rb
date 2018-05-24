@@ -109,14 +109,16 @@ module Usda
     + s.heat_damage_perc + s.insect_injury_perc
   end
   def self.usda_inc_d(s)
-    return porc = s.end_cracks_perc
+    return porc = s.end_cracks_perc.to_f
   end
   def self.usda_inc_e(s)
-    return porc = s.poor_texture_perc
+    return porc = s.poor_texture_perc.to_f
   end
   def self.usda_inc_f(s)
-    return porc = s.off_color_perc
+    return porc = s.off_color_perc.to_f
   end
+  # NOTE Se agrega to_f por si alguno de los valores es nil
+  # (Si otro _perc valor pudiera ser nil en el futuro aqui se caerá!)
 
 
 end

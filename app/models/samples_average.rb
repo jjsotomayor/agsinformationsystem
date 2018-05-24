@@ -43,12 +43,6 @@ class SamplesAverage < ApplicationRecord
     dam_samples = parent.damage_samples.to_a
     size = [dam_samples.size,1].max
 
-    # TODO NOTE FIXME USDA se calcula como promedio de USDA's. Y no como un recalculo considerando daños
-    if dam_samples.size >= 1
-      usda = parent.damage_samples.average(:usda).round(0)
-      # puts "USDA = #{usda}"
-      self.usda = usda.to_i#dam_samples.first.usda
-    end
 
     self.total_damages_perc = dam_samples.sum(&:total_damages_perc) / size
 
@@ -57,6 +51,7 @@ class SamplesAverage < ApplicationRecord
       self.send((dam+"_perc=").to_sym, dam_samples.sum(&(dam+"_perc").to_sym) / size)
     end
 
+    Usda.calculate_and_store_usda(self) if dam_samples.size >= 1
   end
 
 
