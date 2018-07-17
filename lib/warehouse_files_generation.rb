@@ -84,7 +84,7 @@ module Warehouse_files_generation
 
     wb.styles do |style|
       header = File_management.header_style(style)
-      wb.add_worksheet(name: "En bodega") do |sheet|
+      wb.add_worksheet(name: "Histórico de productos") do |sheet|
         first_row = Warehouse_files_generation.gen_first_row(@damages_list)
         sheet.add_row(first_row, style: header)
 

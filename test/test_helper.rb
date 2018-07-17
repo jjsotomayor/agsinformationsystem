@@ -176,3 +176,13 @@ def create_element()
   pt = product_types(random_process)
   element = Element.create!(tag: random("tag",0,1000000).to_s, drying_method: dm, product_type: pt)
 end
+
+
+#### Métodos para testear calculos de COLOR
+def test_color(process, h, s, should_get_color)
+  if should_get_color.nil?
+    assert_nil(Color.calculate_color(process, h, s), "Error para #{h}, #{s}")
+  else
+    assert_equal(should_get_color, Color.calculate_color(process, h, s), "Error para #{h}, #{s}")
+  end
+end
