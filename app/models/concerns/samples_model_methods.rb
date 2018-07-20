@@ -9,10 +9,6 @@ module SamplesModelMethods
    after_save :refresh_parent_color
   end
 
-  # def refresh_element_color
-  #   self.element.refresh_element_color
-  # end
-
   def refresh_parent_color # refresh_parent_color
     return self.element.refresh_color if self.element
     return self.group.refresh_color
