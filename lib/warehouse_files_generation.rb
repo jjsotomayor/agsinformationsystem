@@ -106,7 +106,7 @@ module Warehouse_files_generation
 
 
   def self.gen_first_row(damages_list)
-    first_row = ["Tarja", "Fecha", "Lote", "Proovedor", "Color", "Producto", "Secado", "Items",
+    first_row = ["Tarja", "Fecha", "Lote", "Proovedor", "Color", "Producto",  "Descarte", "Secado", "Items",
       "TarjaAnterior", "ColorAnterior", "Peso(kg)", "Fecha ingreso bodega", "Bodega",
       "Banda", "Posicion", "altura", "Fecha salida bodega", "Destino", "Orden de proceso",
       "FxL", "Calibre",
@@ -123,6 +123,7 @@ module Warehouse_files_generation
     row = [elem.tag, elem.created_at, elem.lot, elem.provider , elem.color]
 
     row << (elem.product_type ? elem.product_type.name : "")
+    row << (elem.descarte ? "descarte" : "-")
     row << (elem.drying_method ? elem.drying_method.name : "")
 
     row = row + [first_last_item(elem), elem.ex_tag, elem.previous_color]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180514205709) do
+ActiveRecord::Schema.define(version: 20180809174008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,15 +144,15 @@ ActiveRecord::Schema.define(version: 20180514205709) do
   end
 
   create_table "elements", force: :cascade do |t|
-    t.string   "tag",                               null: false
+    t.string   "tag",                                   null: false
     t.string   "lot"
     t.string   "process_order"
     t.integer  "product_type_id"
     t.integer  "drying_method_id"
     t.string   "ex_tag"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.integer  "color",                 default: 0, null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "color",                 default: 0,     null: false
     t.string   "previous_color"
     t.string   "first_item"
     t.string   "last_item"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(version: 20180514205709) do
     t.string   "incomplete_bin_tag"
     t.integer  "elements_group_id"
     t.string   "provider"
+    t.boolean  "descarte",              default: false, null: false
     t.index ["color"], name: "index_elements_on_color", using: :btree
     t.index ["drying_method_id"], name: "index_elements_on_drying_method_id", using: :btree
     t.index ["last_movement_at"], name: "index_elements_on_last_movement_at", using: :btree

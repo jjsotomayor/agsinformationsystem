@@ -34,7 +34,7 @@ class DamageSamplesController < ApplicationController
 
   # POST /damage_samples
   def create
-    @element, status = Element.create_element_if_doesnt_exist(element_params, @process)
+    @element, status = Element.create_element_if_doesnt_exist(element_params, @process) # TODO Esto deberia llamarse productType, no process
     @damage_sample = DamageSample.new(damage_sample_params)
     @damage_sample.element = @element
 

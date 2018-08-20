@@ -41,4 +41,11 @@ module ElementsHelper
     end
   end
 
+  # Retorna String productType + " descarte" si corresponde
+  def product_type_descarte_nil_safe(elem)
+    return "" if elem.product_type.nil?
+    end_with = elem.descarte ? " (descarte)" : ""
+    elem.product_type.name.upcase + end_with
+  end
+
 end

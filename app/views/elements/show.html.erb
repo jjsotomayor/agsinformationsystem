@@ -48,7 +48,7 @@
       <!-- <tr> -->
         <tr class= "<%= colored_rows_with_color(@element.color)%>" >
         <td><%= @element.id %></td>
-        <td><%= @product_type.upcase if @product_type %></td>
+        <td><%= product_type_descarte_nil_safe(@element) %></td>
         <td><%= @element.provider %></td>
         <td><%= @element.lot %></td>
         <td><%= @element.drying_method.name if @element.drying_method%></td>

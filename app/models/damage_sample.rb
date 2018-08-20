@@ -145,8 +145,25 @@ class DamageSample < ApplicationRecord
     samples = samples.where('damage_samples.created_at > ?', t.hours.ago)
   end
 
+  # Obtiene muestras de descarte de todos los productos
+  def self.get_descarte_samples(responsable = nil, recent = false)
+    samples = DamageSample.joins(:element).where('elements.descarte = ?', true).ord
+    samples = samples.where(responsable: responsable) if responsable
+    if recent
+      t = Rails.configuration.max_sample_hrs
+      samples = samples.where('damage_samples.created_at > ?', t.hours.ago)
+    end
+    return samples
+  end
+
   def self.in_user_last_samples(sample, responsable, number, process = nil)
-    samples = DamageSample.process(process)
+    samples =
+      if process == "descarte"
+        DamageSample.all
+      else
+        DamageSample.process(process)
+      end
+
     samples = samples.where(responsable: responsable)
     .where('damage_samples.created_at > ?', Rails.configuration.max_sample_hrs.hours.ago)
     samples = samples.ord.ids.first(number)

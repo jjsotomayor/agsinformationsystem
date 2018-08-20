@@ -1,7 +1,7 @@
 <li class="dropdown">
   <a class="<%="dropdown-toggle " + selected("seam")%>" data-toggle="dropdown" href="#">SEAM<span class="caret"></span></a>
   <ul class="dropdown-menu">
-    <li><%=link_to 'Daños', new_seam_damage_sample_path%></li>
-    <li><%=link_to 'Calibre y desviacion', new_seam_caliber_sample_path%></li>
+    <li><%=link_to 'Daños', {action: action, controller: "/seam/damage_samples"}%></li>
+    <li><%=link_to 'Calibre y desviacion', {action: action, controller: "/seam/caliber_samples"}%></li>
   </ul>
 </li>

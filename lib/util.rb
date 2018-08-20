@@ -5,6 +5,7 @@ module Util
   def self.damages_of_product_type(process)
     process = :none if !process
     process = "calibrado" if process == "seam" or process == "cn"
+    process = "tsc" if process == "descarte"
     damages =
     {
       none: [],

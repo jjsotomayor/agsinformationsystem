@@ -1,9 +1,9 @@
 <li class="dropdown">
   <a class="<%="dropdown-toggle " + selected("tsc")%>" data-toggle="dropdown" href="#">TSC<span class="caret"></span></a>
   <ul class="dropdown-menu">
-    <li><%=link_to 'Daños', new_tsc_damage_sample_path%></li>
+    <li><%=link_to 'Daños', {action: action, controller: "/tsc/damage_samples"}%></li>
     <li><%=link_to 'Calibre y desviacion', new_tsc_caliber_sample_path%></li>
-    <li><%=link_to 'Carozo en caja', new_tsc_carozo_sample_path%></li>
+    <li><%=link_to 'Carozo en caja', {action: action, controller: "/tsc/carozo_samples"}%></li>
     <!-- NOTE Aqui iria T° -->
   </ul>
 </li>

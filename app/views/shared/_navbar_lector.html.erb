@@ -30,75 +30,23 @@
 
 
 
-      <li class="dropdown">
-        <a class="<%="dropdown-toggle " + is_laboratorio()%>" data-toggle="dropdown" href="#">Laboratorio<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><%=link_to 'Humedad', humidity_samples_path%></li>
-          <li><%=link_to 'Humedad grupal', group_humidity_samples_path%></li>
-          <li><%=link_to 'Sorbato', sorbate_samples_path%></li>
-        </ul>
-      </li>
+    <%= render 'shared/quality_control_menu/laboratorio_li', action: "index"%>
 
-      <li class="dropdown">
-        <a class="<%="dropdown-toggle " + is_recepcion_seco%>" data-toggle="dropdown" href="#">Rec. seco<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><%=link_to 'Daños', recepcion_seco_damage_samples_path%></li>
-          <li><%=link_to 'Calibre', recepcion_seco_caliber_samples_path%></li>
-        </ul>
-      </li>
+    <li class="dropdown">
+      <a class="<%="dropdown-toggle " + is_recepcion_seco%>" data-toggle="dropdown" href="#">Rec. seco<span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><%=link_to 'Daños', recepcion_seco_damage_samples_path%></li>
+        <li><%=link_to 'Calibre', recepcion_seco_caliber_samples_path%></li>
+      </ul>
+    </li>
 
-          <li class="dropdown">
-            <!-- <a class="dropdown-toggle selected" data-toggle="dropdown" href="#">Secado<span class="caret"></span></a> -->
-            <a class="<%="dropdown-toggle " + selected("secado")%>" data-toggle="dropdown" href="#">Secado<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%=link_to 'Daños', secado_damage_samples_path%></li>
-              <li><%=link_to 'Calibre', secado_caliber_samples_path%></li>
-            </ul>
-          </li>
-
-
-          <li class="dropdown">
-            <a class="<%="dropdown-toggle " + selected("calibrado")%>" data-toggle="dropdown" href="#">Calibrado<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%=link_to 'Daños', calibrado_damage_samples_path%></li>
-              <li><%=link_to 'Calibre y desviacion', calibrado_caliber_samples_path%></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a class="<%="dropdown-toggle " + selected("seam")%>" data-toggle="dropdown" href="#">SEAM<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%=link_to 'Daños', seam_damage_samples_path%></li>
-              <li><%=link_to 'Calibre y desviacion', seam_caliber_samples_path(process: "ensacado")%></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a class="<%="dropdown-toggle " + selected("cn")%>" data-toggle="dropdown" href="#">CN<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%=link_to 'Daños', cn_damage_samples_path%></li>
-              <li><%=link_to 'Calibre y desviacion', cn_caliber_samples_path%></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a class="<%="dropdown-toggle " + selected("tsc")%>" data-toggle="dropdown" href="#">TSC<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%=link_to 'Daños', tsc_damage_samples_path%></li>
-              <li><%=link_to 'Calibre y desviacion', tsc_caliber_samples_path%></li>
-              <li><%=link_to 'Carozo en caja', tsc_carozo_samples_path%></li>
-              <!-- NOTE Aqui iria T° -->
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a class="<%="dropdown-toggle " + selected("tcc")%>" data-toggle="dropdown" href="#">TCC<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%=link_to 'Daños', tcc_damage_samples_path%></li>
-              <li><%=link_to 'Calibre y desviacion', tcc_caliber_samples_path%></li>
-              <!-- NOTE Aqui iria T° -->
-            </ul>
-          </li>
+    <%= render 'shared/quality_control_menu/secado_li', action: "index"%>
+    <%= render 'shared/quality_control_menu/calibrado_li', action: "index"%>
+    <%= render 'shared/quality_control_menu/seam_li', action: "index"%>
+    <%= render 'shared/quality_control_menu/cn_li', action: "index"%>
+    <%= render 'shared/quality_control_menu/tsc_li', action: "index"%>
+    <%= render 'shared/quality_control_menu/tcc_li', action: "index"%>
+    <%= render 'shared/quality_control_menu/descarte_li', action: "index"%>
 
 
       </ul>

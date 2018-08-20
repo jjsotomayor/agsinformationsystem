@@ -1,0 +1,53 @@
+<% url = set_url_for_form(type, damage_sample) %>
+<% method =  set_form_method(type)%>
+
+<%= form_for(damage_sample, url: url, method: method, html: {class: 'inside-new-form validatable'}) do |f| %>
+
+<%= f.hidden_field :responsable, value: logged_user.name %>
+<%= hidden_field_tag :descarte, true %>
+
+<div style="width: 100%;">
+ <div style="float:left; width: 45%">
+<!--Items at the left  -->
+
+    <div class="field">
+      <%= f.label :tarja, class: "vertical"  %>
+      <%= field_tag(type, "vertical", damage_sample)%>
+    </div>
+
+    <div class="field">
+      <%= f.label :Producto, class: "vertical"  %>
+      <%= field_product_type(type, "vertical", damage_sample)%>
+    </div>
+
+    <!-- En caso de añadir Tipo de secado, descomentar y quitar la validacion-->
+    <!-- <div class="field">
+      f.label :tipo_de_secado, class: "vertical"
+      field_drying_method_id(type, "vertical", damage_sample)
+    </div> -->
+
+  <div class="field">
+    <%= f.label :peso_muestra, class: "vertical"  %>
+    <%= f.number_field :sample_weight, class: "vertical", placeholder: ' gramos', step: 0.01, min:1 %>
+  </div>
+
+</div>
+
+
+ <div style="float:right;">
+   <!--Items at right  -->
+
+   <%for damage in Util.damages_of_product_type(@process)%>
+     <div class="field">
+       <%= f.label translate_damage(damage) %>
+       <%= f.number_field damage, step: 0.01, min:0 %>
+     </div>
+   <%end%>
+
+ </div>
+</div>
+<div style="clear:both"></div>
+
+<%= render 'shared/buttons', f: f, form_type: type%>
+
+<% end %>

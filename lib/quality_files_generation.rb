@@ -45,7 +45,7 @@ module Quality_files_generation
       #### Hoja Productos ###
       ########################
       wb.add_worksheet(name: "Muestras") do |sheet|
-        first_row = ["Tarja", "Fecha", "Lote", "Proveedor", "Color", "Producto", "Secado"]#, "TarjaAnterior", "ColorAnterior"] De ser nec.
+        first_row = ["Tarja", "Fecha", "Lote", "Proveedor", "Color", "Producto", "Descarte", "Secado"]#, "TarjaAnterior", "ColorAnterior"] De ser nec.
         first_row << "Items" if @add_items
         first_row = first_row + ["Tarja anterior", "Color anterior"] if @is_tiernizado
 
@@ -66,6 +66,7 @@ module Quality_files_generation
 
         @elements.each do |elem|
           row_elem = [elem.tag, elem.created_at, elem.lot, elem.provider, elem.color, elem.product_type.name]
+          row_elem << (elem.descarte ? "descarte" : "-")
 
           # NOTE Esto se deberia hacer con un join!
           if elem.drying_method
@@ -158,7 +159,7 @@ module Quality_files_generation
           end
         end
 
-        c_sizes = [9, 10, 8, 8, 8, 8, 7] # Columnas fijas
+        c_sizes = [9, 10, 8, 8, 8, 8, 8, 7] # Columnas fijas
         c_sizes << 12 if @add_items
 
         c_sizes = c_sizes + [12, 12] if @is_tiernizado

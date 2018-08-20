@@ -116,6 +116,10 @@ Rails.application.routes.draw do
     resources :damage_samples
   end
 
+  namespace :descarte do
+    resources :damage_samples#, except: [:show, :destroy]
+  end
+
   root "pages#home"
 
 end

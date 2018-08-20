@@ -110,4 +110,21 @@ module DamageSamplesHelper
     select_tag :previous_color,  options_for_select([:azul, :verde, :amarillo, :rojo], value), include_blank: true, class: class_type
   end
 
+
+  #####################################
+  ###      Generacion de links      ###
+  ##################################### (Implementar idem para caliberSample)
+
+  # Se puede utilizar para Show y Delete
+  def link(process, damage_sample)
+    send(process + "_damage_sample_path", damage_sample)
+  end
+
+  # Genera el link para edición, considera que es posible que link lleve a descarte
+  def edit_link(process, damage_sample)
+    process = "descarte" if damage_sample.element.descarte
+    send("edit_" + process +"_damage_sample_path", damage_sample)
+  end
+
+
 end

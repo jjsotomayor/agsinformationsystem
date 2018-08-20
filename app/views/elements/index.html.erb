@@ -26,6 +26,7 @@
       <th>Prov.</th>
       <th>Lote</th>
       <th>Tipo producto</th>
+      <th></th>
       <th>Tipo secado</th>
       <th>Items</th>
       <th>Color</th>
@@ -49,6 +50,7 @@
         <td><%= element.provider %></td>
         <td><%= element.lot %></td>
         <td><%= element.product_type.name.upcase unless element.product_type.nil? %></td>
+        <td><%= element.descarte ? " (desc)" : "" %></td>
         <td><%= element.drying_method.name unless element.drying_method.nil? %></td>
         <td><%= first_last_item(element)%></td>
         <td><%= element.color%></td>

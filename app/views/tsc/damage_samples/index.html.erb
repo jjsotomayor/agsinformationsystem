@@ -29,7 +29,7 @@
         <td><%= date_time(damage_sample.created_at)%></td>
 
         <%=common_table_body(damage_sample)%>
-        <td><%=damage_sample.element.drying_method.name%></td>
+        <td><%= drying_method_name_nil_safe(damage_sample.element) %></td>
         <td><%= first_last_item(damage_sample.element)%></td>
         <td><%= damage_sample.element.ex_tag %></td>
         <td><%= damage_sample.usda %></td>
@@ -39,11 +39,7 @@
         <%=table_body_damages(damage_sample, "%")%>
         <td><%=damage_sample.total_damages_perc.round(1)%></td>
 
-        <td><%= link_to 'Ver', tsc_damage_sample_path(damage_sample), class: "btn btn-primary btn-xs" %></td>
-        <%if access_edit_delete_sample_button%>
-          <td><%= link_to 'Editar', edit_tsc_damage_sample_path(damage_sample), class: "btn btn-warning btn-xs" %></td>
-          <td><%= link_to 'Eliminar', tsc_damage_sample_path(damage_sample), method: :delete, data: { confirm: '¿Seguro que deseas eliminar la muestra?' }, class: "btn btn-danger btn-xs" %></td>
-        <%end%>
+        <%= render 'shared_damage_samples/links_index', process: @process, damage_sample: damage_sample%>
 
       </tr>
     <% end %>

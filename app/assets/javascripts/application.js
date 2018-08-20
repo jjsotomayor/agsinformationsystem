@@ -129,6 +129,11 @@ $(document).on('turbolinks:load', function(){
   $(".validatable #carozo_sample_sample_weight").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
   $(".validatable #carozo_sample_carozo_weight").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
 
+  //////////////////////////////
+  //// Descarte Samples ////////
+  //////////////////////////////
+  $(".validatable #product_type").on("input propertychange paste", {non_blank: true, number: false}, validation_event_handler);
+
   ////////////////////////////////////////////////
   //// Group Samples and Group creation //////////
   ////////////////////////////////////////////////
@@ -216,6 +221,9 @@ function run_all_validations(e){
     //// Carozo Samples //////////
     if (!validate($(".validatable #carozo_sample_sample_weight"),       true, "integer")){ error = true;}
     if (!validate($(".validatable #carozo_sample_carozo_weight"),       true, "integer")){ error = true;}
+
+    //// Descarte Samples //////////
+    if (!validate($(".validatable #product_type"),       true, false)){ error = true;}
 
     //// Group Samples and Group creation //////////
     if (!validate($(".validatable #humidity_sample_elements_group_id"), true, false)){ error = true;}

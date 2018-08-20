@@ -90,6 +90,11 @@ end
     link_to element.tag, element,  class: "btn btn-element btn-xs"
   end
 
+  def drying_method_name_nil_safe(elem)
+    return "" if elem.drying_method.nil?
+    elem.drying_method.name
+  end
+
   ##########################################
   ################ Diseño #################
   ##########################################
