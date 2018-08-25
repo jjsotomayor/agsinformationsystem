@@ -35,8 +35,13 @@ class ReportsController < ApplicationController
   end
 
   def warehouse_report
-    # Cuantas unidades. Por color, warehouse_id (Todo lo ingresado, todo lo salido! dia semana, etc)
-    @elements = Element.where.not(warehouse_id: nil).select(:product_type_id, :color, :weight, :warehouse_id, :stored_at, :dispatched_at, :destination)
+    @elements = Element.where.not(warehouse_id: nil).joins(:samples_average)
+    # Ojo que Join usa INNER JOIN => Dejará fuera elements que no tengan SampleAverage
+    if @elements.count != Element.where.not(warehouse_id: nil).count
+      raise "ERROR, SampleAverage no existe para un Element en Bodega"
+    end
+
+    @calibers = Caliber.all
     # TODO para ganar velocidad element deberia ser .includes(:product_type). Aqui y en hartos lugares mas
     @product_types = ProductType.where('name not in (?)', ["fresco"])
 

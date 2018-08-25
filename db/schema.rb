@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180809174008) do
+ActiveRecord::Schema.define(version: 20180824161054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -297,6 +297,7 @@ ActiveRecord::Schema.define(version: 20180809174008) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.string   "caliber"
+    t.index ["caliber"], name: "index_samples_averages_on_caliber", using: :btree
     t.index ["element_id"], name: "index_samples_averages_on_element_id", using: :btree
   end
 
