@@ -11,9 +11,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
 
 <ul class="nav navbar-nav">
-  <!-- NOTE Esta es una fuente de tiempos excesivos
-        Podria ir a buscar un arreglo con accesos y recorrerlo-->
-  <!--TODO Que pasa aqui con el acceso al laboratorio, que no es un producto sino un proceso  -->
+  <!-- NOTE Esta es una fuente de tiempos excesivos. Podria ir a buscar un
+      arreglo con accesos y recorrerlo (user.operations.each do ...)-->
       <% if logged_user.has_access_to?("laboratorio")%>
         <%= render 'shared/quality_control_menu/laboratorio_li', action: "new"%>
       <% end%>
@@ -50,7 +49,9 @@
         <%= render 'shared/quality_control_menu/tcc_li', action: "new"%>
       <% end%>
 
-      <%= render 'shared/quality_control_menu/descarte_li', action: "new"%>
+      <% if logged_user.has_access_to?("descarte")%>
+        <%= render 'shared/quality_control_menu/descarte_li', action: "new"%>
+      <% end%>
 
   </ul>
 

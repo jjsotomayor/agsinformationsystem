@@ -65,7 +65,8 @@ def create_operations
     { name: "seam"} ,
     { name: "cn"} ,
     { name: "tsc"} ,
-    { name: "tcc"}
+    { name: "tcc"},
+    { name: "descarte"}
   ]
   Operation.create!(operaciones)
 end
