@@ -37,6 +37,7 @@ class ReportsController < ApplicationController
   def warehouse_report
     @elements = Element.where.not(warehouse_id: nil).joins(:samples_average)
     # Ojo que Join usa INNER JOIN => Dejará fuera elements que no tengan SampleAverage
+    # NOTE Si existiera 2 SamplesAverage para un Element tb habria diferencia de numeros
     if @elements.count != Element.where.not(warehouse_id: nil).count
       raise "ERROR, SampleAverage no existe para un Element en Bodega"
     end
