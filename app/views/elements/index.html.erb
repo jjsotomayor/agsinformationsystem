@@ -36,6 +36,7 @@
       <th>Bodega</th>
       <th>Destino</th>
       <th>OP</th>
+      <th></th>
       <!-- NOTE Quizas agregar banda pos, altura como en show  -->
       <th colspan="2"></th>
     </tr>
@@ -60,6 +61,11 @@
         <td><%= element.warehouse.name if element.warehouse %></td>
         <td><%= element.destination %></td>
         <td><%= element.process_order %></td>
+        <td>
+        <% if element.possible_error %>
+          <span class="glyphicon glyphicon-exclamation-sign" data-toggle="tooltip" title="<%=element.possible_error%>"></span>
+        <% end %>
+        </td>
         <td><%= link_to 'Ver', element, class: "btn btn-primary btn-xs" %></td>
         <% if access_edit_destroy_element_button %>
           <td><%= link_to 'Editar', edit_element_path(element),  class: "btn btn-warning btn-xs" %></td>

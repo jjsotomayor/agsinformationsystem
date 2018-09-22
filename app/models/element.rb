@@ -1,6 +1,7 @@
 class Element < ApplicationRecord
   include Methods
   include ColorCalculation
+  include ErrorFinder
 
   # NOTE Nunca cambiar el orden de los enum, alterara el valor de los registros en ls db!
   enum color: [:-, :azul, :verde, :amarillo, :rojo]
@@ -33,6 +34,8 @@ class Element < ApplicationRecord
   scope :product_type, -> (product_type_id) { where product_type_id: product_type_id }
   scope :drying_method, -> (drying_method_id) { where drying_method_id: drying_method_id }
   scope :color, -> (color) { where color: color }
+
+  before_save :find_possible_error, on: [:create, :update]
 
   #### Metodos asociados con la existencia de grupos ###
   def belongs_to_group?
@@ -338,5 +341,14 @@ class Element < ApplicationRecord
     return @new_element, true
   end
 
+
+  def find_possible_error
+    begin # Permite que no se caiga programa si metodo se cae
+      self.possible_error = find_possible_error_in_element(self)
+    rescue =>e
+     logger.info "Error en Find_possible_error"
+     Raygun.track_exception(e) # Permite que quede registro en Raygun
+    end
+  end
 
 end
