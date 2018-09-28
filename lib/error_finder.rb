@@ -35,7 +35,7 @@ module ErrorFinder
       elems = elems.select { |e| e.second == self.product_type_id } #if self.product_type_id
       # puts "Ultimos 10 elems del mismo PT #{elems.count}"
       # Selecciona los ultimos 6 letras del tag y ve si hace match
-      elems = elems.select { |e| e.first.chars.last(6).join.match?(last_number) }
+      elems = elems.select { |e| e.first.scan(/[0-9]+/).last.to_i.to_s == last_number }
       # puts "Ultimos 10 elems del mismo PT y numero igual entremedio #{elems.count}"
       error = "Tarja podría estar repetida (" + elems.first.first + ")" if elems.length > 0
     end
