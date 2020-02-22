@@ -22,16 +22,16 @@ module Utilities
       "poor_texture":	"Textura deficiente",
       "scars":	"Cicatrices",
       "end_cracks":	"Cola",
-      "skin_or_flesh_damage":	"Daño piel o pulpa",
+      "skin_or_flesh_damage":	"Daño piel-Aplastada", #Modificada dede "Daño piel o pulpa"
       "fermentation":	"Fermentacion",
-      "heat_damage":	"Vana", #{}"Daño por calor" Se deberia haber creado una nueva columna
+      "heat_damage":	"Vana - Daño calor", #Modificada dede "Daño por calor" Se deberia haber creado una nueva columna
       "insect_injury":	"Daño por insectos",
       "mold":	"Hongo",
       "dirt":	"Suciedad adherida",
       "foreign_material":	"Materias extrañas",
       "vegetal_foreign_material":	"Materia ext vegetal",
       "insect_infestation":	"Infestac insectos",
-      "decay":	"Aplastada" ,#{}"Pudricion",
+      "decay":	"Pudricion" ,
       "deshidratado": "Deshidratado",
       "bolsa_de_agua": "Bolsa de agua",
       "ruset": "Ruset",
