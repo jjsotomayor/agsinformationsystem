@@ -53,7 +53,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # gem 'devise'
-gem 'devise', '~> 4.4'
+gem 'devise', '~> 4.7'
 # gem 'cancancan'
 # gem 'rolify'
 gem 'bootstrap-sass', '~> 3.3.6'
