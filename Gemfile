@@ -56,7 +56,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise', '~> 4.4'
 # gem 'cancancan'
 # gem 'rolify'
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
 # Gema que permite el envio de correos a través de API de MailGun
 # Para envios SMTP por Mailgun no es necesaria
