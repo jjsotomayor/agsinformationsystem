@@ -1,0 +1,65 @@
+  <div class="container">
+    <h2 class= "centered separated">Todos los movimientos</h2>
+
+    <%= form_tag(movements_path, method: :get) do %>
+      <%= select_tag "movement_type",  options_for_select(Movement.movement_types, params[:movement_type]), include_blank: 'Todo Movimiento', class: "margin-up-select" %>
+      <%= select_tag "product_type_id", options_from_collection_for_select(@product_types, "id", "name", params[:product_type_id]), include_blank: 'Todo Producto', class: "margin-up-select" %>
+
+      <%= submit_tag 'Filtrar', name: nil, class: "btn btn-primary btn-sm margin0" %>
+    <% end %>
+
+  <%= paginate @movements %>
+  <table class = "table table-striped">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Tarja</th>
+      <th>Producto</th>
+      <th>Movimiento</th>
+      <th>Responsable</th>
+      <th>Peso (kg)</th>
+
+      <th>Bodega</th>
+      <th>Banda, posición, altura</th>
+
+      <th>Destino</th>
+      <th>OP</th>
+
+
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movements.each do |m| %>
+      <tr>
+        <td><%= date_time(m.created_at) %></td>
+        <td><%= element_link(m.element) %></td>
+        <td><%= m.element.product_type.name if m.element.product_type %></td>
+        <% if m.devolucion_bins_incompleto? %>
+          <td><%= m.movement_type.to_s.capitalize + " (" + m.incomplete_bin_tag + ")"  %></td>
+        <% else %>
+          <td><%= m.movement_type.capitalize %></td>
+        <% end %>
+
+<!-- element.incomplete_bin_tag -->
+
+        <td><%= m.warehouse_responsable %></td>
+        <td><%= m.weight %></td>
+
+        <td><%= m.warehouse.name if m.warehouse%></td>
+        <td><%= banda_pos_altura_nil_safe(m) %></td>
+
+        <td><%= m.destination%></td>
+        <td><%= m.process_order%></td>
+
+
+        <td><%=
+        # link_to 'Ver', element, class: "btn btn-primary btn-xs"
+        %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @movements %>
+</div>

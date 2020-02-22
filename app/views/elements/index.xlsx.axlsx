@@ -4,10 +4,12 @@ wb = xlsx_package.workbook
 
 #### Hoja Productos ###
 wb.add_worksheet(name: "Productos") do |sheet|
-  sheet.add_row ["Tarja", "Fecha", "Lote", "Color", "Tipo", "Secado", "TarjaAnterior", "ColorAnterior"]
+  sheet.add_row ["id", "Tarja", "Fecha", "Lote", "Color", "Proceso", "Secado", "Items",
+      "TarjaAnterior", "ColorAnterior", "Peso(kg)", "Fecha ingreso bodega", "Bodega",
+      "Banda", "Posicion", "altura", "Fecha salida bodega", "Destino", "Orden de proceso"]
+
   @elements.each do |elem|
-    #  TODO Agregar Color!
-    row = [elem.tag, elem.created_at, elem.lot, elem.color]
+    row = [elem.id, elem.tag, elem.created_at, elem.lot, elem.color]
     # row << elem.product_type.nil? ? " " : elem.product_type.name
     if elem.product_type
       row << elem.product_type.name
@@ -20,7 +22,22 @@ wb.add_worksheet(name: "Productos") do |sheet|
     else
       row << " "
     end
-    row = row + [elem.ex_tag, elem.previous_color]
+    row = row + [first_last_item(elem), elem.ex_tag, elem.previous_color]
+
+    ##############################
+    ########### Bodega ###########
+    ##############################
+    row = row + [elem.weight, elem.stored_at]
+
+    if elem.warehouse
+      row << elem.warehouse.name
+    else
+      row << " "
+    end
+    row = row + [elem.banda, elem.posicion, elem.altura, elem.dispatched_at,
+      elem.destination, elem.process_order]
+
+
     sheet.add_row (row)
   end
 end
@@ -28,15 +45,16 @@ end
 
 #### Hoja Daños ###
 wb.add_worksheet(name: "Daños") do |sheet|
-  sheet.add_row ["Tarja", "Fecha", "Proceso", "Responsable", "Peso muestra(g)",
+  sheet.add_row ["element_id", "group_id", "Fecha", "Proceso", "Responsable", "Peso muestra(g)",
   "USDA", "Total daños(%)"]
-  puts @dam_samples
-  puts @dam_samples.count
+  # puts @dam_samples
+  # puts @dam_samples.count
   @dam_samples.each do |ds|
-    row = [ds.element.tag, ds.created_at]
+
+    row = [ds.element_id, ds.elements_group_id, ds.created_at]
     # NOTE Llamar a element en cada fila es muy pesado
-    if ds.element.product_type
-      row << ds.element.product_type.name
+    if ds.product_type
+      row << ds.product_type.name
     else
       row << ""
     end
@@ -50,14 +68,14 @@ end
 #### Hoja Calibre ###
 wb.add_worksheet(name: "Calibre") do |sheet|
 
-  sheet.add_row ["Tarja", "Fecha", "Proceso", "Responsable", "Peso muestra(g)",
+  sheet.add_row ["element_id", "group_id", "Fecha", "Proceso", "Responsable", "Peso muestra(g)",
   "Tipo", "Frutos en muestra", "Frutos x libra", "Calibre", "Desviacion", "Estado"]
 
   @cal_samples.each do |cs|
-    row = [cs.element.tag, cs.created_at]
+    row = [cs.element_id, cs.elements_group_id, cs.created_at]
     # NOTE Llamar a element en cada fila es muy pesado
-    if cs.element.product_type
-      row << cs.element.product_type.name
+    if cs.product_type
+      row << cs.product_type.name
     else
       row << ""
     end
@@ -87,14 +105,14 @@ end
 #### Hoja Humedad ###
 wb.add_worksheet(name: "Humedad") do |sheet|
 
-  sheet.add_row ["Tarja", "Fecha", "Proceso", "Responsable",
+  sheet.add_row ["element_id", "group_id", "Fecha", "Proceso", "Responsable",
    "Humedad(%)"]
 
   @humidity_samples.each do |hs|
-    row = [hs.element.tag, hs.created_at]
+    row = [hs.element_id, hs.elements_group_id, hs.created_at]
     # NOTE Llamar a element en cada fila es muy pesado
-    if hs.element.product_type
-      row << hs.element.product_type.name
+    if hs.product_type
+      row << hs.product_type.name
     else
       row << ""
     end

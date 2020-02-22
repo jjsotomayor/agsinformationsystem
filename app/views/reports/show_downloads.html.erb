@@ -1,0 +1,40 @@
+<div class="container">
+  <h2 class= "centered separated">Descargas disponibles</h2>
+
+    <br>
+    <div class="container">
+    (Advertencia: Archivos solo contienen la información almacenada hasta antes de la última actualización del archivo)
+
+    <table class = "table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nombre</th>
+          <th>Actualizado</th>
+          <th>Tamaño</th>
+          <th colspan="1"></th>
+          <!-- <th> Descripción</th> -->
+        </tr>
+      </thead>
+
+      <tbody>
+        <%i = 0%>
+        <% @files.each do |f| %>
+          <tr>
+            <td><%= i = i+1 %></td>
+            <td><%= f.key.split("/")[1].split("__")[1] %></td>
+            <td><%= date_time_nil_safe(f.last_modified.localtime).to_s + " " + time_ago_in_text(f.last_modified.localtime) %></td>
+            <td><%= (f.size/1024).to_s + " KB" %></td>
+            <td><%= link_to 'Descargar', download_s3_file_path(file: f.key),  class: "btn btn-primary btn-xs" %></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+
+
+
+
+
+</div>

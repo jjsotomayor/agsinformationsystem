@@ -12,7 +12,7 @@
 
 
 <div class= "container-samples">
-  <div class= "pestaña">Tiernizado</div>
+  <div class= "pestaña">TSC</div>
     <div class="outside-new-form">
       <h1><span class= "glyphicon glyphicon-list-alt"></span> Carozo</h1>
 
@@ -25,18 +25,18 @@
   <%= f.hidden_field :responsable, value: logged_user.name %>
 
   <div class="field">
-    <%= f.label :Tarja %>
-    <%= text_field_tag :tag, '', autocomplete: 'off'%>
+    <%= f.label :tarja  %>
+    <%= field_tag("new", "", carozo_sample)%>
   </div>
 
   <div class="field">
     <%= f.label :peso_con_carozo %>
-    <%= f.number_field :carozo_weight, id: "number-field", autocomplete: :off, placeholder: ' gramos', step: 0.01, min:0 %>
+    <%= f.number_field :carozo_weight, autocomplete: :off, placeholder: ' gramos', step: 0.01, min:0 %>
   </div>
 
   <div class="field">
     <%= f.label :peso_muestra %>
-    <%= f.number_field :sample_weight, id: "number-field", autocomplete: :off, placeholder: ' gramos', step: 0.01, min:1 %>
+    <%= f.number_field :sample_weight, autocomplete: :off, placeholder: ' gramos', step: 0.01, min:1 %>
   </div>
 
 

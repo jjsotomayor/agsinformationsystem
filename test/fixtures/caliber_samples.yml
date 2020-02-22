@@ -1,17 +1,64 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  responsable: MyString
-  element: one
-  fruits_per_pound: 1
-  caliber: one
-  fruits_in_sample: 1
-  sample_weight: 1
-
-two:
-  responsable: MyString
-  element: two
+recepcion_seco:
+  responsable: Joaquin
+  elements_group: one
   fruits_per_pound: 1
   caliber: two
   fruits_in_sample: 1
   sample_weight: 1
+  counter: 1
+
+secado:
+  responsable: Joaquin
+  element: secado
+  fruits_per_pound: 1
+  caliber: two
+  fruits_in_sample: 1
+  sample_weight: 1
+  counter: 1
+
+calibrado:
+  responsable: Joaquin
+  element: calibrado
+  fruits_per_pound: 1
+  caliber: one
+  fruits_in_sample: 1
+  sample_weight: 1
+  counter: 1
+
+cn:
+  responsable: Joaquin
+  element: cn
+  fruits_per_pound: 1
+  caliber: one
+  fruits_in_sample: 1
+  sample_weight: 1
+  counter: 2
+
+seam:
+  responsable: Joaquin
+  element: seam
+  fruits_per_pound: 1
+  caliber: two
+  fruits_in_sample: 1
+  sample_weight: 1
+  counter: 3
+
+tsc:
+  responsable: Joaquin
+  element: tsc
+  fruits_per_pound: 1
+  caliber: one
+  fruits_in_sample: 1
+  sample_weight: 1
+  counter: 2
+
+tcc:
+  responsable: Joaquin
+  element: tcc
+  fruits_per_pound: 1
+  caliber: one
+  fruits_in_sample: 1
+  sample_weight: 1
+  counter: 2

@@ -1,0 +1,13 @@
+<!-- TODO Esto tb se podria ser por msjes en get_params o mejor aun, Params de session  -->
+<%if session[:display_enter_alert]%>
+  <%title = tag + " ingresado!"%>
+  <%session[:display_enter_alert] = false%>
+<%elsif session[:display_exit_alert]%>
+  <%title = tag + " sacado!"%>
+  <%session[:display_exit_alert] = false%>
+<%end%>
+
+<!-- Si existe un title quiere decir que hay algo para renderear  -->
+<%if title%>
+  <script>swal("<%=title%>", "", "success");</script>
+<%end%>

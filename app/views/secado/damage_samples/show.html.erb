@@ -19,7 +19,7 @@
           <td><%=date_time(@damage_sample.created_at)%></td>
           <td><%= @damage_sample.responsable %></td>
           <td><%= @damage_sample.element.tag%></td>
-          <td><%= @damage_sample.element.drying_method.name%></td>
+          <td><%= drying_method_name_nil_safe(@damage_sample.element) %></td>
           <td><%= @damage_sample.usda %></td>
           <td><%= short_status(@damage_sample) %></td> <!--TODO check if it works everywhere-->
         </tr>

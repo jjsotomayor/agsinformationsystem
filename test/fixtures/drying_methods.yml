@@ -1,7 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+# Es mas facil tenerlo acá que popularlo con seeds
+dm1:
+  name: horno
 
-two:
-  name: MyString
+dm2:
+  name: sol
+
+dm3:
+  name: mixto

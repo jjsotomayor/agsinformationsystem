@@ -78,6 +78,9 @@ Rails.application.configure do
   #BORRAR, SOLO PARA PROBAR!!!
   config.serve_static_assets = true
 
+  # PErmite que todas las request de devise en sitio usen HTTPS
+  config.to_prepare { Devise::SessionsController.force_ssl }
+  config.to_prepare { Devise::RegistrationsController.force_ssl }
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)

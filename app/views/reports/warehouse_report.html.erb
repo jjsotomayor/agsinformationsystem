@@ -1,0 +1,117 @@
+<!-- reports_warehouse_report -->
+
+<!--Producto por cada calibre, no considerar Descarte.  -->
+<div class="container-table">
+  <h3 class= "centered separated">Stock por calibre</h3>
+  <table class = "table table-striped small-height" id = "table_stock-by-caliber">
+    <thead>
+      <tr>
+        <th> </th>
+        <% @product_types.each do |pt| %>
+        <th><%= pt.name.capitalize %></th>
+        <% end %>
+        <th>Total</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @calibers.each do |cal| %>
+      <tr>
+        <td class = "bold"> <%= cal.name.capitalize %></td>
+        <% @product_types.each do |pt| %>
+          <% @pt_elements = @elements.where(product_type: pt)%>
+          <td> <%= amount_and_weight_of_elems_filtered(@pt_elements, {caliber: cal.name}) %> </td>
+        <% end %>
+        <td class = "bold"><%= amount_and_weight_of_elems_filtered(@elements , {caliber: cal.name}) %> </td>
+      </tr>
+      <% end %>
+
+
+      <!-- Sin calibre  -->
+      <tr>
+        <td class = "bold">Sin calibre</td>
+        <% @product_types.each do |pt| %>
+          <% @pt_elements = @elements.where(product_type: pt)%>
+          <td><%= amount_and_weight_of_elems_filtered(@pt_elements, {caliber: nil}) %></td>
+        <% end %>
+        <td class = "bold"><%= amount_and_weight_of_elems_filtered(@elements , {caliber: nil}) %> </td>
+      </tr>
+
+      <!-- Totales  -->
+      <tr>
+        <td class = "bold">Total</td>
+        <% @product_types.each do |pt| %>
+          <% @pt_elements = @elements.where(product_type: pt)%>
+          <td class = "bold"><%= amount_and_weight_of_elems_filtered(@pt_elements) %></td>
+        <% end %>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<br><br><br>
+
+<div class="container-table">
+<!-- TODO Incorporar filtro fecha desde!-->
+<h3 class= "centered separated">Stock por color</h3>
+<table class = "table table-striped small-height" id = "table_stock">
+  <thead>
+    <tr>
+      <th> </th>
+      <% Element.colors.each do |name, id| %>
+        <th><%= name.capitalize %></th>
+      <% end %>
+      <th>Total</th>
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product_types.each do |pt| %>
+          <tr>
+                  <td class = "bold"><%= pt.name.capitalize %></td>
+                  <% Element.colors.each do |color, id| %>
+                  <% @pt_elements = @elements.where(product_type: pt)%>
+                      <td>
+                        <%= amount_and_weight_of_elems_filtered(@pt_elements, {color_name: color}) %>
+                      </td>
+                  <% end %>
+                  <td class = "bold"><%= amount_and_weight_of_elems_filtered(@pt_elements) %></td>
+              </tr>
+      <% end %>
+  </tbody>
+</table>
+</div>
+
+<br><br><br>
+
+<div class="container-table">
+<h3 class= "centered separated">Movimientos últimas 24 horas</h3>
+<table class = "table table-striped table-tight small-height" >
+  <thead>
+    <tr>
+      <th> </th>
+        <th> Ingresos </th>
+        <th> Salidas </th>
+      <!-- <th> Neto </th> -->
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product_types.each do |pt| %>
+        <tr>
+          <td><%= pt.name.capitalize %></td>
+          <!-- NOTE Estas no tienen para que ser asi, pero si las anteriores!  -->
+          <!-- TODO Implementar esta estrategia en infore calidad tb  -->
+          <td><%= @last_elements_enter.select{|e| e.product_type_id == pt.id}.count%></td>
+          <td><%= @last_elements_exit.select{|e| e.product_type_id == pt.id}.count %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>

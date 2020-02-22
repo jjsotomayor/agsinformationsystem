@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  element: secado
+  movement_type: 1
+  weight: 1
+  warehouse: one
+  banda: MyString
+  posicion: MyString
+  altura: MyString
+  warehouse_responsable: MyString
+  destination: MyString
+  process_order: MyString
+  incomplete_bin_tag: MyString
+
+two:
+  element: calibrado
+  movement_type: 1
+  weight: 1
+  warehouse: two
+  banda: MyString
+  posicion: MyString
+  altura: MyString
+  warehouse_responsable: MyString
+  destination: MyString
+  process_order: MyString
+  incomplete_bin_tag: MyString

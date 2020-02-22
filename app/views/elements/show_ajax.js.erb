@@ -1,0 +1,16 @@
+// Selecciona cada item asociado a la tarja y lo llena
+<%if @element%>
+  $("#lot").val("<%= @element.lot %>");
+  $("#drying_method_id").val("<%= @element.drying_method_id %>");
+  $("#first_item").val("<%= @element.first_item %>");
+  $("#last_item").val("<%= @element.last_item %>");
+  $("#ex_tag").val("<%= @element.ex_tag %>");
+  $("#previous_color").val("<%= @previous_color.to_sym%>");
+<%else%>
+  $("#lot").val("");
+  $("#drying_method_id").val("");
+  $("#first_item").val("");
+  $("#last_item").val("");
+  $("#ex_tag").val("");
+  $("#previous_color").val("");
+<%end%>

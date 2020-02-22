@@ -10,24 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180120215225) do
+ActiveRecord::Schema.define(version: 20180921024855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "caliber_samples", force: :cascade do |t|
-    t.string   "responsable",                      null: false
+    t.string   "responsable",                       null: false
     t.integer  "element_id"
-    t.integer  "fruits_in_sample",                 null: false
-    t.integer  "sample_weight",                    null: false
-    t.integer  "fruits_per_pound",                 null: false
+    t.integer  "fruits_in_sample",                  null: false
+    t.integer  "sample_weight",                     null: false
+    t.integer  "fruits_per_pound",                  null: false
     t.integer  "caliber_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.boolean  "active",           default: true,  null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.boolean  "active",            default: true,  null: false
     t.datetime "deleted_at"
-    t.boolean  "is_ex_caliber",    default: false, null: false
-    t.integer  "counter",                          null: false
+    t.boolean  "is_ex_caliber",     default: false, null: false
+    t.integer  "counter",                           null: false
+    t.integer  "elements_group_id"
     t.index ["caliber_id"], name: "index_caliber_samples_on_caliber_id", using: :btree
     t.index ["element_id"], name: "index_caliber_samples_on_element_id", using: :btree
   end
@@ -117,6 +118,7 @@ ActiveRecord::Schema.define(version: 20180120215225) do
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
     t.integer  "counter",                                      null: false
+    t.integer  "elements_group_id"
     t.index ["element_id"], name: "index_damage_samples_on_element_id", using: :btree
   end
 
@@ -142,31 +144,73 @@ ActiveRecord::Schema.define(version: 20180120215225) do
   end
 
   create_table "elements", force: :cascade do |t|
-    t.string   "tag",                          null: false
+    t.string   "tag",                                   null: false
     t.string   "lot"
     t.string   "process_order"
     t.integer  "product_type_id"
     t.integer  "drying_method_id"
     t.string   "ex_tag"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.integer  "color",            default: 0, null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "color",                 default: 0,     null: false
     t.string   "previous_color"
+    t.string   "first_item"
+    t.string   "last_item"
+    t.decimal  "weight"
+    t.integer  "warehouse_id"
+    t.string   "banda"
+    t.string   "posicion"
+    t.string   "altura"
+    t.datetime "stored_at"
+    t.datetime "dispatched_at"
+    t.string   "warehouse_responsable"
+    t.string   "destination"
+    t.datetime "last_movement_at"
+    t.integer  "last_movement_type"
+    t.string   "incomplete_bin_tag"
+    t.integer  "elements_group_id"
+    t.string   "provider"
+    t.boolean  "descarte",              default: false, null: false
+    t.string   "possible_error"
     t.index ["color"], name: "index_elements_on_color", using: :btree
     t.index ["drying_method_id"], name: "index_elements_on_drying_method_id", using: :btree
+    t.index ["last_movement_at"], name: "index_elements_on_last_movement_at", using: :btree
+    t.index ["last_movement_type"], name: "index_elements_on_last_movement_type", using: :btree
     t.index ["product_type_id"], name: "index_elements_on_product_type_id", using: :btree
+    t.index ["warehouse_id"], name: "index_elements_on_warehouse_id", using: :btree
+  end
+
+  create_table "elements_groups", force: :cascade do |t|
+    t.string   "first_tag"
+    t.string   "last_tag"
+    t.string   "pre"
+    t.integer  "first"
+    t.integer  "last"
+    t.integer  "int_pattern"
+    t.string   "lot"
+    t.string   "provider"
+    t.integer  "product_type_id"
+    t.integer  "drying_method_id"
+    t.integer  "color",            default: 0, null: false
+    t.string   "responsable"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["color"], name: "index_elements_groups_on_color", using: :btree
+    t.index ["drying_method_id"], name: "index_elements_groups_on_drying_method_id", using: :btree
+    t.index ["product_type_id"], name: "index_elements_groups_on_product_type_id", using: :btree
   end
 
   create_table "humidity_samples", force: :cascade do |t|
     t.integer  "element_id"
-    t.string   "responsable",                     null: false
-    t.decimal  "humidity",                        null: false
-    t.integer  "status",          default: 0,     null: false
-    t.boolean  "status_modified", default: false, null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "active",          default: true,  null: false
+    t.string   "responsable",                       null: false
+    t.decimal  "humidity",                          null: false
+    t.integer  "status",            default: 0,     null: false
+    t.boolean  "status_modified",   default: false, null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.boolean  "active",            default: true,  null: false
     t.datetime "deleted_at"
+    t.integer  "elements_group_id"
     t.index ["element_id"], name: "index_humidity_samples_on_element_id", using: :btree
   end
 
@@ -175,6 +219,28 @@ ActiveRecord::Schema.define(version: 20180120215225) do
     t.string   "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "movements", force: :cascade do |t|
+    t.integer  "element_id",            null: false
+    t.integer  "movement_type",         null: false
+    t.integer  "weight"
+    t.integer  "warehouse_id"
+    t.string   "banda"
+    t.string   "posicion"
+    t.string   "altura"
+    t.string   "warehouse_responsable", null: false
+    t.string   "destination"
+    t.string   "process_order"
+    t.string   "incomplete_bin_tag"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["destination"], name: "index_movements_on_destination", using: :btree
+    t.index ["element_id"], name: "index_movements_on_element_id", using: :btree
+    t.index ["movement_type"], name: "index_movements_on_movement_type", using: :btree
+    t.index ["process_order"], name: "index_movements_on_process_order", using: :btree
+    t.index ["warehouse_id"], name: "index_movements_on_warehouse_id", using: :btree
+    t.index ["warehouse_responsable"], name: "index_movements_on_warehouse_responsable", using: :btree
   end
 
   create_table "operations", force: :cascade do |t|
@@ -198,6 +264,42 @@ ActiveRecord::Schema.define(version: 20180120215225) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_roles_on_name", unique: true, using: :btree
+  end
+
+  create_table "samples_averages", force: :cascade do |t|
+    t.integer  "element_id"
+    t.decimal  "fruits_per_pound"
+    t.decimal  "deviation"
+    t.integer  "deviation_status"
+    t.decimal  "humidity"
+    t.decimal  "sorbate"
+    t.decimal  "carozo_percentage"
+    t.float    "off_color_perc"
+    t.float    "poor_texture_perc"
+    t.float    "scars_perc"
+    t.float    "end_cracks_perc"
+    t.float    "skin_or_flesh_damage_perc"
+    t.float    "fermentation_perc"
+    t.float    "heat_damage_perc"
+    t.float    "insect_injury_perc"
+    t.float    "mold_perc"
+    t.float    "dirt_perc"
+    t.float    "foreign_material_perc"
+    t.float    "vegetal_foreign_material_perc"
+    t.float    "insect_infestation_perc"
+    t.float    "decay_perc"
+    t.float    "deshidratado_perc"
+    t.float    "bolsa_de_agua_perc"
+    t.float    "ruset_perc"
+    t.float    "reventados_perc"
+    t.float    "carozo_perc"
+    t.float    "total_damages_perc"
+    t.integer  "usda"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "caliber"
+    t.index ["caliber"], name: "index_samples_averages_on_caliber", using: :btree
+    t.index ["element_id"], name: "index_samples_averages_on_element_id", using: :btree
   end
 
   create_table "sorbate_samples", force: :cascade do |t|
@@ -261,6 +363,12 @@ ActiveRecord::Schema.define(version: 20180120215225) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "warehouses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "caliber_samples", "calibers"
   add_foreign_key "caliber_samples", "elements"
   add_foreign_key "carozo_samples", "elements"
@@ -269,7 +377,12 @@ ActiveRecord::Schema.define(version: 20180120215225) do
   add_foreign_key "deviation_samples", "caliber_samples"
   add_foreign_key "elements", "drying_methods"
   add_foreign_key "elements", "product_types"
+  add_foreign_key "elements_groups", "drying_methods"
+  add_foreign_key "elements_groups", "product_types"
   add_foreign_key "humidity_samples", "elements"
+  add_foreign_key "movements", "elements"
+  add_foreign_key "movements", "warehouses"
+  add_foreign_key "samples_averages", "elements"
   add_foreign_key "sorbate_samples", "elements"
   add_foreign_key "user_control_accesses", "operations"
   add_foreign_key "user_control_accesses", "user_controls"

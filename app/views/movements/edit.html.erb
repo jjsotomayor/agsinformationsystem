@@ -1,0 +1,97 @@
+<%= render 'movements/message_success_js', tag: @element.tag if  @element%>
+<%= render 'shared/message_js', message: @message if @message %>
+
+<div class= "container-samples">
+  <div class= "pestaña">BODEGA</div>
+    <div class="outside-new-form">
+      <h1><span class= "glyphicon glyphicon-list-alt"></span> Modificar</h1>
+
+      <%=form_tag(movements_update_path, {id: 'edit-movement', class: 'inside-new-form validate warehouse-form'}) do %>
+
+        <div class="field">
+          <label> Tarja </label>
+          <%= text_field_tag :tag, "", class: "", autocomplete: 'off'%>
+        </div>
+
+        <div class="field">
+          <label> Peso </label>
+          <%= number_field_tag :weight, nil, placeholder: 'kilogramos', step: 0.01, min:1, disabled: true %>
+        </div>
+
+        <div class="field">
+          <label> Bodega </label>
+          <%= select_tag :warehouse_id,  options_from_collection_for_select(Warehouse.all, "id", "name"), include_blank: true, disabled: true %>
+        </div>
+
+        <div class="field">
+          <label> Banda </label>
+          <%= text_field_tag :banda, "", class: "", autocomplete: 'off', placeholder: 'opcional', disabled: true%>
+        </div>
+
+        <div class="field">
+          <label> Posicion </label>
+          <%= text_field_tag :posicion, "", class: "", autocomplete: 'off', placeholder: 'opcional', disabled: true%>
+        </div>
+
+        <div class="field">
+          <label> Altura </label>
+          <%= text_field_tag :altura, "", class: "", autocomplete: 'off', placeholder: 'opcional', disabled: true%>
+        </div>
+
+        <div class="field">
+          <label> Destino </label>
+          <%= select_tag :destination, options_for_select(@destinations), include_blank: true, disabled: true%>
+        </div>
+
+        <div class="field">
+          <label> Orden Proceso </label>
+          <%= text_field_tag :process_order, "", class: "", autocomplete: 'off', disabled: true%>
+        </div>
+
+
+        <div class="actions">
+          <%= submit_tag "Modificar",  class: "btn btn-primary btn-lg btn-block" %>
+        </div>
+
+      <% end %>
+
+  </div>
+</div>
+
+
+<div class="container-last-samples">
+      <h3>Últimas ediciones</h3>
+
+      <table class = "table table-striped">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Tarja</th>
+            <th>Resp.</th>
+            <th>Peso (kg)</th>
+            <th>Bodega</th>
+            <th>Banda, posición, altura</th>
+            <th>Destino</th>
+            <th>OP</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%@recently_moved.each do |elem|%>
+            <tr>
+              <td><%= date_time(elem.last_movement_at) %></td>
+              <td><%= elem.tag %></td>
+              <td><%= elem.warehouse_responsable %></td>
+              <td><%= elem.weight %></td>
+              <td><%= elem.warehouse.name if elem.warehouse %></td>
+              <td><%= banda_pos_altura_nil_safe(elem) %></td>
+              <td><%= elem.destination%></td>
+              <td><%= elem.process_order%></td>
+
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+<%= link_to 'Todos los movimientos', movements_path,  class: "btn btn-primary btn-sm" %>
+</div>

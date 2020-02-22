@@ -1,27 +1,43 @@
+<%= render 'shared/message_js', message: @message if @message %>
+
   <div class="container">
     <h2 class= "centered separated">Productos</h2>
 
-    <%=
-    #link_to "Descargar csv", elements_path(:csv), class: "btn btn-primary btn-xs"
-     %>
-    <%= link_to 'Descargar en excel', elements_path(format: :xlsx), class: "btn btn-primary btn-sm" %>
     <!-- Form para buscar elements -->
     <%= form_tag(elements_path, method: :get) do %>
       <%= text_field_tag :term, nil, placeholder: 'Buscar una tarja' %>
       <%= submit_tag 'Buscar', name: nil %>
     <% end %>
 
+    <%= form_tag(elements_path, method: :get) do %>
+      <%= select_tag "product_type_id", options_from_collection_for_select(@product_types, "id", "name", params[:product_type_id]), include_blank: 'Todo Producto', class: "margin-up-select" %>
+      <%= select_tag "drying_method_id", options_from_collection_for_select(@drying_methods, "id", "name", params[:drying_method_id]), include_blank: 'Todo Secado', class: "margin-up-select" %>
+      <%= select_tag "color",  options_for_select(Element.colors, params[:color]), include_blank: 'Todo Color', class: "margin-up-select" %>
+      <%= select_tag "location", options_for_select([["Toda ubicación", 0], ["En bodega", 1]], params[:location]), class: "margin-up-select" %>
+      <%= submit_tag 'Filtrar', name: nil, class: "btn btn-primary btn-sm margin0" %>
+    <% end %>
+
+    <%= paginate @elements %>
   <table class = "table table-striped">
   <thead>
     <tr>
       <th>Tarja</th>
       <th>Fecha</th>
+      <th>Prov.</th>
       <th>Lote</th>
       <th>Tipo producto</th>
+      <th></th>
       <th>Tipo secado</th>
+      <th>Items</th>
       <th>Color</th>
       <th>Tarja anterior</th>
       <th>Color anterior</th>
+      <th>Peso (kg)</th>
+      <th>Bodega</th>
+      <th>Destino</th>
+      <th>OP</th>
+      <th></th>
+      <!-- NOTE Quizas agregar banda pos, altura como en show  -->
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -32,18 +48,31 @@
       <tr class= "<%= colored_rows_with_color(element.color)%>" >
         <td><%= element_link(element) %></td>
         <td><%= date_time(element.created_at) %></td>
+        <td><%= element.provider %></td>
         <td><%= element.lot %></td>
         <td><%= element.product_type.name.upcase unless element.product_type.nil? %></td>
+        <td><%= element.descarte ? " (desc)" : "" %></td>
         <td><%= element.drying_method.name unless element.drying_method.nil? %></td>
+        <td><%= first_last_item(element)%></td>
         <td><%= element.color%></td>
         <td><%= element.ex_tag %></td>
         <td><%= element.previous_color %></td>
+        <td><%= element.weight %></td>
+        <td><%= element.warehouse.name if element.warehouse %></td>
+        <td><%= element.destination %></td>
+        <td><%= element.process_order %></td>
+        <td>
+        <% if element.possible_error %>
+          <span class="glyphicon glyphicon-exclamation-sign" data-toggle="tooltip" title="<%=element.possible_error%>"></span>
+        <% end %>
+        </td>
         <td><%= link_to 'Ver', element, class: "btn btn-primary btn-xs" %></td>
-        <% if access_edit_element_button %>
+        <% if access_edit_destroy_element_button %>
           <td><%= link_to 'Editar', edit_element_path(element),  class: "btn btn-warning btn-xs" %></td>
         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= paginate @elements %>
 </div>

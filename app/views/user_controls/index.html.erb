@@ -24,6 +24,7 @@
 
         <td>
 
+          <%= form_tag(add_access_user_control_path(user_control), method: :post) do %>
           <table>
             <tbody>
               <% user_control.operations.each do |op_access| %>
@@ -35,23 +36,23 @@
               <% end %>
 
               <tr class = "index_form">
-                <%= form_tag(add_access_user_control_path(user_control), method: :post) do %>
-                  <%= hidden_field_tag :user_control_id, user_control.id %>
-                  <td>
-                    <div class="field-table">
-                      <% pp user_control.operations.to_a%>
-                      <%= select_tag "operation",  options_for_select(@operations.where.not(id: user_control.operations.to_a).map{|o| [o.name,o.id]}), include_blank: true%>
+                    <%= hidden_field_tag :user_control_id, user_control.id %>
 
-                    </div>
-                  </td>
-
-                  <td>
-                    <%= submit_tag "Agregar acceso",  class: "btn btn-primary btn-xs" %>
-                </td>
-                <% end %>
+                    <td>
+                        <div class="field-table">
+                          <% pp user_control.operations.to_a%>
+                          <%= select_tag "operation",  options_for_select(@operations.where.not(id: user_control.operations.to_a).map{|o| [o.name,o.id]}), include_blank: true%>
+                        </div>
+                    </td>
+                    <td>
+                        <%= submit_tag "Agregar acceso",  class: "btn btn-primary btn-xs" %>
+                    </td>
               </tr>
+
             </tbody>
           </table>
+          <% end %>
+
 
         </td>
 

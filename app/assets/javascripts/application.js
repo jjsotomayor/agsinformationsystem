@@ -123,13 +123,30 @@ $(document).on('turbolinks:load', function(){
   // $(".validatable #damage_sample_carozo").bind("keyup" , changeCommaToPoint);
   // $(".validatable #damage_sample_carozo").on("input propertychange paste", {non_blank: false, number: "integer"}, validation_event_handler);
 
+  //////////////////////////////
+  //// Carozo Samples //////////
+  //////////////////////////////
+  $(".validatable #carozo_sample_sample_weight").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
+  $(".validatable #carozo_sample_carozo_weight").on("input propertychange paste", {non_blank: true, number: "integer"}, validation_event_handler);
 
+  //////////////////////////////
+  //// Descarte Samples ////////
+  //////////////////////////////
+  $(".validatable #product_type").on("input propertychange paste", {non_blank: true, number: false}, validation_event_handler);
 
+  ////////////////////////////////////////////////
+  //// Group Samples and Group creation //////////
+  ////////////////////////////////////////////////
+  $(".validatable #humidity_sample_elements_group_id").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
+  $(".validatable #caliber_sample_elements_group_id").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
+  $(".validatable #damage_sample_elements_group_id").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
 
-  // TODO solo detener el submit si hay errores
-  // $("form#new_humidity_sample").submit(function(e){
-// form
-// $(".validatable").submit(function(e){
+  $(".validatable #elements_group_first_tag").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
+  $(".validatable #elements_group_last_tag").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
+  $(".validatable #elements_group_lot").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
+  $(".validatable #elements_group_provider").on("input propertychange paste", {non_blank: true, number: false }, validation_event_handler);
+
+  // Valida los formularios de los form de warehouse
   $("form.validatable").submit(function(e){
       if (run_all_validations(e)){
         e.preventDefault();
@@ -138,37 +155,104 @@ $(document).on('turbolinks:load', function(){
       }
     });
 
+  $("#exit-movement #was_error").on("input propertychange paste click", disable_exit_warehouse_fields);
+
+  // Válida las celdas de los form de warehouse
+  $("form.warehouse-form").submit(function(e){
+      if (run_all_warehouse_validations(e)){
+        e.preventDefault();
+        swal('No almacenada!','Arregla las celdas en rojo e intenta nuevamente', 'error') //success warning error
+        $(".btn[type=submit]").removeAttr("data-disable-with") //NOTE El selector del boton "guardar" es muy general
+      }
+    });
+
+  // Ajax request para obtener los datos de un element en new damage_samples forms
+  // TODO chequear que no se ejecuta cuando se esita una damagesample
+  $("#new_damage_sample #tag").on("input propertychange paste", get_element_through_ajax);
+  $("#edit-movement #tag").on("input propertychange paste", get_element_to_edit_movement_ajax);
 
 });
 
+////////////////////////////////////////
+////////////// Funciones //////////////
+////////////////////////////////////////
 
+// Cuando se cliques el boton was_error, deshabilita inputs
+function disable_exit_warehouse_fields(e){
+  // console.log("Hubo un movimiento en was_error checkbox");
+  if ($(this).is(":checked")){
+    // console.log("Deshabilitando");
+    $("#destination").prop('disabled', true);
+    $("#process_order").prop('disabled', true);
+  } else{
+    // console.log("Habilitando");
+    $("#destination").prop('disabled', false);
+    $("#process_order").prop('disabled', false);
+  }
+}
 
 // Estas son las validaciones que se corren al cliguear guardar!
 function run_all_validations(e){
     console.log("Running validations");
     // function validate($elem, non_blank, number_format){
     var error = false;
-    if (!validate($(".validatable #tag"),                             true, false)){ error = true;}
+    if (!validate($(".validatable #tag"),                               true, false)){ error = true;}
     // Elements form //
-    if (!validate($(".validatable #element_tag"),                     true, false)){ error = true;}
-    if (!validate($(".validatable #element_product_type_id"),         true, false)){ error = true;}
+    if (!validate($(".validatable #element_tag"),                       true, false)){ error = true;}
+    if (!validate($(".validatable #element_product_type_id"),           true, false)){ error = true;}
     // TODO validar kgs
     // if (!validate($(".validatable #element_weight"),                  true, "integer")){ error = true;}
     //// HUumidity samples //////////
-    if (!validate($(".validatable #humidity_sample_humidity"),        true, "integer")){ error = true;}
+    if (!validate($(".validatable #humidity_sample_humidity"),          true, "integer")){ error = true;}
     ////Sorbate samples //////////
-    if (!validate($(".validatable #sorbate_sample_sorbate"),          true, "integer")){ error = true;}
+    if (!validate($(".validatable #sorbate_sample_sorbate"),            true, "integer")){ error = true;}
     ////Caliber samples //////////
-    if (!validate($(".validatable #caliber_sample_sample_weight"),    true, "integer")){ error = true;}
-    if (!validate($(".validatable #caliber_sample_fruits_in_sample"), true, "integer")){ error = true;}
-    if (!validate($(".validatable #big_fruits_in_sample"),            true, "integer")){ error = true;}
-    if (!validate($(".validatable #small_fruits_in_sample"),          true, "integer")){ error = true;}
-    if (!validate($(".validatable #caliber_sample_is_ex_caliber"),    true, false)){ error = true;}
+    if (!validate($(".validatable #caliber_sample_sample_weight"),      true, "integer")){ error = true;}
+    if (!validate($(".validatable #caliber_sample_fruits_in_sample"),   true, "integer")){ error = true;}
+    if (!validate($(".validatable #big_fruits_in_sample"),              true, "integer")){ error = true;}
+    if (!validate($(".validatable #small_fruits_in_sample"),            true, "integer")){ error = true;}
+    if (!validate($(".validatable #caliber_sample_is_ex_caliber"),      true, false)){ error = true;}
     //// Damage Samples //////////
     // if (!validate($(".validatable #process_order"),                   true, false)){ error = true;}
-    if (!validate($(".validatable #lot"),                             true, false)){ error = true;}
-    if (!validate($(".validatable #drying_method_id"),                true, false)){ error = true;}
-    if (!validate($(".validatable #damage_sample_sample_weight"),     true, "integer")){ error = true;}
+    if (!validate($(".validatable #lot"),                               true, false)){ error = true;}
+    if (!validate($(".validatable #drying_method_id"),                  true, false)){ error = true;}
+    if (!validate($(".validatable #damage_sample_sample_weight"),       true, "integer")){ error = true;}
+
+    //// Carozo Samples //////////
+    if (!validate($(".validatable #carozo_sample_sample_weight"),       true, "integer")){ error = true;}
+    if (!validate($(".validatable #carozo_sample_carozo_weight"),       true, "integer")){ error = true;}
+
+    //// Descarte Samples //////////
+    if (!validate($(".validatable #product_type"),       true, false)){ error = true;}
+
+    //// Group Samples and Group creation //////////
+    if (!validate($(".validatable #humidity_sample_elements_group_id"), true, false)){ error = true;}
+    if (!validate($(".validatable #caliber_sample_elements_group_id"),  true, false)){ error = true;}
+    if (!validate($(".validatable #damage_sample_elements_group_id"),   true, false)){ error = true;}
+
+    if (!validate($(".validatable #elements_group_first_tag"),          true, false)){ error = true;}
+    if (!validate($(".validatable #elements_group_last_tag"),           true, false)){ error = true;}
+    if (!validate($(".validatable #elements_group_lot"),                true, false)){ error = true;}
+    if (!validate($(".validatable #elements_group_provider"),           true, false)){ error = true;}
+    return error;
+}
+
+
+// Corre las validaciones para las form de bodega
+function run_all_warehouse_validations(e){
+    console.log("Running validations");
+    // function validate($elem, non_blank, number_format){
+    var error = false;
+    // TODO cambiar aqui y en forms a "validatable"
+    if (!validate($(".validate #original_tag"),                    true, false)){ error = true;}
+    if (!validate($(".validate #tag"),                             true, false)){ error = true;}
+    if (!validate($(".validate #weight"),                          true, false)){ error = true;}
+    if (!validate($(".validate #warehouse_id"),                    true, false)){ error = true;}
+    if (!validate($(".validate #destination"),                     true, false)){ error = true;}
+    if (!validate($(".validate #process_order"),                   true, false)){ error = true;}
+    // Elements form //
+    // if (!validate($(".validatable #element_tag"),                     true, false)){ error = true;}
+    // if (!validate($(".validatable #element_product_type_id"),         true, false)){ error = true;}
 
     return error;
 }
@@ -186,6 +270,10 @@ function validation_event_handler(event){
 // TODO: actualmente no distingue integer de decimal(solo valida que sea numero)
 function validate($elem, non_blank, number_format){
   if (!$elem.length){ //Chequea si $elem es un elemento o esta vacio
+    return true;
+  }
+
+  if ($elem.prop('disabled')){ // Si el input field esta disabled, no lo revisa
     return true;
   }
 
@@ -221,7 +309,33 @@ function validate($elem, non_blank, number_format){
 }
 
 
+// Hace la AJAX request al controlador para ver si esta la tarja
+function get_element_through_ajax(e){
+  var tag = $(this).val();
+  $.ajax ({
+    url: "/elements/show_ajax",
+    type: 'get',
+    data:
+    {
+      tag: tag
+    },
+    dataType: 'script'
+  });
+}
 
+// Hace la AJAX request al controlador para ver si esta la tarja
+function get_element_to_edit_movement_ajax(e){
+  var tag = $(this).val();
+  $.ajax ({
+    url: "/movements/get_element_ajax",
+    type: 'get',
+    data:
+    {
+      tag: tag
+    },
+    dataType: 'script'
+  });
+}
 
 
 

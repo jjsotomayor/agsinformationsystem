@@ -16,4 +16,19 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :last_name])
     #devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :last_name]) #same but for update
   end
+
+  def display_message_in_session
+    session[:display_message] = true
+  end
+
+  def display_message?
+    session[:display_message] || false
+  end
+
+  # NOTE En el futuro mensajes deberian ser pasados en la sesion! no get_params
+  def set_message
+    @message = {type: params[:type], title: params[:title], msg: params[:msg]} if display_message?
+    logger.info "HAy mensaje? = #{@message}"
+  end
+
 end

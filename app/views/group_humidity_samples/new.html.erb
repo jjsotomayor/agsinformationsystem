@@ -1,0 +1,31 @@
+<%= render 'shared/message_success_js', sample: @success_sample if  @success_sample%>
+<%= render 'form_new', humidity_sample: @humidity_sample %>
+
+<div class="container-last-samples humidity">
+  <h3>Tus ultimas muestras de humedad Grupal</h3>
+<table class = "table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Grupo Tarjas</th>
+      <th>Resp.</th>
+      <th>H (%)</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @humidity_samples.each do |humidity_sample| %>
+      <tr>
+        <td><%= time(humidity_sample.created_at)%></td>
+        <td><%= group_link(humidity_sample.group) %></td>
+        <td><%= humidity_sample.responsable.truncate(12) %></td>
+        <td><%= humidity_sample.humidity %></td>
+
+        <td><%= link_to 'Editar', edit_group_humidity_sample_path(humidity_sample),  class: "btn btn-warning btn-xs" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Todas las muestras de humedad grupal', group_humidity_samples_path,  class: "btn btn-primary btn-xs" %>
+</div>

@@ -1,0 +1,42 @@
+<% if @humidity_sample.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@humidity_sample.errors.count, "error") %> prohibited this humidity_sample from being saved:</h2>
+  <ul>
+    <% @humidity_sample.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+
+<div class= "container-samples">
+  <div class= "pestaña">Laboratorio</div>
+    <div class="outside-new-form ">
+      <h1><span class= "glyphicon glyphicon-list-alt"></span> Editar Humedad de grupo</h1>
+
+<% url = "/group_humidity_samples/#{@humidity_sample.id}" %>
+<% method = set_form_method("edit")%>
+<%= form_for(@humidity_sample, url: url, method: method, html: {class: 'inside-new-form validatable ', autocomplete: :off})  do |f| %>
+
+<div class="field">
+  <%= f.label :tarjas  %>
+  <%= field_elements_group(f, 'edit', "", @humidity_sample)%>
+</div>
+  <div class="field">
+    <%= f.label :editar_humedad %>
+    <%= f.number_field :humidity, step: 0.01, min:0 %>
+  </div>
+
+
+  <div class="buttons-together-edit">
+    <%= link_to 'Regresar', :back, class: "btn-back btn btn-primary btn-lg "%>
+    <%= f.submit "Editar", class: "btn-edit btn btn-warning btn-lg" %>
+  </div>
+
+<% end %>
+
+
+    </div>
+  </div>
+</div>

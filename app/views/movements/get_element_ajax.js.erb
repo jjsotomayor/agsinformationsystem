@@ -1,0 +1,46 @@
+// Selecciona cada item asociado a la tarja y lo llena
+    $("#weight").val("");
+    $("#warehouse_id").val("");
+    $("#banda").val("");
+    $("#posicion").val("");
+    $("#altura").val("");
+    $("#destination").val("");
+    $("#process_order").val("");
+
+    $("#weight").prop('disabled', true);
+    $("#warehouse_id").prop('disabled', true);
+    $("#banda").prop('disabled', true);
+    $("#posicion").prop('disabled', true);
+    $("#altura").prop('disabled', true);
+    $("#destination").prop('disabled', true);
+    $("#process_order").prop('disabled', true);
+
+<%if !@element or !@element.has_entered_warehouse?%>
+<%else%>
+    $("#weight").val("<%= @element.weight %>");
+    $("#warehouse_id").val("<%= @element.warehouse_id %>");
+    $("#banda").val("<%= @element.banda %>");
+    $("#posicion").val("<%= @element.posicion %>");
+    $("#altura").val("<%= @element.altura %>");
+    $("#destination").val("<%= @element.destination%>");
+    $("#process_order").val("<%= @element.process_order%>");
+
+    <%if @element.in_warehouse?%>
+        $("#weight").prop('disabled', false);
+        $("#warehouse_id").prop('disabled', false);
+        $("#banda").prop('disabled', false);
+        $("#posicion").prop('disabled', false);
+        $("#altura").prop('disabled', false);
+        $("#destination").prop('disabled', true);
+        $("#process_order").prop('disabled', true);
+    <%elsif @element.left_warehouse?%>
+        $("#weight").prop('disabled', false);
+        $("#warehouse_id").prop('disabled', true);
+        $("#banda").prop('disabled', true);
+        $("#posicion").prop('disabled', true);
+        $("#altura").prop('disabled', true);
+        $("#destination").prop('disabled', false);
+        $("#process_order").prop('disabled', false);
+    <%end%>
+
+<%end%>

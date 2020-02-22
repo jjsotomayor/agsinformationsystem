@@ -1,0 +1,152 @@
+<!-- Esto se podria reutilizar para que sirva tambien en elements/show -->
+
+<% @dam_samples = dam_samples %>
+<% @cal_samples = cal_samples %>
+<% @humidity_samples = humidity_samples %>
+<% @product_type = product_type %>
+<% @damages_list = damages_list %>
+
+
+<!-- Se muestran las muestras de daños  -->
+<%if @dam_samples%>
+    <div class= "container-table">
+    <h3 class= "centered separated">Muestras de Daños (<%=@dam_samples.count%>)</span></h3>
+
+    <table class = "table table-striped table-tight">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th></th>
+
+          <th>Resp.</th>
+          <th>Tarjas</th>
+          <th>Peso muest. (gr)</th>
+
+          <th>USDA</th>
+          <th>DF07</th>
+
+          <%=table_headers_damages(" (%)")%>
+          <th>Total (%)</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @dam_samples.each do |damage_sample| %>
+          <tr>
+            <td><%= damage_sample.counter %></td>
+            <td><%= date_time(damage_sample.created_at)%></td>
+
+            <td><%= damage_sample.responsable.truncate(7) %></td>
+            <td><%= group_link(damage_sample.group) %></td>
+            <td><%= round_or_nil(damage_sample.sample_weight).to_s %></td>
+
+            <td><%= damage_sample.usda %></td>
+            <td><%= short_status(damage_sample) %></td>
+
+
+            <%=table_body_damages(damage_sample, "%")%>
+            <td><%=damage_sample.total_damages_perc.round(1)%></td>
+
+            <td><%= link_show_sample(damage_sample, "damage_sample", @product_type) %></td>
+            <% if access_edit_delete_sample_button %>
+              <td><%= link_edit_sample(damage_sample, "damage_sample", @product_type) %></td>
+              <td><%= link_delete_sample(damage_sample, "damage_sample", @product_type) %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<%end%>
+<br>
+
+
+<!-- Se muestran las muestras de calibre y desviación  -->
+<% if @cal_samples %>
+    <div class="container">
+    <h3 class= "centered separated">Muestras de calibre (<%= @cal_samples.count%>)</h3>
+    <table class = "table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Creación</th>
+          <th>Responsable</th>
+          <th>Tarjas</th>
+          <th>Frutos x libra</th>
+          <th>Calibre</th>
+          <th>Desviación</th>
+          <th>Estado</th>
+
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @cal_samples.each do |caliber_sample| %>
+          <tr>
+            <td><%= caliber_sample.counter %></td>
+            <td><%= date_time(caliber_sample.created_at) %></td>
+            <td><%= caliber_sample.responsable.truncate(14) %></td>
+            <td><%= group_link(caliber_sample.group) %></td>
+            <td><%= caliber_sample.fruits_per_pound %></td>
+            <td><%= caliber_sample.caliber.name %></td>
+
+            <td><%= caliber_sample.deviation_sample.deviation.round(1) if caliber_sample.deviation_sample  %></td>
+
+            <%if caliber_sample.deviation_sample%>
+              <td><%= caliber_sample.deviation_sample.status%></td>
+            <%else%>
+              <td>no aplica</td>
+            <%end%>
+
+            <% if access_edit_delete_sample_button %>
+              <td><%= link_edit_sample(caliber_sample, "caliber_sample", @product_type) %></td>
+              <td><%= link_delete_sample(caliber_sample, "caliber_sample", @product_type) %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+<%end%>
+<br>
+
+
+<!-- Muestras de humedad -->
+<% if @humidity_samples %>
+    <div class="container">
+    <h3 class= "centered separated">Muestras de Humedad (<%=@humidity_samples.count%>)</h3>
+    <table class = "table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Creación</th>
+          <th>Responsable</th>
+          <th>Tarjas</th>
+          <th>Humedad</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @humidity_samples.each do |humidity_sample| %>
+            <tr>
+            <td><%= humidity_sample.counter %></td>
+            <td><%= date_time(humidity_sample.created_at) %></td>
+            <td><%= humidity_sample.responsable %></td>
+            <td><%= group_link(humidity_sample.group) %></td>
+            <td><%= humidity_sample.humidity %></td>
+
+            <% if access_edit_delete_sample_button %>
+              <td><%= link_to 'Editar', edit_group_humidity_sample_path(humidity_sample),  class: "btn btn-warning btn-xs" %></td>
+              <td><%= link_to 'Eliminar', group_humidity_sample_path(humidity_sample), method: :delete, data: { confirm: 'Estas seguro?' },  class: "btn btn-danger btn-xs" %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    </div>
+<%end%>

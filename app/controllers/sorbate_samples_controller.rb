@@ -8,7 +8,8 @@ class SorbateSamplesController < ApplicationController
   # GET /sorbate_samples
   # GET /sorbate_samples.json
   def index
-    @sorbate_samples = SorbateSample.active.ord
+    @sorbate_samples = SorbateSample.all
+    @sorbate_samples = @sorbate_samples.page(params[:page]).ord
   end
 
   # GET /sorbate_samples/1
@@ -36,7 +37,11 @@ class SorbateSamplesController < ApplicationController
     @sorbate_sample.element = @element
 
     #NOTE: No se necesita if !status, pq status identifica error no ocurrible aca
-    if @sorbate_sample.save
+    if !status
+      @sorbate_samples = SorbateSample.get_recent_samples(logged_user.name).first(3)
+      session[:display_wrong_process_alert] = true
+      render :new
+    elsif @sorbate_sample.save
       session[:display_created_alert] = true
       redirect_to new_sorbate_sample_path success_id: @sorbate_sample.id
     else
@@ -52,6 +57,16 @@ class SorbateSamplesController < ApplicationController
   # PATCH/PUT /sorbate_samples/1
   # PATCH/PUT /sorbate_samples/1.json
   def update
+
+    if params[:tag] != @sorbate_sample.element.tag
+      @element, status = Element.change_element_of_sample(@sorbate_sample, element_params)
+      #Aqui no hay process / product_type => No hay wrong process error
+      if !status
+        session[:display_wrong_process_alert] = true
+        return render :edit
+      end
+    end
+
     if @sorbate_sample.update(sorbate_sample_params)
       session[:display_updated_alert] = true
       redirect_to new_sorbate_sample_path success_id: @sorbate_sample.id
@@ -65,7 +80,9 @@ class SorbateSamplesController < ApplicationController
   def destroy
     # @sorbate_sample.soft_delete
     @sorbate_sample.destroy
-    redirect_to sorbate_samples_url, notice: 'Muestra de sorbato eliminada.'
+    # redirect_to sorbate_samples_url, notice: 'Muestra de sorbato eliminada.'
+    # Hace que se caiga si se elimina desde show, pq trata de volver
+    redirect_back(fallback_location: root_path, notice: 'Muestra de sorbato eliminada.')
   end
 
   private

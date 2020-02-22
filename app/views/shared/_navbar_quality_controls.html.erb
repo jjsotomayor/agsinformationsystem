@@ -11,44 +11,47 @@
     <div class="collapse navbar-collapse" id="myNavbar">
 
 <ul class="nav navbar-nav">
-  <!-- NOTE Esta es una fuente de tiempos excesivos  -->
-  <!--TODO Que pasa aqui con el acceso al laboratorio, que no es un producto sino un proceso  -->
+  <!-- NOTE Esta es una fuente de tiempos excesivos. Podria ir a buscar un
+      arreglo con accesos y recorrerlo (user.operations.each do ...)-->
       <% if logged_user.has_access_to?("laboratorio")%>
-        <%= render 'shared/quality_control_menu/laboratorio_li'%>
+        <%= render 'shared/quality_control_menu/laboratorio_li', action: "new"%>
       <% end%>
 
       <% if logged_user.has_access_to?("recepción fresco")%>
-        <%= render 'shared/quality_control_menu/recepción_fresco_li'%>
+        <%= render 'shared/quality_control_menu/recepción_fresco_li', action: "new"%>
       <% end%>
 
-      <% if logged_user.has_access_to?("recepcion seco")%>
-        <%= render 'shared/quality_control_menu/recepción_seco_li'%>
+      <% if logged_user.has_access_to?("recepcion_seco")%>
+        <%= render 'shared/quality_control_menu/recepción_seco_li', action: "new"%>
       <% end%>
 
       <% if logged_user.has_access_to?("secado")%>
-        <%= render 'shared/quality_control_menu/secado_li'%>
+        <%= render 'shared/quality_control_menu/secado_li', action: "new"%>
       <% end%>
 
       <% if logged_user.has_access_to?("calibrado")%>
-        <%= render 'shared/quality_control_menu/calibrado_li'%>
+        <%= render 'shared/quality_control_menu/calibrado_li', action: "new"%>
       <% end%>
 
       <% if logged_user.has_access_to?("seam")%>
-        <%= render 'shared/quality_control_menu/seam_li'%>
+        <%= render 'shared/quality_control_menu/seam_li', action: "new"%>
       <% end%>
 
       <% if logged_user.has_access_to?("cn")%>
-        <%= render 'shared/quality_control_menu/cn_li'%>
+        <%= render 'shared/quality_control_menu/cn_li', action: "new"%>
       <% end%>
 
       <% if logged_user.has_access_to?("tsc")%>
-        <%= render 'shared/quality_control_menu/tsc_li'%>
+        <%= render 'shared/quality_control_menu/tsc_li', action: "new"%>
       <% end%>
 
       <% if logged_user.has_access_to?("tcc")%>
-        <%= render 'shared/quality_control_menu/tcc_li'%>
+        <%= render 'shared/quality_control_menu/tcc_li', action: "new"%>
       <% end%>
 
+      <% if logged_user.has_access_to?("descarte")%>
+        <%= render 'shared/quality_control_menu/descarte_li', action: "new"%>
+      <% end%>
 
   </ul>
 

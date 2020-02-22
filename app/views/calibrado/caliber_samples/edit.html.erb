@@ -1,1 +1,6 @@
-<%= render 'shared_caliber_samples/form_calling', caliber_sample: @caliber_sample, type: "edit"%>
+<%=
+render 'shared_caliber_samples/edit',
+  caliber_sample: @caliber_sample,
+  element: @element, # Esto es por si hubo error con el element
+  type: "edit"
+  %>

@@ -1,13 +1,36 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  tag: MyString
-  product_type: one
-  drying_method: one
-  ex_tag: MyString
+secado:
+  tag: MyString1
+  product_type: secado
+  drying_method: dm1
 
-two:
-  tag: MyString
-  product_type: two
-  drying_method: two
-  ex_tag: MyString
+calibrado:
+  tag: MyString2
+  product_type: calibrado
+  drying_method: dm1
+
+cn:
+  tag: MyString3
+  product_type: cn
+  drying_method: dm1
+
+seam:
+  tag: MyString4
+  product_type: seam
+  drying_method: dm2
+
+tsc:
+  tag: MyString5
+  product_type: tsc
+  drying_method: dm2
+
+tcc:
+  tag: MyString6
+  product_type: tcc
+  drying_method: dm2
+
+no_samples_elem:
+  tag: MyString7
+  product_type: tsc
+  drying_method: dm2

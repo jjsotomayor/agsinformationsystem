@@ -1,11 +1,26 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  minimum: 1
-  maximum: 1
+  name: Calibre_1
+  minimum: 0
+  maximum: 30
 
 two:
-  name: MyString
-  minimum: 1
-  maximum: 1
+  name: Calibre_2
+  minimum: 30
+  maximum: 40
+
+three:
+  name: Calibre_3
+  minimum: 40
+  maximum: 50
+
+four:
+  name: Calibre_4
+  minimum: 50
+  maximum: 60
+
+five:
+  name: CCalibre_5
+  minimum: 60
+  maximum: 1000000

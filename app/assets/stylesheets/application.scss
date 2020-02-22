@@ -66,6 +66,12 @@
   text-align:center;
 }
 
+.to-left{
+  // text-align:left;
+  // NOTE seria mejor alinearlo a la izquierda
+  margin-right: 600px;
+}
+
 // Permite Centrar Encabezado
 .centered{
   margin: 0 auto;
@@ -75,6 +81,18 @@
     font-weight: bold;
   }
 }
+
+td.bold{
+  font-weight: bold;
+}
+
+table.small-height{
+  td{
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+  }
+}
+
 
 //Separar encabezado de lo que esta abajo
 .separated{
@@ -99,7 +117,7 @@
 }
 
 .pestaña{
-  width: 160px;
+  width: 205px;
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 3px;
@@ -195,8 +213,19 @@ input[type=submit]{
 .field input.vertical , .field select.vertical {
   display: block;
   margin-bottom: 3px;
-  width: 140px;
+  width: 140px !important;
 }
+// NOTE TODO heigth de los field input no esta fijado por css, cada navegador lo
+// esta fijando por defecto. En chrome se ve bien, pero no en firefox
+
+
+// Field tag en todos los form
+.inside-new-form .field input#tag, input#original_tag{
+  font-size: 19px;
+  width: 177px;
+  height: 34px;// !important;
+}
+
 
 input[type=text]:focus {
     border: 2px solid rgb(255,187,150);
@@ -250,11 +279,11 @@ input[type=text]:focus {
   // .container-last-samples.secado{ width: 1400px; }
   // .container-last-samples.fresco{ width: 1000px; }
   .container-samples{
-     width: 450px;
+     width: 460px;
    }
 
   .outside-new-form{
-     width:450px;
+     width:460px;
     }
 
     //FORMS CSS
@@ -276,12 +305,12 @@ input[type=text]:focus {
 
 #humidity_samples{
   .field input[type=number] {
-      width: 187px;
+      width: 177px;
     }
 }
 #sorbate_samples{
   .field input[type=number] {
-      width: 187px;
+      width: 177px;
     }
 }
 
@@ -427,4 +456,64 @@ input[type=text]:focus {
     color: white;
     background-color: black;
   }
+}
+
+
+//////////////////////////////////////////////////////////////
+/////////////////// Reports Downloads ////////////////////////
+//////////////////////////////////////////////////////////////
+
+.margin-up-select{
+  margin-top: 15px;
+}
+
+.close-up{
+  margin-top: 0px !important;
+}
+
+
+#table_stock{
+  margin: 0 auto;
+  max-width: 70%;
+  text-align: left;
+}
+
+#table_stock-by-caliber{
+  margin: 0 auto;
+  max-width: 90%;
+  text-align: left;
+}
+
+//////////////////////////////////////////////////////////////
+//////////////////////// BODEGA //////////////////////////////
+//////////////////////////////////////////////////////////////
+
+.warehouse-form{
+  // css for the checkbox in edit movement
+  input[type="checkbox"]{
+    height: 17px;
+    width: 17px;
+    margin-right: 158px;
+    vertical-align: bottom;
+  }
+}
+
+.margin0{
+  margin: 0px !important;
+}
+// span.bold {
+//   font-weight: bold;
+// }
+
+.add-element{
+ width: 160px;
+ margin: 0 auto;
+ input#tag{
+   width:120px;
+   height:28px;
+ }
+ input[type="submit"]{
+   margin: 2px !important;
+   margin-left: 0px!important;
+ }
 }

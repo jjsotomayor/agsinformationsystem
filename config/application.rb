@@ -14,6 +14,11 @@ module Agsinformationsystem
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # Time zone Gmt -4:00 (Santiago)
+    config.time_zone = 'Santiago'
+    # Hace que las fechas se guarden no en utc, sino q hora segun timezone
+    config.active_record.default_timezone = :local
+
     # Tiempo (hrs) maximo por el q la muestra aparece en new y es editable
     config.max_sample_hrs = 24
 
@@ -45,5 +50,12 @@ module Agsinformationsystem
     # CAntidades a substraer para obtener calibre real
     config.ex_caliber_big_fruits_subtraction = 15
     config.ex_caliber_small_fruits_subtraction = 20
+
+    #####      AWS S3 data    ######
+    config.aws_s3_profile = "jjsotomayor"
+    config.aws_s3_region = "us-west-1"
+    # Usado como prefijo para las carpetas que iran creandose cada dia
+    config.aws_folder_prefix = "day_"
+
   end
 end

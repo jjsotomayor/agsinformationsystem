@@ -1,0 +1,45 @@
+<%= render 'shared/message_success_js', sample: @success_sample if  @success_sample%>
+<%= render 'shared/message_wrong_process_error_js', tag: @element.tag if session[:display_wrong_process_alert]%>
+<%= render 'shared/errors', sample: @damage_sample%>
+<%= render 'shared_damage_samples/form_calling', damage_sample: @damage_sample, type: "new"%>
+
+<div class="container-last-samples damages">
+  <h3>Tus ultimas muestras de daños en <%=process_name%></h3>
+
+  <table class = "table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+
+        <th>Resp.</th>
+        <th>Tarja</th>
+        <th>Peso muest. (gr)</th>
+
+        <th>USDA</th>
+        <th>DF07</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @damage_samples.each do |damage_sample| %>
+        <tr>
+          <td><%= time(damage_sample.created_at) %></td>
+
+          <td><%= damage_sample.responsable.truncate(7) %></td>
+          <td><%= group_link(damage_sample.group) %></td>
+          <td><%= round_or_nil(damage_sample.sample_weight).to_s %></td>
+
+
+          <td><%= damage_sample.usda.truncate(7) %></td>
+          <td><%= short_status(damage_sample) %></td>
+          <td><%= link_to 'Ver', recepcion_seco_damage_sample_path(damage_sample),  class: "btn btn-primary btn-xs"%></td>
+          <td><%= link_to 'Editar', edit_recepcion_seco_damage_sample_path(damage_sample),  class: "btn btn-warning btn-xs" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+<%= link_to 'Todas las muestras de daños en '+ process_name, recepcion_seco_damage_samples_path,  class: "btn btn-primary btn-xs" %>
+</div>

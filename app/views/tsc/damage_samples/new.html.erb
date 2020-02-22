@@ -12,9 +12,11 @@
         <th></th>
         <%=common_table_headers%>
         <th>Tipo</th>
+        <th>Cajas</th>
+
         <th>Ex tarja</th>
-        <th>USDA</th>
-        <th>DF07</th>
+        <!-- <th>USDA</th> -->
+        <!-- <th>DF07</th> -->
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -24,13 +26,21 @@
         <tr>
           <td><%= time(damage_sample.created_at) %></td>
           <%=common_table_body(damage_sample)%>
-          <td><%= damage_sample.element.drying_method.name %></td>
+          <td><%= drying_method_name_nil_safe(damage_sample.element) %></td>
+          <td><%= first_last_item(damage_sample.element)%></td>
           <td><%= damage_sample.element.ex_tag %></td>
-          <td><%= damage_sample.usda.truncate(7) %></td>
-          <td><%= short_status(@damage_sample) %></td>
-          <td><%= link_to 'Ver', tsc_damage_sample_path(damage_sample), class: "btn btn-primary btn-xs"%></td>
-          <!-- link_to 'Ver', new_secado_damage_sample_path(id_show: damage_sample.id), class: "see-sample", id_show: damage_sample.id -->
-          <td><%= link_to 'Editar', edit_tsc_damage_sample_path(damage_sample, process: @process), class: "btn btn-warning btn-xs" %></td>
+          <!-- <td> -->
+            <%=
+            # damage_sample.usda.truncate(7)
+            %>
+          <!-- </td> -->
+          <!-- <td> -->
+            <%=
+             # short_status(damage_sample)
+             %>
+           <!-- </td> -->
+           <%= render 'shared_damage_samples/links_new', process: @process, damage_sample: damage_sample%>
+
         </tr>
       <% end %>
     </tbody>

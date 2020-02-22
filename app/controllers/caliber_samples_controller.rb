@@ -6,11 +6,12 @@ class CaliberSamplesController < ApplicationController
   # Cambiarlo a solo update y destroy para disminuir la carga
   before_action :permission_last_samples, only: [:edit, :update, :destroy]
   before_action :set_sample_name, only: [:new, :edit]
-  before_action :include_deviation, only: [:show, :new, :create, :edit]
+  before_action :include_deviation, only: [:show, :new, :create, :edit, :update]
 
   # GET /caliber_samples
   def index
     @caliber_samples = CaliberSample.get_samples(@process)
+    @caliber_samples = @caliber_samples.page(params[:page]).ord
   end
 
   # GET /caliber_samples/1
@@ -61,6 +62,16 @@ class CaliberSamplesController < ApplicationController
 
   # PATCH/PUT /caliber_samples/1
   def update
+
+    if params[:tag] != @caliber_sample.element.tag
+      @element, status = Element.change_element_of_sample(@caliber_sample, element_params, @process)
+      if !status
+        session[:display_wrong_process_alert] = true
+        return render :edit
+        raise "Esto no se deberia haber ejecutado"
+      end
+    end
+
     success = @caliber_sample.update(caliber_sample_params)
     if success and @caliber_sample.deviation_sample
       success = @caliber_sample.deviation_sample.update(deviation_sample_params)
@@ -79,7 +90,9 @@ class CaliberSamplesController < ApplicationController
   def destroy
     # @caliber_sample.soft_delete
     @caliber_sample.destroy
-    redirect_to send(@process+"_caliber_samples_url"), notice: 'Muestra de calibre eliminada'
+    # redirect_to send(@process+"_caliber_samples_url"), notice: 'Muestra de calibre eliminada'
+    # Hace que se caiga si se elimina desde show, pq trata de volver
+    redirect_back(fallback_location: root_path, notice: 'Muestra de calibre eliminada')
   end
 
   private
@@ -94,7 +107,7 @@ class CaliberSamplesController < ApplicationController
 
     def include_deviation
       @include_deviation = true
-      @include_deviation = false if @process == "secado"
+      @include_deviation = false if @process.in? ["secado", "recepcion_seco"]
     end
 
     def deviation_sample_params
@@ -112,6 +125,7 @@ class CaliberSamplesController < ApplicationController
       params.permit(:tag)
     end
 
+    # Si es UserControl, puede editar o eliminar solo sus ultimas 3 muestras
     def permission_last_samples
       # NOTE Esto puede ser fuente de tiempos excesivos en el futuro
       return true if user_type != "UserControl"

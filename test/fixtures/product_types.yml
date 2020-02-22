@@ -1,7 +1,24 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
 
-two:
-  name: MyString
+# Recepcion_seco es un operation, se distingue pq es element grupal
+# recepcion:
+#   name: "recepcion_seco"
+
+secado:
+  name: secado
+
+calibrado:
+  name: calibrado
+
+seam:
+  name: seam
+
+cn:
+  name: cn
+
+tsc:
+  name: tsc
+
+tcc:
+  name: tcc

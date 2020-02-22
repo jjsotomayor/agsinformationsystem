@@ -1,0 +1,50 @@
+<%= render 'shared/message_js', message: @message if @message %>
+
+
+<div class= "container-samples" id ="dam">
+  <div class= "pestaña"><%= @process.capitalize%></div>
+    <div class="outside-new-form" id = "dam">
+      <h1><span class= "glyphicon glyphicon-list-alt"></span> Nuevo grupo de Tarjas</h1>
+        <%= render 'form', elements_group: @elements_group, type: "new" %>
+    </div>
+</div>
+
+
+
+<div class="container-last-samples damages">
+  <%= link_to 'Todas los Grupos de tarjas', elements_groups_path,  class: "btn btn-primary btn-xs" %>
+  <h3>Últimos grupos de tarja creados</h3>
+
+  <table class = "table table-striped">
+    <thead>
+      <tr>
+        <th>Creación</th>
+        <th>Resp.</th>
+        <th>Tarja inicial</th>
+        <th>Tarja final</th>
+        <th>Cant.</th>
+        <th>Proveedor</th>
+        <th>Lote</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @groups.each do |group| %>
+        <tr>
+          <td><%= date_time(group.created_at) %></td>
+          <td><%= group.responsable %></td>
+          <td><%= group.first_tag %></td>
+          <td><%= group.last_tag %></td>
+
+          <td><%= group.elements.count %></td>
+          <td><%= group.provider %></td>
+          <td><%= group.lot %></td>
+          <td><%= link_to 'Ver', group,  class: "btn btn-primary btn-xs" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+</div>

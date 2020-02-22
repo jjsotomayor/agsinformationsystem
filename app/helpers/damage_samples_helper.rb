@@ -15,30 +15,31 @@ module DamageSamplesHelper
   #   process
   # end
 
-  def translate_damage(damage)
-    translation = {
-      "off_color":	"Fuera de color",
-      "poor_texture":	"Textura deficiente",
-      "scars":	"Cicatrices",
-      "end_cracks":	"Cola",
-      "skin_or_flesh_damage":	"Daño piel o pulpa",
-      "fermentation":	"Fermentacion",
-      "heat_damage":	"Daño por calor",
-      "insect_injury":	"Daño por insectos",
-      "mold":	"Hongo",
-      "dirt":	"Suciedad adherida",
-      "foreign_material":	"Materias extrañas",
-      "vegetal_foreign_material":	"Materia ext vegetal",
-      "insect_infestation":	"Infestac insectos",
-      "decay":	"Pudricion",
-      "deshidratado": "Deshidratado",
-      "bolsa_de_agua": "Bolsa de agua",
-      "ruset": "Ruset",
-      "reventados": "Reventados",
-      "carozo": "Carozo"
-    }
-    translation[damage.to_sym]
-  end
+  # NOTE Comentado porque se paso al lib/utilities
+  # def translate_damage(damage)
+  #   translation = {
+  #     "off_color":	"Fuera de color",
+  #     "poor_texture":	"Textura deficiente",
+  #     "scars":	"Cicatrices",
+  #     "end_cracks":	"Cola",
+  #     "skin_or_flesh_damage":	"Daño piel o pulpa",
+  #     "fermentation":	"Fermentacion",
+  #     "heat_damage":	"Daño por calor",
+  #     "insect_injury":	"Daño por insectos",
+  #     "mold":	"Hongo",
+  #     "dirt":	"Suciedad adherida",
+  #     "foreign_material":	"Materias extrañas",
+  #     "vegetal_foreign_material":	"Materia ext vegetal",
+  #     "insect_infestation":	"Infestac insectos",
+  #     "decay":	"Pudricion",
+  #     "deshidratado": "Deshidratado",
+  #     "bolsa_de_agua": "Bolsa de agua",
+  #     "ruset": "Ruset",
+  #     "reventados": "Reventados",
+  #     "carozo": "Carozo"
+  #   }
+  #   translation[damage.to_sym]
+  # end
 
 
 
@@ -56,7 +57,7 @@ module DamageSamplesHelper
   # Retorn los daños como porcentaje o gramos, ademas permite incluir (% o g) si type = "%" o "g"
   def table_body_damages(damage_sample, type = "", include_sign = false)
     attr_end = type.include?("%") ? "_perc" : ""
-    pp "agregar: #{attr_end}"
+    # pp "agregar: #{attr_end}"
     type = "" unless include_sign
     html = ""
     @damages_list.each do |dam|
@@ -70,10 +71,6 @@ module DamageSamplesHelper
   ### element en new/edit damage_samples (type = "new"/"edit")   ###
   ##################################################################
 
-  def field_tag(type, class_type, dam_sample)
-    value = type == "new" ? '' : dam_sample.element.tag
-    text_field_tag :tag, value, class: class_type, autocomplete: 'off', disabled: (type == 'edit')
-  end
 
   # def field_process_order(type, class_type, dam_sample)
   #   value = type == "new" ? '' : dam_sample.element.process_order
@@ -86,8 +83,21 @@ module DamageSamplesHelper
   end
 
   def field_drying_method_id(type, class_type, dam_sample)
+    @d_methods = DryingMethod.all
+    @d_methods = @d_methods.where.not(name: "sol") if @process == "secado"
+
     value = type == "new" ? 0 : dam_sample.element.drying_method_id
-    select_tag "drying_method_id",  options_for_select(DryingMethod.all.map{|dm| [dm.name,dm.id]}, value), include_blank: true, class: class_type
+    select_tag "drying_method_id",  options_for_select(@d_methods.map{|dm| [dm.name,dm.id]}, value), include_blank: true, class: class_type
+  end
+
+  def field_first_item(type, class_type, dam_sample)
+    value = type == "new" ? '' : dam_sample.element.first_item
+    text_field_tag :first_item, value, class: class_type, placeholder: "Ingreso único", autocomplete: 'off'
+  end
+
+  def field_last_item(type, class_type, dam_sample)
+    value = type == "new" ? '' : dam_sample.element.last_item
+    text_field_tag :last_item, value, class: class_type, placeholder: "Ingreso único", autocomplete: 'off'
   end
 
   def field_ex_tag(type, class_type, dam_sample)
@@ -99,5 +109,22 @@ module DamageSamplesHelper
     value = type == "new" ? 0 : dam_sample.element.previous_color
     select_tag :previous_color,  options_for_select([:azul, :verde, :amarillo, :rojo], value), include_blank: true, class: class_type
   end
+
+
+  #####################################
+  ###      Generacion de links      ###
+  ##################################### (Implementar idem para caliberSample)
+
+  # Se puede utilizar para Show y Delete
+  def link(process, damage_sample)
+    send(process + "_damage_sample_path", damage_sample)
+  end
+
+  # Genera el link para edición, considera que es posible que link lleve a descarte
+  def edit_link(process, damage_sample)
+    process = "descarte" if damage_sample.element.descarte
+    send("edit_" + process +"_damage_sample_path", damage_sample)
+  end
+
 
 end

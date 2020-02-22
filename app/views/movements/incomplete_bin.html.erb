@@ -1,0 +1,85 @@
+<%= render 'shared/message_js', message: @message if @message %>
+
+<div class= "container-samples">
+  <div class= "pestaña">BODEGA</div>
+    <div class="outside-new-form">
+      <h1><span class= "glyphicon glyphicon-list-alt"></span> Devolución bin incompleto</h1>
+
+      <%= form_tag(movements_incomplete_bin_save_path, {class: 'inside-new-form validate warehouse-form'}) do %>
+
+        <div class="field">
+          <label> Tarja original</label>
+          <%= text_field_tag :original_tag, "", class: "", autocomplete: 'off'%>
+        </div>
+
+        <div class="field">
+          <label> Tarja </label>
+          <%= text_field_tag :tag, "", class: "", autocomplete: 'off'%>
+        </div>
+
+        <div class="field">
+          <label> Peso </label>
+          <%= number_field_tag :weight, nil, placeholder: 'kilogramos', step: 0.01, min:1 %>
+        </div>
+
+        <div class="field">
+          <label> Bodega </label>
+          <%= select_tag :warehouse_id,  options_from_collection_for_select(Warehouse.all, "id", "name"), include_blank: true %>
+        </div>
+
+        <div class="field">
+          <label> Banda </label>
+          <%= text_field_tag :banda, "", class: "", autocomplete: 'off', placeholder: 'opcional'%>
+        </div>
+
+        <div class="field">
+          <label> Posicion </label>
+          <%= text_field_tag :posicion, "", class: "", autocomplete: 'off', placeholder: 'opcional'%>
+        </div>
+
+        <div class="field">
+          <label> Altura </label>
+          <%= text_field_tag :altura, "", class: "", autocomplete: 'off', placeholder: 'opcional'%>
+        </div>
+
+        <div class="actions">
+          <%= submit_tag "Ingresar",  class: "btn btn-primary btn-lg btn-block" %>
+        </div>
+
+      <% end %>
+
+  </div>
+</div>
+
+
+<div class="container-last-samples">
+      <h3>Últimos Ingresos de bins incompletos</h3>
+
+      <table class = "table table-striped">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Tarja</th>
+            <th>Peso (kg)</th>
+            <th>Tarja original</th>
+            <th>Resp.</th>
+            <th>Bodega</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%@recently_moved.each do |elem|%>
+            <tr>
+              <td><%= date_time(elem.stored_at) %></td>
+              <td><%= elem.tag %></td>
+              <td><%= elem.weight %></td>
+              <td><%= elem.incomplete_bin_tag %></td>
+              <td><%= elem.warehouse_responsable %></td>
+              <td><%= elem.warehouse.name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+<%= link_to 'Todos los movimientos', movements_path,  class: "btn btn-primary btn-sm" %>
+</div>

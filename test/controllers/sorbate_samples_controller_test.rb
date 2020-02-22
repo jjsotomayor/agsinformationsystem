@@ -2,7 +2,8 @@ require 'test_helper'
 
 class SorbateSamplesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @sorbate_sample = sorbate_samples(:one)
+    # @sorbate_sample = sorbate_samples(:one)
+    prepare_all
   end
 
   test "should get index" do
@@ -16,33 +17,59 @@ class SorbateSamplesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create sorbate_sample" do
-    assert_difference('SorbateSample.count') do
-      post sorbate_samples_url, params: { sorbate_sample: { element_id: @sorbate_sample.element_id, responsable: @sorbate_sample.responsable, sorbate: @sorbate_sample.sorbate, status: @sorbate_sample.status, status_revised: @sorbate_sample.status_revised } }
+    processes_available(:sorbate).each do |process|
+      @sorbate_sample = sorbate_samples(process.to_sym)
+      assert_difference('SorbateSample.count') do
+        post sorbate_samples_url, params: params_sorbate(@sorbate_sample)
+      end
+      assert_redirected_to new_sorbate_sample_url(success_id: SorbateSample.last.id)
     end
-
-    assert_redirected_to sorbate_sample_url(SorbateSample.last)
   end
 
   test "should show sorbate_sample" do
-    get sorbate_sample_url(@sorbate_sample)
-    assert_response :success
+    processes_available(:sorbate).each do |process|
+      @sorbate_sample = sorbate_samples(process.to_sym)
+      get sorbate_sample_url(@sorbate_sample)
+      assert_response :success
+    end
   end
 
   test "should get edit" do
-    get edit_sorbate_sample_url(@sorbate_sample)
-    assert_response :success
+    processes_available(:sorbate).each do |process|
+      @sorbate_sample = sorbate_samples(process.to_sym)
+      get edit_sorbate_sample_url(@sorbate_sample)
+      assert_response :success
+    end
   end
 
   test "should update sorbate_sample" do
-    patch sorbate_sample_url(@sorbate_sample), params: { sorbate_sample: { element_id: @sorbate_sample.element_id, responsable: @sorbate_sample.responsable, sorbate: @sorbate_sample.sorbate, status: @sorbate_sample.status, status_revised: @sorbate_sample.status_revised } }
-    assert_redirected_to sorbate_sample_url(@sorbate_sample)
+    processes_available(:sorbate).each do |process|
+      @sorbate_sample = sorbate_samples(process.to_sym)
+      patch sorbate_sample_url(@sorbate_sample), params: params_sorbate(@sorbate_sample)
+      assert_redirected_to new_sorbate_sample_url(success_id: @sorbate_sample.id)
+    end
   end
 
-  test "should destroy sorbate_sample" do
-    assert_difference('SorbateSample.count', -1) do
-      delete sorbate_sample_url(@sorbate_sample)
-    end
+  test "should update tag of sorbate_sample" do
+    @sample = sorbate_samples([:tsc, :tcc].sample)
+    old_tag = @sample.element.tag
+    @params = params_sorbate(@sample)
+    @params[:tag] = "new_tag"
+    patch sorbate_sample_url(@sample), params: @params
+    assert_redirected_to new_sorbate_sample_url(success_id: @sample.id)
+    assert_equal("new_tag", SorbateSample.find(@sample.id).element.tag, "Deberia haber cambiao tag")
+    assert_not_equal(nil, Element.find_by(tag: old_tag), "Element previo no borrado!")
+  end
 
-    assert_redirected_to sorbate_samples_url
+
+  test "should destroy sorbate_sample" do
+    processes_available(:sorbate).each do |process|
+      @sorbate_sample = sorbate_samples(process.to_sym)
+      assert_difference('SorbateSample.count', -1) do
+        delete sorbate_sample_url(@sorbate_sample)
+      end
+      # FIXME where to redirect
+      # assert_redirected_to sorbate_samples_url
+    end
   end
 end
