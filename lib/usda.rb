@@ -100,11 +100,11 @@ module Usda
   # Todos reciben la muestra y generan la suma
   # inc quiere decir que genera la suma incremental necesaria para obtener el valor
   def self.usda_inc_b(s)
-    return porc = s.mold_perc + s.dirt_perc + s.foreign_material_perc + s.vegetal_foreign_material_perc + s.insect_infestation_perc
+    return porc = s.mold_perc.to_f + s.dirt_perc.to_f + s.foreign_material_perc.to_f + s.vegetal_foreign_material_perc.to_f + s.insect_infestation_perc.to_f
   end
 
   def self.usda_inc_c(s)
-    return porc = s.scars_perc + s.skin_or_flesh_damage_perc + s.fermentation_perc + s.heat_damage_perc + s.insect_injury_perc
+    return porc = s.scars_perc.to_f + s.skin_or_flesh_damage_perc.to_f + s.fermentation_perc.to_f + s.heat_damage_perc.to_f + s.insect_injury_perc.to_f
   end
 
   def self.usda_inc_d(s)
@@ -119,7 +119,6 @@ module Usda
     return porc = s.off_color_perc.to_f
   end
   # NOTE Se agrega to_f por si alguno de los valores es nil
-  # (Si otro _perc valor pudiera ser nil en el futuro aqui se caerá!)
 
 
 end
