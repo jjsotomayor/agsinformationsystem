@@ -57,7 +57,7 @@ gem 'devise', '~> 4.4'
 # gem 'cancancan'
 # gem 'rolify'
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'autoprefixer-rails'
+# gem 'autoprefixer-rails'
 # Gema que permite el envio de correos a través de API de MailGun
 # Para envios SMTP por Mailgun no es necesaria
 # gem 'rest-client', '~> 2.0', '>= 2.0.2'
@@ -74,3 +74,8 @@ ruby '2.4.1'
 gem 'kaminari', '~> 1.1.1'
 
 gem 'aws-sdk', '~> 3.0', '>= 3.0.1'
+
+gem 'loofah', '~>2.19.1' # GEneraba problemas con Nokogiri
+
+
+gem 'autoprefixer-rails', '6.7.7.1' # Generaba problemas con la version de nodejs  Note: autoprefixer-rails version regressed from 10.4.16.0 to 6.7.7.1

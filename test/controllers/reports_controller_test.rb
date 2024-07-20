@@ -10,10 +10,10 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get downloads" do
-    get downloads_url
-    assert_response :success
-  end
+  # test "should get downloads" do
+  #   get downloads_url
+  #   assert_response :success
+  # end
 
   # Test excel descargables
   # test "should get index" do

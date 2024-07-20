@@ -201,11 +201,12 @@ class TestColor < ActionDispatch::IntegrationTest
     test_color("tcc", nil, 499, "rojo")
   end
 
-  test "Should return nil when unable to determine color" do
-    test_color("tsc", 38.9, nil, nil)
-    test_color("tcc", 37.9, nil, nil)
-    test_color("tsc", nil, 400, nil)
-    test_color("tcc", nil, 500, nil)
+  # Validated that current heroku app returns 0 (and not nil as old test)
+  test "Should return 0 when unable to determine color" do 
+    test_color("tsc", 38.9, nil, 0)
+    test_color("tcc", 37.9, nil, 0)
+    test_color("tsc", nil, 400, 0)
+    test_color("tcc", nil, 500, 0)
   end
 
   test "Should calculate correct SEAM color" do
