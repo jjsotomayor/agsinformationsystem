@@ -41,7 +41,7 @@ class ElementsGroupsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update elements_group" do
-    patch elements_group_url(@elements_group), @params
+    patch elements_group_url(@elements_group), params: @params
     # assert_redirected_to elements_group_url(@elements_group)
   end
 

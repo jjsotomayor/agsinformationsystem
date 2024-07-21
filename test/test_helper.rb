@@ -133,7 +133,7 @@ end
 def random(text, first, last)
   value = rand(first..last)
   selected = text + value.to_s
-  puts "Selected: " + selected
+  # puts "Selected: " + selected
   selected.to_sym
 end
 

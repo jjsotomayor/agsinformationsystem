@@ -159,7 +159,7 @@ class Element < ApplicationRecord
       end
       # TODO Actualizar estado de productos que dependen del proceso,(humedad, q otro)
       # Si existia el @element actualizo de ser nec. con los datos de la muestra,
-      @element.update_attributes(element_params) if element_params.count > 1
+      @element.update_attributes(element_params) if element_params.keys.size > 1 # tested
     else #!@element
       @element = Element.new(element_params)
       @element.product_type = ProductType.find_by(name: process_name) if process_name

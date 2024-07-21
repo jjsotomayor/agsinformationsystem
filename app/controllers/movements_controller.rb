@@ -101,7 +101,7 @@ class MovementsController < ApplicationController
     aditional_params = {last_movement_type: :edicion, last_movement_at: Time.now}
     aditional_params[:warehouse_responsable] = current_user.name
     move_params = {element_id: @element.id, movement_type: :edicion, warehouse_responsable: current_user.name}
-    move_params = move_params.merge(params.slice(:weight, :warehouse_id, :banda,
+    move_params = move_params.merge(params.to_unsafe_h.slice(:weight, :warehouse_id, :banda, # tested
                               :posicion, :altura, :destination, :process_order))
 
     if @element.warehouse

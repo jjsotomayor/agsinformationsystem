@@ -44,8 +44,8 @@ class MovementsControllerTest < ActionDispatch::IntegrationTest
     assert_not_equal(nil, @element_after.warehouse, "Element tiene warehouse")
     assert_not_equal(nil, @element_after.stored_at, "Element tiene fecha")
     assert_equal(@element_after.stored_at, @element_after.last_movement_at, "Fechas iguales")
-    assert_equal(nil, @element_after.dispatched_at, "Despachado nil")
-    assert_equal(nil, @element_after.destination, "Dest nil")
+    assert_nil(@element_after.dispatched_at, "Despachado nil")
+    assert_nil(@element_after.destination, "Dest nil")
     assert_equal("ingreso", @element_after.last_movement_type, "ingreso")
     assert_not_equal(nil, @element_after.warehouse_responsable, "HAy responsable")
   end
@@ -66,9 +66,38 @@ class MovementsControllerTest < ActionDispatch::IntegrationTest
     assert_not_equal(nil, @element_after.stored_at, "Element tiene fecha")
     assert_equal("edicion", @element_after.last_movement_type, "edicion")
     assert_not_equal(@element_after.stored_at, @element_after.last_movement_at, "Fechas distintas")
-    assert_equal(nil, @element_after.dispatched_at, "Despachado nil")
-    assert_equal(nil, @element_after.destination, "Dest nil")
+    assert_nil(@element_after.dispatched_at, "Despachado nil")
+    assert_nil(@element_after.destination, "Dest nil")
     assert_not_equal(nil, @element_after.warehouse_responsable, "HAy responsable")
+  end
+
+  test "should only consider selected params when updating" do
+    element = elements(:in_warehouse)
+
+    params = {
+      tag: element.tag,
+      weight: 100,
+      warehouse_id: warehouses(:two).id,
+      banda: 'B1',
+      posicion: 'P1',
+      altura: 'A1',
+      destination: 'D1',
+      process_order: 'PO123',
+      incomplete_bin_tag: 'should_not_be_included' # This field should be skipped in the function
+    }
+    
+    post movements_update_url(element), params: params
+    movement = Movement.last # Fetch the created movement
+    
+    assert_equal 100, movement.weight
+    assert_equal warehouses(:two).id, movement.warehouse_id
+    assert_equal 'B1', movement.banda
+    assert_equal 'P1', movement.posicion
+    assert_equal 'A1', movement.altura
+    assert_equal 'D1', movement.destination
+    assert_equal 'PO123', movement.process_order
+    # Ensure no unexpected parameters are included
+    assert_not_equal 'should_not_be_included', movement.try(:incomplete_bin_tag)
   end
 
   test "should exit tag of warehouse" do
@@ -81,7 +110,7 @@ class MovementsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to movements_exit_url(success_id: @element.id)
     @element_after = Element.find_by(tag: @element.tag)
     assert_not_equal(nil, @element_after.weight, "Element tiene peso")
-    assert_equal(nil, @element_after.warehouse, "Element NO tiene warehouse")
+    assert_nil(@element_after.warehouse, "Element NO tiene warehouse")
     assert_not_equal(nil, @element_after.stored_at, "Element tiene fecha")
     assert_not_equal(@element_after.stored_at, @element_after.last_movement_at, "Fechas distintas")
     assert_not_equal(nil, @element_after.dispatched_at, "Despachado NO nil")
@@ -101,14 +130,14 @@ class MovementsControllerTest < ActionDispatch::IntegrationTest
     post movements_exit_element_url, params: @params
     assert_redirected_to movements_exit_url(success_id: @element.id)
     @element_after = Element.find_by(tag: @element.tag)
-    assert_equal(nil, @element_after.weight, "Element tiene peso")
-    assert_equal(nil, @element_after.warehouse, "Element NO tiene warehouse")
-    assert_equal(nil, @element_after.banda, "Element NO tiene banda")
-    assert_equal(nil, @element_after.posicion, "Element NO tiene pos")
-    assert_equal(nil, @element_after.altura, "Element NO tiene alt")
-    assert_equal(nil, @element_after.stored_at, "Element NO tiene fecha ingreso")
-    assert_equal(nil, @element_after.dispatched_at, "Despachado nil")
-    assert_equal(nil, @element_after.destination, "Dest nil")
+    assert_nil(@element_after.weight, "Element tiene peso")
+    assert_nil(@element_after.warehouse, "Element NO tiene warehouse")
+    assert_nil(@element_after.banda, "Element NO tiene banda")
+    assert_nil(@element_after.posicion, "Element NO tiene pos")
+    assert_nil(@element_after.altura, "Element NO tiene alt")
+    assert_nil(@element_after.stored_at, "Element NO tiene fecha ingreso")
+    assert_nil(@element_after.dispatched_at, "Despachado nil")
+    assert_nil(@element_after.destination, "Dest nil")
     assert_not_equal(nil, @element_after.last_movement_at, "Fechas last move not nil")
     # assert_equal(@element_after.dispatched_at, @element_after.last_movement_at, "uLTIMO MOV = DESPACHO")
     assert_equal("salida_rectifica_error", @element_after.last_movement_type, "salida_rectifica_error")

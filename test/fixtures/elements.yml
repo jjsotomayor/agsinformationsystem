@@ -34,3 +34,23 @@ no_samples_elem:
   tag: MyString7
   product_type: tsc
   drying_method: dm2
+
+in_warehouse:
+  tag: MyString8
+  product_type: secado
+  drying_method: dm2
+  warehouse: one
+  last_movement_type: ingreso
+  last_movement_at: <%= Time.now %>
+  stored_at: <%= Time.now %>
+  warehouse_responsable: JohnDoe
+
+left_warehouse:
+  tag: MyString9
+  product_type: secado
+  drying_method: dm2
+  warehouse: one
+  last_movement_type: salida
+  last_movement_at: <%= Time.now %>
+  stored_at: <%= 1.hour.ago %>
+  warehouse_responsable: JohnDoe
