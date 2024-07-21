@@ -4,12 +4,12 @@ class Descarte::DamageSamplesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @process = random_process.to_s
     @process = "calibrado"
-    puts "Proceso es = #{@process}"
+    # puts "Proceso es = #{@process}"
     @descarte_damage_sample = damage_samples(@process.to_sym)
     prepare_all(:admin)
     @params = params_damage_sample(@process, @descarte_damage_sample)
     @params = @params.merge({product_type: @process})#ProductType.find_by(name: @process.to_s)})
-    puts "Parametros = #{@params.inspect}"
+    # puts "Parametros = #{@params.inspect}"
   end
 
   test "should get index" do

@@ -74,10 +74,10 @@ class DamageSample < ApplicationRecord
   # Calcula y almacena el estandar DF07
   def calculate_df07
     # Note Calculo DF07 deberia ir en un modulo aparte como Usda
-    puts self.product_type.name
+    # puts self.product_type.name
     pitted = (self.product_type.name == "tsc"? true : false)
-    puts self.inspect
-    puts "pitted: #{pitted}"
+    # puts self.inspect
+    # puts "pitted: #{pitted}"
 
     g1 = Util.df07_g1 (self)
     g2 = Util.df07_g2 (self)
@@ -87,13 +87,13 @@ class DamageSample < ApplicationRecord
     g6 = Util.df07_g6 (self)
     g7 = Util.df07_g7 (self)
 
-    puts "g1: #{g1}"
-    puts "g2: #{g2}"
-    puts "g3: #{g3}"
-    puts "g4: #{g4}"
-    puts "g5: #{g5}"
-    puts "g6: #{g6}"
-    puts "g7: #{g7}"
+    # puts "g1: #{g1}"
+    # puts "g2: #{g2}"
+    # puts "g3: #{g3}"
+    # puts "g4: #{g4}"
+    # puts "g5: #{g5}"
+    # puts "g6: #{g6}"
+    # puts "g7: #{g7}"
 
     self.df07 = :aprobado
 

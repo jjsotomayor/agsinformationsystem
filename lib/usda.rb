@@ -20,13 +20,13 @@ module Usda
     group_f = group_e + Usda.usda_inc_f(object)
     group_g = group_f - object.poor_texture_perc
 
-    puts "a: #{group_a}"
-    puts "b: #{group_b}"
-    puts "c: #{group_c}"
-    puts "d: #{group_d}"
-    puts "e: #{group_e}"
-    puts "f: #{group_f}"
-    puts "g: #{group_g}"
+    # puts "a: #{group_a}"
+    # puts "b: #{group_b}"
+    # puts "c: #{group_c}"
+    # puts "d: #{group_d}"
+    # puts "e: #{group_e}"
+    # puts "f: #{group_f}"
+    # puts "g: #{group_g}"
 
     if group_f > 20
       grado_a = false
