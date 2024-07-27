@@ -7,9 +7,11 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+# gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 6.1.0'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+# gem 'pg', '~> 0.18'
+gem 'pg', '~> 1.1' # Requested by rails
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -68,7 +70,10 @@ gem 'axlsx_rails', '~> 0.5.1'
 # Permite trackear errores en su sitio web
 gem 'raygun4ruby', '~> 1.1', '>= 1.1.11'
 # Heroku solicita ingresar version de ruby a utilizar
-ruby '2.4.1'
+# ruby '2.4.1'
+ruby '3.1.6'
+gem 'nokogiri', '~> 1.11' 
+gem 'globalid', '~> 1.0.0'
 # NOTE Heroku tb solicita definir procfile para definir web server a utilizar(puma)
 
 gem 'kaminari', '~> 1.1.1'

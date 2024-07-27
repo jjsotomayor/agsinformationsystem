@@ -2,369 +2,369 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180921024855) do
+ActiveRecord::Schema.define(version: 2024_07_27_025310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "caliber_samples", force: :cascade do |t|
-    t.string   "responsable",                       null: false
-    t.integer  "element_id"
-    t.integer  "fruits_in_sample",                  null: false
-    t.integer  "sample_weight",                     null: false
-    t.integer  "fruits_per_pound",                  null: false
-    t.integer  "caliber_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.boolean  "active",            default: true,  null: false
-    t.datetime "deleted_at"
-    t.boolean  "is_ex_caliber",     default: false, null: false
-    t.integer  "counter",                           null: false
-    t.integer  "elements_group_id"
-    t.index ["caliber_id"], name: "index_caliber_samples_on_caliber_id", using: :btree
-    t.index ["element_id"], name: "index_caliber_samples_on_element_id", using: :btree
-  end
-
-  create_table "calibers", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.integer  "minimum",    null: false
-    t.integer  "maximum",    null: false
+  create_table "caliber_samples", id: :serial, force: :cascade do |t|
+    t.string "responsable", null: false
+    t.integer "element_id"
+    t.integer "fruits_in_sample", null: false
+    t.integer "sample_weight", null: false
+    t.integer "fruits_per_pound", null: false
+    t.integer "caliber_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_calibers_on_name", unique: true, using: :btree
-  end
-
-  create_table "carozo_samples", force: :cascade do |t|
-    t.string   "responsable"
-    t.integer  "element_id"
-    t.decimal  "carozo_weight"
-    t.decimal  "sample_weight"
-    t.decimal  "carozo_percentage"
-    t.integer  "status",            default: 0,     null: false
-    t.boolean  "status_modified",   default: false, null: false
-    t.boolean  "active",            default: true,  null: false
+    t.boolean "active", default: true, null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.index ["element_id"], name: "index_carozo_samples_on_element_id", using: :btree
+    t.boolean "is_ex_caliber", default: false, null: false
+    t.integer "counter", null: false
+    t.integer "elements_group_id"
+    t.index ["caliber_id"], name: "index_caliber_samples_on_caliber_id"
+    t.index ["element_id"], name: "index_caliber_samples_on_element_id"
   end
 
-  create_table "counts", force: :cascade do |t|
-    t.string   "sample_type",     null: false
-    t.integer  "product_type_id", null: false
-    t.integer  "counter"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["product_type_id"], name: "index_counts_on_product_type_id", using: :btree
-    t.index ["sample_type", "product_type_id"], name: "index_counts_on_sample_type_and_product_type_id", unique: true, using: :btree
+  create_table "calibers", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "minimum", null: false
+    t.integer "maximum", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_calibers_on_name", unique: true
   end
 
-  create_table "damage_samples", force: :cascade do |t|
-    t.string   "responsable"
-    t.integer  "element_id"
-    t.decimal  "sample_weight"
-    t.float    "off_color"
-    t.float    "off_color_perc"
-    t.float    "poor_texture"
-    t.float    "poor_texture_perc"
-    t.float    "scars"
-    t.float    "scars_perc"
-    t.float    "end_cracks"
-    t.float    "end_cracks_perc"
-    t.float    "skin_or_flesh_damage"
-    t.float    "skin_or_flesh_damage_perc"
-    t.float    "fermentation"
-    t.float    "fermentation_perc"
-    t.float    "heat_damage"
-    t.float    "heat_damage_perc"
-    t.float    "insect_injury"
-    t.float    "insect_injury_perc"
-    t.float    "mold"
-    t.float    "mold_perc"
-    t.float    "dirt"
-    t.float    "dirt_perc"
-    t.float    "foreign_material"
-    t.float    "foreign_material_perc"
-    t.float    "vegetal_foreign_material"
-    t.float    "vegetal_foreign_material_perc"
-    t.float    "insect_infestation"
-    t.float    "insect_infestation_perc"
-    t.float    "decay"
-    t.float    "decay_perc"
-    t.float    "deshidratado"
-    t.float    "deshidratado_perc"
-    t.float    "bolsa_de_agua"
-    t.float    "bolsa_de_agua_perc"
-    t.float    "ruset"
-    t.float    "ruset_perc"
-    t.float    "reventados"
-    t.float    "reventados_perc"
-    t.float    "carozo"
-    t.float    "carozo_perc"
-    t.float    "total_damages"
-    t.float    "total_damages_perc"
-    t.integer  "usda",                                         null: false
-    t.integer  "df07",                          default: 0,    null: false
-    t.boolean  "active",                        default: true, null: false
+  create_table "carozo_samples", id: :serial, force: :cascade do |t|
+    t.string "responsable"
+    t.integer "element_id"
+    t.decimal "carozo_weight"
+    t.decimal "sample_weight"
+    t.decimal "carozo_percentage"
+    t.integer "status", default: 0, null: false
+    t.boolean "status_modified", default: false, null: false
+    t.boolean "active", default: true, null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
-    t.integer  "counter",                                      null: false
-    t.integer  "elements_group_id"
-    t.index ["element_id"], name: "index_damage_samples_on_element_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["element_id"], name: "index_carozo_samples_on_element_id"
   end
 
-  create_table "deviation_samples", force: :cascade do |t|
-    t.integer  "caliber_sample_id"
-    t.integer  "big_fruits_in_sample"
-    t.integer  "small_fruits_in_sample"
-    t.integer  "sample_weight"
-    t.decimal  "big_fruits_per_pound"
-    t.decimal  "small_fruits_per_pound"
-    t.decimal  "deviation",                              null: false
-    t.integer  "status",                 default: 0,     null: false
-    t.boolean  "status_modified",        default: false, null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.index ["caliber_sample_id"], name: "index_deviation_samples_on_caliber_sample_id", using: :btree
+  create_table "counts", id: :serial, force: :cascade do |t|
+    t.string "sample_type", null: false
+    t.integer "product_type_id", null: false
+    t.integer "counter"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_type_id"], name: "index_counts_on_product_type_id"
+    t.index ["sample_type", "product_type_id"], name: "index_counts_on_sample_type_and_product_type_id", unique: true
   end
 
-  create_table "drying_methods", force: :cascade do |t|
-    t.string   "name",       null: false
+  create_table "damage_samples", id: :serial, force: :cascade do |t|
+    t.string "responsable"
+    t.integer "element_id"
+    t.decimal "sample_weight"
+    t.float "off_color"
+    t.float "off_color_perc"
+    t.float "poor_texture"
+    t.float "poor_texture_perc"
+    t.float "scars"
+    t.float "scars_perc"
+    t.float "end_cracks"
+    t.float "end_cracks_perc"
+    t.float "skin_or_flesh_damage"
+    t.float "skin_or_flesh_damage_perc"
+    t.float "fermentation"
+    t.float "fermentation_perc"
+    t.float "heat_damage"
+    t.float "heat_damage_perc"
+    t.float "insect_injury"
+    t.float "insect_injury_perc"
+    t.float "mold"
+    t.float "mold_perc"
+    t.float "dirt"
+    t.float "dirt_perc"
+    t.float "foreign_material"
+    t.float "foreign_material_perc"
+    t.float "vegetal_foreign_material"
+    t.float "vegetal_foreign_material_perc"
+    t.float "insect_infestation"
+    t.float "insect_infestation_perc"
+    t.float "decay"
+    t.float "decay_perc"
+    t.float "deshidratado"
+    t.float "deshidratado_perc"
+    t.float "bolsa_de_agua"
+    t.float "bolsa_de_agua_perc"
+    t.float "ruset"
+    t.float "ruset_perc"
+    t.float "reventados"
+    t.float "reventados_perc"
+    t.float "carozo"
+    t.float "carozo_perc"
+    t.float "total_damages"
+    t.float "total_damages_perc"
+    t.integer "usda", null: false
+    t.integer "df07", default: 0, null: false
+    t.boolean "active", default: true, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "counter", null: false
+    t.integer "elements_group_id"
+    t.index ["element_id"], name: "index_damage_samples_on_element_id"
+  end
+
+  create_table "deviation_samples", id: :serial, force: :cascade do |t|
+    t.integer "caliber_sample_id"
+    t.integer "big_fruits_in_sample"
+    t.integer "small_fruits_in_sample"
+    t.integer "sample_weight"
+    t.decimal "big_fruits_per_pound"
+    t.decimal "small_fruits_per_pound"
+    t.decimal "deviation", null: false
+    t.integer "status", default: 0, null: false
+    t.boolean "status_modified", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["caliber_sample_id"], name: "index_deviation_samples_on_caliber_sample_id"
+  end
+
+  create_table "drying_methods", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "elements", force: :cascade do |t|
-    t.string   "tag",                                   null: false
-    t.string   "lot"
-    t.string   "process_order"
-    t.integer  "product_type_id"
-    t.integer  "drying_method_id"
-    t.string   "ex_tag"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.integer  "color",                 default: 0,     null: false
-    t.string   "previous_color"
-    t.string   "first_item"
-    t.string   "last_item"
-    t.decimal  "weight"
-    t.integer  "warehouse_id"
-    t.string   "banda"
-    t.string   "posicion"
-    t.string   "altura"
+  create_table "elements", id: :serial, force: :cascade do |t|
+    t.string "tag", null: false
+    t.string "lot"
+    t.string "process_order"
+    t.integer "product_type_id"
+    t.integer "drying_method_id"
+    t.string "ex_tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "color", default: 0, null: false
+    t.string "previous_color"
+    t.string "first_item"
+    t.string "last_item"
+    t.decimal "weight"
+    t.integer "warehouse_id"
+    t.string "banda"
+    t.string "posicion"
+    t.string "altura"
     t.datetime "stored_at"
     t.datetime "dispatched_at"
-    t.string   "warehouse_responsable"
-    t.string   "destination"
+    t.string "warehouse_responsable"
+    t.string "destination"
     t.datetime "last_movement_at"
-    t.integer  "last_movement_type"
-    t.string   "incomplete_bin_tag"
-    t.integer  "elements_group_id"
-    t.string   "provider"
-    t.boolean  "descarte",              default: false, null: false
-    t.string   "possible_error"
-    t.index ["color"], name: "index_elements_on_color", using: :btree
-    t.index ["drying_method_id"], name: "index_elements_on_drying_method_id", using: :btree
-    t.index ["last_movement_at"], name: "index_elements_on_last_movement_at", using: :btree
-    t.index ["last_movement_type"], name: "index_elements_on_last_movement_type", using: :btree
-    t.index ["product_type_id"], name: "index_elements_on_product_type_id", using: :btree
-    t.index ["warehouse_id"], name: "index_elements_on_warehouse_id", using: :btree
+    t.integer "last_movement_type"
+    t.string "incomplete_bin_tag"
+    t.integer "elements_group_id"
+    t.string "provider"
+    t.boolean "descarte", default: false, null: false
+    t.string "possible_error"
+    t.index ["color"], name: "index_elements_on_color"
+    t.index ["drying_method_id"], name: "index_elements_on_drying_method_id"
+    t.index ["last_movement_at"], name: "index_elements_on_last_movement_at"
+    t.index ["last_movement_type"], name: "index_elements_on_last_movement_type"
+    t.index ["product_type_id"], name: "index_elements_on_product_type_id"
+    t.index ["warehouse_id"], name: "index_elements_on_warehouse_id"
   end
 
-  create_table "elements_groups", force: :cascade do |t|
-    t.string   "first_tag"
-    t.string   "last_tag"
-    t.string   "pre"
-    t.integer  "first"
-    t.integer  "last"
-    t.integer  "int_pattern"
-    t.string   "lot"
-    t.string   "provider"
-    t.integer  "product_type_id"
-    t.integer  "drying_method_id"
-    t.integer  "color",            default: 0, null: false
-    t.string   "responsable"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.index ["color"], name: "index_elements_groups_on_color", using: :btree
-    t.index ["drying_method_id"], name: "index_elements_groups_on_drying_method_id", using: :btree
-    t.index ["product_type_id"], name: "index_elements_groups_on_product_type_id", using: :btree
+  create_table "elements_groups", id: :serial, force: :cascade do |t|
+    t.string "first_tag"
+    t.string "last_tag"
+    t.string "pre"
+    t.integer "first"
+    t.integer "last"
+    t.integer "int_pattern"
+    t.string "lot"
+    t.string "provider"
+    t.integer "product_type_id"
+    t.integer "drying_method_id"
+    t.integer "color", default: 0, null: false
+    t.string "responsable"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["color"], name: "index_elements_groups_on_color"
+    t.index ["drying_method_id"], name: "index_elements_groups_on_drying_method_id"
+    t.index ["product_type_id"], name: "index_elements_groups_on_product_type_id"
   end
 
-  create_table "humidity_samples", force: :cascade do |t|
-    t.integer  "element_id"
-    t.string   "responsable",                       null: false
-    t.decimal  "humidity",                          null: false
-    t.integer  "status",            default: 0,     null: false
-    t.boolean  "status_modified",   default: false, null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.boolean  "active",            default: true,  null: false
+  create_table "humidity_samples", id: :serial, force: :cascade do |t|
+    t.integer "element_id"
+    t.string "responsable", null: false
+    t.decimal "humidity", null: false
+    t.integer "status", default: 0, null: false
+    t.boolean "status_modified", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "active", default: true, null: false
     t.datetime "deleted_at"
-    t.integer  "elements_group_id"
-    t.index ["element_id"], name: "index_humidity_samples_on_element_id", using: :btree
+    t.integer "elements_group_id"
+    t.index ["element_id"], name: "index_humidity_samples_on_element_id"
   end
 
-  create_table "ip_addresses", force: :cascade do |t|
-    t.inet     "ip",         null: false
-    t.string   "comment"
+  create_table "ip_addresses", id: :serial, force: :cascade do |t|
+    t.inet "ip", null: false
+    t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "movements", force: :cascade do |t|
-    t.integer  "element_id",            null: false
-    t.integer  "movement_type",         null: false
-    t.integer  "weight"
-    t.integer  "warehouse_id"
-    t.string   "banda"
-    t.string   "posicion"
-    t.string   "altura"
-    t.string   "warehouse_responsable", null: false
-    t.string   "destination"
-    t.string   "process_order"
-    t.string   "incomplete_bin_tag"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.index ["destination"], name: "index_movements_on_destination", using: :btree
-    t.index ["element_id"], name: "index_movements_on_element_id", using: :btree
-    t.index ["movement_type"], name: "index_movements_on_movement_type", using: :btree
-    t.index ["process_order"], name: "index_movements_on_process_order", using: :btree
-    t.index ["warehouse_id"], name: "index_movements_on_warehouse_id", using: :btree
-    t.index ["warehouse_responsable"], name: "index_movements_on_warehouse_responsable", using: :btree
-  end
-
-  create_table "operations", force: :cascade do |t|
-    t.string   "name"
+  create_table "movements", id: :serial, force: :cascade do |t|
+    t.integer "element_id", null: false
+    t.integer "movement_type", null: false
+    t.integer "weight"
+    t.integer "warehouse_id"
+    t.string "banda"
+    t.string "posicion"
+    t.string "altura"
+    t.string "warehouse_responsable", null: false
+    t.string "destination"
+    t.string "process_order"
+    t.string "incomplete_bin_tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_operations_on_name", unique: true, using: :btree
+    t.index ["destination"], name: "index_movements_on_destination"
+    t.index ["element_id"], name: "index_movements_on_element_id"
+    t.index ["movement_type"], name: "index_movements_on_movement_type"
+    t.index ["process_order"], name: "index_movements_on_process_order"
+    t.index ["warehouse_id"], name: "index_movements_on_warehouse_id"
+    t.index ["warehouse_responsable"], name: "index_movements_on_warehouse_responsable"
   end
 
-  create_table "product_types", force: :cascade do |t|
-    t.string   "name",         null: false
-    t.integer  "humidity_min"
-    t.integer  "humidity_max"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["name"], name: "index_product_types_on_name", unique: true, using: :btree
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.string   "name"
+  create_table "operations", id: :serial, force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_roles_on_name", unique: true, using: :btree
+    t.index ["name"], name: "index_operations_on_name", unique: true
   end
 
-  create_table "samples_averages", force: :cascade do |t|
-    t.integer  "element_id"
-    t.decimal  "fruits_per_pound"
-    t.decimal  "deviation"
-    t.integer  "deviation_status"
-    t.decimal  "humidity"
-    t.decimal  "sorbate"
-    t.decimal  "carozo_percentage"
-    t.float    "off_color_perc"
-    t.float    "poor_texture_perc"
-    t.float    "scars_perc"
-    t.float    "end_cracks_perc"
-    t.float    "skin_or_flesh_damage_perc"
-    t.float    "fermentation_perc"
-    t.float    "heat_damage_perc"
-    t.float    "insect_injury_perc"
-    t.float    "mold_perc"
-    t.float    "dirt_perc"
-    t.float    "foreign_material_perc"
-    t.float    "vegetal_foreign_material_perc"
-    t.float    "insect_infestation_perc"
-    t.float    "decay_perc"
-    t.float    "deshidratado_perc"
-    t.float    "bolsa_de_agua_perc"
-    t.float    "ruset_perc"
-    t.float    "reventados_perc"
-    t.float    "carozo_perc"
-    t.float    "total_damages_perc"
-    t.integer  "usda"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.string   "caliber"
-    t.index ["caliber"], name: "index_samples_averages_on_caliber", using: :btree
-    t.index ["element_id"], name: "index_samples_averages_on_element_id", using: :btree
+  create_table "product_types", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "humidity_min"
+    t.integer "humidity_max"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_product_types_on_name", unique: true
   end
 
-  create_table "sorbate_samples", force: :cascade do |t|
-    t.integer  "element_id"
-    t.string   "responsable",                     null: false
-    t.decimal  "sorbate",                         null: false
-    t.integer  "status",          default: 0,     null: false
-    t.boolean  "status_modified", default: false, null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "active",          default: true,  null: false
+  create_table "roles", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_roles_on_name", unique: true
+  end
+
+  create_table "samples_averages", id: :serial, force: :cascade do |t|
+    t.integer "element_id"
+    t.decimal "fruits_per_pound"
+    t.decimal "deviation"
+    t.integer "deviation_status"
+    t.decimal "humidity"
+    t.decimal "sorbate"
+    t.decimal "carozo_percentage"
+    t.float "off_color_perc"
+    t.float "poor_texture_perc"
+    t.float "scars_perc"
+    t.float "end_cracks_perc"
+    t.float "skin_or_flesh_damage_perc"
+    t.float "fermentation_perc"
+    t.float "heat_damage_perc"
+    t.float "insect_injury_perc"
+    t.float "mold_perc"
+    t.float "dirt_perc"
+    t.float "foreign_material_perc"
+    t.float "vegetal_foreign_material_perc"
+    t.float "insect_infestation_perc"
+    t.float "decay_perc"
+    t.float "deshidratado_perc"
+    t.float "bolsa_de_agua_perc"
+    t.float "ruset_perc"
+    t.float "reventados_perc"
+    t.float "carozo_perc"
+    t.float "total_damages_perc"
+    t.integer "usda"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "caliber"
+    t.index ["caliber"], name: "index_samples_averages_on_caliber"
+    t.index ["element_id"], name: "index_samples_averages_on_element_id"
+  end
+
+  create_table "sorbate_samples", id: :serial, force: :cascade do |t|
+    t.integer "element_id"
+    t.string "responsable", null: false
+    t.decimal "sorbate", null: false
+    t.integer "status", default: 0, null: false
+    t.boolean "status_modified", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "active", default: true, null: false
     t.datetime "deleted_at"
-    t.index ["element_id"], name: "index_sorbate_samples_on_element_id", using: :btree
+    t.index ["element_id"], name: "index_sorbate_samples_on_element_id"
   end
 
-  create_table "user_control_accesses", force: :cascade do |t|
-    t.integer  "user_control_id", null: false
-    t.integer  "operation_id",    null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["operation_id"], name: "index_user_control_accesses_on_operation_id", using: :btree
-    t.index ["user_control_id", "operation_id"], name: "index_user_accesses_on_user_control_id_and_operation_id", unique: true, using: :btree
-    t.index ["user_control_id"], name: "index_user_control_accesses_on_user_control_id", using: :btree
+  create_table "user_control_accesses", id: :serial, force: :cascade do |t|
+    t.integer "user_control_id", null: false
+    t.integer "operation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["operation_id"], name: "index_user_control_accesses_on_operation_id"
+    t.index ["user_control_id", "operation_id"], name: "index_user_accesses_on_user_control_id_and_operation_id", unique: true
+    t.index ["user_control_id"], name: "index_user_control_accesses_on_user_control_id"
   end
 
-  create_table "user_controls", force: :cascade do |t|
-    t.string   "name",                           null: false
-    t.string   "password"
-    t.integer  "sign_in_count",      default: 0, null: false
+  create_table "user_controls", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "password"
+    t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.index ["name"], name: "index_user_controls_on_name", unique: true, using: :btree
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_user_controls_on_name", unique: true
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
-    t.string   "name",                                   null: false
-    t.string   "last_name",                              null: false
-    t.string   "reset_password_token"
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "name", null: false
+    t.string "last_name", null: false
+    t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.string   "confirmation_token"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.boolean  "authorized",             default: false, null: false
-    t.integer  "role_id"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.string "unconfirmed_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "authorized", default: false, null: false
+    t.integer "role_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "warehouses", force: :cascade do |t|
-    t.string   "name"
+  create_table "warehouses", id: :serial, force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

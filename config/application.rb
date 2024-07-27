@@ -1,8 +1,6 @@
-require_relative 'boot'
-
+require_relative "boot"
 require 'csv'
-require 'rails/all'
-
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -10,9 +8,16 @@ Bundler.require(*Rails.groups)
 
 module Agsinformationsystem
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.0
+
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
+    # config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
 
     # Time zone Gmt -4:00 (Santiago)
     config.time_zone = 'Santiago'
@@ -56,6 +61,5 @@ module Agsinformationsystem
     config.aws_s3_region = "us-west-1"
     # Usado como prefijo para las carpetas que iran creandose cada dia
     config.aws_folder_prefix = "day_"
-
   end
 end
